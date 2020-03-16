@@ -10,12 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".NavigateActivity"
-            android:label="Navigation Map"
-            android:parentActivityName=".ZoomActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".ZoomActivity"
+            android:name=".EventActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -24,10 +19,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ChooseRoomActivity"/>
+        <activity
+            android:name=".NavigateActivity"
+            android:configChanges="orientation"
+            android:label="Navigation Map"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".EventActivity"></activity>
+        <activity
+            android:name=".ZoomActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

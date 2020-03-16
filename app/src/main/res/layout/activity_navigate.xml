@@ -20,12 +20,36 @@
             android:id="@+id/btn_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:text="uhuy"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="clear"
+            app:layout_constraintEnd_toStartOf="@+id/btn_csas"
             app:layout_constraintTop_toBottomOf="@+id/photo_view" />
+
+        <Button
+            android:id="@+id/btn_csas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:text="csas"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_up"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_up" />
+
+        <Button
+            android:id="@+id/btn_dapur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="dapur"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_up"
+            app:layout_constraintEnd_toStartOf="@+id/btn_up"
+            app:layout_constraintTop_toTopOf="@+id/btn_up" />
+
+        <Button
+            android:id="@+id/btn_beacon_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="beacon 01"
+            app:layout_constraintEnd_toStartOf="@+id/btn_dapur"
+            app:layout_constraintTop_toTopOf="@+id/btn_dapur" />
 
         <ImageView
             android:id="@+id/beacon_01"
@@ -349,6 +373,7 @@
             app:layout_constraintTop_toTopOf="@+id/node_toilet"
             app:srcCompat="@drawable/node" />
 
+
         <ImageView
             android:id="@+id/node_gate"
             android:layout_width="12dp"
@@ -359,6 +384,198 @@
             app:layout_constraintStart_toStartOf="@+id/beacon_01"
             app:srcCompat="@drawable/node" />
 
+        <ImageView
+            android:id="@+id/node_user"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/beacon_01"
+            app:layout_constraintTop_toTopOf="@+id/beacon_01"
+            app:srcCompat="@drawable/start_point" />
+
+        <ImageView
+            android:id="@+id/pin_dapur"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            app:layout_constraintBottom_toTopOf="@+id/node_dapur"
+            app:layout_constraintEnd_toEndOf="@+id/node_dapur"
+            app:layout_constraintStart_toStartOf="@+id/node_dapur"
+            app:srcCompat="@drawable/pin_kitchen" />
+
+        <ImageView
+            android:id="@+id/pin_lab"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            app:layout_constraintBottom_toTopOf="@+id/node_g11"
+            app:layout_constraintEnd_toEndOf="@+id/node_g11"
+            app:layout_constraintStart_toStartOf="@+id/node_g11"
+            app:srcCompat="@drawable/pin_lab" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="300dp"
+            android:layout_height="350dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_up"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:id="@+id/b_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="TextView"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/b_node" />
+
+                        <TextView
+                            android:id="@+id/b_node"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="TextView"
+                            app:layout_constraintEnd_toStartOf="@+id/b_tag"
+                            app:layout_constraintStart_toEndOf="@+id/b_name"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/b_tag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:text="TextView"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/b_node" />
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:text="neightbor"
+                            app:layout_constraintStart_toStartOf="@+id/b_name"
+                            app:layout_constraintTop_toBottomOf="@+id/b_name" />
+
+                        <TextView
+                            android:id="@+id/n_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:text="TextView"
+                            app:layout_constraintStart_toStartOf="@+id/textView6"
+                            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+                        <TextView
+                            android:id="@+id/n_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="TextView"
+                            app:layout_constraintStart_toStartOf="@+id/n_1"
+                            app:layout_constraintTop_toBottomOf="@+id/n_1" />
+
+                        <TextView
+                            android:id="@+id/n_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="TextView"
+                            app:layout_constraintStart_toStartOf="@+id/n_2"
+                            app:layout_constraintTop_toBottomOf="@+id/n_2" />
+
+                        <TextView
+                            android:id="@+id/n_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="TextView"
+                            app:layout_constraintStart_toStartOf="@+id/n_3"
+                            app:layout_constraintTop_toBottomOf="@+id/n_3" />
+
+                        <TextView
+                            android:id="@+id/n_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="TextView"
+                            app:layout_constraintStart_toStartOf="@+id/n_4"
+                            app:layout_constraintTop_toBottomOf="@+id/n_4" />
+
+                        <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:text="cost"
+                            app:layout_constraintEnd_toEndOf="@+id/b_node"
+                            app:layout_constraintStart_toStartOf="@+id/b_node"
+                            app:layout_constraintTop_toBottomOf="@+id/b_node" />
+
+                        <TextView
+                            android:id="@+id/c_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="TextView"
+                            app:layout_constraintStart_toStartOf="@+id/textView12"
+                            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+                        <TextView
+                            android:id="@+id/c_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="TextView"
+                            app:layout_constraintStart_toStartOf="@+id/c_1"
+                            app:layout_constraintTop_toBottomOf="@+id/c_1" />
+
+                        <TextView
+                            android:id="@+id/c_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="TextView"
+                            app:layout_constraintStart_toStartOf="@+id/c_2"
+                            app:layout_constraintTop_toBottomOf="@+id/c_2" />
+
+                        <TextView
+                            android:id="@+id/c_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="TextView"
+                            app:layout_constraintStart_toStartOf="@+id/c_3"
+                            app:layout_constraintTop_toBottomOf="@+id/c_3" />
+
+                        <TextView
+                            android:id="@+id/c_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="TextView"
+                            app:layout_constraintStart_toStartOf="@+id/c_4"
+                            app:layout_constraintTop_toBottomOf="@+id/c_4" />
+
+                        <Button
+                            android:id="@+id/btn_cls_card"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Close"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
             android:layout_width="wrap_content"
@@ -366,66 +583,54 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.1" />
 
-        <ImageView
-            android:id="@+id/edge_02"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/beacon_03"
-            app:layout_constraintEnd_toEndOf="@+id/beacon_01"
-            app:layout_constraintStart_toStartOf="@+id/beacon_01"
-            app:layout_constraintTop_toBottomOf="@+id/beacon_01"
-            app:srcCompat="@drawable/edge" />
+        <TextView
+            android:id="@+id/tv_jalur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/room_info"
+            android:layout_width="320dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="4dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_up">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
 
-        <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/beacon_05"
-            app:layout_constraintEnd_toEndOf="@+id/beacon_04"
-            app:layout_constraintStart_toStartOf="@+id/beacon_04"
-            app:layout_constraintTop_toBottomOf="@+id/beacon_04"
-            app:srcCompat="@drawable/edge" />
+                        <Button
+                            android:id="@+id/button4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginStart="16dp"
+                            android:text="info"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView11"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/beacon_07"
-            app:layout_constraintEnd_toEndOf="@+id/beacon_05"
-            app:layout_constraintStart_toStartOf="@+id/beacon_05"
-            app:layout_constraintTop_toBottomOf="@+id/beacon_05"
-            app:srcCompat="@drawable/edge" />
+                        <TextView
+                            android:id="@+id/tv_judul_ruangan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:text="TextView"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/beacon_07"
-            app:layout_constraintEnd_toStartOf="@+id/beacon_08"
-            app:layout_constraintStart_toEndOf="@+id/beacon_07"
-            app:layout_constraintTop_toBottomOf="@+id/imageView11"
-            app:srcCompat="@drawable/edge_h" />
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/beacon_04"
-            app:layout_constraintEnd_toEndOf="@+id/beacon_03"
-            app:layout_constraintStart_toStartOf="@+id/beacon_03"
-            app:layout_constraintTop_toBottomOf="@+id/beacon_03"
-            app:srcCompat="@drawable/edge" />
-
-        <ImageView
-            android:id="@+id/node_user"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/edge_02"
-            app:layout_constraintEnd_toStartOf="@+id/beacon_01"
-            app:layout_constraintTop_toTopOf="@+id/beacon_01"
-            app:srcCompat="@drawable/start_point" />
+        </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
