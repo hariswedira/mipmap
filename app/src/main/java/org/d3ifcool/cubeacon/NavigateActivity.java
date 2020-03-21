@@ -1,5 +1,6 @@
 package org.d3ifcool.cubeacon;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
@@ -33,7 +34,7 @@ import kotlin.jvm.functions.Function1;
 
 public class NavigateActivity extends AppCompatActivity  {
 
-    private ImageView userIcon, pinLab, pinDapur;
+    private ImageView userIcon, pinLab, pinDapur, searchIcon;
     Button up, btnLab, btnDapur, btnBeaconOne, closeCard;
     PhotoView photoView;
     Animation aU, aL;
@@ -74,87 +75,86 @@ public class NavigateActivity extends AppCompatActivity  {
         jalur = findViewById(R.id.tv_jalur);
         closeCard = findViewById(R.id.btn_cls_card);
         judul = findViewById(R.id.tv_judul_ruangan);
-
-        userIcon = findViewById(R.id.node_user);
-        userIcon.setVisibility(View.INVISIBLE);
-        pinDapur = findViewById(R.id.pin_dapur);
-        pinDapur.setVisibility(View.GONE);
-        pinLab = findViewById(R.id.pin_lab);
-        pinLab.setVisibility(View.GONE);
         photoView = findViewById(R.id.photo_view);
+        searchIcon = findViewById(R.id.iv_choose_room);
 
-        up = findViewById(R.id.btn_up);
-        btnLab = findViewById(R.id.btn_csas);
-        btnDapur = findViewById(R.id.btn_dapur);
-        btnBeaconOne = findViewById(R.id.btn_beacon_one);
-
-        aU = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_up);
-        aL = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_left);
-
-        up.setOnClickListener(new View.OnClickListener() {
+        searchIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int speech = textToSpeech.speak("Clear",TextToSpeech.QUEUE_FLUSH,null);
-                pinLab.setVisibility(View.GONE);
-                pinDapur.setVisibility(View.GONE);
-                cardView.setVisibility(View.GONE);
-                roomInfo.setVisibility(View.GONE);
-                jalur.setText("");
-                // Todo : move image
-//        // Get the TextView current LayoutParams
-//        ConstraintLayout.LayoutParams lp = (ConstraintLayout.LayoutParams) userIcon.getLayoutParams();
+                Intent searchIntent = new Intent(NavigateActivity.this,ChooseRoomActivity.class);
+                startActivity(searchIntent);
+            }
+        });
+
+//        userIcon = findViewById(R.id.node_user);
+//        userIcon.setVisibility(View.INVISIBLE);
+//        pinDapur = findViewById(R.id.pin_dapur);
+//        pinDapur.setVisibility(View.GONE);
+//        pinLab = findViewById(R.id.pin_lab);
+//        pinLab.setVisibility(View.GONE);
+
+//        up = findViewById(R.id.btn_up);
+//        btnLab = findViewById(R.id.btn_csas);
+//        btnDapur = findViewById(R.id.btn_dapur);
+//        btnBeaconOne = findViewById(R.id.btn_beacon_one);
+
+//        aU = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_up);
+//        aL = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_left);
+
+//        up.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int speech = textToSpeech.speak("Clear",TextToSpeech.QUEUE_FLUSH,null);
+//                pinLab.setVisibility(View.GONE);
+//                pinDapur.setVisibility(View.GONE);
+//                cardView.setVisibility(View.GONE);
+//                roomInfo.setVisibility(View.GONE);
+//                jalur.setText("");
+//            }
+//        });
+
+//        btnLab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                userIcon.startAnimation(aU);
+//                pinLab.setVisibility(View.VISIBLE);
+//                pinDapur.setVisibility(View.GONE);
+//                cardView.setVisibility(View.GONE);
+//                jalur.setText("User ke Lab CSAS : \n" +
+//                        "beacon01 -> beacon03 -> beacon04 -> beacon05 -> lab csas");
+//                int speech = textToSpeech.speak("Go to Laboratorium Chevalier SAS",TextToSpeech.QUEUE_FLUSH,null);
+//                roomInfo.setVisibility(View.VISIBLE);
+//                judul.setText("Lab CSAS");
+//            }
+//        });
 //
-//        // Set TextView layout margin 25 pixels to all side
-//        // Left Top Right Bottom Margin
-//        lp.setMargins(0,25,0,0);
+//        btnDapur.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                userIcon.startAnimation(aL);
+//                pinDapur.setVisibility(View.VISIBLE);
+//                pinLab.setVisibility(View.GONE);
+//                cardView.setVisibility(View.GONE);
+//                jalur.setText("User ke Dapur : \n" +
+//                        "beacon01 -> beacon02 -> dapur");
+//                int speech = textToSpeech.speak("Go to kitchen",TextToSpeech.QUEUE_FLUSH,null);
+//                roomInfo.setVisibility(View.VISIBLE);
+//                judul.setText("Dapur");
+//            }
+//        });
 //
-//        // Apply the updated layout parameters to TextView
-//        userIcon.setLayoutParams(lp);
-            }
-        });
-
-        btnLab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                userIcon.startAnimation(aU);
-                pinLab.setVisibility(View.VISIBLE);
-                pinDapur.setVisibility(View.GONE);
-                cardView.setVisibility(View.GONE);
-                jalur.setText("User ke Lab CSAS : \n" +
-                        "beacon01 -> beacon03 -> beacon04 -> beacon05 -> lab csas");
-                int speech = textToSpeech.speak("Go to Laboratorium Chevalier SAS",TextToSpeech.QUEUE_FLUSH,null);
-                roomInfo.setVisibility(View.VISIBLE);
-                judul.setText("Lab CSAS");
-            }
-        });
-
-        btnDapur.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                userIcon.startAnimation(aL);
-                pinDapur.setVisibility(View.VISIBLE);
-                pinLab.setVisibility(View.GONE);
-                cardView.setVisibility(View.GONE);
-                jalur.setText("User ke Dapur : \n" +
-                        "beacon01 -> beacon02 -> dapur");
-                int speech = textToSpeech.speak("Go to kitchen",TextToSpeech.QUEUE_FLUSH,null);
-                roomInfo.setVisibility(View.VISIBLE);
-                judul.setText("Dapur");
-            }
-        });
-
-        btnBeaconOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                gson();
-                pinLab.setVisibility(View.GONE);
-                pinDapur.setVisibility(View.GONE);
-                roomInfo.setVisibility(View.GONE);
-                cardView.setVisibility(View.VISIBLE);
-                jalur.setText("Beacon 01 Information");
-                int speech = textToSpeech.speak("display beacon 1 information",TextToSpeech.QUEUE_FLUSH,null);
-            }
-        });
+//        btnBeaconOne.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                gson();
+//                pinLab.setVisibility(View.GONE);
+//                pinDapur.setVisibility(View.GONE);
+//                roomInfo.setVisibility(View.GONE);
+//                cardView.setVisibility(View.VISIBLE);
+//                jalur.setText("Beacon 01 Information");
+//                int speech = textToSpeech.speak("display beacon 1 information",TextToSpeech.QUEUE_FLUSH,null);
+//            }
+//        });
 
         closeCard.setOnClickListener(new View.OnClickListener() {
             @Override

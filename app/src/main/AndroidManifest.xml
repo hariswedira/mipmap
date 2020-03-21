@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".DetailRoomActivity"></activity>
         <activity
             android:name=".EventActivity"
             android:configChanges="orientation"
@@ -19,13 +20,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChooseRoomActivity"/>
+        <activity
+            android:name=".ChooseRoomActivity"
+            android:configChanges="orientation"
+            android:label="Chosse Rooms"
+            android:parentActivityName=".EventActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".NavigateActivity"
             android:configChanges="orientation"
             android:label="Navigation Map"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".EventActivity"></activity>
+            android:parentActivityName=".EventActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ZoomActivity"
             android:configChanges="orientation"

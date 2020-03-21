@@ -46,7 +46,8 @@ public class ChooseRoomActivity extends AppCompatActivity {
     }
 
     private void addRoom() {
-        for (int i = 0; i < 5 ; i++) {
+        rooms.add("MP Mart");
+        for (int i = 0; i < 12 ; i++) {
             rooms.add("G"+(i+1));
         }
     }

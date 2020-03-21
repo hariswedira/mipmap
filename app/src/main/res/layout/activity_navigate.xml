@@ -6,88 +6,137 @@
     android:layout_height="match_parent"
     tools:context=".NavigateActivity">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar_navigate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp">
+
+                                <TextView
+                                    android:id="@+id/mini_logo_h"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Navigate"
+                                    android:textSize="20sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/iv_choose_room"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginEnd="16dp"
+                                    android:src="@drawable/ic_search"
+                                    app:layout_constraintBottom_toBottomOf="@+id/mini_logo_h"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="@+id/mini_logo_h" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!--        <Button-->
+<!--            android:id="@+id/btn_up"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="clear"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/btn_csas"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/photo_view" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btn_csas"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="4dp"-->
+<!--            android:text="csas"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/btn_up"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/btn_up" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btn_dapur"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="dapur"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/btn_up"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/btn_up"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/btn_up" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btn_beacon_one"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="beacon 01"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/btn_dapur"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/btn_dapur" />-->
+
         <com.github.chrisbanes.photoview.PhotoView
             android:id="@+id/photo_view"
-            android:layout_width="400dp"
-            android:layout_height="400dp"
+            android:layout_width="360dp"
+            android:layout_height="480dp"
             android:scaleType="fitXY"
-            android:src="@drawable/map_fit_lt_01"
+            android:src="@drawable/map_fit_satu"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.454"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
-        <Button
-            android:id="@+id/btn_up"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="clear"
-            app:layout_constraintEnd_toStartOf="@+id/btn_csas"
-            app:layout_constraintTop_toBottomOf="@+id/photo_view" />
-
-        <Button
-            android:id="@+id/btn_csas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:text="csas"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_up"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btn_up" />
-
-        <Button
-            android:id="@+id/btn_dapur"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="dapur"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_up"
-            app:layout_constraintEnd_toStartOf="@+id/btn_up"
-            app:layout_constraintTop_toTopOf="@+id/btn_up" />
-
-        <Button
-            android:id="@+id/btn_beacon_one"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="beacon 01"
-            app:layout_constraintEnd_toStartOf="@+id/btn_dapur"
-            app:layout_constraintTop_toTopOf="@+id/btn_dapur" />
-
         <ImageView
             android:id="@+id/beacon_01"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginEnd="128dp"
-            android:layout_marginTop="116dp"
-            app:layout_constraintEnd_toEndOf="@+id/photo_view"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="185dp"
+            android:layout_marginTop="198dp"
+            app:layout_constraintStart_toStartOf="@+id/photo_view"
             app:layout_constraintTop_toTopOf="@+id/photo_view"
             app:srcCompat="@drawable/beacon" />
 
         <ImageView
             android:id="@+id/beacon_02"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginEnd="124dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="75dp"
             app:layout_constraintBottom_toBottomOf="@+id/beacon_01"
-            app:layout_constraintEnd_toStartOf="@+id/beacon_01"
+            app:layout_constraintStart_toEndOf="@+id/beacon_01"
             app:layout_constraintTop_toTopOf="@+id/beacon_01"
-            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/beacon" />
 
         <ImageView
             android:id="@+id/beacon_03"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toEndOf="@+id/beacon_01"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="@+id/beacon_02"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/beacon_01"
-            app:layout_constraintTop_toBottomOf="@+id/beacon_01"
+            app:layout_constraintStart_toStartOf="@+id/beacon_02"
+            app:layout_constraintTop_toBottomOf="@+id/beacon_02"
             app:srcCompat="@drawable/beacon" />
 
         <ImageView
             android:id="@+id/beacon_04"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginTop="28dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="40dp"
             app:layout_constraintEnd_toEndOf="@+id/beacon_03"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/beacon_03"
@@ -96,9 +145,9 @@
 
         <ImageView
             android:id="@+id/beacon_05"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginTop="43dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="45dp"
             app:layout_constraintEnd_toEndOf="@+id/beacon_04"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/beacon_04"
@@ -107,9 +156,9 @@
 
         <ImageView
             android:id="@+id/beacon_06"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginEnd="112dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginEnd="100dp"
             app:layout_constraintBottom_toBottomOf="@+id/beacon_05"
             app:layout_constraintEnd_toStartOf="@+id/beacon_05"
             app:layout_constraintTop_toTopOf="@+id/beacon_05"
@@ -118,9 +167,9 @@
 
         <ImageView
             android:id="@+id/beacon_07"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginTop="40dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="53dp"
             app:layout_constraintEnd_toEndOf="@+id/beacon_05"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/beacon_05"
@@ -129,9 +178,9 @@
 
         <ImageView
             android:id="@+id/beacon_08"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginStart="28dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="40dp"
             app:layout_constraintBottom_toBottomOf="@+id/beacon_07"
             app:layout_constraintStart_toEndOf="@+id/beacon_07"
             app:layout_constraintTop_toTopOf="@+id/beacon_07"
@@ -140,48 +189,49 @@
 
         <ImageView
             android:id="@+id/node_dapur"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginStart="110dp"
-            android:layout_marginTop="85dp"
-            app:layout_constraintStart_toStartOf="@id/photo_view"
-            app:layout_constraintTop_toTopOf="@+id/photo_view"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="70dp"
+            app:layout_constraintBottom_toTopOf="@+id/node_g1"
+            app:layout_constraintStart_toEndOf="@+id/node_g1"
             app:srcCompat="@drawable/node" />
 
         <ImageView
-            android:id="@+id/node_g0"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="105dp"
-            app:layout_constraintStart_toStartOf="@id/photo_view"
-            app:layout_constraintTop_toTopOf="@+id/photo_view"
+            android:id="@+id/node_g5"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="38dp"
+            app:layout_constraintEnd_toEndOf="@+id/node_g1"
+            app:layout_constraintStart_toStartOf="@+id/node_g1"
+            app:layout_constraintTop_toBottomOf="@+id/node_g1"
             app:srcCompat="@drawable/node" />
 
         <ImageView
             android:id="@+id/node_g6"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginStart="105dp"
-            android:layout_marginTop="152dp"
-            app:layout_constraintStart_toStartOf="@id/photo_view"
-            app:layout_constraintTop_toTopOf="@+id/photo_view"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="44dp"
+            app:layout_constraintStart_toEndOf="@+id/node_g1"
+            app:layout_constraintTop_toBottomOf="@+id/node_g1"
             app:srcCompat="@drawable/node" />
 
         <ImageView
             android:id="@+id/node_g7"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginStart="128dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/node_g6"
-            app:layout_constraintStart_toStartOf="@id/photo_view"
+            app:layout_constraintStart_toEndOf="@+id/node_g6"
             app:layout_constraintTop_toTopOf="@+id/node_g6"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/node" />
 
         <ImageView
             android:id="@+id/node_kantin"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/node_dapur"
             app:layout_constraintStart_toEndOf="@+id/node_dapur"
@@ -191,31 +241,37 @@
 
         <ImageView
             android:id="@+id/node_mp_mart"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginStart="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/beacon_01"
-            app:layout_constraintStart_toEndOf="@+id/beacon_01"
-            app:layout_constraintTop_toTopOf="@+id/beacon_01"
-            app:layout_constraintVertical_bias="1.0"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/beacon_02"
+            app:layout_constraintStart_toEndOf="@+id/beacon_02"
             app:srcCompat="@drawable/node" />
 
         <ImageView
             android:id="@+id/node_laboran"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginEnd="70dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/beacon_03"
-            app:layout_constraintEnd_toEndOf="@+id/photo_view"
-            app:layout_constraintTop_toBottomOf="@+id/node_mp_mart"
-            app:layout_constraintVertical_bias="0.0"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toEndOf="@+id/beacon_02"
+            app:layout_constraintTop_toTopOf="@+id/beacon_02"
             app:srcCompat="@drawable/node" />
 
         <ImageView
             android:id="@+id/node_g10"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="47dp"
+            app:layout_constraintEnd_toEndOf="@+id/node_g9"
+            app:layout_constraintStart_toStartOf="@+id/node_g9"
+            app:layout_constraintTop_toBottomOf="@+id/node_g9"
+            app:srcCompat="@drawable/node" />
+
+        <ImageView
+            android:id="@+id/node_g9"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="@+id/node_laboran"
             app:layout_constraintStart_toStartOf="@+id/node_laboran"
@@ -223,20 +279,9 @@
             app:srcCompat="@drawable/node" />
 
         <ImageView
-            android:id="@+id/node_g9"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginTop="35dp"
-            app:layout_constraintEnd_toEndOf="@+id/node_g10"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/node_g10"
-            app:layout_constraintTop_toBottomOf="@+id/node_g10"
-            app:srcCompat="@drawable/node" />
-
-        <ImageView
             android:id="@+id/node_lobby"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:layout_marginEnd="32dp"
             app:layout_constraintBottom_toBottomOf="@+id/beacon_04"
             app:layout_constraintEnd_toStartOf="@+id/beacon_04"
@@ -245,49 +290,48 @@
 
         <ImageView
             android:id="@+id/node_g11"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginTop="28dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="58dp"
             app:layout_constraintEnd_toEndOf="@+id/node_g9"
             app:layout_constraintStart_toStartOf="@+id/node_g9"
-            app:layout_constraintTop_toBottomOf="@+id/node_g9"
+            app:layout_constraintTop_toBottomOf="@+id/node_g10"
             app:srcCompat="@drawable/node" />
 
         <ImageView
             android:id="@+id/node_g3"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="224dp"
-            app:layout_constraintStart_toStartOf="@id/photo_view"
-            app:layout_constraintTop_toTopOf="@+id/photo_view"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="88dp"
+            app:layout_constraintStart_toStartOf="@+id/node_g1"
+            app:layout_constraintTop_toBottomOf="@+id/node_g6"
             app:srcCompat="@drawable/node" />
 
         <ImageView
             android:id="@+id/node_g1"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="12dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="193dp"
             app:layout_constraintStart_toStartOf="@+id/photo_view"
-            app:layout_constraintTop_toBottomOf="@+id/node_g3"
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
             app:srcCompat="@drawable/node" />
 
         <ImageView
             android:id="@+id/node_g2"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginStart="25dp"
-            app:layout_constraintBottom_toBottomOf="@+id/node_g3"
-            app:layout_constraintStart_toEndOf="@+id/node_g3"
-            app:layout_constraintTop_toTopOf="@+id/node_g3"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="70dp"
+            app:layout_constraintEnd_toEndOf="@+id/node_g6"
+            app:layout_constraintStart_toStartOf="@+id/node_g6"
+            app:layout_constraintTop_toBottomOf="@+id/node_g6"
             app:srcCompat="@drawable/node" />
 
         <ImageView
             android:id="@+id/node_g8"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginStart="28dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/node_g2"
             app:layout_constraintStart_toEndOf="@+id/node_g2"
             app:layout_constraintTop_toTopOf="@+id/node_g2"
@@ -295,9 +339,9 @@
 
         <ImageView
             android:id="@+id/node_g4"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginTop="32dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="@+id/node_g2"
             app:layout_constraintStart_toStartOf="@+id/node_g2"
             app:layout_constraintTop_toBottomOf="@+id/node_g2"
@@ -305,126 +349,109 @@
 
         <ImageView
             android:id="@+id/node_lak"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="28dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toEndOf="@+id/beacon_06"
             app:layout_constraintTop_toBottomOf="@+id/beacon_06"
             app:srcCompat="@drawable/node" />
 
         <ImageView
             android:id="@+id/node_dosen_lb"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginTop="25dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="44dp"
             app:layout_constraintEnd_toEndOf="@+id/node_lak"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/node_lak"
             app:layout_constraintTop_toBottomOf="@+id/node_lak"
             app:srcCompat="@drawable/node" />
 
         <ImageView
-            android:id="@+id/imageView26"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="16dp"
+            android:id="@+id/node_g12"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/node_dosen_lb"
             app:layout_constraintEnd_toStartOf="@+id/node_dosen_lb"
-            app:layout_constraintTop_toBottomOf="@+id/node_lak"
             app:srcCompat="@drawable/node" />
 
         <ImageView
             android:id="@+id/node_aslab"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toTopOf="@+id/beacon_08"
-            app:layout_constraintEnd_toEndOf="@+id/beacon_08"
-            app:layout_constraintStart_toStartOf="@+id/beacon_08"
+            app:layout_constraintEnd_toStartOf="@+id/beacon_08"
             app:srcCompat="@drawable/node" />
 
         <ImageView
             android:id="@+id/node_lift"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="2dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="@+id/beacon_08"
-            app:layout_constraintStart_toStartOf="@+id/beacon_08"
+            app:layout_constraintStart_toEndOf="@+id/beacon_07"
             app:layout_constraintTop_toBottomOf="@+id/beacon_08"
             app:srcCompat="@drawable/node" />
 
         <ImageView
             android:id="@+id/node_toilet"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginStart="24dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toTopOf="@+id/node_lift"
-            app:layout_constraintStart_toEndOf="@+id/beacon_08"
-            app:layout_constraintTop_toBottomOf="@+id/node_aslab"
+            app:layout_constraintStart_toStartOf="@+id/beacon_08"
+            app:layout_constraintTop_toBottomOf="@+id/beacon_08"
             app:srcCompat="@drawable/node" />
 
         <ImageView
             android:id="@+id/node_exit_emergency"
             android:layout_width="12dp"
             android:layout_height="12dp"
-            android:layout_marginStart="24dp"
-            app:layout_constraintBottom_toBottomOf="@+id/node_toilet"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/beacon_08"
             app:layout_constraintStart_toEndOf="@+id/node_toilet"
-            app:layout_constraintTop_toTopOf="@+id/node_toilet"
             app:srcCompat="@drawable/node" />
 
 
         <ImageView
             android:id="@+id/node_gate"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:layout_marginBottom="32dp"
-            app:layout_constraintBottom_toTopOf="@+id/beacon_01"
-            app:layout_constraintEnd_toEndOf="@+id/beacon_01"
-            app:layout_constraintStart_toStartOf="@+id/beacon_01"
+            app:layout_constraintBottom_toTopOf="@+id/beacon_02"
+            app:layout_constraintEnd_toEndOf="@+id/beacon_02"
+            app:layout_constraintStart_toStartOf="@+id/beacon_02"
             app:srcCompat="@drawable/node" />
-
-        <ImageView
-            android:id="@+id/node_user"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginEnd="4dp"
-            app:layout_constraintEnd_toStartOf="@+id/beacon_01"
-            app:layout_constraintTop_toTopOf="@+id/beacon_01"
-            app:srcCompat="@drawable/start_point" />
-
-        <ImageView
-            android:id="@+id/pin_dapur"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            app:layout_constraintBottom_toTopOf="@+id/node_dapur"
-            app:layout_constraintEnd_toEndOf="@+id/node_dapur"
-            app:layout_constraintStart_toStartOf="@+id/node_dapur"
-            app:srcCompat="@drawable/pin_kitchen" />
-
-        <ImageView
-            android:id="@+id/pin_lab"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            app:layout_constraintBottom_toTopOf="@+id/node_g11"
-            app:layout_constraintEnd_toEndOf="@+id/node_g11"
-            app:layout_constraintStart_toStartOf="@+id/node_g11"
-            app:srcCompat="@drawable/pin_lab" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view"
             android:layout_width="300dp"
             android:layout_height="350dp"
+            android:layout_marginTop="16dp"
             app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_up"
+            app:layout_constraintBottom_toBottomOf="@+id/photo_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@+id/guideline2">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+
+                        <Button
+                            android:id="@+id/btn_cls_card"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Close"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
 
                         <TextView
                             android:id="@+id/b_name"
@@ -563,15 +590,6 @@
                             app:layout_constraintStart_toStartOf="@+id/c_4"
                             app:layout_constraintTop_toBottomOf="@+id/c_4" />
 
-                        <Button
-                            android:id="@+id/btn_cls_card"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:text="Close"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
@@ -598,11 +616,11 @@
             android:id="@+id/room_info"
             android:layout_width="320dp"
             android:layout_height="100dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_up">
+            app:layout_constraintTop_toBottomOf="@+id/photo_view">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
