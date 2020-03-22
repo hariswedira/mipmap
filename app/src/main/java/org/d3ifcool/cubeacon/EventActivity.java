@@ -2,8 +2,6 @@ package org.d3ifcool.cubeacon;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -12,11 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,7 +26,7 @@ import com.estimote.proximity_sdk.api.ProximityZoneBuilder;
 import com.estimote.proximity_sdk.api.ProximityZoneContext;
 import com.google.gson.Gson;
 
-import org.d3ifcool.cubeacon.estimote.ProximityContentManager;
+import org.d3ifcool.cubeacon.activities.ListEventActivity;
 
 import java.util.List;
 import java.util.Locale;
@@ -43,8 +37,11 @@ public class EventActivity extends AppCompatActivity {
         new EstimoteCloudCredentials("febbydahlan034-gmail-com-s-6wz", "93eb2e64e84caf1d30079ad3c7b8b7e8");
     private NotificationManagaer notificationManagaer;
 
+    private final String BLUEBERRY = "blueberry";
+    private final String COCONUT = "coconut";
+
     private int userPos;
-    private TextView ruangan, judul, desk, tgl, noEvent;
+    private TextView noEvent;
     private ImageView photoEvent, searchMenu, pinUser, pinBcnTwo, pinBcnThree;
     TextView bName, bNode, bTag, n1, n2, n3, n4, n5, c1, c2, c3, c4, c5;
     Button closeCard;
@@ -58,11 +55,6 @@ public class EventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_event);
 
         userPos = 0;
-        ruangan = findViewById(R.id.tv_room_event);
-        judul = findViewById(R.id.tv_title_event);
-        desk = findViewById(R.id.tv_desc_event);
-        tgl = findViewById(R.id.tv_date_event);
-        photoEvent = findViewById(R.id.iv_event);
         noEvent = findViewById(R.id.tv_no_event);
         searchMenu = findViewById(R.id.iv_search_room);
         pinUser = findViewById(R.id.pin_user_pos);
@@ -94,7 +86,7 @@ public class EventActivity extends AppCompatActivity {
         pinBcnTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gson();
+                gson(2);
                 cardView.setVisibility(View.VISIBLE);
                 int speech = textToSpeech.speak("display beacon 1 information",TextToSpeech.QUEUE_FLUSH,null);
             }
@@ -172,12 +164,12 @@ public class EventActivity extends AppCompatActivity {
                         String title = context.getAttachments().get("area");
                         if (title == null) {
                             title = "unknown";
-                        }else if(title.equalsIgnoreCase("coconut")){
+                        }else if(title.equalsIgnoreCase(COCONUT)){
                             notificationManagaer.enterCoconut();
                             userPos = 1;
                             Toast.makeText(EventActivity.this, "coconut in 1 meter | Position : "+userPos, Toast.LENGTH_SHORT).show();
                             inBeacon("coconut");
-                        }else if (title.equalsIgnoreCase("blueberry")){
+                        }else if (title.equalsIgnoreCase(BLUEBERRY)){
                             notificationManagaer.enterBlueberry();
                             userPos = 2;
                             Toast.makeText(EventActivity.this, "blueberry in 1 meter | Position : "+userPos, Toast.LENGTH_SHORT).show();
@@ -193,19 +185,15 @@ public class EventActivity extends AppCompatActivity {
                         String title = proximityContext.getAttachments().get("area");
                         if (title == null) {
                             title = "unknown";
-                        }else if(title.equalsIgnoreCase("coconut")){
+                        }else if(title.equalsIgnoreCase(COCONUT)){
                             Toast.makeText(EventActivity.this, "coconut out", Toast.LENGTH_SHORT).show();
                             outBeacon();
                             pinBcnThree.setImageResource(R.drawable.beacon);
-                        }else if (title.equalsIgnoreCase("blueberry")){
+                        }else if (title.equalsIgnoreCase(BLUEBERRY)){
                             Toast.makeText(EventActivity.this, "blueberry out", Toast.LENGTH_SHORT).show();
                             outBeacon();
                             pinBcnTwo.setImageResource(R.drawable.beacon);
                         }
-                        ruangan.setText("");
-                        judul.setText("");
-                        desk.setText("");
-                        tgl.setText("");
                         return null;
                     }
                 })
@@ -215,7 +203,7 @@ public class EventActivity extends AppCompatActivity {
 
     private void outBeacon(){
         pinUser.setVisibility(View.VISIBLE);
-        noEvent.setText("You're outside the beacon area");
+        noEvent.setText(getResources().getString(R.string.outside_beacon_area));
         photoEvent.setVisibility(View.INVISIBLE);
         cdEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -227,46 +215,23 @@ public class EventActivity extends AppCompatActivity {
 
     private void inBeacon(String name){
         pinUser.setVisibility(View.GONE);
-        if (name.equalsIgnoreCase("coconut")){
-            ruangan.setText("MP Mart");
-            judul.setText("Discount 50% All Item");
-            desk.setText("Potongan harga untuk semua barang khusus untuk hari ini saja");
-            tgl.setText("20 Maret 2020");
-            noEvent.setText("");
-            photoEvent.setVisibility(View.VISIBLE);
-            photoEvent.setImageResource(R.drawable.ic_launcher_background);
+        noEvent.setText(getResources().getString(R.string.inside_beacon_area));
+        if (name.equalsIgnoreCase(COCONUT)){
             pinBcnThree.setImageResource(R.drawable.user_pin);
             cdEvent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(EventActivity.this, DetailRoomActivity.class);
-                    intent.putExtra("title",judul.getText().toString());
-                    intent.putExtra("date",tgl.getText().toString());
-                    intent.putExtra("room",ruangan.getText().toString());
-                    intent.putExtra("desc",desk.getText().toString());
-                    intent.putExtra("photo",R.drawable.ic_launcher_foreground);
+                    Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
                     startActivity(intent);
                 }
             });
 
-        }else if (name.equalsIgnoreCase("blueberry")){
-            ruangan.setText("Laboran");
-            judul.setText("Workshop Android Expert");
-            desk.setText("Belajar MVVM + Live Data, Room, Retrofit dan RecyclerView");
-            tgl.setText("22 Maret 2020");
-            noEvent.setText("");
-            photoEvent.setVisibility(View.VISIBLE);
-            photoEvent.setImageResource(R.drawable.icon_mipmap);
+        }else if (name.equalsIgnoreCase(BLUEBERRY)){
             pinBcnTwo.setImageResource(R.drawable.user_pin);
             cdEvent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(EventActivity.this, DetailRoomActivity.class);
-                    intent.putExtra("title",judul.getText().toString());
-                    intent.putExtra("date",tgl.getText().toString());
-                    intent.putExtra("room",ruangan.getText().toString());
-                    intent.putExtra("desc",desk.getText().toString());
-                    intent.putExtra("photo",R.drawable.icon_mipmap);
+                    Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
                     startActivity(intent);
                 }
             });
@@ -285,26 +250,70 @@ public class EventActivity extends AppCompatActivity {
                 });
     }
 
-    public void gson(){
-        String jsonFileString = Utils.getJsonFromAssets(getApplicationContext(), "beacon.json");
-        Log.i("data", jsonFileString);
+    public void gson(int numberBeacon){
 
-        Gson gson = new Gson();
-        Beacon beacons1 = gson.fromJson(jsonFileString, Beacon.class);
+        switch (numberBeacon){
+            case 1:
+                Toast.makeText(this, "No Beacon Available", Toast.LENGTH_SHORT).show();
+                break;
+            case 2:
+                String jsonFileStringBlueberry = Utils.getJsonFromAssets(getApplicationContext(), "blueberry.json");
+                Log.i("data", jsonFileStringBlueberry);
 
-        bName.setText(beacons1.getInformation().getName());
-        bTag.setText(beacons1.getInformation().getTags());
-        bNode.setText(beacons1.getInformation().getNode());
-        n1.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(0));
-        n2.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(1));
-        n3.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(2));
-        n4.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(3));
-        n5.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(4));
-        c1.setText(beacons1.getAlgorithm().get(0).getCost().get(0).toString());
-        c2.setText(beacons1.getAlgorithm().get(0).getCost().get(1).toString());
-        c3.setText(beacons1.getAlgorithm().get(0).getCost().get(2).toString());
-        c4.setText(beacons1.getAlgorithm().get(0).getCost().get(3).toString());
-        c5.setText(beacons1.getAlgorithm().get(0).getCost().get(4).toString());
+                Gson gsonBlueberry = new Gson();
+                Beacon beacons2 = gsonBlueberry.fromJson(jsonFileStringBlueberry, Beacon.class);
+
+                bName.setText(beacons2.getInformation().getName());
+                bTag.setText(beacons2.getInformation().getTags());
+                bNode.setText(beacons2.getInformation().getNode());
+                n1.setText(beacons2.getAlgorithm().get(0).getNeightbor().get(0));
+                n2.setText(beacons2.getAlgorithm().get(0).getNeightbor().get(1));
+                n3.setText(beacons2.getAlgorithm().get(0).getNeightbor().get(2));
+                n4.setText(beacons2.getAlgorithm().get(0).getNeightbor().get(3));
+                n5.setText(beacons2.getAlgorithm().get(0).getNeightbor().get(4));
+                c1.setText(beacons2.getAlgorithm().get(0).getCost().get(0).toString());
+                c2.setText(beacons2.getAlgorithm().get(0).getCost().get(1).toString());
+                c3.setText(beacons2.getAlgorithm().get(0).getCost().get(2).toString());
+                c4.setText(beacons2.getAlgorithm().get(0).getCost().get(3).toString());
+                c5.setText(beacons2.getAlgorithm().get(0).getCost().get(4).toString());
+                break;
+            case 3:
+                String jsonFileStringCoconut = Utils.getJsonFromAssets(getApplicationContext(), "coconut.json");
+                Log.i("data", jsonFileStringCoconut);
+
+                Gson gsonCoconut = new Gson();
+                Beacon beacons3 = gsonCoconut.fromJson(jsonFileStringCoconut, Beacon.class);
+
+                bName.setText(beacons3.getInformation().getName());
+                bTag.setText(beacons3.getInformation().getTags());
+                bNode.setText(beacons3.getInformation().getNode());
+                n1.setText(beacons3.getAlgorithm().get(0).getNeightbor().get(0));
+                n2.setText(beacons3.getAlgorithm().get(0).getNeightbor().get(1));
+                n3.setText(beacons3.getAlgorithm().get(0).getNeightbor().get(2));
+                n4.setText("");
+                n5.setText("");
+                c1.setText(beacons3.getAlgorithm().get(0).getCost().get(0).toString());
+                c2.setText(beacons3.getAlgorithm().get(0).getCost().get(1).toString());
+                c3.setText(beacons3.getAlgorithm().get(0).getCost().get(2).toString());
+                c4.setText("");
+                c5.setText("");
+                break;
+            case 4:
+                Toast.makeText(this, "No Beacon Available", Toast.LENGTH_SHORT).show();
+                break;
+            case 5:
+                Toast.makeText(this, "No Beacon Available", Toast.LENGTH_SHORT).show();
+                break;
+            case 6:
+                Toast.makeText(this, "No Beacon Available", Toast.LENGTH_SHORT).show();
+                break;
+            case 7:
+                Toast.makeText(this, "No Beacon Available", Toast.LENGTH_SHORT).show();
+                break;
+            case 8:
+                Toast.makeText(this, "No Beacon Available", Toast.LENGTH_SHORT).show();
+                break;
+        }
 
     }
 }

@@ -1,7 +1,7 @@
 {
   "information": {
-    "name": "beacon01",
-    "node": "1",
+    "name": "beacon02",
+    "node": "2",
     "tags": "blueberry"
   },
   "algorithm": [
@@ -9,7 +9,7 @@
       "neightbor": [
         "mpmart",
         "gate",
-        "beacon02",
+        "beacon01",
         "laboran",
         "beacon03"
       ],

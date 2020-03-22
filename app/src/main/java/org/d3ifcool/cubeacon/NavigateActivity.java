@@ -6,7 +6,6 @@ import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -55,26 +54,26 @@ public class NavigateActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigate);
 
-        cardView = findViewById(R.id.card_view);
+//        cardView = findViewById(R.id.card_view);
+//        cardView.setVisibility(View.GONE);
+//        bName = findViewById(R.id.b_name);
+//        bNode = findViewById(R.id.b_node);
+//        bTag = findViewById(R.id.b_tag);
+//        n1 = findViewById(R.id.n_1);
+//        n2 = findViewById(R.id.n_2);
+//        n3 = findViewById(R.id.n_3);
+//        n4 = findViewById(R.id.n_4);
+//        n5 = findViewById(R.id.n_5);
+//        c1 = findViewById(R.id.c_1);
+//        c2 = findViewById(R.id.c_2);
+//        c3 = findViewById(R.id.c_3);
+//        c4 = findViewById(R.id.c_4);
+//        c5 = findViewById(R.id.c_5);
+//        jalur = findViewById(R.id.tv_jalur);
+//        closeCard = findViewById(R.id.btn_cls_card);
         roomInfo = findViewById(R.id.room_info);
         roomInfo.setVisibility(View.GONE);
-        cardView.setVisibility(View.GONE);
-        bName = findViewById(R.id.b_name);
-        bNode = findViewById(R.id.b_node);
-        bTag = findViewById(R.id.b_tag);
-        n1 = findViewById(R.id.n_1);
-        n2 = findViewById(R.id.n_2);
-        n3 = findViewById(R.id.n_3);
-        n4 = findViewById(R.id.n_4);
-        n5 = findViewById(R.id.n_5);
-        c1 = findViewById(R.id.c_1);
-        c2 = findViewById(R.id.c_2);
-        c3 = findViewById(R.id.c_3);
-        c4 = findViewById(R.id.c_4);
-        c5 = findViewById(R.id.c_5);
-        jalur = findViewById(R.id.tv_jalur);
-        closeCard = findViewById(R.id.btn_cls_card);
-        judul = findViewById(R.id.tv_judul_ruangan);
+        judul = findViewById(R.id.tv_title_room);
         photoView = findViewById(R.id.photo_view);
         searchIcon = findViewById(R.id.iv_choose_room);
 
@@ -173,7 +172,7 @@ public class NavigateActivity extends AppCompatActivity  {
     }
 
     public void gson(){
-        String jsonFileString = Utils.getJsonFromAssets(getApplicationContext(), "beacon.json");
+        String jsonFileString = Utils.getJsonFromAssets(getApplicationContext(), "blueberry.json");
         Log.i("data", jsonFileString);
 
         Gson gson = new Gson();

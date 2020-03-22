@@ -39,14 +39,17 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/iv_search_room"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/user_pin"
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="Event"
+                    android:textColor="@color/deep_blue"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView14"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView14"
                     app:layout_constraintTop_toTopOf="@+id/imageView14" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -84,55 +87,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-            <TextView
-                android:id="@+id/tv_room_event"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text=""
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_title_event"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="16dp"
-                android:text=""
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/tv_room_event"
-                app:layout_constraintTop_toBottomOf="@+id/tv_room_event" />
-
-            <TextView
-                android:id="@+id/tv_desc_event"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="8dp"
-                android:ellipsize="end"
-                android:text=""
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/tv_title_event"
-                app:layout_constraintTop_toBottomOf="@+id/tv_title_event" />
-
-            <TextView
-                android:id="@+id/tv_date_event"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                app:layout_constraintBottom_toBottomOf="@+id/tv_title_event"
-                app:layout_constraintEnd_toEndOf="@+id/tv_desc_event"
-                app:layout_constraintTop_toTopOf="@+id/tv_room_event" />
-
             <TextView
                 android:id="@+id/tv_no_event"
                 android:layout_width="0dp"
@@ -140,23 +94,16 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:gravity="center"
-                android:text="You're outside the beacon area"
-                android:textSize="32sp"
+                android:text="@string/outside_beacon_area"
+                android:textSize="28sp"
+                android:textColor="@color/deep_blue"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
-    <ImageView
-        android:id="@+id/iv_event"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/cd_event"
-        app:layout_constraintStart_toStartOf="@+id/cd_event"
-        android:src="@mipmap/ic_launcher" />
 
     <ImageView
         android:id="@+id/pin_bcn_one"
@@ -263,9 +210,9 @@
                 android:id="@+id/btn_cls_card_event"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="#213259"
-                android:text="Close"
-                android:textColor="#4AC3FC"
+                android:background="@color/deep_blue"
+                android:text="@string/close"
+                android:textColor="@color/light_blue"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -411,5 +358,15 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/iv_search_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/cd_event"
+        app:layout_constraintEnd_toEndOf="@+id/iv_map_fit_flr_one"
+        app:srcCompat="@drawable/navigate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
