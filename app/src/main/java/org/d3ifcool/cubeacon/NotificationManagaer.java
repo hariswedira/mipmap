@@ -7,6 +7,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
+import org.d3ifcool.cubeacon.models.Event;
+
 import androidx.core.app.NotificationCompat;
 
 public class NotificationManagaer {
@@ -22,13 +24,13 @@ public class NotificationManagaer {
         this.context = context;
         this.notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        this.goodbyeNotificationBlueberry = buildNotification("Blueberry out", "You're outside the beacon area");
+//        this.goodbyeNotificationBlueberry = buildNotification("Blueberry out", "You're outside the beacon area");
 
-        this.helloNotificationBlueberry = buildNotification("Mip Map", "check out the events around you");
-        this.helloNotificationCoconut= buildNotification("Mip Map", "check out the events around you");
+        this.helloNotificationBlueberry = buildNotification("Mip Map", "check out the events around you","bluberry");
+        this.helloNotificationCoconut= buildNotification("Mip Map", "check out the events around you","coconut");
     }
 
-    private Notification buildNotification(String title, String text) {
+    private Notification buildNotification(String title, String text, String color) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             NotificationChannel contentChannel = new NotificationChannel(
                     "content_channel", "Things near you", NotificationManager.IMPORTANCE_HIGH);
@@ -40,8 +42,9 @@ public class NotificationManagaer {
                 .setSmallIcon(R.drawable.icon_mipmap)
                 .setContentTitle(title)
                 .setContentText(text)
+                .setAutoCancel(true)
                 .setContentIntent(PendingIntent.getActivity(context, 0,
-                        new Intent(context, EventActivity.class), PendingIntent.FLAG_UPDATE_CURRENT))
+                        new Intent(context, EventActivity.class).putExtra("beacon",color), PendingIntent.FLAG_UPDATE_CURRENT))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .build();
     }
@@ -54,8 +57,8 @@ public class NotificationManagaer {
         notificationManager.notify(notificationId, helloNotificationCoconut);
     }
 
-    public void exitBlueberry(){
-        notificationManager.notify(notificationId, goodbyeNotificationBlueberry);
-    }
+//    public void exitBlueberry(){
+//        notificationManager.notify(notificationId, goodbyeNotificationBlueberry);
+//    }
 
 }

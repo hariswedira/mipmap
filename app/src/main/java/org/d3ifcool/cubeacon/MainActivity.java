@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements
                 .onExit(new Function1<ProximityZoneContext, Unit>() {
                     @Override
                     public Unit invoke(ProximityZoneContext proximityContext) {
-                        notificationManagaer.exitBlueberry();
+//                        notificationManagaer.exitBlueberry();
                         Toast.makeText(MainActivity.this, "Bye", Toast.LENGTH_SHORT).show();
                         title.setText("Thank You");
                         lantai.setText("Have a nice day");

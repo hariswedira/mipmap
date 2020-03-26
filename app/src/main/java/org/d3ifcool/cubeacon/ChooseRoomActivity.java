@@ -1,34 +1,59 @@
 package org.d3ifcool.cubeacon;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
+
+import org.d3ifcool.cubeacon.activities.ListEventActivity;
+import org.d3ifcool.cubeacon.adapter.EventAdapter;
+import org.d3ifcool.cubeacon.adapter.RoomAdapter;
+import org.d3ifcool.cubeacon.models.Room;
 
 import java.util.ArrayList;
 
 public class ChooseRoomActivity extends AppCompatActivity {
 
     private SearchView searchRoom;
-    private ListView listRoom;
+    private RecyclerView rVListRoom;
+    private ArrayList<Room> listRooms;
+    private RoomAdapter adapter;
+    private LinearLayoutManager linearLayoutManager;
 
-    private ArrayList<String> rooms;
-    private ArrayAdapter<String> arrayAdapter;
+    private Button classRoom, lab, all;
+//    private ArrayAdapter<String> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_room);
 
-        searchRoom = findViewById(R.id.search_rooms);
-        listRoom = findViewById(R.id.list_room);
+        classRoom = findViewById(R.id.btn_classroom);
+        lab = findViewById(R.id.btn_laboratory);
+        all = findViewById(R.id.btn_all_room);
 
-        rooms = new ArrayList<>();
-        addRoom();
-        arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,rooms);
-        listRoom.setAdapter(arrayAdapter);
+        searchRoom = findViewById(R.id.search_rooms);
+        rVListRoom = findViewById(R.id.list_room);
+
+        linearLayoutManager = new LinearLayoutManager(ChooseRoomActivity.this);
+        RecyclerView.ItemDecoration dividerItemDecoration = new DividerItemDecoration(rVListRoom.getContext(),
+                linearLayoutManager.getOrientation());
+        rVListRoom.addItemDecoration(dividerItemDecoration);
+        adapter = new RoomAdapter(ChooseRoomActivity.this);
+        listRooms = new ArrayList<>();
+        initData();
+        adapter.setRooms(listRooms);
+        rVListRoom.setLayoutManager(linearLayoutManager);
+        rVListRoom.setAdapter(adapter);
+//        arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,rooms);
+//        listRoom.setAdapter(arrayAdapter);
 
         searchRoom.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -38,17 +63,62 @@ public class ChooseRoomActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                arrayAdapter.getFilter().filter(s);
-                return false;
+//                arrayAdapter.getFilter().filter(s);
+                String userInput = s.toLowerCase();
+                ArrayList<Room> newList = new ArrayList<>();
+                for (Room room : listRooms){
+                    if (room.getName().toLowerCase().contains(userInput)){
+                        newList.add(room);
+                    }
+                }
+                adapter.updateList(newList);
+                return true;
+            }
+        });
+
+        classRoom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArrayList<Room> newList = new ArrayList<>();
+                for (int i = 0; i <= 11 ; i++) {
+                    newList.add(new Room("G"+(i+1),"Laboratorium","Floor 1",R.drawable.ic_launcher_background));
+                }
+                adapter.updateList(newList);
+            }
+        });
+
+        all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adapter.updateList(listRooms);
+            }
+        });
+
+        lab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArrayList<Room> newList = new ArrayList<>();
+                newList.add(new Room("Admin Lab","Academic","Floor 1",R.drawable.ic_launcher_background));
+                newList.add(new Room("Kitchen","Laboratorium","Floor 1",R.drawable.ic_launcher_background));
+                newList.add(new Room("Laboran","Academic","Floor 1",R.drawable.ic_launcher_background));
+                newList.add(new Room("LAK","Academic","Floor 1",R.drawable.ic_launcher_background));
+                newList.add(new Room("MP Mart","Mini Market","Floor 1",R.drawable.ic_launcher_background));
+                newList.add(new Room("Toilet","Rest Room","Floor 1",R.drawable.ic_launcher_background));
+                adapter.updateList(newList);
             }
         });
 
     }
 
-    private void addRoom() {
-        rooms.add("MP Mart");
-        for (int i = 0; i < 12 ; i++) {
-            rooms.add("G"+(i+1));
+    private void initData() {
+        listRooms.add(new Room("Admin Lab","Academic","Floor 1",R.drawable.ic_launcher_background));
+        listRooms.add(new Room("Kitchen","Laboratorium","Floor 1",R.drawable.ic_launcher_background));
+        listRooms.add(new Room("Laboran","Academic","Floor 1",R.drawable.ic_launcher_background));
+        listRooms.add(new Room("LAK","Academic","Floor 1",R.drawable.ic_launcher_background));
+        listRooms.add(new Room("MP Mart","Mini Market","Floor 1",R.drawable.ic_launcher_background));
+        listRooms.add(new Room("Toilet","Rest Room","Floor 1",R.drawable.ic_launcher_background));
+        for (int i = 0; i <= 11 ; i++) {
+            listRooms.add(new Room("G"+(i+1),"Laboratorium","Floor 1",R.drawable.ic_launcher_background));
         }
     }
 }

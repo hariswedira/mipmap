@@ -17,13 +17,67 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_room"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_classroom" />
+
+    <Button
+        android:id="@+id/btn_classroom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/deep_blue"
+        android:text="Classroom"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/list_room"
+        app:layout_constraintStart_toEndOf="@+id/btn_all_room"
         app:layout_constraintTop_toBottomOf="@+id/search_rooms" />
+
+    <Button
+        android:id="@+id/btn_laboratory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/deep_blue"
+        android:paddingHorizontal="8dp"
+        android:text="Academic"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/list_room"
+        app:layout_constraintStart_toEndOf="@+id/btn_classroom"
+        app:layout_constraintTop_toBottomOf="@+id/search_rooms" />
+
+    <Button
+        android:id="@+id/btn_all_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/deep_blue"
+        android:text="All"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/list_room"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!--    <ListView-->
+<!--        android:id="@+id/list_room"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/search_rooms" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

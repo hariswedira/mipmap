@@ -22,6 +22,9 @@ import com.estimote.proximity_sdk.api.ProximityZoneContext;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.gson.Gson;
 
+import org.d3ifcool.cubeacon.models.Event;
+import org.d3ifcool.cubeacon.models.Room;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -33,6 +36,8 @@ import kotlin.jvm.functions.Function1;
 
 public class NavigateActivity extends AppCompatActivity  {
 
+    private ImageView lak, dapur, kantin, mp, laboran, lobby, dosenLb, aslab, lift, toilet, gate, exit, g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12;
+
     private ImageView userIcon, pinLab, pinDapur, searchIcon;
     Button up, btnLab, btnDapur, btnBeaconOne, closeCard;
     PhotoView photoView;
@@ -40,6 +45,7 @@ public class NavigateActivity extends AppCompatActivity  {
 
     private int currentPos;
     private TextToSpeech textToSpeech;
+    TextView name, floor;
 
     // estimote
     private NotificationManagaer notificationManagaer;
@@ -72,10 +78,16 @@ public class NavigateActivity extends AppCompatActivity  {
 //        jalur = findViewById(R.id.tv_jalur);
 //        closeCard = findViewById(R.id.btn_cls_card);
         roomInfo = findViewById(R.id.room_info);
-        roomInfo.setVisibility(View.GONE);
-        judul = findViewById(R.id.tv_title_room);
+//        roomInfo.setVisibility(View.GONE);
         photoView = findViewById(R.id.photo_view);
         searchIcon = findViewById(R.id.iv_choose_room);
+        name = findViewById(R.id.tv_title_room);
+        floor = findViewById(R.id.tv_desc_room);
+
+        initPinRoom();
+        gonePinRoom();
+
+        Room room = getIntent().getParcelableExtra("room");
 
         searchIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +96,12 @@ public class NavigateActivity extends AppCompatActivity  {
                 startActivity(searchIntent);
             }
         });
+
+        if (room != null){
+            name.setText(room.getName());
+            floor.setText(room.getFloor());
+            showPin(room.getName());
+        }
 
 //        userIcon = findViewById(R.id.node_user);
 //        userIcon.setVisibility(View.INVISIBLE);
@@ -155,45 +173,19 @@ public class NavigateActivity extends AppCompatActivity  {
 //            }
 //        });
 
-        closeCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                jalur.setText("");
-                cardView.setVisibility(View.GONE);
-            }
-        });
+//        closeCard.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                jalur.setText("");
+//                cardView.setVisibility(View.GONE);
+//            }
+//        });
 
         // Estimote
-        estimoteBlueberry();
+//        estimoteBlueberry();
 
         // text to speech
         speechUhuy();
-
-    }
-
-    public void gson(){
-        String jsonFileString = Utils.getJsonFromAssets(getApplicationContext(), "blueberry.json");
-        Log.i("data", jsonFileString);
-
-        Gson gson = new Gson();
-//        Type listBeaconType = new TypeToken<List<Beacon>>(){}.getType();
-
-        Beacon beacons1 = gson.fromJson(jsonFileString, Beacon.class);
-//        Log.i("data",beacons1.getAlgorithm().get(0).getEdge().get(0));
-
-        bName.setText(beacons1.getInformation().getName());
-        bTag.setText(beacons1.getInformation().getTags());
-        bNode.setText(beacons1.getInformation().getNode());
-        n1.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(0));
-        n2.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(1));
-        n3.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(2));
-        n4.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(3));
-        n5.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(4));
-        c1.setText(beacons1.getAlgorithm().get(0).getCost().get(0).toString());
-        c2.setText(beacons1.getAlgorithm().get(0).getCost().get(1).toString());
-        c3.setText(beacons1.getAlgorithm().get(0).getCost().get(2).toString());
-        c4.setText(beacons1.getAlgorithm().get(0).getCost().get(3).toString());
-        c5.setText(beacons1.getAlgorithm().get(0).getCost().get(4).toString());
 
     }
 
@@ -209,128 +201,267 @@ public class NavigateActivity extends AppCompatActivity  {
                 });
     }
 
-    private void estimoteBlueberry() {
-        notificationManagaer = new NotificationManagaer(this);
+    private void showPin(String name){
+        switch (name.toLowerCase()){
+            case "admin lab":
+                aslab.setVisibility(View.VISIBLE);
+                break;
+            case "kitchen":
+                dapur.setVisibility(View.VISIBLE);
+                break;
+            case "laboran":
+                laboran.setVisibility(View.VISIBLE);
+                break;
+            case "lak":
+                lak.setVisibility(View.VISIBLE);
+                break;
+            case "mp mart":
+                mp.setVisibility(View.VISIBLE);
+                break;
+            case "toilet":
+                toilet.setVisibility(View.VISIBLE);
+                break;
+            case "g1":
+                g1.setVisibility(View.VISIBLE);
+                break;
+            case "g2":
+                g2.setVisibility(View.VISIBLE);
+                break;
+            case "g3":
+                g3.setVisibility(View.VISIBLE);
+                break;
+            case "g4":
+                g4.setVisibility(View.VISIBLE);
+                break;
+            case "g5":
+                g5.setVisibility(View.VISIBLE);
+                break;
+            case "g6":
+                g6.setVisibility(View.VISIBLE);
+                break;
+            case "g7":
+                g7.setVisibility(View.VISIBLE);
+                break;
+            case "g8":
+                g8.setVisibility(View.VISIBLE);
+                break;
+            case "g9":
+                g9.setVisibility(View.VISIBLE);
+                break;
+            case "g10":
+                g10.setVisibility(View.VISIBLE);
+                break;
+            case "g11":
+                g11.setVisibility(View.VISIBLE);
+                break;
+            case "g12":
+                g12.setVisibility(View.VISIBLE);
+                break;
+        }
+    }
 
-        // Create the Proximity Observer
-        ProximityObserver proximityObserver =
-                new ProximityObserverBuilder(getApplicationContext(), cloudCredentials)
-                        .onError(new Function1<Throwable, Unit>() {
-                            @Override
-                            public Unit invoke(Throwable throwable) {
-                                Log.e("app", "proximity observer error: " + throwable);
-                                return null;
-                            }
-                        })
-                        .withBalancedPowerMode()
-                        .build();
+//    public void gson(){
+//        String jsonFileString = Utils.getJsonFromAssets(getApplicationContext(), "blueberry.json");
+//        Log.i("data", jsonFileString);
+//
+//        Gson gson = new Gson();
+////        Type listBeaconType = new TypeToken<List<Beacon>>(){}.getType();
+//
+//        Beacon beacons1 = gson.fromJson(jsonFileString, Beacon.class);
+////        Log.i("data",beacons1.getAlgorithm().get(0).getEdge().get(0));
+//
+//        bName.setText(beacons1.getInformation().getName());
+//        bTag.setText(beacons1.getInformation().getTags());
+//        bNode.setText(beacons1.getInformation().getNode());
+//        n1.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(0));
+//        n2.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(1));
+//        n3.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(2));
+//        n4.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(3));
+//        n5.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(4));
+//        c1.setText(beacons1.getAlgorithm().get(0).getCost().get(0).toString());
+//        c2.setText(beacons1.getAlgorithm().get(0).getCost().get(1).toString());
+//        c3.setText(beacons1.getAlgorithm().get(0).getCost().get(2).toString());
+//        c4.setText(beacons1.getAlgorithm().get(0).getCost().get(3).toString());
+//        c5.setText(beacons1.getAlgorithm().get(0).getCost().get(4).toString());
+//
+//    }
 
-        // TODO : Create Proximity Zone
+//    private void estimoteBlueberry() {
+//        notificationManagaer = new NotificationManagaer(this);
+//
+//        // Create the Proximity Observer
+//        ProximityObserver proximityObserver =
+//                new ProximityObserverBuilder(getApplicationContext(), cloudCredentials)
+//                        .onError(new Function1<Throwable, Unit>() {
+//                            @Override
+//                            public Unit invoke(Throwable throwable) {
+//                                Log.e("app", "proximity observer error: " + throwable);
+//                                return null;
+//                            }
+//                        })
+//                        .withBalancedPowerMode()
+//                        .build();
+//
+//        // TODO : Create Proximity Zone
+//
+//        // Near Zone
+//        ProximityZone zone = new ProximityZoneBuilder()
+//                .forTag("node-blueberry")
+//                .inNearRange()
+//                .onEnter(new Function1<ProximityZoneContext, Unit>() {
+//                    @Override
+//                    public Unit invoke(ProximityZoneContext context) {
+//                        currentPos = 1;
+//                        notificationManagaer.enterBlueberry();
+//                        Toast.makeText(NavigateActivity.this, "blue in 1 meter "+currentPos, Toast.LENGTH_SHORT).show();
+//                        userIcon.setVisibility(View.VISIBLE);
+//                        return null;
+//                    }
+//                })
+//                .onExit(new Function1<ProximityZoneContext, Unit>() {
+//                    @Override
+//                    public Unit invoke(ProximityZoneContext proximityContext) {
+////                        notificationManagaer.exitBlueberry();
+//                        Toast.makeText(NavigateActivity.this, "blue out Blueberry", Toast.LENGTH_SHORT).show();
+//                        userIcon.setVisibility(View.INVISIBLE);
+//                        return null;
+//                    }
+//                })
+//                .build();
+//        proximityObserver.startObserving(zone);
+//
+//        // Inner Zone
+//        ProximityZone innerZone = new ProximityZoneBuilder()
+//                .forTag("node-blueberry")
+//                .inCustomRange(3.0)
+//                .onEnter(new Function1<ProximityZoneContext, Unit>() {
+//                    @Override
+//                    public Unit invoke(ProximityZoneContext context) {
+//                        currentPos = 1;
+//                        notificationManagaer.enterBlueberry();
+//                        Toast.makeText(NavigateActivity.this, "blue in 3 meter"+currentPos, Toast.LENGTH_SHORT).show();
+//                        userIcon.setVisibility(View.VISIBLE);
+//                        return null;
+//                    }
+//                })
+//                .onExit(new Function1<ProximityZoneContext, Unit>() {
+//                    @Override
+//                    public Unit invoke(ProximityZoneContext proximityContext) {
+////                        notificationManagaer.exitBlueberry();
+//                        Toast.makeText(NavigateActivity.this, "blue out 3 meter", Toast.LENGTH_SHORT).show();
+//                        userIcon.setVisibility(View.INVISIBLE);
+//                        return null;
+//                    }
+//                })
+//                .build();
+//        proximityObserver.startObserving(innerZone);
+//
+//        // Outer zone
+//        ProximityZone outerZone = new ProximityZoneBuilder()
+//                .forTag("node-blueberry")
+//                .inFarRange()
+//                .onEnter(new Function1<ProximityZoneContext, Unit>() {
+//                    @Override
+//                    public Unit invoke(ProximityZoneContext context) {
+//                        currentPos = 1;
+//                        notificationManagaer.enterBlueberry();
+//                        Toast.makeText(NavigateActivity.this, "blue in 5 meter"+currentPos, Toast.LENGTH_SHORT).show();
+//                        userIcon.setVisibility(View.VISIBLE);
+//                        return null;
+//                    }
+//                })
+//                .onExit(new Function1<ProximityZoneContext, Unit>() {
+//                    @Override
+//                    public Unit invoke(ProximityZoneContext proximityContext) {
+////                        notificationManagaer.exitBlueberry();
+//                        Toast.makeText(NavigateActivity.this, "blue out Blueberry", Toast.LENGTH_SHORT).show();
+//                        userIcon.setVisibility(View.INVISIBLE);
+//                        return null;
+//                    }
+//                })
+//                .build();
+//        proximityObserver.startObserving(outerZone);
+//
+//
+//        // Request location permissions & Start proximity observation
+//        RequirementsWizardFactory
+//                .createEstimoteRequirementsWizard()
+//                .fulfillRequirements(this,
+//                        // onRequirementsFulfilled
+//                        new Function0<Unit>() {
+//                            @Override public Unit invoke() {
+//                                Log.d("app", "requirements fulfilled");
+////                                Toast.makeText(MainActivity.this, "Start", Toast.LENGTH_SHORT).show();
+//                                return null;
+//                            }
+//                        },
+//                        // onRequirementsMissing
+//                        new Function1<List<? extends Requirement>, Unit>() {
+//                            @Override public Unit invoke(List<? extends Requirement> requirements) {
+//                                Log.e("app", "requirements missing: " + requirements);
+//                                return null;
+//                            }
+//                        },
+//                        // onError
+//                        new Function1<Throwable, Unit>() {
+//                            @Override public Unit invoke(Throwable throwable) {
+//                                Log.e("app", "requirements error: " + throwable);
+//                                return null;
+//                            }
+//                        });
+//    }
 
-        // Near Zone
-        ProximityZone zone = new ProximityZoneBuilder()
-                .forTag("node-blueberry")
-                .inNearRange()
-                .onEnter(new Function1<ProximityZoneContext, Unit>() {
-                    @Override
-                    public Unit invoke(ProximityZoneContext context) {
-                        currentPos = 1;
-                        notificationManagaer.enterBlueberry();
-                        Toast.makeText(NavigateActivity.this, "blue in 1 meter "+currentPos, Toast.LENGTH_SHORT).show();
-                        userIcon.setVisibility(View.VISIBLE);
-                        return null;
-                    }
-                })
-                .onExit(new Function1<ProximityZoneContext, Unit>() {
-                    @Override
-                    public Unit invoke(ProximityZoneContext proximityContext) {
-                        notificationManagaer.exitBlueberry();
-                        Toast.makeText(NavigateActivity.this, "blue out Blueberry", Toast.LENGTH_SHORT).show();
-                        userIcon.setVisibility(View.INVISIBLE);
-                        return null;
-                    }
-                })
-                .build();
-        proximityObserver.startObserving(zone);
+    private void initPinRoom(){
+        dapur = findViewById(R.id.node_dapur);
+        kantin = findViewById(R.id.node_kantin);
+        mp = findViewById(R.id.node_mp_mart);
+        dosenLb = findViewById(R.id.node_dosen_lb);
+        aslab = findViewById(R.id.node_aslab);
+        lift = findViewById(R.id.node_lift);
+        toilet = findViewById(R.id.node_toilet);
+        gate = findViewById(R.id.node_gate);
+        exit = findViewById(R.id.node_exit_emergency);
+        laboran = findViewById(R.id.node_laboran);
+        lobby = findViewById(R.id.node_lobby);
+        lak = findViewById(R.id.node_lak);
+        g1 = findViewById(R.id.node_g1);
+        g2 = findViewById(R.id.node_g2);
+        g3 = findViewById(R.id.node_g3);
+        g4 = findViewById(R.id.node_g4);
+        g5 = findViewById(R.id.node_g5);
+        g6 = findViewById(R.id.node_g6);
+        g7 = findViewById(R.id.node_g7);
+        g8 = findViewById(R.id.node_g8);
+        g9 = findViewById(R.id.node_g9);
+        g10 = findViewById(R.id.node_g10);
+        g11 = findViewById(R.id.node_g11);
+        g12 = findViewById(R.id.node_g12);
+    }
 
-        // Inner Zone
-        ProximityZone innerZone = new ProximityZoneBuilder()
-                .forTag("node-blueberry")
-                .inCustomRange(3.0)
-                .onEnter(new Function1<ProximityZoneContext, Unit>() {
-                    @Override
-                    public Unit invoke(ProximityZoneContext context) {
-                        currentPos = 1;
-                        notificationManagaer.enterBlueberry();
-                        Toast.makeText(NavigateActivity.this, "blue in 3 meter"+currentPos, Toast.LENGTH_SHORT).show();
-                        userIcon.setVisibility(View.VISIBLE);
-                        return null;
-                    }
-                })
-                .onExit(new Function1<ProximityZoneContext, Unit>() {
-                    @Override
-                    public Unit invoke(ProximityZoneContext proximityContext) {
-                        notificationManagaer.exitBlueberry();
-                        Toast.makeText(NavigateActivity.this, "blue out 3 meter", Toast.LENGTH_SHORT).show();
-                        userIcon.setVisibility(View.INVISIBLE);
-                        return null;
-                    }
-                })
-                .build();
-        proximityObserver.startObserving(innerZone);
-
-        // Outer zone
-        ProximityZone outerZone = new ProximityZoneBuilder()
-                .forTag("node-blueberry")
-                .inFarRange()
-                .onEnter(new Function1<ProximityZoneContext, Unit>() {
-                    @Override
-                    public Unit invoke(ProximityZoneContext context) {
-                        currentPos = 1;
-                        notificationManagaer.enterBlueberry();
-                        Toast.makeText(NavigateActivity.this, "blue in 5 meter"+currentPos, Toast.LENGTH_SHORT).show();
-                        userIcon.setVisibility(View.VISIBLE);
-                        return null;
-                    }
-                })
-                .onExit(new Function1<ProximityZoneContext, Unit>() {
-                    @Override
-                    public Unit invoke(ProximityZoneContext proximityContext) {
-                        notificationManagaer.exitBlueberry();
-                        Toast.makeText(NavigateActivity.this, "blue out Blueberry", Toast.LENGTH_SHORT).show();
-                        userIcon.setVisibility(View.INVISIBLE);
-                        return null;
-                    }
-                })
-                .build();
-        proximityObserver.startObserving(outerZone);
-
-
-        // Request location permissions & Start proximity observation
-        RequirementsWizardFactory
-                .createEstimoteRequirementsWizard()
-                .fulfillRequirements(this,
-                        // onRequirementsFulfilled
-                        new Function0<Unit>() {
-                            @Override public Unit invoke() {
-                                Log.d("app", "requirements fulfilled");
-//                                Toast.makeText(MainActivity.this, "Start", Toast.LENGTH_SHORT).show();
-                                return null;
-                            }
-                        },
-                        // onRequirementsMissing
-                        new Function1<List<? extends Requirement>, Unit>() {
-                            @Override public Unit invoke(List<? extends Requirement> requirements) {
-                                Log.e("app", "requirements missing: " + requirements);
-                                return null;
-                            }
-                        },
-                        // onError
-                        new Function1<Throwable, Unit>() {
-                            @Override public Unit invoke(Throwable throwable) {
-                                Log.e("app", "requirements error: " + throwable);
-                                return null;
-                            }
-                        });
+    private void gonePinRoom(){
+        dapur.setVisibility(View.GONE);
+        kantin.setVisibility(View.GONE);
+        mp.setVisibility(View.GONE);
+        dosenLb.setVisibility(View.GONE);
+        aslab.setVisibility(View.GONE);
+        lift.setVisibility(View.GONE);
+        toilet.setVisibility(View.GONE);
+        gate.setVisibility(View.GONE);
+        exit.setVisibility(View.GONE);
+        laboran.setVisibility(View.GONE);
+        lak.setVisibility(View.GONE);
+        lobby.setVisibility(View.GONE);
+        g1.setVisibility(View.GONE);
+        g2.setVisibility(View.GONE);
+        g3.setVisibility(View.GONE);
+        g4.setVisibility(View.GONE);
+        g5.setVisibility(View.GONE);
+        g6.setVisibility(View.GONE);
+        g7.setVisibility(View.GONE);
+        g8.setVisibility(View.GONE);
+        g9.setVisibility(View.GONE);
+        g10.setVisibility(View.GONE);
+        g11.setVisibility(View.GONE);
+        g12.setVisibility(View.GONE);
     }
 }
