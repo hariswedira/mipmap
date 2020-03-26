@@ -36,7 +36,7 @@ import kotlin.jvm.functions.Function1;
 
 public class NavigateActivity extends AppCompatActivity  {
 
-    private ImageView lak, dapur, kantin, mp, laboran, lobby, dosenLb, aslab, lift, toilet, gate, exit, g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12;
+    private ImageView lak, dapur, kantin, mp, laboran, lobby, dosenLb, aslab, lift, toilet, gate, exit, g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, user02, user03;
 
     private ImageView userIcon, pinLab, pinDapur, searchIcon;
     Button up, btnLab, btnDapur, btnBeaconOne, closeCard;
@@ -88,6 +88,7 @@ public class NavigateActivity extends AppCompatActivity  {
         gonePinRoom();
 
         Room room = getIntent().getParcelableExtra("room");
+        int userPos = getIntent().getIntExtra("posisi user",100);
 
         searchIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,10 +98,13 @@ public class NavigateActivity extends AppCompatActivity  {
             }
         });
 
+        searchIcon.setVisibility(View.GONE);
+
         if (room != null){
             name.setText(room.getName());
             floor.setText(room.getFloor());
             showPin(room.getName());
+            showUser(userPos);
         }
 
 //        userIcon = findViewById(R.id.node_user);
@@ -199,6 +203,20 @@ public class NavigateActivity extends AppCompatActivity  {
                         }
                     }
                 });
+    }
+
+    private void showUser(int pos){
+        switch (pos){
+            case 2:
+                user02.setVisibility(View.VISIBLE);
+                break;
+            case 3:
+                user03.setVisibility(View.VISIBLE);
+                break;
+            default:
+                Toast.makeText(this, "Outside Beacon", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 
     private void showPin(String name){
@@ -412,6 +430,8 @@ public class NavigateActivity extends AppCompatActivity  {
 //    }
 
     private void initPinRoom(){
+        user02 = findViewById(R.id.user02);
+        user03 = findViewById(R.id.user03);
         dapur = findViewById(R.id.node_dapur);
         kantin = findViewById(R.id.node_kantin);
         mp = findViewById(R.id.node_mp_mart);
@@ -439,29 +459,31 @@ public class NavigateActivity extends AppCompatActivity  {
     }
 
     private void gonePinRoom(){
-        dapur.setVisibility(View.GONE);
-        kantin.setVisibility(View.GONE);
-        mp.setVisibility(View.GONE);
-        dosenLb.setVisibility(View.GONE);
-        aslab.setVisibility(View.GONE);
-        lift.setVisibility(View.GONE);
-        toilet.setVisibility(View.GONE);
-        gate.setVisibility(View.GONE);
-        exit.setVisibility(View.GONE);
-        laboran.setVisibility(View.GONE);
-        lak.setVisibility(View.GONE);
-        lobby.setVisibility(View.GONE);
-        g1.setVisibility(View.GONE);
-        g2.setVisibility(View.GONE);
-        g3.setVisibility(View.GONE);
-        g4.setVisibility(View.GONE);
-        g5.setVisibility(View.GONE);
-        g6.setVisibility(View.GONE);
-        g7.setVisibility(View.GONE);
-        g8.setVisibility(View.GONE);
-        g9.setVisibility(View.GONE);
-        g10.setVisibility(View.GONE);
-        g11.setVisibility(View.GONE);
-        g12.setVisibility(View.GONE);
+        user02.setVisibility(View.INVISIBLE);
+        user03.setVisibility(View.INVISIBLE);
+        dapur.setVisibility(View.INVISIBLE);
+        kantin.setVisibility(View.INVISIBLE);
+        mp.setVisibility(View.INVISIBLE);
+        dosenLb.setVisibility(View.INVISIBLE);
+        aslab.setVisibility(View.INVISIBLE);
+        lift.setVisibility(View.INVISIBLE);
+        toilet.setVisibility(View.INVISIBLE);
+        gate.setVisibility(View.INVISIBLE);
+        exit.setVisibility(View.INVISIBLE);
+        laboran.setVisibility(View.INVISIBLE);
+        lak.setVisibility(View.INVISIBLE);
+        lobby.setVisibility(View.INVISIBLE);
+        g1.setVisibility(View.INVISIBLE);
+        g2.setVisibility(View.INVISIBLE);
+        g3.setVisibility(View.INVISIBLE);
+        g4.setVisibility(View.INVISIBLE);
+        g5.setVisibility(View.INVISIBLE);
+        g6.setVisibility(View.INVISIBLE);
+        g7.setVisibility(View.INVISIBLE);
+        g8.setVisibility(View.INVISIBLE);
+        g9.setVisibility(View.INVISIBLE);
+        g10.setVisibility(View.INVISIBLE);
+        g11.setVisibility(View.INVISIBLE);
+        g12.setVisibility(View.INVISIBLE);
     }
 }

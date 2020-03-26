@@ -121,9 +121,13 @@ public class EventActivity extends AppCompatActivity {
         searchMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent searchIntent = new Intent(EventActivity.this,NavigateActivity.class);
-                Intent searchIntent = new Intent(EventActivity.this,ChooseRoomActivity.class);
-                startActivity(searchIntent);
+                if (userPos == 0){
+                    Toast.makeText(EventActivity.this, "please enter the beacon area", Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent searchIntent = new Intent(EventActivity.this,ChooseRoomActivity.class);
+                    searchIntent.putExtra("user pos",userPos);
+                    startActivity(searchIntent);
+                }
             }
         });
 

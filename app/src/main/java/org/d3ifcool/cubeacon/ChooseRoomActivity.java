@@ -35,6 +35,8 @@ public class ChooseRoomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_room);
 
+        int userPos = getIntent().getIntExtra("user pos",100);
+
         classRoom = findViewById(R.id.btn_classroom);
         lab = findViewById(R.id.btn_laboratory);
         all = findViewById(R.id.btn_all_room);
@@ -46,7 +48,7 @@ public class ChooseRoomActivity extends AppCompatActivity {
         RecyclerView.ItemDecoration dividerItemDecoration = new DividerItemDecoration(rVListRoom.getContext(),
                 linearLayoutManager.getOrientation());
         rVListRoom.addItemDecoration(dividerItemDecoration);
-        adapter = new RoomAdapter(ChooseRoomActivity.this);
+        adapter = new RoomAdapter(ChooseRoomActivity.this,userPos);
         listRooms = new ArrayList<>();
         initData();
         adapter.setRooms(listRooms);

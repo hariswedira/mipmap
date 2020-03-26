@@ -96,7 +96,6 @@
             android:id="@+id/photo_view"
             android:layout_width="360dp"
             android:layout_height="480dp"
-            android:layout_marginTop="8dp"
             android:scaleType="fitXY"
             android:src="@drawable/map_fit_satu"
             app:layout_constraintEnd_toEndOf="parent"
@@ -768,6 +767,22 @@
             app:layout_constraintStart_toEndOf="@+id/beacon_02"
             app:layout_constraintTop_toTopOf="@+id/beacon_02"
             app:srcCompat="@drawable/line_h" />
+
+        <ImageView
+            android:id="@+id/user02"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            app:layout_constraintEnd_toStartOf="@+id/edge02"
+            app:layout_constraintTop_toTopOf="@+id/edge02"
+            app:srcCompat="@drawable/user_pin" />
+
+        <ImageView
+            android:id="@+id/user03"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            app:layout_constraintEnd_toStartOf="@+id/edge03"
+            app:layout_constraintTop_toTopOf="@+id/edge03"
+            app:srcCompat="@drawable/user_pin" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

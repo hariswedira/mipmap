@@ -1,5 +1,6 @@
 package org.d3ifcool.cubeacon.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -24,10 +25,12 @@ import androidx.recyclerview.widget.RecyclerView;
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
 
     private Context context;
+    private int userPos;
     private ArrayList<Room> rooms;
 
-    public RoomAdapter(Context context) {
+    public RoomAdapter(Context context, int userPos) {
         this.context = context;
+        this.userPos = userPos;
     }
 
     public ArrayList<Room> getRooms() {
@@ -64,7 +67,9 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
             public void onClick(View view) {
                 Intent intent = new Intent(context, NavigateActivity.class);
                 intent.putExtra("room",roomData);
+                intent.putExtra("posisi user",userPos);
                 context.startActivity(intent);
+//                ((Activity)context).finish();
             }
         });
     }
