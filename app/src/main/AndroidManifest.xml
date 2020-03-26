@@ -9,14 +9,14 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.DirectionActivity"></activity>
+        <activity android:name=".activities.DetailRoomActivity"></activity>
         <activity
             android:name=".activities.ListEventActivity"
             android:configChanges="orientation"
             android:parentActivityName=".EventActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".DetailRoomActivity"
+            android:name=".DetailEventActivity"
             android:configChanges="orientation"
             android:parentActivityName=".activities.ListEventActivity"
             android:screenOrientation="portrait" />

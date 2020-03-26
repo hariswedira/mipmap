@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import org.d3ifcool.cubeacon.DetailRoomActivity;
+import org.d3ifcool.cubeacon.DetailEventActivity;
 import org.d3ifcool.cubeacon.R;
 import org.d3ifcool.cubeacon.models.Event;
 
@@ -56,7 +56,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, DetailRoomActivity.class);
+                Intent intent = new Intent(context, DetailEventActivity.class);
                 intent.putExtra("event",eventData);
                 context.startActivity(intent);
             }

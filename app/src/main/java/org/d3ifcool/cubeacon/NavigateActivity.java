@@ -22,6 +22,7 @@ import com.estimote.proximity_sdk.api.ProximityZoneContext;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.gson.Gson;
 
+import org.d3ifcool.cubeacon.activities.DetailRoomActivity;
 import org.d3ifcool.cubeacon.models.Event;
 import org.d3ifcool.cubeacon.models.Room;
 
@@ -39,7 +40,7 @@ public class NavigateActivity extends AppCompatActivity  {
     private ImageView lak, dapur, kantin, mp, laboran, lobby, dosenLb, aslab, lift, toilet, gate, exit, g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, user02, user03;
 
     private ImageView userIcon, pinLab, pinDapur, searchIcon;
-    Button up, btnLab, btnDapur, btnBeaconOne, closeCard;
+    Button up, btnLab, btnDapur, btnBeaconOne, closeCard, infoRoom;
     PhotoView photoView;
     Animation aU, aL;
 
@@ -83,6 +84,7 @@ public class NavigateActivity extends AppCompatActivity  {
         searchIcon = findViewById(R.id.iv_choose_room);
         name = findViewById(R.id.tv_title_room);
         floor = findViewById(R.id.tv_desc_room);
+        infoRoom = findViewById(R.id.btn_info_room);
 
         initPinRoom();
         gonePinRoom();
@@ -106,6 +108,15 @@ public class NavigateActivity extends AppCompatActivity  {
             showPin(room.getName());
             showUser(userPos);
         }
+
+        infoRoom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent detailIntent = new Intent(NavigateActivity.this, DetailRoomActivity.class);
+                detailIntent.putExtra("detail room",room);
+                startActivity(detailIntent);
+            }
+        });
 
 //        userIcon = findViewById(R.id.node_user);
 //        userIcon.setVisibility(View.INVISIBLE);

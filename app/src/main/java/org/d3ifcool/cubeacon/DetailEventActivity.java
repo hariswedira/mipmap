@@ -2,14 +2,13 @@ package org.d3ifcool.cubeacon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.d3ifcool.cubeacon.models.Event;
 
-public class DetailRoomActivity extends AppCompatActivity {
+public class DetailEventActivity extends AppCompatActivity {
 
     ImageView photo;
     TextView judul, tgl, ruangan, deskripsi;
@@ -17,7 +16,7 @@ public class DetailRoomActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_room);
+        setContentView(R.layout.activity_detail_event);
 
 //        Intent intent = getIntent();
 
