@@ -8,10 +8,10 @@
 
     <SearchView
         android:id="@+id/search_rooms"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:queryHint="Search Room"
         android:iconifiedByDefault="false"
+        android:queryHint="Search Room"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,12 +29,12 @@
     <Button
         android:id="@+id/btn_classroom"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="8dp"
+        android:layout_height="30dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@color/deep_blue"
+        android:paddingHorizontal="8dp"
         android:text="Classroom"
         android:textColor="@color/white"
         android:textStyle="bold"
@@ -45,7 +45,7 @@
     <Button
         android:id="@+id/btn_laboratory"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -60,8 +60,8 @@
 
     <Button
         android:id="@+id/btn_all_room"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
         android:background="@color/deep_blue"

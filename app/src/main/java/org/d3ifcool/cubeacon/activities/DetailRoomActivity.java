@@ -3,6 +3,8 @@ package org.d3ifcool.cubeacon.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.d3ifcool.cubeacon.R;
@@ -10,12 +12,25 @@ import org.d3ifcool.cubeacon.models.Room;
 
 public class DetailRoomActivity extends AppCompatActivity {
 
+    ImageView photo;
+    TextView title, desc, floor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_room);
 
+        photo = findViewById(R.id.iv_room_image);
+        title = findViewById(R.id.tv_room_detail_title);
+        desc = findViewById(R.id.tv_room_detail_desc);
+        floor = findViewById(R.id.tv_room_detail_floor);
+
         Room room = getIntent().getParcelableExtra("detail room");
-        Toast.makeText(this, room.getName(), Toast.LENGTH_SHORT).show();
+        assert room != null;
+        photo.setImageResource(room.getPhoto());
+        title.setText(room.getName());
+        desc.setText(room.getDesc());
+        floor.setText(room.getFloor());
+
     }
 }
