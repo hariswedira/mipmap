@@ -257,11 +257,13 @@ public class EventActivity extends AppCompatActivity {
         pinUserTwo.setVisibility(View.GONE);
         userPos = 0;
         noEvent.setText(getResources().getString(R.string.outside_beacon_area));
+        noEvent.setTextColor(getResources().getColor(R.color.colorAccent));
         event_tap = "out";
     }
 
     private void inBeacon(String name){
         noEvent.setText(getResources().getString(R.string.inside_beacon_area));
+        noEvent.setTextColor(getResources().getColor(R.color.deep_blue));
         if (name.equalsIgnoreCase(COCONUT)){
             event_tap = COCONUT;
 

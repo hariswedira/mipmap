@@ -181,6 +181,24 @@ public class NavigateActivity extends AppCompatActivity  {
             case "g12":
                 g12.setVisibility(View.VISIBLE);
                 break;
+            case "kantin":
+                kantin.setVisibility(View.VISIBLE);
+                break;
+            case "lobby":
+                lobby.setVisibility(View.VISIBLE);
+                break;
+            case "lift":
+                lift.setVisibility(View.VISIBLE);
+                break;
+            case "dosen lb":
+                dosenLb.setVisibility(View.VISIBLE);
+                break;
+            case "gate":
+                gate.setVisibility(View.VISIBLE);
+                break;
+            case "exit":
+                exit.setVisibility(View.VISIBLE);
+                break;
         }
     }
 

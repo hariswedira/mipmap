@@ -13,4 +13,5 @@
     <string name="inside_beacon_area">Nearby Events</string>
     <string name="navigate_map_txt">Navigate Map</string>
     <string name="direction_txt">Direction</string>
+    <string name="enter_beacon_area">Enter beacon area</string>
 </resources>

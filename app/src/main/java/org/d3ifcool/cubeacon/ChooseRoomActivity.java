@@ -119,6 +119,12 @@ public class ChooseRoomActivity extends AppCompatActivity {
         listRooms.add(new Room("LAK","Academic","Floor 1",R.drawable.ic_launcher_background));
         listRooms.add(new Room("MP Mart","Mini Market","Floor 1",R.drawable.ic_launcher_background));
         listRooms.add(new Room("Toilet","Rest Room","Floor 1",R.drawable.ic_launcher_background));
+        listRooms.add(new Room("Kantin","Cafetaria","Floor 1",R.drawable.ic_launcher_background));
+        listRooms.add(new Room("Lobby","lobby fit","Floor 1",R.drawable.ic_launcher_background));
+        listRooms.add(new Room("Lift","lift fit","Floor 1",R.drawable.ic_launcher_background));
+        listRooms.add(new Room("Gate","Gate fit","Floor 1",R.drawable.ic_launcher_background));
+        listRooms.add(new Room("Exit","Exit fit","Floor 1",R.drawable.ic_launcher_background));
+        listRooms.add(new Room("Dosen LB","Dosen Luar Biasa","Floor 1",R.drawable.ic_launcher_background));
         for (int i = 0; i <= 11 ; i++) {
             listRooms.add(new Room("G"+(i+1),"Laboratorium","Floor 1",R.drawable.ic_launcher_background));
         }
