@@ -3,6 +3,7 @@ package org.d3ifcool.cubeacon;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,7 +11,7 @@ import org.d3ifcool.cubeacon.models.Event;
 
 public class DetailEventActivity extends AppCompatActivity {
 
-    ImageView photo;
+    ImageView photo, backArrow;
     TextView judul, tgl, ruangan, deskripsi;
 
     @Override
@@ -25,6 +26,14 @@ public class DetailEventActivity extends AppCompatActivity {
         tgl = findViewById(R.id.tv_detail_tanggal);
         ruangan = findViewById(R.id.tv_detail_ruangan);
         deskripsi = findViewById(R.id.tv_detail_desc);
+        backArrow = findViewById(R.id.iv_arrow_event);
+
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         Event event = getIntent().getParcelableExtra("event");
 

@@ -494,7 +494,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="16dp"
-                            android:text="TextView"
+                            android:text="m"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/imageView3" />
@@ -533,7 +533,7 @@
             app:layout_constraintEnd_toEndOf="@+id/beacon_03"
             app:layout_constraintStart_toStartOf="@+id/beacon_03"
             app:layout_constraintTop_toBottomOf="@+id/beacon_02"
-            app:srcCompat="@drawable/line_v" />
+            android:src="@drawable/line_v_n" />
 
         <ImageView
             android:id="@+id/edge03"
@@ -543,7 +543,7 @@
             app:layout_constraintEnd_toEndOf="@+id/beacon_04"
             app:layout_constraintStart_toStartOf="@+id/beacon_04"
             app:layout_constraintTop_toBottomOf="@+id/beacon_03"
-            app:srcCompat="@drawable/line_v" />
+            android:src="@drawable/line_v_n" />
 
         <ImageView
             android:id="@+id/edge04"
@@ -553,47 +553,37 @@
             app:layout_constraintEnd_toEndOf="@+id/beacon_05"
             app:layout_constraintStart_toStartOf="@+id/beacon_05"
             app:layout_constraintTop_toBottomOf="@+id/beacon_04"
-            app:srcCompat="@drawable/line_v" />
+            android:src="@drawable/line_v_n" />
 
         <ImageView
-            android:id="@+id/edge06"
+            android:id="@+id/edge05"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@+id/beacon_06"
             app:layout_constraintEnd_toStartOf="@+id/beacon_05"
             app:layout_constraintStart_toEndOf="@+id/beacon_06"
             app:layout_constraintTop_toTopOf="@+id/beacon_06"
-            app:srcCompat="@drawable/line_h" />
+            android:src="@drawable/line_h" />
 
         <ImageView
-            android:id="@+id/edge07"
+            android:id="@+id/edge06"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/beacon_07"
             app:layout_constraintEnd_toEndOf="@+id/beacon_07"
             app:layout_constraintStart_toStartOf="@+id/beacon_07"
             app:layout_constraintTop_toBottomOf="@+id/beacon_05"
-            app:srcCompat="@drawable/line_v" />
+            android:src="@drawable/line_v_n" />
 
         <ImageView
-            android:id="@+id/edge08"
+            android:id="@+id/edge07"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/node_toilet"
             app:layout_constraintEnd_toStartOf="@+id/beacon_08"
             app:layout_constraintStart_toEndOf="@+id/beacon_07"
             app:layout_constraintTop_toTopOf="@+id/beacon_08"
-            app:srcCompat="@drawable/line_h" />
-
-        <ImageView
-            android:id="@+id/imageView12"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/beacon_02"
-            app:layout_constraintEnd_toEndOf="@+id/node_gate"
-            app:layout_constraintStart_toStartOf="@+id/node_gate"
-            app:layout_constraintTop_toBottomOf="@+id/node_gate"
-            app:srcCompat="@drawable/line_v" />
+            android:src="@drawable/line_h" />
 
         <ImageView
             android:id="@+id/user02"
@@ -601,7 +591,7 @@
             android:layout_height="15dp"
             app:layout_constraintEnd_toStartOf="@+id/edge02"
             app:layout_constraintTop_toTopOf="@+id/edge02"
-            app:srcCompat="@drawable/user_pin" />
+            android:src="@drawable/user_pin" />
 
         <ImageView
             android:id="@+id/user03"
@@ -609,7 +599,7 @@
             android:layout_height="15dp"
             app:layout_constraintEnd_toStartOf="@+id/edge03"
             app:layout_constraintTop_toTopOf="@+id/edge03"
-            app:srcCompat="@drawable/user_pin" />
+            android:src="@drawable/user_pin" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

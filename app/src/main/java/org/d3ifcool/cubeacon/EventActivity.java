@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -254,7 +255,7 @@ public class EventActivity extends AppCompatActivity {
         // TODO :  keluar daribeacon hilangin
         pinUserThree.setVisibility(View.GONE);
         pinUserTwo.setVisibility(View.GONE);
-
+        userPos = 0;
         noEvent.setText(getResources().getString(R.string.outside_beacon_area));
         event_tap = "out";
     }

@@ -3,43 +3,29 @@ package org.d3ifcool.cubeacon;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
-import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.estimote.mustard.rx_goodness.rx_requirements_wizard.Requirement;
-import com.estimote.mustard.rx_goodness.rx_requirements_wizard.RequirementsWizardFactory;
 import com.estimote.proximity_sdk.api.EstimoteCloudCredentials;
-import com.estimote.proximity_sdk.api.ProximityObserver;
-import com.estimote.proximity_sdk.api.ProximityObserverBuilder;
-import com.estimote.proximity_sdk.api.ProximityZone;
-import com.estimote.proximity_sdk.api.ProximityZoneBuilder;
-import com.estimote.proximity_sdk.api.ProximityZoneContext;
 import com.github.chrisbanes.photoview.PhotoView;
-import com.google.gson.Gson;
 
 import org.d3ifcool.cubeacon.activities.DetailRoomActivity;
-import org.d3ifcool.cubeacon.models.Event;
 import org.d3ifcool.cubeacon.models.Room;
 
-import java.util.List;
 import java.util.Locale;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import kotlin.Unit;
-import kotlin.jvm.functions.Function0;
-import kotlin.jvm.functions.Function1;
 
 public class NavigateActivity extends AppCompatActivity  {
 
     private ImageView lak, dapur, kantin, mp, laboran, lobby, dosenLb, aslab, lift, toilet, gate, exit, g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, user02, user03;
+    private ImageView edge01, edge02, edge03, edge04, edge05, edge06, edge07;
 
-    private ImageView userIcon;
+    private ImageView userIcon, backArrow;
     Button infoRoom, direction;
     PhotoView photoView;
 
@@ -68,11 +54,13 @@ public class NavigateActivity extends AppCompatActivity  {
         infoRoom = findViewById(R.id.btn_info_room);
         direction = findViewById(R.id.btn_direction_nav);
         cdDirection = findViewById(R.id.cd_direction);
+        backArrow = findViewById(R.id.iv_arrow_direction);
 
         cdDirection.setVisibility(View.INVISIBLE);
 
         initPinRoom();
         gonePinRoom();
+        goneEdge();
 
         Room room = getIntent().getParcelableExtra("room");
         int userPos = getIntent().getIntExtra("posisi user",100);
@@ -97,6 +85,13 @@ public class NavigateActivity extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                 Toast.makeText(NavigateActivity.this, "a", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
             }
         });
 
@@ -367,6 +362,15 @@ public class NavigateActivity extends AppCompatActivity  {
         g10 = findViewById(R.id.node_g10);
         g11 = findViewById(R.id.node_g11);
         g12 = findViewById(R.id.node_g12);
+
+        // Edge
+        edge01 = findViewById(R.id.edge01);
+        edge02 = findViewById(R.id.edge02);
+        edge03 = findViewById(R.id.edge03);
+        edge04 = findViewById(R.id.edge04);
+        edge05 = findViewById(R.id.edge05);
+        edge06 = findViewById(R.id.edge06);
+        edge07 = findViewById(R.id.edge07);
     }
 
     private void gonePinRoom(){
@@ -396,5 +400,15 @@ public class NavigateActivity extends AppCompatActivity  {
         g10.setVisibility(View.INVISIBLE);
         g11.setVisibility(View.INVISIBLE);
         g12.setVisibility(View.INVISIBLE);
+    }
+
+    private void goneEdge(){
+        edge01.setVisibility(View.INVISIBLE);
+        edge02.setVisibility(View.INVISIBLE);
+        edge03.setVisibility(View.INVISIBLE);
+        edge04.setVisibility(View.INVISIBLE);
+        edge05.setVisibility(View.INVISIBLE);
+        edge06.setVisibility(View.INVISIBLE);
+        edge07.setVisibility(View.INVISIBLE);
     }
 }
