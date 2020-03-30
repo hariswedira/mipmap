@@ -3,6 +3,7 @@ package org.d3ifcool.cubeacon;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,10 +12,12 @@ import android.widget.Toast;
 
 import com.estimote.proximity_sdk.api.EstimoteCloudCredentials;
 import com.github.chrisbanes.photoview.PhotoView;
+import com.google.gson.Gson;
 
 import org.d3ifcool.cubeacon.activities.DetailRoomActivity;
 import org.d3ifcool.cubeacon.models.Room;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +26,7 @@ import androidx.cardview.widget.CardView;
 public class NavigateActivity extends AppCompatActivity  {
 
     private ImageView lak, dapur, kantin, mp, laboran, lobby, dosenLb, aslab, lift, toilet, gate, exit, g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, user02, user03;
-    private ImageView edge01, edge02, edge03, edge04, edge05, edge06, edge07;
+    private ImageView edge05, edge06;
 
     private ImageView userIcon, backArrow;
     Button infoRoom, direction;
@@ -40,7 +43,12 @@ public class NavigateActivity extends AppCompatActivity  {
     // beacon data
     CardView cardView, roomInfo, cdDirection;
 
-
+    // Rute
+    ArrayList<String> rute;
+    ArrayList<String> edge;
+    ArrayList<String> sign;
+    ArrayList<Double> cost;
+    Beacon beacon2, beacon3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +64,12 @@ public class NavigateActivity extends AppCompatActivity  {
         cdDirection = findViewById(R.id.cd_direction);
         backArrow = findViewById(R.id.iv_arrow_direction);
 
+        rute = new ArrayList<>();
+        edge = new ArrayList<>();
+        sign = new ArrayList<>();
+        cost = new ArrayList<>();
+        initRute();
+
         cdDirection.setVisibility(View.INVISIBLE);
 
         initPinRoom();
@@ -65,11 +79,13 @@ public class NavigateActivity extends AppCompatActivity  {
         Room room = getIntent().getParcelableExtra("room");
         int userPos = getIntent().getIntExtra("posisi user",100);
 
+        Toast.makeText(this, userPos+"", Toast.LENGTH_SHORT).show();
+
         if (room != null){
             name.setText(room.getName());
             floor.setText(room.getFloor());
-            showPin(room.getName());
             showUser(userPos);
+            showPin(room.getName());
         }
 
         infoRoom.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +100,37 @@ public class NavigateActivity extends AppCompatActivity  {
         direction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(NavigateActivity.this, "a", Toast.LENGTH_SHORT).show();
+                // Periksa array rute
+                for (int i = 0; i < rute.size(); i++) {
+                    // Jika anggota rute sama dengan beacon02
+                    if (rute.get(i).matches(beacon2.getInformation().getName())){
+                        // Periksa object beacon02
+                        for (int j = 0; j < beacon2.getAlgorithm().get(0).getNeightbor().size(); j++) {
+                            // Jika tetangga beacon02 sama dengan rute+1
+                            if (beacon2.getAlgorithm().get(0).getNeightbor().get(j).matches(rute.get(i+1))){
+                                // Masukan edge & sign sesuai index ke array masing-masing
+                                edge.add(beacon2.getAlgorithm().get(0).getEdge().get(j));
+                                sign.add(beacon2.getAlgorithm().get(0).getSign().get(j));
+                                cost.add(beacon2.getAlgorithm().get(0).getCost().get(j));
+                            }
+                        }
+                    }
+                    // Jika anggota rute sama dengan beacon03
+                    else if (rute.get(i).matches(beacon3.getInformation().getName())){
+                        // Periksa object beacon03
+                        for (int j = 0; j < beacon3.getAlgorithm().get(0).getNeightbor().size(); j++) {
+                            // Jika tetangga beacon03 sama dengan rute+1
+                            if (beacon3.getAlgorithm().get(0).getNeightbor().get(j).matches(rute.get(i+1))){
+                                // Masukan edge & sign sesuai index ke array masing-masing
+                                edge.add(beacon3.getAlgorithm().get(0).getEdge().get(j));
+                                sign.add(beacon3.getAlgorithm().get(0).getSign().get(j));
+                                cost.add(beacon2.getAlgorithm().get(0).getCost().get(j));
+                            }
+                        }
+                    }
+                }
+
+                showEdge();
             }
         });
 
@@ -99,18 +145,6 @@ public class NavigateActivity extends AppCompatActivity  {
 
     }
 
-    private void speechUhuy() {
-        textToSpeech = new TextToSpeech(getApplicationContext(),
-                new TextToSpeech.OnInitListener() {
-                    @Override
-                    public void onInit(int i) {
-                        if (i == TextToSpeech.SUCCESS){
-                            int lang = textToSpeech.setLanguage(Locale.ENGLISH);
-                        }
-                    }
-                });
-    }
-
     private void showUser(int pos){
         switch (pos){
             case 2:
@@ -123,6 +157,54 @@ public class NavigateActivity extends AppCompatActivity  {
                 Toast.makeText(this, "Outside Beacon", Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+    private void showEdge(){
+        for (String edge : edge) {
+            switch (edge){
+                case "edge05":
+                    edge05.setVisibility(View.VISIBLE);
+                    break;
+                case "edge06":
+                    edge06.setVisibility(View.VISIBLE);
+                    break;
+            }
+        }
+    }
+
+    private void initRute(){
+        rute.add("beacon02");
+        rute.add("beacon03");
+        rute.add("g9");
+        initBeacon();
+    }
+
+    private void initBeacon(){
+        // Beacon 02
+        String jsonFileStringBeacon02 = Utils.getJsonFromAssets(getApplicationContext(), "blueberry.json");
+        Log.i("data", jsonFileStringBeacon02);
+
+        Gson gsonBlueberry = new Gson();
+        beacon2 = gsonBlueberry.fromJson(jsonFileStringBeacon02, Beacon.class);
+
+        // Beacon 03
+        String jsonFileStringBeacon03 = Utils.getJsonFromAssets(getApplicationContext(), "coconut.json");
+        Log.i("data", jsonFileStringBeacon03);
+
+        Gson gsonCoconut = new Gson();
+        beacon3 = gsonCoconut.fromJson(jsonFileStringBeacon03, Beacon.class);
+    }
+
+    private void speechUhuy() {
+        textToSpeech = new TextToSpeech(getApplicationContext(),
+                new TextToSpeech.OnInitListener() {
+                    @Override
+                    public void onInit(int i) {
+                        if (i == TextToSpeech.SUCCESS){
+                            int lang = textToSpeech.setLanguage(Locale.ENGLISH);
+                        }
+                    }
+                });
     }
 
     private void showPin(String name){
@@ -382,13 +464,8 @@ public class NavigateActivity extends AppCompatActivity  {
         g12 = findViewById(R.id.node_g12);
 
         // Edge
-        edge01 = findViewById(R.id.edge01);
-        edge02 = findViewById(R.id.edge02);
-        edge03 = findViewById(R.id.edge03);
-        edge04 = findViewById(R.id.edge04);
         edge05 = findViewById(R.id.edge05);
         edge06 = findViewById(R.id.edge06);
-        edge07 = findViewById(R.id.edge07);
     }
 
     private void gonePinRoom(){
@@ -421,12 +498,7 @@ public class NavigateActivity extends AppCompatActivity  {
     }
 
     private void goneEdge(){
-        edge01.setVisibility(View.INVISIBLE);
-        edge02.setVisibility(View.INVISIBLE);
-        edge03.setVisibility(View.INVISIBLE);
-        edge04.setVisibility(View.INVISIBLE);
         edge05.setVisibility(View.INVISIBLE);
         edge06.setVisibility(View.INVISIBLE);
-        edge07.setVisibility(View.INVISIBLE);
     }
 }

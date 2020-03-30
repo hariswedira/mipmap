@@ -516,17 +516,7 @@
         </androidx.cardview.widget.CardView>
 
         <ImageView
-            android:id="@+id/edge01"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/beacon_01"
-            app:layout_constraintEnd_toStartOf="@+id/beacon_02"
-            app:layout_constraintStart_toEndOf="@+id/beacon_01"
-            app:layout_constraintTop_toTopOf="@+id/beacon_01"
-            app:srcCompat="@drawable/line_h" />
-
-        <ImageView
-            android:id="@+id/edge02"
+            android:id="@+id/edge05"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/beacon_03"
@@ -536,70 +526,32 @@
             android:src="@drawable/line_v_n" />
 
         <ImageView
-            android:id="@+id/edge03"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/beacon_04"
-            app:layout_constraintEnd_toEndOf="@+id/beacon_04"
-            app:layout_constraintStart_toStartOf="@+id/beacon_04"
-            app:layout_constraintTop_toBottomOf="@+id/beacon_03"
-            android:src="@drawable/line_v_n" />
-
-        <ImageView
-            android:id="@+id/edge04"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/beacon_05"
-            app:layout_constraintEnd_toEndOf="@+id/beacon_05"
-            app:layout_constraintStart_toStartOf="@+id/beacon_05"
-            app:layout_constraintTop_toBottomOf="@+id/beacon_04"
-            android:src="@drawable/line_v_n" />
-
-        <ImageView
-            android:id="@+id/edge05"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/beacon_06"
-            app:layout_constraintEnd_toStartOf="@+id/beacon_05"
-            app:layout_constraintStart_toEndOf="@+id/beacon_06"
-            app:layout_constraintTop_toTopOf="@+id/beacon_06"
-            android:src="@drawable/line_h" />
-
-        <ImageView
-            android:id="@+id/edge06"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/beacon_07"
-            app:layout_constraintEnd_toEndOf="@+id/beacon_07"
-            app:layout_constraintStart_toStartOf="@+id/beacon_07"
-            app:layout_constraintTop_toBottomOf="@+id/beacon_05"
-            android:src="@drawable/line_v_n" />
-
-        <ImageView
-            android:id="@+id/edge07"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/node_toilet"
-            app:layout_constraintEnd_toStartOf="@+id/beacon_08"
-            app:layout_constraintStart_toEndOf="@+id/beacon_07"
-            app:layout_constraintTop_toTopOf="@+id/beacon_08"
-            android:src="@drawable/line_h" />
-
-        <ImageView
             android:id="@+id/user02"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            app:layout_constraintEnd_toStartOf="@+id/edge02"
-            app:layout_constraintTop_toTopOf="@+id/edge02"
+            app:layout_constraintEnd_toStartOf="@+id/edge05"
+            app:layout_constraintTop_toTopOf="@+id/edge05"
             android:src="@drawable/user_pin" />
 
         <ImageView
             android:id="@+id/user03"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            app:layout_constraintEnd_toStartOf="@+id/edge03"
-            app:layout_constraintTop_toTopOf="@+id/edge03"
-            android:src="@drawable/user_pin" />
+            android:src="@drawable/user_pin"
+            app:layout_constraintEnd_toStartOf="@+id/beacon_03"
+            app:layout_constraintTop_toBottomOf="@+id/beacon_03" />
+
+        <ImageView
+            android:id="@+id/edge06"
+            android:layout_width="25dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/beacon_03"
+            app:layout_constraintEnd_toStartOf="@+id/node_g9"
+            app:layout_constraintStart_toEndOf="@+id/beacon_03"
+            app:layout_constraintTop_toTopOf="@+id/node_g9"
+            app:srcCompat="@drawable/g9" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
