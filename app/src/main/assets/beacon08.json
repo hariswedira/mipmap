@@ -9,7 +9,7 @@
 		      "neightbor": [
 		        "beacon07",
 		        "toilet",
-		        "exit",
+		        "exit"
 		      ],
 		      "cost": [
 		        7,
@@ -19,12 +19,12 @@
 		      "sign": [
 		        "left",
 		        "down",
-		        "right",
+		        "right"
 		      ],
 		      "edge": [
 		        "edge27",
 		        "edge28",
-		        "edge29",
+		        "edge29"
 		      ]
 		    }
 		  ]

@@ -26,7 +26,8 @@ import androidx.cardview.widget.CardView;
 public class NavigateActivity extends AppCompatActivity  {
 
     private ImageView lak, dapur, kantin, mp, laboran, lobby, dosenLb, aslab, lift, toilet, gate, exit, g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, user02, user03;
-    private ImageView edge05, edge06;
+    private ImageView edge01, edge02, edge03, edge04, edge05, edge06, edge07, edge08, edge09, edge10, edge11, edge12, edge13, edge14,
+            edge15, edge16, edge17, edge18, edge19, edge20, edge21, edge22, edge23, edge24, edge25, edge26, edge27, edge28, edge29, edge30;
 
     private ImageView userIcon, backArrow;
     Button infoRoom, direction;
@@ -34,7 +35,7 @@ public class NavigateActivity extends AppCompatActivity  {
 
     private int currentPos;
     private TextToSpeech textToSpeech;
-    TextView name, floor;
+    TextView name, floor, jarakTxt;
 
     // estimote
     private NotificationManagaer notificationManagaer;
@@ -65,12 +66,12 @@ public class NavigateActivity extends AppCompatActivity  {
         direction = findViewById(R.id.btn_direction_nav);
         cdDirection = findViewById(R.id.cd_direction);
         backArrow = findViewById(R.id.iv_arrow_direction);
+        jarakTxt = findViewById(R.id.tv_cost_room);
 
         rute = new ArrayList<>();
         edge = new ArrayList<>();
         sign = new ArrayList<>();
         cost = new ArrayList<>();
-        initRute();
 
         cdDirection.setVisibility(View.INVISIBLE);
 
@@ -81,7 +82,8 @@ public class NavigateActivity extends AppCompatActivity  {
         Room room = getIntent().getParcelableExtra("room");
         int userPos = getIntent().getIntExtra("posisi user",100);
 
-        Toast.makeText(this, userPos+"", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, userPos+"", Toast.LENGTH_SHORT).show();
+        initRute(room.getName());
 
         if (room != null){
             name.setText(room.getName());
@@ -104,8 +106,21 @@ public class NavigateActivity extends AppCompatActivity  {
             public void onClick(View view) {
                 // Periksa array rute
                 for (int i = 0; i < rute.size(); i++) {
+                    // Jika anggota rute sama dengan beacon01
+                    if (rute.get(i).matches(beacon01.getInformation().getName())){
+                        // Periksa object beacon02
+                        for (int j = 0; j < beacon01.getAlgorithm().get(0).getNeightbor().size(); j++) {
+                            // Jika tetangga beacon01 sama dengan rute+1
+                            if (beacon01.getAlgorithm().get(0).getNeightbor().get(j).matches(rute.get(i+1))){
+                                // Masukan edge & sign sesuai index ke array masing-masing
+                                edge.add(beacon01.getAlgorithm().get(0).getEdge().get(j));
+                                sign.add(beacon01.getAlgorithm().get(0).getSign().get(j));
+                                cost.add(beacon01.getAlgorithm().get(0).getCost().get(j));
+                            }
+                        }
+                    }
                     // Jika anggota rute sama dengan beacon02
-                    if (rute.get(i).matches(beacon2.getInformation().getName())){
+                    else if (rute.get(i).matches(beacon2.getInformation().getName())){
                         // Periksa object beacon02
                         for (int j = 0; j < beacon2.getAlgorithm().get(0).getNeightbor().size(); j++) {
                             // Jika tetangga beacon02 sama dengan rute+1
@@ -126,13 +141,79 @@ public class NavigateActivity extends AppCompatActivity  {
                                 // Masukan edge & sign sesuai index ke array masing-masing
                                 edge.add(beacon3.getAlgorithm().get(0).getEdge().get(j));
                                 sign.add(beacon3.getAlgorithm().get(0).getSign().get(j));
-                                cost.add(beacon2.getAlgorithm().get(0).getCost().get(j));
+                                cost.add(beacon3.getAlgorithm().get(0).getCost().get(j));
+                            }
+                        }
+                    }
+                    // Jika anggota rute sama dengan beacon04
+                    if (rute.get(i).matches(beacon04.getInformation().getName())){
+                        // Periksa object beacon02
+                        for (int j = 0; j < beacon04.getAlgorithm().get(0).getNeightbor().size(); j++) {
+                            // Jika tetangga beacon04 sama dengan rute+1
+                            if (beacon04.getAlgorithm().get(0).getNeightbor().get(j).matches(rute.get(i+1))){
+                                // Masukan edge & sign sesuai index ke array masing-masing
+                                edge.add(beacon04.getAlgorithm().get(0).getEdge().get(j));
+                                sign.add(beacon04.getAlgorithm().get(0).getSign().get(j));
+                                cost.add(beacon04.getAlgorithm().get(0).getCost().get(j));
+                            }
+                        }
+                    }
+                    // Jika anggota rute sama dengan beacon05
+                    else if (rute.get(i).matches(beacon05.getInformation().getName())){
+                        // Periksa object beacon03
+                        for (int j = 0; j < beacon05.getAlgorithm().get(0).getNeightbor().size(); j++) {
+                            // Jika tetangga beacon05 sama dengan rute+1
+                            if (beacon05.getAlgorithm().get(0).getNeightbor().get(j).matches(rute.get(i+1))){
+                                // Masukan edge & sign sesuai index ke array masing-masing
+                                edge.add(beacon05.getAlgorithm().get(0).getEdge().get(j));
+                                sign.add(beacon05.getAlgorithm().get(0).getSign().get(j));
+                                cost.add(beacon05.getAlgorithm().get(0).getCost().get(j));
+                            }
+                        }
+                    }
+                    // Jika anggota rute sama dengan beacon06
+                    else if (rute.get(i).matches(beacon06.getInformation().getName())){
+                        // Periksa object beacon03
+                        for (int j = 0; j < beacon06.getAlgorithm().get(0).getNeightbor().size(); j++) {
+                            // Jika tetangga beacon06 sama dengan rute+1
+                            if (beacon06.getAlgorithm().get(0).getNeightbor().get(j).matches(rute.get(i+1))){
+                                // Masukan edge & sign sesuai index ke array masing-masing
+                                edge.add(beacon06.getAlgorithm().get(0).getEdge().get(j));
+                                sign.add(beacon06.getAlgorithm().get(0).getSign().get(j));
+                                cost.add(beacon06.getAlgorithm().get(0).getCost().get(j));
+                            }
+                        }
+                    }
+                    // Jika anggota rute sama dengan beacon07
+                    else if (rute.get(i).matches(beacon07.getInformation().getName())){
+                        // Periksa object beacon03
+                        for (int j = 0; j < beacon07.getAlgorithm().get(0).getNeightbor().size(); j++) {
+                            // Jika tetangga beacon07 sama dengan rute+1
+                            if (beacon07.getAlgorithm().get(0).getNeightbor().get(j).matches(rute.get(i+1))){
+                                // Masukan edge & sign sesuai index ke array masing-masing
+                                edge.add(beacon07.getAlgorithm().get(0).getEdge().get(j));
+                                sign.add(beacon07.getAlgorithm().get(0).getSign().get(j));
+                                cost.add(beacon07.getAlgorithm().get(0).getCost().get(j));
+                            }
+                        }
+                    }
+                    // Jika anggota rute sama dengan beacon08
+                    else if (rute.get(i).matches(beacon08.getInformation().getName())){
+                        // Periksa object beacon03
+                        for (int j = 0; j < beacon08.getAlgorithm().get(0).getNeightbor().size(); j++) {
+                            // Jika tetangga beacon06 sama dengan rute+1
+                            if (beacon08.getAlgorithm().get(0).getNeightbor().get(j).matches(rute.get(i+1))){
+                                // Masukan edge & sign sesuai index ke array masing-masing
+                                edge.add(beacon08.getAlgorithm().get(0).getEdge().get(j));
+                                sign.add(beacon08.getAlgorithm().get(0).getSign().get(j));
+                                cost.add(beacon08.getAlgorithm().get(0).getCost().get(j));
                             }
                         }
                     }
                 }
 
                 showEdge();
+                initCost();
             }
         });
 
@@ -146,6 +227,303 @@ public class NavigateActivity extends AppCompatActivity  {
         speechUhuy();
 
     }
+
+    private void initRute(String end){
+        if (end.equalsIgnoreCase("g9")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("g9");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g10")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("g10");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("laboran")){
+            rute.add("beacon02");
+            rute.add("laboran");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("mp mart")){
+            rute.add("beacon02");
+            rute.add("mpmart");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("gate")){
+            rute.add("beacon02");
+            rute.add("gate");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g11")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("g11");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("lobby")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("lobby");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("kitchen")){
+            rute.add("beacon02");
+            rute.add("beacon01");
+            rute.add("dapur");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g5")){
+            rute.add("beacon02");
+            rute.add("beacon01");
+            rute.add("g5");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g1")){
+            rute.add("beacon02");
+            rute.add("beacon01");
+            rute.add("g1");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g6")){
+            rute.add("beacon02");
+            rute.add("beacon01");
+            rute.add("g6");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g7")){
+            rute.add("beacon02");
+            rute.add("beacon01");
+            rute.add("g7");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("kantin")){
+            rute.add("beacon02");
+            rute.add("beacon01");
+            rute.add("kantin");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g3")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon06");
+            rute.add("g3");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g4")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon06");
+            rute.add("g4");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g8")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon06");
+            rute.add("g8");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g2")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon06");
+            rute.add("g2");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("lift")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon07");
+            rute.add("lift");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("admin lab")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon07");
+            rute.add("admin");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("toilet")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon07");
+            rute.add("beacon08");
+            rute.add("toilet");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("exit")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon07");
+            rute.add("beacon08");
+            rute.add("exit");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("lak")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("lak");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("dosen lb")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon07");
+            rute.add("dosen lb");
+            initBeacon();
+        }
+        else if (end.equalsIgnoreCase("g12")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon07");
+            rute.add("g12");
+            initBeacon();
+        }
+    }
+
+    private void initCost() {
+        double jarak = 0;
+        if (cost.isEmpty()){
+            jarakTxt.setText(String.valueOf(jarak)+" m");
+        }else {
+            for (int i = 0; i < cost.size(); i++) {
+                jarak += cost.get(i);
+            }
+            jarakTxt.setText(String.valueOf(jarak)+" m");
+        }
+    }
+
+    //    private void estimoteBlueberry() {
+//        notificationManagaer = new NotificationManagaer(this);
+//
+//        // Create the Proximity Observer
+//        ProximityObserver proximityObserver =
+//                new ProximityObserverBuilder(getApplicationContext(), cloudCredentials)
+//                        .onError(new Function1<Throwable, Unit>() {
+//                            @Override
+//                            public Unit invoke(Throwable throwable) {
+//                                Log.e("app", "proximity observer error: " + throwable);
+//                                return null;
+//                            }
+//                        })
+//                        .withBalancedPowerMode()
+//                        .build();
+//
+//        // TODO : Create Proximity Zone
+//
+//        // Near Zone
+//        ProximityZone zone = new ProximityZoneBuilder()
+//                .forTag("node-blueberry")
+//                .inNearRange()
+//                .onEnter(new Function1<ProximityZoneContext, Unit>() {
+//                    @Override
+//                    public Unit invoke(ProximityZoneContext context) {
+//                        currentPos = 1;
+//                        notificationManagaer.enterBlueberry();
+//                        Toast.makeText(NavigateActivity.this, "blue in 1 meter "+currentPos, Toast.LENGTH_SHORT).show();
+//                        userIcon.setVisibility(View.VISIBLE);
+//                        return null;
+//                    }
+//                })
+//                .onExit(new Function1<ProximityZoneContext, Unit>() {
+//                    @Override
+//                    public Unit invoke(ProximityZoneContext proximityContext) {
+////                        notificationManagaer.exitBlueberry();
+//                        Toast.makeText(NavigateActivity.this, "blue out Blueberry", Toast.LENGTH_SHORT).show();
+//                        userIcon.setVisibility(View.INVISIBLE);
+//                        return null;
+//                    }
+//                })
+//                .build();
+//        proximityObserver.startObserving(zone);
+//
+//        // Inner Zone
+//        ProximityZone innerZone = new ProximityZoneBuilder()
+//                .forTag("node-blueberry")
+//                .inCustomRange(3.0)
+//                .onEnter(new Function1<ProximityZoneContext, Unit>() {
+//                    @Override
+//                    public Unit invoke(ProximityZoneContext context) {
+//                        currentPos = 1;
+//                        notificationManagaer.enterBlueberry();
+//                        Toast.makeText(NavigateActivity.this, "blue in 3 meter"+currentPos, Toast.LENGTH_SHORT).show();
+//                        userIcon.setVisibility(View.VISIBLE);
+//                        return null;
+//                    }
+//                })
+//                .onExit(new Function1<ProximityZoneContext, Unit>() {
+//                    @Override
+//                    public Unit invoke(ProximityZoneContext proximityContext) {
+////                        notificationManagaer.exitBlueberry();
+//                        Toast.makeText(NavigateActivity.this, "blue out 3 meter", Toast.LENGTH_SHORT).show();
+//                        userIcon.setVisibility(View.INVISIBLE);
+//                        return null;
+//                    }
+//                })
+//                .build();
+//        proximityObserver.startObserving(innerZone);
+//
+//        // Outer zone
+//        ProximityZone outerZone = new ProximityZoneBuilder()
+//                .forTag("node-blueberry")
+//                .inFarRange()
+//                .onEnter(new Function1<ProximityZoneContext, Unit>() {
+//                    @Override
+//                    public Unit invoke(ProximityZoneContext context) {
+//                        currentPos = 1;
+//                        notificationManagaer.enterBlueberry();
+//                        Toast.makeText(NavigateActivity.this, "blue in 5 meter"+currentPos, Toast.LENGTH_SHORT).show();
+//                        userIcon.setVisibility(View.VISIBLE);
+//                        return null;
+//                    }
+//                })
+//                .onExit(new Function1<ProximityZoneContext, Unit>() {
+//                    @Override
+//                    public Unit invoke(ProximityZoneContext proximityContext) {
+////                        notificationManagaer.exitBlueberry();
+//                        Toast.makeText(NavigateActivity.this, "blue out Blueberry", Toast.LENGTH_SHORT).show();
+//                        userIcon.setVisibility(View.INVISIBLE);
+//                        return null;
+//                    }
+//                })
+//                .build();
+//        proximityObserver.startObserving(outerZone);
+//
+//
+//        // Request location permissions & Start proximity observation
+//        RequirementsWizardFactory
+//                .createEstimoteRequirementsWizard()
+//                .fulfillRequirements(this,
+//                        // onRequirementsFulfilled
+//                        new Function0<Unit>() {
+//                            @Override public Unit invoke() {
+//                                Log.d("app", "requirements fulfilled");
+////                                Toast.makeText(MainActivity.this, "Start", Toast.LENGTH_SHORT).show();
+//                                return null;
+//                            }
+//                        },
+//                        // onRequirementsMissing
+//                        new Function1<List<? extends Requirement>, Unit>() {
+//                            @Override public Unit invoke(List<? extends Requirement> requirements) {
+//                                Log.e("app", "requirements missing: " + requirements);
+//                                return null;
+//                            }
+//                        },
+//                        // onError
+//                        new Function1<Throwable, Unit>() {
+//                            @Override public Unit invoke(Throwable throwable) {
+//                                Log.e("app", "requirements error: " + throwable);
+//                                return null;
+//                            }
+//                        });
+//    }
 
     private void showUser(int pos){
         switch (pos){
@@ -164,21 +542,98 @@ public class NavigateActivity extends AppCompatActivity  {
     private void showEdge(){
         for (String edge : edge) {
             switch (edge){
+                case "edge01":
+                    edge01.setVisibility(View.VISIBLE);
+                    break;
+                case "edge02":
+                    edge02.setVisibility(View.VISIBLE);
+                    break;
+                case "edge03":
+                    edge03.setVisibility(View.VISIBLE);
+                    break;
+                case "edge04":
+                    edge04.setVisibility(View.VISIBLE);
+                    break;
                 case "edge05":
                     edge05.setVisibility(View.VISIBLE);
                     break;
                 case "edge06":
                     edge06.setVisibility(View.VISIBLE);
                     break;
+                case "edge07":
+                    edge07.setVisibility(View.VISIBLE);
+                    break;
+                case "edge08":
+                    edge08.setVisibility(View.VISIBLE);
+                    break;
+                case "edge09":
+                    edge09.setVisibility(View.VISIBLE);
+                    break;
+                case "edge10":
+                    edge10.setVisibility(View.VISIBLE);
+                    break;
+                case "edge11":
+                    edge11.setVisibility(View.VISIBLE);
+                    break;
+                case "edge12":
+                    edge12.setVisibility(View.VISIBLE);
+                    break;
+                case "edge13":
+                    edge13.setVisibility(View.VISIBLE);
+                    break;
+                case "edge14":
+                    edge14.setVisibility(View.VISIBLE);
+                    break;
+                case "edge15":
+                    edge15.setVisibility(View.VISIBLE);
+                    break;
+                case "edge16":
+                    edge16.setVisibility(View.VISIBLE);
+                    break;
+                case "edge17":
+                    edge17.setVisibility(View.VISIBLE);
+                    break;
+                case "edge18":
+                    edge18.setVisibility(View.VISIBLE);
+                    break;
+                case "edge19":
+                    edge19.setVisibility(View.VISIBLE);
+                    break;
+                case "edge20":
+                    edge20.setVisibility(View.VISIBLE);
+                    break;
+                case "edge21":
+                    edge21.setVisibility(View.VISIBLE);
+                    break;
+                case "edge22":
+                    edge22.setVisibility(View.VISIBLE);
+                    break;
+                case "edge23":
+                    edge23.setVisibility(View.VISIBLE);
+                    break;
+                case "edge24":
+                    edge24.setVisibility(View.VISIBLE);
+                    break;
+                case "edge25":
+                    edge25.setVisibility(View.VISIBLE);
+                    break;
+                case "edge26":
+                    edge26.setVisibility(View.VISIBLE);
+                    break;
+                case "edge27":
+                    edge27.setVisibility(View.VISIBLE);
+                    break;
+                case "edge28":
+                    edge28.setVisibility(View.VISIBLE);
+                    break;
+                case "edge29":
+                    edge29.setVisibility(View.VISIBLE);
+                    break;
+                case "edge30":
+                    edge30.setVisibility(View.VISIBLE);
+                    break;
             }
         }
-    }
-
-    private void initRute(){
-        rute.add("beacon02");
-        rute.add("beacon03");
-        rute.add("g9");
-        initBeacon();
     }
 
     private void initBeacon(){
@@ -328,157 +783,6 @@ public class NavigateActivity extends AppCompatActivity  {
         }
     }
 
-//    public void gson(){
-//        String jsonFileString = Utils.getJsonFromAssets(getApplicationContext(), "blueberry.json");
-//        Log.i("data", jsonFileString);
-//
-//        Gson gson = new Gson();
-////        Type listBeaconType = new TypeToken<List<Beacon>>(){}.getType();
-//
-//        Beacon beacons1 = gson.fromJson(jsonFileString, Beacon.class);
-////        Log.i("data",beacons1.getAlgorithm().get(0).getEdge().get(0));
-//
-//        bName.setText(beacons1.getInformation().getName());
-//        bTag.setText(beacons1.getInformation().getTags());
-//        bNode.setText(beacons1.getInformation().getNode());
-//        n1.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(0));
-//        n2.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(1));
-//        n3.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(2));
-//        n4.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(3));
-//        n5.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(4));
-//        c1.setText(beacons1.getAlgorithm().get(0).getCost().get(0).toString());
-//        c2.setText(beacons1.getAlgorithm().get(0).getCost().get(1).toString());
-//        c3.setText(beacons1.getAlgorithm().get(0).getCost().get(2).toString());
-//        c4.setText(beacons1.getAlgorithm().get(0).getCost().get(3).toString());
-//        c5.setText(beacons1.getAlgorithm().get(0).getCost().get(4).toString());
-//
-//    }
-
-//    private void estimoteBlueberry() {
-//        notificationManagaer = new NotificationManagaer(this);
-//
-//        // Create the Proximity Observer
-//        ProximityObserver proximityObserver =
-//                new ProximityObserverBuilder(getApplicationContext(), cloudCredentials)
-//                        .onError(new Function1<Throwable, Unit>() {
-//                            @Override
-//                            public Unit invoke(Throwable throwable) {
-//                                Log.e("app", "proximity observer error: " + throwable);
-//                                return null;
-//                            }
-//                        })
-//                        .withBalancedPowerMode()
-//                        .build();
-//
-//        // TODO : Create Proximity Zone
-//
-//        // Near Zone
-//        ProximityZone zone = new ProximityZoneBuilder()
-//                .forTag("node-blueberry")
-//                .inNearRange()
-//                .onEnter(new Function1<ProximityZoneContext, Unit>() {
-//                    @Override
-//                    public Unit invoke(ProximityZoneContext context) {
-//                        currentPos = 1;
-//                        notificationManagaer.enterBlueberry();
-//                        Toast.makeText(NavigateActivity.this, "blue in 1 meter "+currentPos, Toast.LENGTH_SHORT).show();
-//                        userIcon.setVisibility(View.VISIBLE);
-//                        return null;
-//                    }
-//                })
-//                .onExit(new Function1<ProximityZoneContext, Unit>() {
-//                    @Override
-//                    public Unit invoke(ProximityZoneContext proximityContext) {
-////                        notificationManagaer.exitBlueberry();
-//                        Toast.makeText(NavigateActivity.this, "blue out Blueberry", Toast.LENGTH_SHORT).show();
-//                        userIcon.setVisibility(View.INVISIBLE);
-//                        return null;
-//                    }
-//                })
-//                .build();
-//        proximityObserver.startObserving(zone);
-//
-//        // Inner Zone
-//        ProximityZone innerZone = new ProximityZoneBuilder()
-//                .forTag("node-blueberry")
-//                .inCustomRange(3.0)
-//                .onEnter(new Function1<ProximityZoneContext, Unit>() {
-//                    @Override
-//                    public Unit invoke(ProximityZoneContext context) {
-//                        currentPos = 1;
-//                        notificationManagaer.enterBlueberry();
-//                        Toast.makeText(NavigateActivity.this, "blue in 3 meter"+currentPos, Toast.LENGTH_SHORT).show();
-//                        userIcon.setVisibility(View.VISIBLE);
-//                        return null;
-//                    }
-//                })
-//                .onExit(new Function1<ProximityZoneContext, Unit>() {
-//                    @Override
-//                    public Unit invoke(ProximityZoneContext proximityContext) {
-////                        notificationManagaer.exitBlueberry();
-//                        Toast.makeText(NavigateActivity.this, "blue out 3 meter", Toast.LENGTH_SHORT).show();
-//                        userIcon.setVisibility(View.INVISIBLE);
-//                        return null;
-//                    }
-//                })
-//                .build();
-//        proximityObserver.startObserving(innerZone);
-//
-//        // Outer zone
-//        ProximityZone outerZone = new ProximityZoneBuilder()
-//                .forTag("node-blueberry")
-//                .inFarRange()
-//                .onEnter(new Function1<ProximityZoneContext, Unit>() {
-//                    @Override
-//                    public Unit invoke(ProximityZoneContext context) {
-//                        currentPos = 1;
-//                        notificationManagaer.enterBlueberry();
-//                        Toast.makeText(NavigateActivity.this, "blue in 5 meter"+currentPos, Toast.LENGTH_SHORT).show();
-//                        userIcon.setVisibility(View.VISIBLE);
-//                        return null;
-//                    }
-//                })
-//                .onExit(new Function1<ProximityZoneContext, Unit>() {
-//                    @Override
-//                    public Unit invoke(ProximityZoneContext proximityContext) {
-////                        notificationManagaer.exitBlueberry();
-//                        Toast.makeText(NavigateActivity.this, "blue out Blueberry", Toast.LENGTH_SHORT).show();
-//                        userIcon.setVisibility(View.INVISIBLE);
-//                        return null;
-//                    }
-//                })
-//                .build();
-//        proximityObserver.startObserving(outerZone);
-//
-//
-//        // Request location permissions & Start proximity observation
-//        RequirementsWizardFactory
-//                .createEstimoteRequirementsWizard()
-//                .fulfillRequirements(this,
-//                        // onRequirementsFulfilled
-//                        new Function0<Unit>() {
-//                            @Override public Unit invoke() {
-//                                Log.d("app", "requirements fulfilled");
-////                                Toast.makeText(MainActivity.this, "Start", Toast.LENGTH_SHORT).show();
-//                                return null;
-//                            }
-//                        },
-//                        // onRequirementsMissing
-//                        new Function1<List<? extends Requirement>, Unit>() {
-//                            @Override public Unit invoke(List<? extends Requirement> requirements) {
-//                                Log.e("app", "requirements missing: " + requirements);
-//                                return null;
-//                            }
-//                        },
-//                        // onError
-//                        new Function1<Throwable, Unit>() {
-//                            @Override public Unit invoke(Throwable throwable) {
-//                                Log.e("app", "requirements error: " + throwable);
-//                                return null;
-//                            }
-//                        });
-//    }
-
     private void initPinRoom(){
         user02 = findViewById(R.id.user02);
         user03 = findViewById(R.id.user03);
@@ -508,8 +812,36 @@ public class NavigateActivity extends AppCompatActivity  {
         g12 = findViewById(R.id.node_g12);
 
         // Edge
+        edge01 = findViewById(R.id.edge01);
+        edge02 = findViewById(R.id.edge02);
+        edge03 = findViewById(R.id.edge03);
+        edge04 = findViewById(R.id.edge04);
         edge05 = findViewById(R.id.edge05);
         edge06 = findViewById(R.id.edge06);
+        edge07 = findViewById(R.id.edge07);
+        edge08 = findViewById(R.id.edge08);
+        edge09 = findViewById(R.id.edge09);
+        edge10 = findViewById(R.id.edge10);
+        edge11 = findViewById(R.id.edge11);
+        edge12 = findViewById(R.id.edge12);
+        edge13 = findViewById(R.id.edge13);
+        edge14 = findViewById(R.id.edge14);
+        edge15 = findViewById(R.id.edge15);
+        edge16 = findViewById(R.id.edge16);
+        edge17 = findViewById(R.id.edge17);
+        edge18 = findViewById(R.id.edge18);
+        edge19 = findViewById(R.id.edge19);
+        edge20 = findViewById(R.id.edge20);
+        edge21 = findViewById(R.id.edge21);
+        edge22 = findViewById(R.id.edge22);
+        edge23 = findViewById(R.id.edge23);
+        edge24 = findViewById(R.id.edge24);
+        edge25 = findViewById(R.id.edge25);
+        edge26 = findViewById(R.id.edge26);
+        edge27 = findViewById(R.id.edge27);
+        edge28 = findViewById(R.id.edge28);
+        edge29 = findViewById(R.id.edge29);
+        edge30 = findViewById(R.id.edge30);
     }
 
     private void gonePinRoom(){
@@ -542,7 +874,35 @@ public class NavigateActivity extends AppCompatActivity  {
     }
 
     private void goneEdge(){
+        edge01.setVisibility(View.INVISIBLE);
+        edge02.setVisibility(View.INVISIBLE);
+        edge03.setVisibility(View.INVISIBLE);
+        edge04.setVisibility(View.INVISIBLE);
         edge05.setVisibility(View.INVISIBLE);
         edge06.setVisibility(View.INVISIBLE);
+        edge07.setVisibility(View.INVISIBLE);
+        edge08.setVisibility(View.INVISIBLE);
+        edge09.setVisibility(View.INVISIBLE);
+        edge10.setVisibility(View.INVISIBLE);
+        edge11.setVisibility(View.INVISIBLE);
+        edge12.setVisibility(View.INVISIBLE);
+        edge13.setVisibility(View.INVISIBLE);
+        edge14.setVisibility(View.INVISIBLE);
+        edge15.setVisibility(View.INVISIBLE);
+        edge16.setVisibility(View.INVISIBLE);
+        edge17.setVisibility(View.INVISIBLE);
+        edge18.setVisibility(View.INVISIBLE);
+        edge19.setVisibility(View.INVISIBLE);
+        edge20.setVisibility(View.INVISIBLE);
+        edge21.setVisibility(View.INVISIBLE);
+        edge22.setVisibility(View.INVISIBLE);
+        edge23.setVisibility(View.INVISIBLE);
+        edge24.setVisibility(View.INVISIBLE);
+        edge25.setVisibility(View.INVISIBLE);
+        edge26.setVisibility(View.INVISIBLE);
+        edge27.setVisibility(View.INVISIBLE);
+        edge28.setVisibility(View.INVISIBLE);
+        edge29.setVisibility(View.INVISIBLE);
+        edge30.setVisibility(View.INVISIBLE);
     }
 }

@@ -11,8 +11,7 @@
 		        "g8",
 		        "g2",
 		        "g3",
-		        "g4",
-		        "lak"
+		        "g4"
 		      ],
 		      "cost": [
 		        20.2,
@@ -27,16 +26,14 @@
 		        "up",
 		        "leftUp",
 		        "left",
-		        "leftDown",
-		        "rightDown"
+		        "leftDown"
 		      ],
 		      "edge": [
 		        "edge18",
 		        "edge19",
 		        "edge20",
 		        "edge21",
-		        "edge22",
-		        "edge23"
+		        "edge20"
 		      ]
 		    }
 		  ]

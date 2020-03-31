@@ -233,8 +233,9 @@
             android:id="@+id/node_kantin"
             android:layout_width="@dimen/pin_size"
             android:layout_height="@dimen/pin_size"
+            android:layout_marginStart="16dp"
             app:layout_constraintBottom_toTopOf="@+id/node_dapur"
-            app:layout_constraintStart_toEndOf="@+id/node_dapur"
+            app:layout_constraintStart_toStartOf="@+id/node_dapur"
             app:srcCompat="@drawable/goals_pin" />
 
         <ImageView
@@ -551,7 +552,7 @@
             app:layout_constraintEnd_toStartOf="@+id/node_g9"
             app:layout_constraintStart_toEndOf="@+id/beacon_03"
             app:layout_constraintTop_toTopOf="@+id/node_g9"
-            app:srcCompat="@drawable/g9" />
+            app:srcCompat="@drawable/right_incline_up" />
 
         <ImageView
             android:id="@+id/edge02"
@@ -583,7 +584,266 @@
             app:layout_constraintEnd_toEndOf="@+id/node_g10"
             app:layout_constraintStart_toEndOf="@+id/beacon_04"
             app:layout_constraintTop_toBottomOf="@+id/node_g10"
-            app:srcCompat="@drawable/g9" />
+            app:srcCompat="@drawable/right_incline_up" />
+
+        <ImageView
+            android:id="@+id/edge03"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/beacon_01"
+            app:layout_constraintEnd_toStartOf="@+id/beacon_02"
+            app:layout_constraintStart_toEndOf="@+id/beacon_01"
+            app:layout_constraintTop_toTopOf="@+id/beacon_01"
+            app:srcCompat="@drawable/line_h_m" />
+
+        <ImageView
+            android:id="@+id/edge01"
+            android:layout_width="15dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintEnd_toEndOf="@+id/node_mp_mart"
+            app:layout_constraintStart_toEndOf="@+id/beacon_02"
+            app:layout_constraintTop_toTopOf="@+id/node_mp_mart"
+            app:srcCompat="@drawable/right_incline_up" />
+
+        <ImageView
+            android:id="@+id/edge10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/beacon_01"
+            app:layout_constraintEnd_toStartOf="@+id/beacon_01"
+            app:layout_constraintStart_toStartOf="@+id/node_g1"
+            app:layout_constraintTop_toTopOf="@+id/beacon_01"
+            app:srcCompat="@drawable/line_h_m" />
+
+        <ImageView
+            android:id="@+id/edge09"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/beacon_01"
+            app:layout_constraintEnd_toStartOf="@+id/edge03"
+            app:layout_constraintStart_toStartOf="@+id/node_dapur"
+            app:layout_constraintTop_toBottomOf="@+id/node_dapur"
+            app:srcCompat="@drawable/line_left_oblique_up" />
+
+        <ImageView
+            android:id="@+id/edge08"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/beacon_01"
+            app:layout_constraintEnd_toStartOf="@+id/edge03"
+            app:layout_constraintStart_toEndOf="@+id/edge10"
+            app:layout_constraintTop_toBottomOf="@+id/node_kantin"
+            app:srcCompat="@drawable/line_v_n" />
+
+        <ImageView
+            android:id="@+id/edge13"
+            android:layout_width="30dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/node_g7"
+            app:layout_constraintEnd_toEndOf="@+id/edge10"
+            app:layout_constraintStart_toEndOf="@+id/node_g7"
+            app:layout_constraintTop_toBottomOf="@+id/edge08"
+            app:srcCompat="@drawable/line_g7" />
+
+        <ImageView
+            android:id="@+id/edge12"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="9dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/node_g6"
+            app:layout_constraintEnd_toStartOf="@+id/edge03"
+            app:layout_constraintStart_toStartOf="@+id/node_g6"
+            app:layout_constraintTop_toBottomOf="@+id/edge08"
+            app:srcCompat="@drawable/line_g6" />
+
+        <ImageView
+            android:id="@+id/edge11"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/node_g5"
+            app:layout_constraintEnd_toEndOf="@+id/edge10"
+            app:layout_constraintStart_toStartOf="@+id/node_g5"
+            app:layout_constraintTop_toBottomOf="@+id/edge08"
+            app:srcCompat="@drawable/line_g6" />
+
+        <ImageView
+            android:id="@+id/edge04"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/edge05"
+            app:layout_constraintStart_toStartOf="@+id/edge01"
+            app:layout_constraintTop_toBottomOf="@+id/edge02"
+            app:srcCompat="@drawable/line_h_s" />
+
+        <ImageView
+            android:id="@+id/edge16"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/beacon_05"
+            app:layout_constraintEnd_toEndOf="@+id/beacon_04"
+            app:layout_constraintStart_toStartOf="@+id/beacon_04"
+            app:layout_constraintTop_toBottomOf="@+id/beacon_04"
+            app:srcCompat="@drawable/line_v_n" />
+
+        <ImageView
+            android:id="@+id/edge15"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/edge16"
+            app:layout_constraintEnd_toStartOf="@+id/beacon_04"
+            app:layout_constraintStart_toEndOf="@+id/node_lobby"
+            app:layout_constraintTop_toBottomOf="@+id/edge07"
+            app:srcCompat="@drawable/line_h_s" />
+
+        <ImageView
+            android:id="@+id/edge17"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/beacon_05"
+            app:layout_constraintStart_toEndOf="@+id/beacon_05"
+            app:layout_constraintTop_toBottomOf="@+id/edge16"
+            app:srcCompat="@drawable/line_h_s" />
+
+        <ImageView
+            android:id="@+id/edge24"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/beacon_07"
+            app:layout_constraintEnd_toStartOf="@+id/edge17"
+            app:layout_constraintStart_toStartOf="@+id/beacon_05"
+            app:layout_constraintTop_toBottomOf="@+id/beacon_05"
+            app:srcCompat="@drawable/line_v_n" />
+
+        <ImageView
+            android:id="@+id/edge18"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/edge24"
+            app:layout_constraintEnd_toStartOf="@+id/beacon_05"
+            app:layout_constraintStart_toEndOf="@+id/beacon_06"
+            app:layout_constraintTop_toBottomOf="@+id/edge16"
+            app:srcCompat="@drawable/line_h_m" />
+
+        <ImageView
+            android:id="@+id/edge23"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="7dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintEnd_toStartOf="@+id/edge17"
+            app:layout_constraintStart_toStartOf="@+id/node_lak"
+            app:layout_constraintTop_toBottomOf="@+id/edge16"
+            app:srcCompat="@drawable/line_lak" />
+
+        <ImageView
+            android:id="@+id/edge20"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/beacon_06"
+            app:layout_constraintEnd_toStartOf="@+id/beacon_06"
+            app:layout_constraintStart_toStartOf="@+id/node_g2"
+            app:layout_constraintTop_toTopOf="@+id/beacon_06"
+            app:srcCompat="@drawable/line_h_s" />
+
+        <ImageView
+            android:id="@+id/edge21"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/beacon_06"
+            app:layout_constraintEnd_toEndOf="@+id/edge20"
+            app:layout_constraintStart_toEndOf="@+id/node_g3"
+            app:layout_constraintTop_toTopOf="@+id/beacon_06"
+            app:srcCompat="@drawable/line_h_s" />
+
+        <ImageView
+            android:id="@+id/edge19"
+            android:layout_width="wrap_content"
+            android:layout_height="5dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/beacon_06"
+            app:layout_constraintEnd_toStartOf="@+id/edge18"
+            app:layout_constraintTop_toBottomOf="@+id/node_g8"
+            app:srcCompat="@drawable/line_g8" />
+
+        <ImageView
+            android:id="@+id/edge25"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/node_lift"
+            app:layout_constraintEnd_toEndOf="@+id/node_lift"
+            app:layout_constraintTop_toBottomOf="@+id/edge24"
+            app:srcCompat="@drawable/line_left_oblique_up" />
+
+        <ImageView
+            android:id="@+id/edge26"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/beacon_07"
+            app:layout_constraintEnd_toEndOf="@+id/node_aslab"
+            app:layout_constraintStart_toStartOf="@+id/beacon_07"
+            app:layout_constraintTop_toBottomOf="@+id/node_aslab"
+            app:srcCompat="@drawable/line_g7" />
+
+        <ImageView
+            android:id="@+id/edge27"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/node_toilet"
+            app:layout_constraintEnd_toStartOf="@+id/beacon_08"
+            app:layout_constraintStart_toEndOf="@+id/beacon_07"
+            app:layout_constraintTop_toTopOf="@+id/beacon_08"
+            app:srcCompat="@drawable/line_h_s" />
+
+        <ImageView
+            android:id="@+id/edge29"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/node_toilet"
+            app:layout_constraintStart_toEndOf="@+id/beacon_08"
+            app:layout_constraintTop_toTopOf="@+id/beacon_08"
+            app:srcCompat="@drawable/line_g8" />
+
+        <ImageView
+            android:id="@+id/edge28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="2dp"
+            app:layout_constraintBottom_toBottomOf="@+id/node_toilet"
+            app:layout_constraintEnd_toEndOf="@+id/edge27"
+            app:srcCompat="@drawable/line_g8" />
+
+        <ImageView
+            android:id="@+id/edge22"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/node_dosen_lb"
+            app:layout_constraintEnd_toStartOf="@+id/beacon_07"
+            app:layout_constraintStart_toEndOf="@+id/node_dosen_lb"
+            app:srcCompat="@drawable/line_lak" />
+
+        <ImageView
+            android:id="@+id/edge30"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/node_g12"
+            app:layout_constraintEnd_toStartOf="@+id/beacon_07"
+            app:layout_constraintStart_toEndOf="@+id/node_g12"
+            app:srcCompat="@drawable/line_lak" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
