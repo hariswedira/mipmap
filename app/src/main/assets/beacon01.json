@@ -1,0 +1,47 @@
+{
+		  "information": {
+		    "name": "beacon01",
+		    "node": "1",
+		    "tags": "unknown"
+		  },
+		  "algorithm": [
+		    {
+		      "neightbor": [
+		        "beacon02",
+		        "kantin",
+		        "dapur",
+		        "g1",
+		        "g5",
+		        "g6",
+		        "g7"
+		      ],
+		      "cost": [
+		        14.95,
+		        10,
+		        6.5,
+		        13,
+		        14,
+		        10.6,
+		        8
+		      ],
+		      "sign": [
+		        "right",
+		        "up",
+		        "leftUp",
+		        "left",
+		        "leftDown",
+		        "leftDown",
+		        "down"
+		      ],
+		      "edge": [
+		        "edge03",
+		        "edge08",
+		        "edge09",
+		        "edge10",
+		        "edge11",
+		        "edge12",
+		        "edge13"
+		      ]
+		    }
+		  ]
+		}

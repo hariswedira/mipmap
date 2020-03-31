@@ -1,0 +1,35 @@
+{
+		  "information": {
+		    "name": "beacon04",
+		    "node": "4",
+		    "tags": "unknown"
+		  },
+		  "algorithm": [
+		    {
+		      "neightbor": [
+		        "beacon03",
+		        "g10",
+		        "lobby",
+		        "beacon05"
+		      ],
+		      "cost": [
+		        7.2,
+		        6.2,
+		        3,
+		        7.3
+		      ],
+		      "sign": [
+		        "up",
+		        "right",
+		        "left",
+		        "down"
+		      ],
+		      "edge": [
+		        "edge07",
+		        "edge14",
+		        "edge15",
+		        "edge16"
+		      ]
+		    }
+		  ]
+		}

@@ -1,0 +1,31 @@
+{
+		  "information": {
+		    "name": "beacon08",
+		    "node": "8",
+		    "tags": "unknown"
+		  },
+		  "algorithm": [
+		    {
+		      "neightbor": [
+		        "beacon07",
+		        "toilet",
+		        "exit",
+		      ],
+		      "cost": [
+		        7,
+		        1.5,
+		        3
+		      ],
+		      "sign": [
+		        "left",
+		        "down",
+		        "right",
+		      ],
+		      "edge": [
+		        "edge27",
+		        "edge28",
+		        "edge29",
+		      ]
+		    }
+		  ]
+		}

@@ -48,7 +48,9 @@ public class NavigateActivity extends AppCompatActivity  {
     ArrayList<String> edge;
     ArrayList<String> sign;
     ArrayList<Double> cost;
-    Beacon beacon2, beacon3;
+
+    // Beacon
+    Beacon beacon01, beacon2, beacon3, beacon04, beacon05, beacon06, beacon07, beacon08;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -180,6 +182,13 @@ public class NavigateActivity extends AppCompatActivity  {
     }
 
     private void initBeacon(){
+        // Beacon 01
+        String jsonFileStringBeacon01 = Utils.getJsonFromAssets(getApplicationContext(), "beacon01.json");
+        Log.i("data", jsonFileStringBeacon01);
+
+        Gson gsonBeaconOne = new Gson();
+        beacon01 = gsonBeaconOne.fromJson(jsonFileStringBeacon01, Beacon.class);
+
         // Beacon 02
         String jsonFileStringBeacon02 = Utils.getJsonFromAssets(getApplicationContext(), "blueberry.json");
         Log.i("data", jsonFileStringBeacon02);
@@ -193,6 +202,41 @@ public class NavigateActivity extends AppCompatActivity  {
 
         Gson gsonCoconut = new Gson();
         beacon3 = gsonCoconut.fromJson(jsonFileStringBeacon03, Beacon.class);
+
+        // Beacon 04
+        String jsonFileStringBeacon04 = Utils.getJsonFromAssets(getApplicationContext(), "beacon04.json");
+        Log.i("data", jsonFileStringBeacon04);
+
+        Gson gsonBeaconFour = new Gson();
+        beacon04 = gsonBeaconFour.fromJson(jsonFileStringBeacon04, Beacon.class);
+
+        // Beacon 05
+        String jsonFileStringBeacon05 = Utils.getJsonFromAssets(getApplicationContext(), "beacon05.json");
+        Log.i("data", jsonFileStringBeacon05);
+
+        Gson gsonBeaconFive = new Gson();
+        beacon05 = gsonBeaconFive.fromJson(jsonFileStringBeacon05, Beacon.class);
+
+        // Beacon 06
+        String jsonFileStringBeacon06 = Utils.getJsonFromAssets(getApplicationContext(), "beacon06.json");
+        Log.i("data", jsonFileStringBeacon06);
+
+        Gson gsonBeaconSix = new Gson();
+        beacon06 = gsonBeaconSix.fromJson(jsonFileStringBeacon06, Beacon.class);
+
+        // Beacon 07
+        String jsonFileStringBeacon07 = Utils.getJsonFromAssets(getApplicationContext(), "beacon07.json");
+        Log.i("data", jsonFileStringBeacon07);
+
+        Gson gsonBeaconSeven = new Gson();
+        beacon07 = gsonBeaconSeven.fromJson(jsonFileStringBeacon07, Beacon.class);
+
+        // Beacon 08
+        String jsonFileStringBeacon08 = Utils.getJsonFromAssets(getApplicationContext(), "beacon08.json");
+        Log.i("data", jsonFileStringBeacon08);
+
+        Gson gsonBeaconEight = new Gson();
+        beacon08 = gsonBeaconEight.fromJson(jsonFileStringBeacon08, Beacon.class);
     }
 
     private void speechUhuy() {

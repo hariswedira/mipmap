@@ -1,0 +1,43 @@
+{
+		  "information": {
+		    "name": "beacon06",
+		    "node": "6",
+		    "tags": "unknown"
+		  },
+		  "algorithm": [
+		    {
+		      "neightbor": [
+		        "beacon05",
+		        "g8",
+		        "g2",
+		        "g3",
+		        "g4",
+		        "lak"
+		      ],
+		      "cost": [
+		        20.2,
+		        1.2,
+		        5.2,
+		        8.1,
+		        2.4,
+		        4.5
+		      ],
+		      "sign": [
+		        "right",
+		        "up",
+		        "leftUp",
+		        "left",
+		        "leftDown",
+		        "rightDown"
+		      ],
+		      "edge": [
+		        "edge18",
+		        "edge19",
+		        "edge20",
+		        "edge21",
+		        "edge22",
+		        "edge23"
+		      ]
+		    }
+		  ]
+		}
