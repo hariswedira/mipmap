@@ -49,7 +49,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         holder.room.setText(getEvents().get(position).getRoom());
         holder.date.setText(getEvents().get(position).getDate());
         holder.title.setText(getEvents().get(position).getTitle());
-        holder.content.setText(getEvents().get(position).getContent());
         Glide.with(context)
                 .load(getEvents().get(position).getPoster())
                 .into(holder.poster);
@@ -69,13 +68,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView room, title, content, date;
+        TextView room, title, date;
         ImageView poster;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             room = itemView.findViewById(R.id.tv_room_llist);
             title = itemView.findViewById(R.id.tv_title_list);
-            content = itemView.findViewById(R.id.tv_content_list);
             date = itemView.findViewById(R.id.tv_date_list);
             poster = itemView.findViewById(R.id.iv_poster_list);
         }

@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import org.d3ifcool.cubeacon.activities.DetailRoomActivity;
 import org.d3ifcool.cubeacon.models.Room;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -53,6 +54,8 @@ public class NavigateActivity extends AppCompatActivity  {
     // Beacon
     Beacon beacon01, beacon2, beacon3, beacon04, beacon05, beacon06, beacon07, beacon08;
 
+    int userPos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +83,7 @@ public class NavigateActivity extends AppCompatActivity  {
         goneEdge();
 
         Room room = getIntent().getParcelableExtra("room");
-        int userPos = getIntent().getIntExtra("posisi user",100);
+        userPos = getIntent().getIntExtra("posisi user",100);
 
 //        Toast.makeText(this, userPos+"", Toast.LENGTH_SHORT).show();
         initRute(room.getName());
@@ -389,14 +392,15 @@ public class NavigateActivity extends AppCompatActivity  {
     }
 
     private void initCost() {
+        DecimalFormat digit = new DecimalFormat("0.00");
         double jarak = 0;
         if (cost.isEmpty()){
-            jarakTxt.setText(String.valueOf(jarak)+" m");
+            jarakTxt.setText(String.valueOf(digit.format(jarak))+" m");
         }else {
             for (int i = 0; i < cost.size(); i++) {
                 jarak += cost.get(i);
             }
-            jarakTxt.setText(String.valueOf(jarak)+" m");
+            jarakTxt.setText(String.valueOf(digit.format(jarak))+" m");
         }
     }
 

@@ -53,7 +53,7 @@
         android:layout_marginBottom="16dp"
         android:layout_marginTop="8dp"
         android:scaleType="fitXY"
-        android:src="@drawable/map_fit_satu"
+        android:src="@drawable/fit_map_satu"
         app:layout_constraintBottom_toTopOf="@+id/cd_event"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -182,7 +182,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cd_info"
         android:layout_width="300dp"
-        android:layout_height="350dp"
+        android:layout_height="400dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_map_fit_flr_one"
         app:layout_constraintEnd_toEndOf="parent"
@@ -254,7 +254,7 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="24dp"
                 android:text="neightbor"
                 android:textColor="@color/deep_blue"
                 app:layout_constraintStart_toStartOf="@+id/b_name_event"
@@ -309,12 +309,11 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:text="cost"
                 android:textColor="@color/deep_blue"
                 app:layout_constraintEnd_toEndOf="@+id/b_node_event"
                 app:layout_constraintStart_toStartOf="@+id/b_node_event"
-                app:layout_constraintTop_toBottomOf="@+id/b_node_event" />
+                app:layout_constraintTop_toTopOf="@+id/textView6" />
 
             <TextView
                 android:id="@+id/c_1_event"
@@ -360,6 +359,42 @@
                 app:layout_constraintStart_toStartOf="@+id/c_4_event"
                 app:layout_constraintTop_toBottomOf="@+id/c_4_event" />
 
+            <TextView
+                android:id="@+id/n6_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/n_5_event"
+                app:layout_constraintTop_toBottomOf="@+id/n_5_event" />
+
+            <TextView
+                android:id="@+id/c_6_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/c_5_event"
+                app:layout_constraintTop_toBottomOf="@+id/c_5_event" />
+
+            <TextView
+                android:id="@+id/n_7_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/n6_event"
+                app:layout_constraintTop_toBottomOf="@+id/n6_event" />
+
+            <TextView
+                android:id="@+id/c_7_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/c_6_event"
+                app:layout_constraintTop_toBottomOf="@+id/c_6_event" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
@@ -387,7 +422,7 @@
         android:id="@+id/imageView4"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="64dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="@+id/iv_map_fit_flr_one"
         app:layout_constraintTop_toTopOf="@+id/iv_map_fit_flr_one"

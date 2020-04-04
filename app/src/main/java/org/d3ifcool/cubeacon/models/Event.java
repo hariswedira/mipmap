@@ -14,6 +14,14 @@ public class Event implements Parcelable {
 
     }
 
+    public Event(int poster, String title, String content, String room, String date) {
+        this.poster = poster;
+        this.title = title;
+        this.content = content;
+        this.room = room;
+        this.date = date;
+    }
+
     public int getPoster() {
         return poster;
     }

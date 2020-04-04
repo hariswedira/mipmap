@@ -30,7 +30,7 @@ public class ListEventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_event);
 
         EventActivity eventActivity = new EventActivity();
-        int num = getIntent().getIntExtra(eventActivity.EVENT_ID,0);
+        int num = getIntent().getIntExtra(eventActivity.EVENT_ID, 0);
 
         appbar = findViewById(R.id.tv_list_event_appbar);
         rvEvent = findViewById(R.id.list_events);
@@ -47,29 +47,24 @@ public class ListEventActivity extends AppCompatActivity {
     }
 
     private void initData(int num) {
-        if (num == 2){
+        if (num == 2) {
             appbar.setText("Bluberry Events");
-            for (int i = 0; i < 2; i++) {
-                Event events = new Event();
-                events.setRoom("G9");
-                events.setTitle("Workshop");
-                events.setContent("Android JetPack");
-                events.setDate("20 Juni 2020");
-                events.setPoster(R.drawable.icon_mipmap);
-                listEvent.add(events);
-            }
-        }
-        else if (num == 3){
+            Event events = new Event();
+            events.setRoom("G9");
+            events.setTitle("Workshop");
+            events.setContent("Android JetPack");
+            events.setDate("20 Juni 2020");
+            events.setPoster(R.drawable.icon_mipmap);
+            listEvent.add(events);
+        } else if (num == 3) {
             appbar.setText("Coconut Events");
-            for (int i = 0; i < 1; i++) {
-                Event events = new Event();
-                events.setRoom("MP Mart");
-                events.setTitle("Discoun 50%");
-                events.setContent("All Item Discount");
-                events.setDate("20 mei 2020");
-                events.setPoster(R.drawable.icon_mipmap);
-                listEvent.add(events);
-            }
+            Event events = new Event();
+            events.setRoom("MP Mart");
+            events.setTitle("Discoun 50%");
+            events.setContent("All Item Discount");
+            events.setDate("20 mei 2020");
+            events.setPoster(R.drawable.icon_mipmap);
+            listEvent.add(events);
         }
     }
 }

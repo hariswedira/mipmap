@@ -44,8 +44,8 @@ public class EventActivity extends AppCompatActivity {
 
     private int userPos;
     private TextView noEvent;
-    private ImageView searchMenu, pinUserTwo, pinUserThree, pinBcnTwo, pinBcnThree;
-    TextView bName, bNode, bTag, n1, n2, n3, n4, n5, c1, c2, c3, c4, c5;
+    private ImageView searchMenu, pinUserTwo, pinUserThree, pinBcnTwo, pinBcnThree, pinBcnFour, pinBcnFive, pinBcnSix, pinBcnSeven, pinBcnEight, pinBcnOne;
+    TextView bName, bNode, bTag, n1, n2, n3, n4, n5, n6, n7, c1, c2, c3, c4, c5, c6, c7;
     Button closeCard;
     CardView cardView, cdEvent;
     private TextToSpeech textToSpeech;
@@ -66,6 +66,12 @@ public class EventActivity extends AppCompatActivity {
         pinUserThree = findViewById(R.id.pin_user_pos_three);
         pinBcnTwo = findViewById(R.id.pin_bcn_two);
         pinBcnThree = findViewById(R.id.pin_bcn_three);
+        pinBcnOne = findViewById(R.id.pin_bcn_one);
+        pinBcnFour = findViewById(R.id.pin_bcn_four);
+        pinBcnFive = findViewById(R.id.pin_bcn_five);
+        pinBcnSix = findViewById(R.id.pin_bcn_seven);
+        pinBcnSeven = findViewById(R.id.pin_bcn_six);
+        pinBcnEight = findViewById(R.id.pin_bcn_eight);
 
         cardView = findViewById(R.id.cd_info);
         cdEvent = findViewById(R.id.cd_event);
@@ -77,11 +83,15 @@ public class EventActivity extends AppCompatActivity {
         n3 = findViewById(R.id.n_3_event);
         n4 = findViewById(R.id.n_4_event);
         n5 = findViewById(R.id.n_5_event);
+        n6 = findViewById(R.id.n6_event);
+        n7 = findViewById(R.id.n_7_event);
         c1 = findViewById(R.id.c_1_event);
         c2 = findViewById(R.id.c_2_event);
         c3 = findViewById(R.id.c_3_event);
         c4 = findViewById(R.id.c_4_event);
         c5 = findViewById(R.id.c_5_event);
+        c6 = findViewById(R.id.c_6_event);
+        c7 = findViewById(R.id.c_7_event);
         closeCard = findViewById(R.id.btn_cls_card_event);
 
         cardView.setVisibility(View.INVISIBLE);
@@ -93,31 +103,7 @@ public class EventActivity extends AppCompatActivity {
         audioOn();
 
         // Beacon Information
-        pinBcnTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                gson(2);
-                cardView.setVisibility(View.VISIBLE);
-                int speech = textToSpeech.speak("display beacon 2 information",TextToSpeech.QUEUE_FLUSH,null);
-            }
-        });
-
-        pinBcnThree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                gson(3);
-                cardView.setVisibility(View.VISIBLE);
-                int speech = textToSpeech.speak("display beacon 3 information",TextToSpeech.QUEUE_FLUSH,null);
-            }
-        });
-
-        closeCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cardView.setVisibility(View.INVISIBLE);
-            }
-        });
-
+        beaconInfo();
 
         searchMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,6 +171,88 @@ public class EventActivity extends AppCompatActivity {
                             }
                         });
 
+    }
+
+    private void beaconInfo() {
+
+        pinBcnOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gson(1);
+                cardView.setVisibility(View.VISIBLE);
+                int speech = textToSpeech.speak("display beacon 1 information",TextToSpeech.QUEUE_FLUSH,null);
+            }
+        });
+
+        pinBcnTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gson(2);
+                cardView.setVisibility(View.VISIBLE);
+                int speech = textToSpeech.speak("display beacon 2 information",TextToSpeech.QUEUE_FLUSH,null);
+            }
+        });
+
+        pinBcnThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gson(3);
+                cardView.setVisibility(View.VISIBLE);
+                int speech = textToSpeech.speak("display beacon 3 information",TextToSpeech.QUEUE_FLUSH,null);
+            }
+        });
+
+        pinBcnFour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gson(4);
+                cardView.setVisibility(View.VISIBLE);
+                int speech = textToSpeech.speak("display beacon 4 information",TextToSpeech.QUEUE_FLUSH,null);
+            }
+        });
+
+        pinBcnFive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gson(5);
+                cardView.setVisibility(View.VISIBLE);
+                int speech = textToSpeech.speak("display beacon 5 information",TextToSpeech.QUEUE_FLUSH,null);
+            }
+        });
+
+        pinBcnSix.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gson(6);
+                cardView.setVisibility(View.VISIBLE);
+                int speech = textToSpeech.speak("display beacon 6 information",TextToSpeech.QUEUE_FLUSH,null);
+            }
+        });
+
+        pinBcnSeven.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gson(7);
+                cardView.setVisibility(View.VISIBLE);
+                int speech = textToSpeech.speak("display beacon 7 information",TextToSpeech.QUEUE_FLUSH,null);
+            }
+        });
+
+        pinBcnEight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gson(8);
+                cardView.setVisibility(View.VISIBLE);
+                int speech = textToSpeech.speak("display beacon 8 information",TextToSpeech.QUEUE_FLUSH,null);
+            }
+        });
+
+        closeCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cardView.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 
     private void startEstimote(){
@@ -288,7 +356,29 @@ public class EventActivity extends AppCompatActivity {
 
         switch (numberBeacon){
             case 1:
-                Toast.makeText(this, "No Beacon Available", Toast.LENGTH_SHORT).show();
+                String jsonFileStringBeacon01 = Utils.getJsonFromAssets(getApplicationContext(), "beacon01.json");
+                Log.i("data", jsonFileStringBeacon01);
+
+                Gson gsonBeacon01 = new Gson();
+                Beacon beacons1 = gsonBeacon01.fromJson(jsonFileStringBeacon01, Beacon.class);
+
+                bName.setText(beacons1.getInformation().getName());
+                bTag.setText(beacons1.getInformation().getTags());
+                bNode.setText(beacons1.getInformation().getNode());
+                n1.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(0));
+                n2.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(1));
+                n3.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(2));
+                n4.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(3));
+                n5.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(4));
+                n6.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(5));
+                n7.setText(beacons1.getAlgorithm().get(0).getNeightbor().get(6));
+                c1.setText(beacons1.getAlgorithm().get(0).getCost().get(0).toString()+" m");
+                c2.setText(beacons1.getAlgorithm().get(0).getCost().get(1).toString()+" m");
+                c3.setText(beacons1.getAlgorithm().get(0).getCost().get(2).toString()+" m");
+                c4.setText(beacons1.getAlgorithm().get(0).getCost().get(3).toString()+" m");
+                c5.setText(beacons1.getAlgorithm().get(0).getCost().get(4).toString()+" m");
+                c6.setText(beacons1.getAlgorithm().get(0).getCost().get(5).toString()+" m");
+                c7.setText(beacons1.getAlgorithm().get(0).getCost().get(6).toString()+" m");
                 break;
             case 2:
                 String jsonFileStringBlueberry = Utils.getJsonFromAssets(getApplicationContext(), "blueberry.json");
@@ -305,11 +395,15 @@ public class EventActivity extends AppCompatActivity {
                 n3.setText(beacons2.getAlgorithm().get(0).getNeightbor().get(2));
                 n4.setText(beacons2.getAlgorithm().get(0).getNeightbor().get(3));
                 n5.setText(beacons2.getAlgorithm().get(0).getNeightbor().get(4));
+                n6.setText("");
+                n7.setText("");
                 c1.setText(beacons2.getAlgorithm().get(0).getCost().get(0).toString()+" m");
                 c2.setText(beacons2.getAlgorithm().get(0).getCost().get(1).toString()+" m");
                 c3.setText(beacons2.getAlgorithm().get(0).getCost().get(2).toString()+" m");
                 c4.setText(beacons2.getAlgorithm().get(0).getCost().get(3).toString()+" m");
                 c5.setText(beacons2.getAlgorithm().get(0).getCost().get(4).toString()+" m");
+                c6.setText("");
+                c7.setText("");
                 break;
             case 3:
                 String jsonFileStringCoconut = Utils.getJsonFromAssets(getApplicationContext(), "coconut.json");
@@ -326,26 +420,140 @@ public class EventActivity extends AppCompatActivity {
                 n3.setText(beacons3.getAlgorithm().get(0).getNeightbor().get(2));
                 n4.setText("");
                 n5.setText("");
+                n6.setText("");
+                n7.setText("");
                 c1.setText(beacons3.getAlgorithm().get(0).getCost().get(0).toString()+" m");
                 c2.setText(beacons3.getAlgorithm().get(0).getCost().get(1).toString()+" m");
                 c3.setText(beacons3.getAlgorithm().get(0).getCost().get(2).toString()+" m");
                 c4.setText("");
                 c5.setText("");
+                c6.setText("");
+                c7.setText("");
                 break;
             case 4:
-                Toast.makeText(this, "No Beacon Available", Toast.LENGTH_SHORT).show();
+                String jsonFileStringBeacon04 = Utils.getJsonFromAssets(getApplicationContext(), "beacon04.json");
+                Log.i("data", jsonFileStringBeacon04);
+
+                Gson gsonBeacon04 = new Gson();
+                Beacon beacons4 = gsonBeacon04.fromJson(jsonFileStringBeacon04, Beacon.class);
+
+                bName.setText(beacons4.getInformation().getName());
+                bTag.setText(beacons4.getInformation().getTags());
+                bNode.setText(beacons4.getInformation().getNode());
+                n1.setText(beacons4.getAlgorithm().get(0).getNeightbor().get(0));
+                n2.setText(beacons4.getAlgorithm().get(0).getNeightbor().get(1));
+                n3.setText(beacons4.getAlgorithm().get(0).getNeightbor().get(2));
+                n4.setText(beacons4.getAlgorithm().get(0).getNeightbor().get(3));
+                n5.setText("");
+                n6.setText("");
+                n7.setText("");
+                c1.setText(beacons4.getAlgorithm().get(0).getCost().get(0).toString()+" m");
+                c2.setText(beacons4.getAlgorithm().get(0).getCost().get(1).toString()+" m");
+                c3.setText(beacons4.getAlgorithm().get(0).getCost().get(2).toString()+" m");
+                c4.setText(beacons4.getAlgorithm().get(0).getCost().get(3).toString()+" m");
+                c5.setText("");
+                c6.setText("");
+                c7.setText("");
                 break;
             case 5:
-                Toast.makeText(this, "No Beacon Available", Toast.LENGTH_SHORT).show();
+                String jsonFileStringBeacon05 = Utils.getJsonFromAssets(getApplicationContext(), "beacon05.json");
+                Log.i("data", jsonFileStringBeacon05);
+
+                Gson gsonBeacon05 = new Gson();
+                Beacon beacons5 = gsonBeacon05.fromJson(jsonFileStringBeacon05, Beacon.class);
+
+                bName.setText(beacons5.getInformation().getName());
+                bTag.setText(beacons5.getInformation().getTags());
+                bNode.setText(beacons5.getInformation().getNode());
+                n1.setText(beacons5.getAlgorithm().get(0).getNeightbor().get(0));
+                n2.setText(beacons5.getAlgorithm().get(0).getNeightbor().get(1));
+                n3.setText(beacons5.getAlgorithm().get(0).getNeightbor().get(2));
+                n4.setText(beacons5.getAlgorithm().get(0).getNeightbor().get(3));
+                n5.setText(beacons5.getAlgorithm().get(0).getNeightbor().get(4));
+                n6.setText("");
+                n7.setText("");
+                c1.setText(beacons5.getAlgorithm().get(0).getCost().get(0).toString()+" m");
+                c2.setText(beacons5.getAlgorithm().get(0).getCost().get(1).toString()+" m");
+                c3.setText(beacons5.getAlgorithm().get(0).getCost().get(2).toString()+" m");
+                c4.setText(beacons5.getAlgorithm().get(0).getCost().get(3).toString()+" m");
+                c5.setText(beacons5.getAlgorithm().get(0).getCost().get(4).toString()+" m");
+                c6.setText("");
+                c7.setText("");
                 break;
             case 6:
-                Toast.makeText(this, "No Beacon Available", Toast.LENGTH_SHORT).show();
+                String jsonFileStringBeacon06 = Utils.getJsonFromAssets(getApplicationContext(), "beacon06.json");
+                Log.i("data", jsonFileStringBeacon06);
+
+                Gson gsonBeacon06 = new Gson();
+                Beacon beacons6 = gsonBeacon06.fromJson(jsonFileStringBeacon06, Beacon.class);
+
+                bName.setText(beacons6.getInformation().getName());
+                bTag.setText(beacons6.getInformation().getTags());
+                bNode.setText(beacons6.getInformation().getNode());
+                n1.setText(beacons6.getAlgorithm().get(0).getNeightbor().get(0));
+                n2.setText(beacons6.getAlgorithm().get(0).getNeightbor().get(1));
+                n3.setText(beacons6.getAlgorithm().get(0).getNeightbor().get(2));
+                n4.setText(beacons6.getAlgorithm().get(0).getNeightbor().get(3));
+                n5.setText(beacons6.getAlgorithm().get(0).getNeightbor().get(4));
+                n6.setText("");
+                n7.setText("");
+                c1.setText(beacons6.getAlgorithm().get(0).getCost().get(0).toString()+" m");
+                c2.setText(beacons6.getAlgorithm().get(0).getCost().get(1).toString()+" m");
+                c3.setText(beacons6.getAlgorithm().get(0).getCost().get(2).toString()+" m");
+                c4.setText(beacons6.getAlgorithm().get(0).getCost().get(3).toString()+" m");
+                c5.setText(beacons6.getAlgorithm().get(0).getCost().get(4).toString()+" m");
+                c6.setText("");
+                c7.setText("");
                 break;
             case 7:
-                Toast.makeText(this, "No Beacon Available", Toast.LENGTH_SHORT).show();
+                String jsonFileStringBeacon07 = Utils.getJsonFromAssets(getApplicationContext(), "beacon07.json");
+                Log.i("data", jsonFileStringBeacon07);
+
+                Gson gsonBeacon07 = new Gson();
+                Beacon beacons7 = gsonBeacon07.fromJson(jsonFileStringBeacon07, Beacon.class);
+
+                bName.setText(beacons7.getInformation().getName());
+                bTag.setText(beacons7.getInformation().getTags());
+                bNode.setText(beacons7.getInformation().getNode());
+                n1.setText(beacons7.getAlgorithm().get(0).getNeightbor().get(0));
+                n2.setText(beacons7.getAlgorithm().get(0).getNeightbor().get(1));
+                n3.setText(beacons7.getAlgorithm().get(0).getNeightbor().get(2));
+                n4.setText(beacons7.getAlgorithm().get(0).getNeightbor().get(3));
+                n5.setText(beacons7.getAlgorithm().get(0).getNeightbor().get(4));
+                n6.setText(beacons7.getAlgorithm().get(0).getNeightbor().get(5));
+                n7.setText("");
+                c1.setText(beacons7.getAlgorithm().get(0).getCost().get(0).toString()+" m");
+                c2.setText(beacons7.getAlgorithm().get(0).getCost().get(1).toString()+" m");
+                c3.setText(beacons7.getAlgorithm().get(0).getCost().get(2).toString()+" m");
+                c4.setText(beacons7.getAlgorithm().get(0).getCost().get(3).toString()+" m");
+                c5.setText(beacons7.getAlgorithm().get(0).getCost().get(4).toString()+" m");
+                c6.setText(beacons7.getAlgorithm().get(0).getCost().get(5).toString()+" m");
+                c7.setText("");
                 break;
             case 8:
-                Toast.makeText(this, "No Beacon Available", Toast.LENGTH_SHORT).show();
+                String jsonFileStringBeacon08 = Utils.getJsonFromAssets(getApplicationContext(), "beacon08.json");
+                Log.i("data", jsonFileStringBeacon08);
+
+                Gson gsonBeacon08 = new Gson();
+                Beacon beacons8 = gsonBeacon08.fromJson(jsonFileStringBeacon08, Beacon.class);
+
+                bName.setText(beacons8.getInformation().getName());
+                bTag.setText(beacons8.getInformation().getTags());
+                bNode.setText(beacons8.getInformation().getNode());
+                n1.setText(beacons8.getAlgorithm().get(0).getNeightbor().get(0));
+                n2.setText(beacons8.getAlgorithm().get(0).getNeightbor().get(1));
+                n3.setText(beacons8.getAlgorithm().get(0).getNeightbor().get(2));
+                n4.setText("");
+                n5.setText("");
+                n6.setText("");
+                n7.setText("");
+                c1.setText(beacons8.getAlgorithm().get(0).getCost().get(0).toString()+" m");
+                c2.setText(beacons8.getAlgorithm().get(0).getCost().get(1).toString()+" m");
+                c3.setText(beacons8.getAlgorithm().get(0).getCost().get(2).toString()+" m");
+                c4.setText("");
+                c5.setText("");
+                c6.setText("");
+                c7.setText("");
                 break;
         }
 

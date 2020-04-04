@@ -98,7 +98,7 @@
             android:layout_width="360dp"
             android:layout_height="480dp"
             android:scaleType="fitXY"
-            android:src="@drawable/map_fit_satu"
+            android:src="@drawable/fit_map_satu"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.454"
             app:layout_constraintStart_toStartOf="parent"
