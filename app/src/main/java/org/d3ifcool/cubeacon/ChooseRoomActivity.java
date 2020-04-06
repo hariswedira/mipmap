@@ -83,7 +83,7 @@ public class ChooseRoomActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ArrayList<Room> newList = new ArrayList<>();
                 for (int i = 0; i <= 11 ; i++) {
-                    newList.add(new Room("G"+(i+1),"Laboratorium","Floor 1",R.drawable.ic_launcher_background));
+                    newList.add(new Room("G"+(i+1),"Laboratorium","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
                 }
                 adapter.updateList(newList);
             }
@@ -100,12 +100,12 @@ public class ChooseRoomActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ArrayList<Room> newList = new ArrayList<>();
-                newList.add(new Room("Admin Lab","Academic","Floor 1",R.drawable.ic_launcher_background));
-                newList.add(new Room("Kitchen","Laboratorium","Floor 1",R.drawable.ic_launcher_background));
-                newList.add(new Room("Laboran","Academic","Floor 1",R.drawable.ic_launcher_background));
-                newList.add(new Room("LAK","Academic","Floor 1",R.drawable.ic_launcher_background));
-                newList.add(new Room("MP Mart","Mini Market","Floor 1",R.drawable.ic_launcher_background));
-                newList.add(new Room("Toilet","Rest Room","Floor 1",R.drawable.ic_launcher_background));
+                newList.add(new Room("Admin Lab","Academic","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+                newList.add(new Room("Kitchen","Laboratorium","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+                newList.add(new Room("Laboran","Academic","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+                newList.add(new Room("LAK","Academic","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+                newList.add(new Room("MP Mart","Mini Market","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+                newList.add(new Room("Toilet","Rest Room","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
                 adapter.updateList(newList);
             }
         });
@@ -113,20 +113,20 @@ public class ChooseRoomActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        listRooms.add(new Room("Admin Lab","Academic","Floor 1",R.drawable.ic_launcher_background));
-        listRooms.add(new Room("Kitchen","Laboratorium","Floor 1",R.drawable.ic_launcher_background));
-        listRooms.add(new Room("Laboran","Academic","Floor 1",R.drawable.ic_launcher_background));
-        listRooms.add(new Room("LAK","Academic","Floor 1",R.drawable.ic_launcher_background));
-        listRooms.add(new Room("MP Mart","Mini Market","Floor 1",R.drawable.ic_launcher_background));
-        listRooms.add(new Room("Toilet","Rest Room","Floor 1",R.drawable.ic_launcher_background));
-        listRooms.add(new Room("Kantin","Cafetaria","Floor 1",R.drawable.ic_launcher_background));
-        listRooms.add(new Room("Lobby","lobby fit","Floor 1",R.drawable.ic_launcher_background));
-        listRooms.add(new Room("Lift","lift fit","Floor 1",R.drawable.ic_launcher_background));
-        listRooms.add(new Room("Gate","Gate fit","Floor 1",R.drawable.ic_launcher_background));
-        listRooms.add(new Room("Exit","Exit fit","Floor 1",R.drawable.ic_launcher_background));
-        listRooms.add(new Room("Dosen LB","Dosen Luar Biasa","Floor 1",R.drawable.ic_launcher_background));
+        listRooms.add(new Room("Admin Lab","Academic","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+        listRooms.add(new Room("Kitchen","Laboratorium","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+        listRooms.add(new Room("Laboran","Academic","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+        listRooms.add(new Room("LAK","Academic","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+        listRooms.add(new Room("MP Mart","Mini Market","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+        listRooms.add(new Room("Toilet","Rest Room","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+        listRooms.add(new Room("Kantin","Cafetaria","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+        listRooms.add(new Room("Lobby","lobby fit","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+        listRooms.add(new Room("Lift","lift fit","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+        listRooms.add(new Room("Gate","Gate fit","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+        listRooms.add(new Room("Exit","Exit fit","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+        listRooms.add(new Room("Dosen LB","Dosen Luar Biasa","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
         for (int i = 0; i <= 11 ; i++) {
-            listRooms.add(new Room("G"+(i+1),"Laboratorium","Floor 1",R.drawable.ic_launcher_background));
+            listRooms.add(new Room("G"+(i+1),"Laboratorium","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
         }
     }
 }

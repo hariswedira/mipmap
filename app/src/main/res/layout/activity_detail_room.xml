@@ -91,10 +91,11 @@
         android:id="@+id/tv_room_detail_floor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/tv_room_detail_title"
-        app:layout_constraintTop_toBottomOf="@+id/tv_room_detail_title" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_detail_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_detail_type" />
 
     <TextView
         android:id="@+id/tv_room_detail_desc"
@@ -104,7 +105,7 @@
         android:layout_marginTop="16dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_room_detail_floor"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
@@ -115,6 +116,42 @@
         android:text="About"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/tv_room_detail_floor"
-        app:layout_constraintTop_toBottomOf="@+id/tv_room_detail_floor" />
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_type"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_type" />
+
+    <TextView
+        android:id="@+id/tv_detail_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/tv_room_detail_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_room_detail_title" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Supervisor"
+        app:layout_constraintStart_toStartOf="@+id/tv_room_detail_desc"
+        app:layout_constraintTop_toBottomOf="@+id/tv_room_detail_desc" />
+
+    <TextView
+        android:id="@+id/tv_detail_supervisor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/tv_detail_supervisor_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_supervisor"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_supervisor" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,7 @@ import org.d3ifcool.cubeacon.models.Event;
 public class DetailEventActivity extends AppCompatActivity {
 
     ImageView photo, backArrow;
-    TextView judul, tgl, ruangan, deskripsi;
+    TextView judul, tgl, ruangan, deskripsi, organizer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +26,7 @@ public class DetailEventActivity extends AppCompatActivity {
         tgl = findViewById(R.id.tv_detail_tanggal);
         ruangan = findViewById(R.id.tv_detail_ruangan);
         deskripsi = findViewById(R.id.tv_detail_desc);
+        organizer = findViewById(R.id.tv_organizer_detail);
         backArrow = findViewById(R.id.iv_arrow_event);
 
         backArrow.setOnClickListener(new View.OnClickListener() {
@@ -49,5 +50,6 @@ public class DetailEventActivity extends AppCompatActivity {
         tgl.setText(event.getDate());
         ruangan.setText(event.getRoom());
         deskripsi.setText(event.getContent());
+        organizer.setText(event.getOragnizer());
     }
 }

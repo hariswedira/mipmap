@@ -1,4 +1,4 @@
-package org.d3ifcool.cubeacon;
+package org.d3ifcool.cubeacon.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -30,7 +30,7 @@ public class Beacon {
         this.algorithm = algorithm;
     }
 
-    class Information {
+    public class Information {
 
         @SerializedName("name")
         @Expose
@@ -68,7 +68,7 @@ public class Beacon {
 
     }
 
-    class Algorithm {
+    public class Algorithm {
 
         @SerializedName("neightbor")
         @Expose

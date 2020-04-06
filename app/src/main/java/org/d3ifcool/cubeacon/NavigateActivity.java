@@ -15,6 +15,7 @@ import com.github.chrisbanes.photoview.PhotoView;
 import com.google.gson.Gson;
 
 import org.d3ifcool.cubeacon.activities.DetailRoomActivity;
+import org.d3ifcool.cubeacon.models.Beacon;
 import org.d3ifcool.cubeacon.models.Room;
 
 import java.text.DecimalFormat;

@@ -1,10 +1,9 @@
 package org.d3ifcool.cubeacon;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.view.MotionEvent;
@@ -15,9 +14,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ZoomControls;
 
+import com.hololo.tutorial.library.PermissionStep;
+import com.hololo.tutorial.library.Step;
+import com.hololo.tutorial.library.TutorialActivity;
+
 import java.util.Locale;
 
-public class ZoomActivity extends AppCompatActivity {
+public class ZoomActivity extends TutorialActivity {
 
     private ImageView imageView;
     private Button up, down, nav;
@@ -33,7 +36,27 @@ public class ZoomActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_zoom);
+
+        addFragment(new Step.Builder().setTitle("Welcome to MipMap")
+                .setContent("We provide indoor navigation system")
+                .setBackgroundColor(getResources().getColor(R.color.deep_blue)) // int background color
+                .setDrawable(R.drawable.icon_mipmap) // int top drawable
+                .setSummary("This is summary")
+                .build());
+
+        addFragment(new Step.Builder().setTitle("Welcome to MipMap")
+                .setContent("We provide indoor navigation system")
+                .setBackgroundColor(getResources().getColor(R.color.deep_blue)) // int background color
+                .setDrawable(R.drawable.icon_mipmap) // int top drawable
+                .setSummary("This is summary")
+                .build());
+
+        addFragment(new Step.Builder().setTitle("Welcome to MipMap")
+                .setContent("We provide indoor navigation system")
+                .setBackgroundColor(getResources().getColor(R.color.deep_blue)) // int background color
+                .setDrawable(R.drawable.icon_mipmap) // int top drawable
+                .setSummary("This is summary")
+                .build());
 
 //        imageView = findViewById(R.id.imageView);
 //        zoomControls = findViewById(R.id.zoom);
@@ -157,5 +180,17 @@ public class ZoomActivity extends AppCompatActivity {
 //                int speech = textToSpeech.speak("down",TextToSpeech.QUEUE_FLUSH,null);
 //            }
 //        });
+    }
+
+    @Override
+    public void currentFragmentPosition(int position) {
+
+    }
+
+    @Override
+    public void finishTutorial() {
+        Intent intent = new Intent(ZoomActivity.this, EventActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

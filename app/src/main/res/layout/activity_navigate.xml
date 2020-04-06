@@ -96,7 +96,7 @@
         <com.github.chrisbanes.photoview.PhotoView
             android:id="@+id/photo_view"
             android:layout_width="360dp"
-            android:layout_height="480dp"
+            android:layout_height="470dp"
             android:scaleType="fitXY"
             android:src="@drawable/fit_map_satu"
             app:layout_constraintEnd_toEndOf="parent"

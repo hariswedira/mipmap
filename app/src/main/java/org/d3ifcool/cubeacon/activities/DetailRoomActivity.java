@@ -14,7 +14,7 @@ import org.d3ifcool.cubeacon.models.Room;
 public class DetailRoomActivity extends AppCompatActivity {
 
     ImageView photo, backArrow;
-    TextView title, desc, floor;
+    TextView title, desc, floor, type, supervisor, number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,11 @@ public class DetailRoomActivity extends AppCompatActivity {
         photo = findViewById(R.id.iv_room_image);
         title = findViewById(R.id.tv_room_detail_title);
         desc = findViewById(R.id.tv_room_detail_desc);
+        type = findViewById(R.id.tv_detail_type);
+        supervisor = findViewById(R.id.tv_detail_supervisor);
+        number = findViewById(R.id.tv_detail_supervisor_number);
         floor = findViewById(R.id.tv_room_detail_floor);
+
         backArrow = findViewById(R.id.iv_arrow_detail_room);
 
         backArrow.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +44,8 @@ public class DetailRoomActivity extends AppCompatActivity {
         title.setText(room.getName());
         desc.setText(room.getDesc());
         floor.setText(room.getFloor());
-
+        supervisor.setText(room.getSupervisor());
+        type.setText(room.getType());
+        number.setText(room.getNumber());
     }
 }

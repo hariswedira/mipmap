@@ -8,15 +8,21 @@ public class Room implements Parcelable {
     private String name;
     private String desc;
     private String floor;
+    private String supervisor;
+    private String number;
+    private String type;
     private int photo;
 
     public Room() {
     }
 
-    public Room(String name, String desc, String floor, int photo) {
+    public Room(String name, String desc, String floor, int photo, String supervisor, String number, String type) {
         this.name = name;
         this.desc = desc;
         this.floor = floor;
+        this.supervisor = supervisor;
+        this.number = number;
+        this.type = type;
         this.photo = photo;
     }
 
@@ -44,6 +50,30 @@ public class Room implements Parcelable {
         this.floor = floor;
     }
 
+    public String getSupervisor() {
+        return supervisor;
+    }
+
+    public void setSupervisor(String supervisor) {
+        this.supervisor = supervisor;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public int getPhoto() {
         return photo;
     }
@@ -63,6 +93,9 @@ public class Room implements Parcelable {
         dest.writeString(this.name);
         dest.writeString(this.desc);
         dest.writeString(this.floor);
+        dest.writeString(this.supervisor);
+        dest.writeString(this.number);
+        dest.writeString(this.type);
         dest.writeInt(this.photo);
     }
 
@@ -70,10 +103,13 @@ public class Room implements Parcelable {
         this.name = in.readString();
         this.desc = in.readString();
         this.floor = in.readString();
+        this.supervisor = in.readString();
+        this.number = in.readString();
+        this.type = in.readString();
         this.photo = in.readInt();
     }
 
-    public static final Parcelable.Creator<Room> CREATOR = new Parcelable.Creator<Room>() {
+    public static final Creator<Room> CREATOR = new Creator<Room>() {
         @Override
         public Room createFromParcel(Parcel source) {
             return new Room(source);

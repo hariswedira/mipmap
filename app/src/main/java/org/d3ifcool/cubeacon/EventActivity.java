@@ -6,12 +6,10 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
-import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -29,6 +27,7 @@ import com.estimote.proximity_sdk.api.ProximityZoneContext;
 import com.google.gson.Gson;
 
 import org.d3ifcool.cubeacon.activities.ListEventActivity;
+import org.d3ifcool.cubeacon.models.Beacon;
 
 import java.util.List;
 import java.util.Locale;
@@ -114,6 +113,7 @@ public class EventActivity extends AppCompatActivity {
                     Intent searchIntent = new Intent(EventActivity.this,ChooseRoomActivity.class);
                     searchIntent.putExtra("user pos",userPos);
                     startActivity(searchIntent);
+                    finish();
                 }
             }
         });

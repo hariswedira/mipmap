@@ -55,6 +55,7 @@ public class ListEventActivity extends AppCompatActivity {
             events.setContent("Android JetPack");
             events.setDate("20 Juni 2020");
             events.setPoster(R.drawable.icon_mipmap);
+            events.setOragnizer("Laboran FIT");
             listEvent.add(events);
         } else if (num == 3) {
             appbar.setText("Coconut Events");
@@ -64,6 +65,7 @@ public class ListEventActivity extends AppCompatActivity {
             events.setContent("All Item Discount");
             events.setDate("20 mei 2020");
             events.setPoster(R.drawable.icon_mipmap);
+            events.setOragnizer("Manajemen Pemasaran");
             listEvent.add(events);
         }
     }
