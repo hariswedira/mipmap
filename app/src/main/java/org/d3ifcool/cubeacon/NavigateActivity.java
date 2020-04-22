@@ -27,7 +27,7 @@ import androidx.cardview.widget.CardView;
 
 public class NavigateActivity extends AppCompatActivity  {
 
-    private ImageView lak, dapur, kantin, mp, laboran, lobby, dosenLb, aslab, lift, toilet, gate, exit, g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, user02, user03;
+    private ImageView lak, dapur, kantin, mp, laboran, lobby, dosenLb, aslab, lift, toilet, gate, exit, g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, user01, user02, user03, user04;
     private ImageView edge01, edge02, edge03, edge04, edge05, edge06, edge07, edge08, edge09, edge10, edge11, edge12, edge13, edge14,
             edge15, edge16, edge17, edge18, edge19, edge20, edge21, edge22, edge23, edge24, edge25, edge26, edge27, edge28, edge29, edge30;
 
@@ -41,7 +41,7 @@ public class NavigateActivity extends AppCompatActivity  {
 
     // estimote
     private NotificationManagaer notificationManagaer;
-    public EstimoteCloudCredentials cloudCredentials = new EstimoteCloudCredentials("febbydahlan034-gmail-com-s-6wz", "93eb2e64e84caf1d30079ad3c7b8b7e8");
+    public EstimoteCloudCredentials cloudCredentials = new EstimoteCloudCredentials("mipmap-hqh", "6756bb70e7d65c3bd6a367882450915a");
 
     // beacon data
     CardView cardView, roomInfo, cdDirection;
@@ -532,11 +532,17 @@ public class NavigateActivity extends AppCompatActivity  {
 
     private void showUser(int pos){
         switch (pos){
+            case 1:
+                user01.setVisibility(View.VISIBLE);
+                break;
             case 2:
                 user02.setVisibility(View.VISIBLE);
                 break;
             case 3:
                 user03.setVisibility(View.VISIBLE);
+                break;
+            case 4:
+                user04.setVisibility(View.VISIBLE);
                 break;
             default:
                 Toast.makeText(this, "Outside Beacon", Toast.LENGTH_SHORT).show();
@@ -789,8 +795,10 @@ public class NavigateActivity extends AppCompatActivity  {
     }
 
     private void initPinRoom(){
+        user01 = findViewById(R.id.user01);
         user02 = findViewById(R.id.user02);
         user03 = findViewById(R.id.user03);
+        user04 = findViewById(R.id.user04);
         dapur = findViewById(R.id.node_dapur);
         kantin = findViewById(R.id.node_kantin);
         mp = findViewById(R.id.node_mp_mart);
@@ -850,8 +858,10 @@ public class NavigateActivity extends AppCompatActivity  {
     }
 
     private void gonePinRoom(){
+        user01.setVisibility(View.INVISIBLE);
         user02.setVisibility(View.INVISIBLE);
         user03.setVisibility(View.INVISIBLE);
+        user04.setVisibility(View.INVISIBLE);
         dapur.setVisibility(View.INVISIBLE);
         kantin.setVisibility(View.INVISIBLE);
         mp.setVisibility(View.INVISIBLE);

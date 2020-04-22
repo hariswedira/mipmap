@@ -17,6 +17,8 @@ public class NotificationManagaer {
     private NotificationManager notificationManager;
     private Notification helloNotificationBlueberry;
     private Notification helloNotificationCoconut;
+    private Notification helloNotificationIce;
+    private Notification helloNotificationMint;
     private Notification goodbyeNotificationBlueberry;
     private int notificationId = 1;
 
@@ -24,10 +26,10 @@ public class NotificationManagaer {
         this.context = context;
         this.notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-//        this.goodbyeNotificationBlueberry = buildNotification("Blueberry out", "You're outside the beacon area");
-
-        this.helloNotificationBlueberry = buildNotification("Mip Map", "check out the events around you","bluberry");
-        this.helloNotificationCoconut= buildNotification("Mip Map", "check out the events around you","coconut");
+        this.helloNotificationBlueberry = buildNotification("Mip Map", "Blueberry : check out the events around you","blueberry");
+        this.helloNotificationCoconut= buildNotification("Mip Map", "Coconut : check out the events around you","coconut");
+        this.helloNotificationIce= buildNotification("Mip Map", "Ice : check out the events around you","ice");
+        this.helloNotificationMint= buildNotification("Mip Map", "Mint: check out the events around you","mint");
     }
 
     private Notification buildNotification(String title, String text, String color) {
@@ -57,8 +59,12 @@ public class NotificationManagaer {
         notificationManager.notify(notificationId, helloNotificationCoconut);
     }
 
-//    public void exitBlueberry(){
-//        notificationManager.notify(notificationId, goodbyeNotificationBlueberry);
-//    }
+    public void enterMint(){
+        notificationManager.notify(notificationId, helloNotificationMint);
+    }
+
+    public void enterIce(){
+        notificationManager.notify(notificationId, helloNotificationIce);
+    }
 
 }

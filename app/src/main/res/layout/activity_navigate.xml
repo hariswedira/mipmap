@@ -845,5 +845,21 @@
             app:layout_constraintStart_toEndOf="@+id/node_g12"
             app:srcCompat="@drawable/line_lak" />
 
+        <ImageView
+            android:id="@+id/user01"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            app:layout_constraintStart_toStartOf="@+id/edge03"
+            app:layout_constraintTop_toBottomOf="@+id/beacon_01"
+            app:srcCompat="@drawable/user_pin" />
+
+        <ImageView
+            android:id="@+id/user04"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            app:layout_constraintEnd_toEndOf="@+id/edge15"
+            app:layout_constraintTop_toTopOf="@+id/edge16"
+            app:srcCompat="@drawable/user_pin" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

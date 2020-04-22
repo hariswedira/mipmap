@@ -35,15 +35,18 @@ import java.util.Locale;
 public class EventActivity extends AppCompatActivity {
 
     public EstimoteCloudCredentials cloudCredentials =
-        new EstimoteCloudCredentials("febbydahlan034-gmail-com-s-6wz", "93eb2e64e84caf1d30079ad3c7b8b7e8");
+        new EstimoteCloudCredentials("mipmap-hqh", "6756bb70e7d65c3bd6a367882450915a");
+//        new EstimoteCloudCredentials("febbydahlan034-gmail-com-s-6wz", "93eb2e64e84caf1d30079ad3c7b8b7e8");
     private NotificationManagaer notificationManagaer;
 
     private final String BLUEBERRY = "blueberry";
     private final String COCONUT = "coconut";
+    private final String ICE = "ice";
+    private final String MINT = "mint";
 
     private int userPos;
     private TextView noEvent;
-    private ImageView searchMenu, pinUserTwo, pinUserThree, pinBcnTwo, pinBcnThree, pinBcnFour, pinBcnFive, pinBcnSix, pinBcnSeven, pinBcnEight, pinBcnOne;
+    private ImageView searchMenu, pinUserOne, pinUserFour, pinUserTwo, pinUserThree, pinBcnTwo, pinBcnThree, pinBcnFour, pinBcnFive, pinBcnSix, pinBcnSeven, pinBcnEight, pinBcnOne;
     TextView bName, bNode, bTag, n1, n2, n3, n4, n5, n6, n7, c1, c2, c3, c4, c5, c6, c7;
     Button closeCard;
     CardView cardView, cdEvent;
@@ -63,6 +66,8 @@ public class EventActivity extends AppCompatActivity {
         searchMenu = findViewById(R.id.iv_search_room);
         pinUserTwo = findViewById(R.id.pin_user_pos_two);
         pinUserThree = findViewById(R.id.pin_user_pos_three);
+        pinUserOne = findViewById(R.id.pin_user_pos_one);
+        pinUserFour = findViewById(R.id.pin_user_pos_four);
         pinBcnTwo = findViewById(R.id.pin_bcn_two);
         pinBcnThree = findViewById(R.id.pin_bcn_three);
         pinBcnOne = findViewById(R.id.pin_bcn_one);
@@ -96,6 +101,8 @@ public class EventActivity extends AppCompatActivity {
         cardView.setVisibility(View.INVISIBLE);
 
         // TODO : hilangkan beacon
+        pinUserOne.setVisibility(View.GONE);
+        pinUserFour.setVisibility(View.GONE);
         pinUserThree.setVisibility(View.GONE);
         pinUserTwo.setVisibility(View.GONE);
 
@@ -113,7 +120,6 @@ public class EventActivity extends AppCompatActivity {
                     Intent searchIntent = new Intent(EventActivity.this,ChooseRoomActivity.class);
                     searchIntent.putExtra("user pos",userPos);
                     startActivity(searchIntent);
-                    finish();
                 }
             }
         });
@@ -131,7 +137,7 @@ public class EventActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (event_tap.equalsIgnoreCase("out")){
-                    Toast.makeText(EventActivity.this, "Outside Beacon", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EventActivity.this, getResources().getString(R.string.outside_beacon_area), Toast.LENGTH_SHORT).show();
                 }else if (event_tap.equalsIgnoreCase(BLUEBERRY)){
                     Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
                     intent.putExtra(EVENT_ID,2);
@@ -139,6 +145,14 @@ public class EventActivity extends AppCompatActivity {
                 }else if (event_tap.equalsIgnoreCase(COCONUT)){
                     Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
                     intent.putExtra(EVENT_ID,3);
+                    startActivity(intent);
+                }else if (event_tap.equalsIgnoreCase(ICE)){
+                    Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
+                    intent.putExtra(EVENT_ID,4);
+                    startActivity(intent);
+                }else if (event_tap.equalsIgnoreCase(MINT)){
+                    Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
+                    intent.putExtra(EVENT_ID,1);
                     startActivity(intent);
                 }
             }
@@ -274,7 +288,7 @@ public class EventActivity extends AppCompatActivity {
 
         // Near Zone
         ProximityZone zone = new ProximityZoneBuilder()
-                .forTag("multiple-beacon-3o5")
+                .forTag("mipmap-hqh")
                 .inNearRange()
                 .onEnter(new Function1<ProximityZoneContext, Unit>() {
                     @Override
@@ -292,6 +306,18 @@ public class EventActivity extends AppCompatActivity {
                             userPos = 2;
                             Toast.makeText(EventActivity.this, "blueberry in 1 meter | Position : "+userPos, Toast.LENGTH_SHORT).show();
                             inBeacon(BLUEBERRY);
+
+                        }else if (title.equalsIgnoreCase(MINT)){
+                            notificationManagaer.enterMint();
+                            userPos = 1;
+                            Toast.makeText(EventActivity.this, "mint in 1 meter | Position : "+userPos, Toast.LENGTH_SHORT).show();
+                            inBeacon(MINT);
+
+                        }else if (title.equalsIgnoreCase(ICE)){
+                            notificationManagaer.enterIce();
+                            userPos = 4;
+                            Toast.makeText(EventActivity.this, "ice in 1 meter | Position : "+userPos, Toast.LENGTH_SHORT).show();
+                            inBeacon(ICE);
 
                         }
                         // TODO : posisi user
@@ -311,6 +337,12 @@ public class EventActivity extends AppCompatActivity {
                         }else if (title.equalsIgnoreCase(BLUEBERRY)){
                             outBeacon();
                             Toast.makeText(EventActivity.this, "blueberry out", Toast.LENGTH_SHORT).show();
+                        }else if(title.equalsIgnoreCase(ICE)){
+                            outBeacon();
+                            Toast.makeText(EventActivity.this, "ice out", Toast.LENGTH_SHORT).show();
+                        }else if (title.equalsIgnoreCase(MINT)){
+                            outBeacon();
+                            Toast.makeText(EventActivity.this, "mint out", Toast.LENGTH_SHORT).show();
                         }
                         return null;
                     }
@@ -323,9 +355,10 @@ public class EventActivity extends AppCompatActivity {
         // TODO :  keluar daribeacon hilangin
         pinUserThree.setVisibility(View.GONE);
         pinUserTwo.setVisibility(View.GONE);
+        pinUserOne.setVisibility(View.GONE);
+        pinUserFour.setVisibility(View.GONE);
         userPos = 0;
-        noEvent.setText(getResources().getString(R.string.outside_beacon_area));
-        noEvent.setTextColor(getResources().getColor(R.color.colorAccent));
+        noEvent.setText(getResources().getString(R.string.enter_beacon_area));
         event_tap = "out";
     }
 
@@ -334,9 +367,12 @@ public class EventActivity extends AppCompatActivity {
         noEvent.setTextColor(getResources().getColor(R.color.deep_blue));
         if (name.equalsIgnoreCase(COCONUT)){
             event_tap = COCONUT;
-
         }else if (name.equalsIgnoreCase(BLUEBERRY)){
             event_tap = BLUEBERRY;
+        }else if (name.equalsIgnoreCase(MINT)){
+            event_tap = MINT;
+        }else if (name.equalsIgnoreCase(ICE)){
+            event_tap = ICE;
         }
     }
 
@@ -560,14 +596,22 @@ public class EventActivity extends AppCompatActivity {
     }
 
     private void userPosition(int pos){
+        pinUserOne.setVisibility(View.GONE);
+        pinUserFour.setVisibility(View.GONE);
         pinUserThree.setVisibility(View.GONE);
         pinUserTwo.setVisibility(View.GONE);
         switch (pos){
+            case 1:
+                pinUserOne.setVisibility(View.VISIBLE);
+                break;
             case 2:
                 pinUserTwo.setVisibility(View.VISIBLE);
                 break;
             case 3:
                 pinUserThree.setVisibility(View.VISIBLE);
+                break;
+            case 4:
+                pinUserFour.setVisibility(View.VISIBLE);
                 break;
         }
     }

@@ -83,6 +83,7 @@
                 android:layout_marginStart="16dp"
                 android:gravity="center"
                 android:text="@string/enter_beacon_area"
+                android:textColor="@color/deep_blue"
                 android:textSize="28sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -401,13 +402,13 @@
 
     <ImageView
         android:id="@+id/iv_search_room"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toTopOf="@+id/cd_event"
         app:layout_constraintEnd_toEndOf="@+id/iv_map_fit_flr_one"
-        app:srcCompat="@drawable/navigate" />
+        app:srcCompat="@drawable/go_button" />
 
     <ImageView
         android:id="@+id/pin_user_pos_three"
@@ -455,5 +456,23 @@
         android:text="User"
         app:layout_constraintStart_toEndOf="@+id/imageView5"
         app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+    <ImageView
+        android:id="@+id/pin_user_pos_one"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_one"
+        app:layout_constraintStart_toEndOf="@+id/pin_bcn_one"
+        app:layout_constraintTop_toTopOf="@+id/pin_bcn_one"
+        app:srcCompat="@drawable/user_pin" />
+
+    <ImageView
+        android:id="@+id/pin_user_pos_four"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_four"
+        app:layout_constraintEnd_toStartOf="@+id/pin_bcn_four"
+        app:layout_constraintTop_toTopOf="@+id/pin_bcn_four"
+        app:srcCompat="@drawable/user_pin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

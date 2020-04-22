@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.DetailRoomActivity"></activity>
+        <activity android:name=".activities.DetailRoomActivity" />
         <activity
             android:name=".activities.ListEventActivity"
             android:configChanges="orientation"
@@ -23,9 +23,7 @@
         <activity
             android:name=".EventActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ChooseRoomActivity"
             android:configChanges="orientation"
@@ -45,18 +43,17 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait" >
-
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <receiver android:name=".NotificationReceiver" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 

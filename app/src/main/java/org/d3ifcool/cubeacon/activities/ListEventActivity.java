@@ -57,7 +57,7 @@ public class ListEventActivity extends AppCompatActivity {
             events.setPoster(R.drawable.icon_mipmap);
             events.setOragnizer("Laboran FIT");
             listEvent.add(events);
-        } else if (num == 3) {
+        }else if (num == 3) {
             appbar.setText("Coconut Events");
             Event events = new Event();
             events.setRoom("MP Mart");
@@ -66,6 +66,26 @@ public class ListEventActivity extends AppCompatActivity {
             events.setDate("20 mei 2020");
             events.setPoster(R.drawable.icon_mipmap);
             events.setOragnizer("Manajemen Pemasaran");
+            listEvent.add(events);
+        }else if (num == 1) {
+            appbar.setText("Mint Events");
+            Event events = new Event();
+            events.setRoom("Kitchen");
+            events.setTitle("Free cake");
+            events.setContent("Apple pie free");
+            events.setDate("20 April 2020");
+            events.setPoster(R.drawable.icon_mipmap);
+            events.setOragnizer("Perhotelan");
+            listEvent.add(events);
+        }else if (num == 4) {
+            appbar.setText("Ice Events");
+            Event events = new Event();
+            events.setRoom("Lobby");
+            events.setTitle("Pameran Lab");
+            events.setContent("Lab IT di Telkom");
+            events.setDate("23 Aoril 2020");
+            events.setPoster(R.drawable.icon_mipmap);
+            events.setOragnizer("D3 Informatika");
             listEvent.add(events);
         }
     }
