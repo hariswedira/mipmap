@@ -32,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 
 import org.d3ifcool.cubeacon.activities.ListEventActivity;
+import org.d3ifcool.cubeacon.activities.RangeActivity;
 import org.d3ifcool.cubeacon.models.Beacon;
 import org.d3ifcool.cubeacon.utils.Constants;
 import org.d3ifcool.cubeacon.utils.Preferences;
@@ -45,6 +46,7 @@ public class EventActivity extends AppCompatActivity {
         new EstimoteCloudCredentials("mipmap-hqh", "6756bb70e7d65c3bd6a367882450915a");
 //        new EstimoteCloudCredentials("febbydahlan034-gmail-com-s-6wz", "93eb2e64e84caf1d30079ad3c7b8b7e8");
     private NotificationManagaer notificationManagaer;
+    private ProximityObserver.Handler proximityObserverHandler;
 
     private final String BLUEBERRY = "blueberry";
     private final String COCONUT = "coconut";
@@ -88,7 +90,7 @@ public class EventActivity extends AppCompatActivity {
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/signal.png?alt=media&token=b9ddb563-9be0-4722-a592-031d140f3254").into(signal);
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/go_button.png?alt=media&token=c8f7901c-b910-41cc-a5f6-cf1923c59103").into(searchMenu);
 
-        signal.setVisibility(View.INVISIBLE);
+//        signal.setVisibility(View.INVISIBLE);
 
         cardView = findViewById(R.id.cd_info);
         cdEvent = findViewById(R.id.cd_event);
@@ -142,7 +144,7 @@ public class EventActivity extends AppCompatActivity {
 
         String a = getIntent().getStringExtra("beacon");
         if (a==null){
-            Toast.makeText(EventActivity.this, "Gaada", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(EventActivity.this, "Gaada", Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(EventActivity.this, ""+a, Toast.LENGTH_SHORT).show();
         }
@@ -174,6 +176,21 @@ public class EventActivity extends AppCompatActivity {
         });
 
         // Beacon
+        createEstimote();
+
+        signal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EventActivity.this, RangeActivity.class);
+                startActivity(intent);
+                proximityObserverHandler.stop();
+            }
+        });
+
+    }
+
+    public void createEstimote(){
+        // Beacon
         RequirementsWizardFactory
                 .createEstimoteRequirementsWizard()
                 .fulfillRequirements(this,
@@ -199,79 +216,12 @@ public class EventActivity extends AppCompatActivity {
                                 return null;
                             }
                         });
-
-    }
-
-    private void animatePinBeacon() {
-        pinBcnOne.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
-            @Override
-            public void run() {
-                pinBcnOne.setScaleY(1f);
-                pinBcnOne.setScaleX(1f);
-                pinBcnOne.setAlpha(1f);
-            }
-        });
-        pinBcnTwo.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
-            @Override
-            public void run() {
-                pinBcnTwo.setScaleY(1f);
-                pinBcnTwo.setScaleX(1f);
-                pinBcnTwo.setAlpha(1f);
-            }
-        });
-        pinBcnThree.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
-            @Override
-            public void run() {
-                pinBcnThree.setScaleY(1f);
-                pinBcnThree.setScaleX(1f);
-                pinBcnThree.setAlpha(1f);
-            }
-        });
-        pinBcnFour.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
-            @Override
-            public void run() {
-                pinBcnFour.setScaleY(1f);
-                pinBcnFour.setScaleX(1f);
-                pinBcnFour.setAlpha(1f);
-            }
-        });
-        pinBcnFive.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
-            @Override
-            public void run() {
-                pinBcnFive.setScaleY(1f);
-                pinBcnFive.setScaleX(1f);
-                pinBcnFive.setAlpha(1f);
-            }
-        });
-        pinBcnSix.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
-            @Override
-            public void run() {
-                pinBcnSix.setScaleY(1f);
-                pinBcnSix.setScaleX(1f);
-                pinBcnSix.setAlpha(1f);
-            }
-        });
-        pinBcnSeven.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
-            @Override
-            public void run() {
-                pinBcnSeven.setScaleY(1f);
-                pinBcnSeven.setScaleX(1f);
-                pinBcnSeven.setAlpha(1f);
-            }
-        });
-        pinBcnEight.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
-            @Override
-            public void run() {
-                pinBcnEight.setScaleY(1f);
-                pinBcnEight.setScaleX(1f);
-                pinBcnEight.setAlpha(1f);
-            }
-        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        createEstimote();
         Preferences.save(getApplicationContext(), Constants.NOTIF,"true");
     }
 
@@ -371,7 +321,8 @@ public class EventActivity extends AppCompatActivity {
                     }
                 })
                 .build();
-        proximityObserver.startObserving(zone);
+
+        proximityObserverHandler = proximityObserver.startObserving(zone);
     }
 
     private void outBeacon(){
@@ -716,6 +667,73 @@ public class EventActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cardView.setVisibility(View.INVISIBLE);
+            }
+        });
+    }
+
+    private void animatePinBeacon() {
+        pinBcnOne.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                pinBcnOne.setScaleY(1f);
+                pinBcnOne.setScaleX(1f);
+                pinBcnOne.setAlpha(1f);
+            }
+        });
+        pinBcnTwo.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                pinBcnTwo.setScaleY(1f);
+                pinBcnTwo.setScaleX(1f);
+                pinBcnTwo.setAlpha(1f);
+            }
+        });
+        pinBcnThree.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                pinBcnThree.setScaleY(1f);
+                pinBcnThree.setScaleX(1f);
+                pinBcnThree.setAlpha(1f);
+            }
+        });
+        pinBcnFour.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                pinBcnFour.setScaleY(1f);
+                pinBcnFour.setScaleX(1f);
+                pinBcnFour.setAlpha(1f);
+            }
+        });
+        pinBcnFive.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                pinBcnFive.setScaleY(1f);
+                pinBcnFive.setScaleX(1f);
+                pinBcnFive.setAlpha(1f);
+            }
+        });
+        pinBcnSix.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                pinBcnSix.setScaleY(1f);
+                pinBcnSix.setScaleX(1f);
+                pinBcnSix.setAlpha(1f);
+            }
+        });
+        pinBcnSeven.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                pinBcnSeven.setScaleY(1f);
+                pinBcnSeven.setScaleX(1f);
+                pinBcnSeven.setAlpha(1f);
+            }
+        });
+        pinBcnEight.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                pinBcnEight.setScaleY(1f);
+                pinBcnEight.setScaleX(1f);
+                pinBcnEight.setAlpha(1f);
             }
         });
     }

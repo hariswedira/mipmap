@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.RangeActivity"></activity>
         <activity android:name=".activities.DetailRoomActivity" />
         <activity
             android:name=".activities.ListEventActivity"
@@ -53,8 +54,8 @@
 
         <receiver android:name=".NotificationReceiver" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

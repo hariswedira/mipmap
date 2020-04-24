@@ -296,9 +296,9 @@ public class NavigateActivity extends AppCompatActivity  {
             case 4:
                 user04.setVisibility(View.VISIBLE);
                 break;
-            default:
-                Toast.makeText(this, "Outside Beacon", Toast.LENGTH_SHORT).show();
-                break;
+//            default:
+//                Toast.makeText(this, "Outside Beacon", Toast.LENGTH_SHORT).show();
+//                break;
         }
     }
 

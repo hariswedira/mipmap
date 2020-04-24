@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">MipMap</string>
+
     <string name="access_token">pk.eyJ1IjoiaGFyaXN3ZWRpcmEiLCJhIjoiY2szaWpwbmlnMDh3dTNobDl0Y3g5MXlxMiJ9.JmDYEXYStrtoOagmIEui8w</string>
     <string name="app_id">febbydahlan034-gmail-com-s-6wz</string>
+
     <string name="app_token">93eb2e64e84caf1d30079ad3c7b8b7e8</string>
     <string name="user_location_permission_explanation">Granted</string>
     <string name="user_location_permission_not_granted">Not granted</string>
