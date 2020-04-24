@@ -11,7 +11,7 @@
         android:id="@+id/appBarLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/deep_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -33,12 +33,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Event"
-                    android:textColor="@color/deep_blue"
+                    android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_signal"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView2"
+                    app:srcCompat="@drawable/beacon" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -408,7 +418,7 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toTopOf="@+id/cd_event"
         app:layout_constraintEnd_toEndOf="@+id/iv_map_fit_flr_one"
-        app:srcCompat="@drawable/go_button" />
+        app:srcCompat="@drawable/beacon" />
 
     <ImageView
         android:id="@+id/pin_user_pos_three"

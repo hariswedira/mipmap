@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Event implements Parcelable {
-    private int poster;
+    private String poster;
     private String title;
     private String content;
     private String room;
@@ -15,7 +15,7 @@ public class Event implements Parcelable {
 
     }
 
-    public Event(int poster, String title, String content, String room, String date, String oragnizer) {
+    public Event(String poster, String title, String content, String room, String date, String oragnizer) {
         this.poster = poster;
         this.title = title;
         this.content = content;
@@ -24,11 +24,11 @@ public class Event implements Parcelable {
         this.oragnizer = oragnizer;
     }
 
-    public int getPoster() {
+    public String getPoster() {
         return poster;
     }
 
-    public void setPoster(int poster) {
+    public void setPoster(String poster) {
         this.poster = poster;
     }
 
@@ -80,7 +80,7 @@ public class Event implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.poster);
+        dest.writeString(this.poster);
         dest.writeString(this.title);
         dest.writeString(this.content);
         dest.writeString(this.room);
@@ -89,7 +89,7 @@ public class Event implements Parcelable {
     }
 
     protected Event(Parcel in) {
-        this.poster = in.readInt();
+        this.poster = in.readString();
         this.title = in.readString();
         this.content = in.readString();
         this.room = in.readString();

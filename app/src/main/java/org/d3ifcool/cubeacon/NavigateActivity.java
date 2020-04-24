@@ -10,20 +10,39 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.estimote.mustard.rx_goodness.rx_requirements_wizard.Requirement;
+import com.estimote.mustard.rx_goodness.rx_requirements_wizard.RequirementsWizardFactory;
 import com.estimote.proximity_sdk.api.EstimoteCloudCredentials;
+import com.estimote.proximity_sdk.api.ProximityObserver;
+import com.estimote.proximity_sdk.api.ProximityObserverBuilder;
+import com.estimote.proximity_sdk.api.ProximityZone;
+import com.estimote.proximity_sdk.api.ProximityZoneBuilder;
+import com.estimote.proximity_sdk.api.ProximityZoneContext;
 import com.github.chrisbanes.photoview.PhotoView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import org.d3ifcool.cubeacon.activities.DetailRoomActivity;
 import org.d3ifcool.cubeacon.models.Beacon;
 import org.d3ifcool.cubeacon.models.Room;
+import org.d3ifcool.cubeacon.utils.Constants;
+import org.d3ifcool.cubeacon.utils.Preferences;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
 
 public class NavigateActivity extends AppCompatActivity  {
 
@@ -31,20 +50,21 @@ public class NavigateActivity extends AppCompatActivity  {
     private ImageView edge01, edge02, edge03, edge04, edge05, edge06, edge07, edge08, edge09, edge10, edge11, edge12, edge13, edge14,
             edge15, edge16, edge17, edge18, edge19, edge20, edge21, edge22, edge23, edge24, edge25, edge26, edge27, edge28, edge29, edge30;
 
-    private ImageView userIcon, backArrow;
-    Button infoRoom, direction;
+    private ImageView walk, backArrow, direction;
+    Button infoRoom;
     PhotoView photoView;
 
     private int currentPos;
     private TextToSpeech textToSpeech;
     TextView name, floor, jarakTxt;
 
-    // estimote
-    private NotificationManagaer notificationManagaer;
-    public EstimoteCloudCredentials cloudCredentials = new EstimoteCloudCredentials("mipmap-hqh", "6756bb70e7d65c3bd6a367882450915a");
+    private final String BLUEBERRY = "blueberry";
+    private final String COCONUT = "coconut";
+    private final String ICE = "ice";
+    private final String MINT = "mint";
 
     // beacon data
-    CardView cardView, roomInfo, cdDirection;
+    CardView roomInfo;
 
     // Rute
     ArrayList<String> rute;
@@ -58,9 +78,18 @@ public class NavigateActivity extends AppCompatActivity  {
     int userPos;
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigate);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("userPosition");
 
         roomInfo = findViewById(R.id.room_info);
         photoView = findViewById(R.id.photo_view);
@@ -68,16 +97,17 @@ public class NavigateActivity extends AppCompatActivity  {
         floor = findViewById(R.id.tv_desc_room);
         infoRoom = findViewById(R.id.btn_info_room);
         direction = findViewById(R.id.btn_direction_nav);
-        cdDirection = findViewById(R.id.cd_direction);
         backArrow = findViewById(R.id.iv_arrow_direction);
         jarakTxt = findViewById(R.id.tv_cost_room);
+        walk = findViewById(R.id.imageView3);
+
+        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mdi_directions_walk.png?alt=media&token=dee5da4b-a623-47ab-a7cd-dbf2c5a50c85").into(walk);
+        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mdi_arrow_back.png?alt=media&token=232eaafa-e295-4df3-a575-33cac8f010e7").into(backArrow);
 
         rute = new ArrayList<>();
         edge = new ArrayList<>();
         sign = new ArrayList<>();
         cost = new ArrayList<>();
-
-        cdDirection.setVisibility(View.INVISIBLE);
 
         initPinRoom();
         gonePinRoom();
@@ -86,7 +116,23 @@ public class NavigateActivity extends AppCompatActivity  {
         Room room = getIntent().getParcelableExtra("room");
         userPos = getIntent().getIntExtra("posisi user",100);
 
-//        Toast.makeText(this, userPos+"", Toast.LENGTH_SHORT).show();
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                int value = dataSnapshot.getValue(Integer.class);
+                showUser(value);
+//                Toast.makeText(NavigateActivity.this, String.valueOf(value), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+            }
+        });
+
         initRute(room.getName());
 
         if (room != null){
@@ -232,305 +278,11 @@ public class NavigateActivity extends AppCompatActivity  {
 
     }
 
-    private void initRute(String end){
-        if (end.equalsIgnoreCase("g9")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("g9");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g10")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("g10");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("laboran")){
-            rute.add("beacon02");
-            rute.add("laboran");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("mp mart")){
-            rute.add("beacon02");
-            rute.add("mpmart");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("gate")){
-            rute.add("beacon02");
-            rute.add("gate");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g11")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("g11");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("lobby")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("lobby");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("kitchen")){
-            rute.add("beacon02");
-            rute.add("beacon01");
-            rute.add("dapur");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g5")){
-            rute.add("beacon02");
-            rute.add("beacon01");
-            rute.add("g5");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g1")){
-            rute.add("beacon02");
-            rute.add("beacon01");
-            rute.add("g1");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g6")){
-            rute.add("beacon02");
-            rute.add("beacon01");
-            rute.add("g6");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g7")){
-            rute.add("beacon02");
-            rute.add("beacon01");
-            rute.add("g7");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("kantin")){
-            rute.add("beacon02");
-            rute.add("beacon01");
-            rute.add("kantin");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g3")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon06");
-            rute.add("g3");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g4")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon06");
-            rute.add("g4");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g8")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon06");
-            rute.add("g8");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g2")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon06");
-            rute.add("g2");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("lift")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon07");
-            rute.add("lift");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("admin lab")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon07");
-            rute.add("admin");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("toilet")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon07");
-            rute.add("beacon08");
-            rute.add("toilet");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("exit")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon07");
-            rute.add("beacon08");
-            rute.add("exit");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("lak")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("lak");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("dosen lb")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon07");
-            rute.add("dosen lb");
-            initBeacon();
-        }
-        else if (end.equalsIgnoreCase("g12")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon07");
-            rute.add("g12");
-            initBeacon();
-        }
-    }
-
-    private void initCost() {
-        DecimalFormat digit = new DecimalFormat("0.00");
-        double jarak = 0;
-        if (cost.isEmpty()){
-            jarakTxt.setText(String.valueOf(digit.format(jarak))+" m");
-        }else {
-            for (int i = 0; i < cost.size(); i++) {
-                jarak += cost.get(i);
-            }
-            jarakTxt.setText(String.valueOf(digit.format(jarak))+" m");
-        }
-    }
-
-    //    private void estimoteBlueberry() {
-//        notificationManagaer = new NotificationManagaer(this);
-//
-//        // Create the Proximity Observer
-//        ProximityObserver proximityObserver =
-//                new ProximityObserverBuilder(getApplicationContext(), cloudCredentials)
-//                        .onError(new Function1<Throwable, Unit>() {
-//                            @Override
-//                            public Unit invoke(Throwable throwable) {
-//                                Log.e("app", "proximity observer error: " + throwable);
-//                                return null;
-//                            }
-//                        })
-//                        .withBalancedPowerMode()
-//                        .build();
-//
-//        // TODO : Create Proximity Zone
-//
-//        // Near Zone
-//        ProximityZone zone = new ProximityZoneBuilder()
-//                .forTag("node-blueberry")
-//                .inNearRange()
-//                .onEnter(new Function1<ProximityZoneContext, Unit>() {
-//                    @Override
-//                    public Unit invoke(ProximityZoneContext context) {
-//                        currentPos = 1;
-//                        notificationManagaer.enterBlueberry();
-//                        Toast.makeText(NavigateActivity.this, "blue in 1 meter "+currentPos, Toast.LENGTH_SHORT).show();
-//                        userIcon.setVisibility(View.VISIBLE);
-//                        return null;
-//                    }
-//                })
-//                .onExit(new Function1<ProximityZoneContext, Unit>() {
-//                    @Override
-//                    public Unit invoke(ProximityZoneContext proximityContext) {
-////                        notificationManagaer.exitBlueberry();
-//                        Toast.makeText(NavigateActivity.this, "blue out Blueberry", Toast.LENGTH_SHORT).show();
-//                        userIcon.setVisibility(View.INVISIBLE);
-//                        return null;
-//                    }
-//                })
-//                .build();
-//        proximityObserver.startObserving(zone);
-//
-//        // Inner Zone
-//        ProximityZone innerZone = new ProximityZoneBuilder()
-//                .forTag("node-blueberry")
-//                .inCustomRange(3.0)
-//                .onEnter(new Function1<ProximityZoneContext, Unit>() {
-//                    @Override
-//                    public Unit invoke(ProximityZoneContext context) {
-//                        currentPos = 1;
-//                        notificationManagaer.enterBlueberry();
-//                        Toast.makeText(NavigateActivity.this, "blue in 3 meter"+currentPos, Toast.LENGTH_SHORT).show();
-//                        userIcon.setVisibility(View.VISIBLE);
-//                        return null;
-//                    }
-//                })
-//                .onExit(new Function1<ProximityZoneContext, Unit>() {
-//                    @Override
-//                    public Unit invoke(ProximityZoneContext proximityContext) {
-////                        notificationManagaer.exitBlueberry();
-//                        Toast.makeText(NavigateActivity.this, "blue out 3 meter", Toast.LENGTH_SHORT).show();
-//                        userIcon.setVisibility(View.INVISIBLE);
-//                        return null;
-//                    }
-//                })
-//                .build();
-//        proximityObserver.startObserving(innerZone);
-//
-//        // Outer zone
-//        ProximityZone outerZone = new ProximityZoneBuilder()
-//                .forTag("node-blueberry")
-//                .inFarRange()
-//                .onEnter(new Function1<ProximityZoneContext, Unit>() {
-//                    @Override
-//                    public Unit invoke(ProximityZoneContext context) {
-//                        currentPos = 1;
-//                        notificationManagaer.enterBlueberry();
-//                        Toast.makeText(NavigateActivity.this, "blue in 5 meter"+currentPos, Toast.LENGTH_SHORT).show();
-//                        userIcon.setVisibility(View.VISIBLE);
-//                        return null;
-//                    }
-//                })
-//                .onExit(new Function1<ProximityZoneContext, Unit>() {
-//                    @Override
-//                    public Unit invoke(ProximityZoneContext proximityContext) {
-////                        notificationManagaer.exitBlueberry();
-//                        Toast.makeText(NavigateActivity.this, "blue out Blueberry", Toast.LENGTH_SHORT).show();
-//                        userIcon.setVisibility(View.INVISIBLE);
-//                        return null;
-//                    }
-//                })
-//                .build();
-//        proximityObserver.startObserving(outerZone);
-//
-//
-//        // Request location permissions & Start proximity observation
-//        RequirementsWizardFactory
-//                .createEstimoteRequirementsWizard()
-//                .fulfillRequirements(this,
-//                        // onRequirementsFulfilled
-//                        new Function0<Unit>() {
-//                            @Override public Unit invoke() {
-//                                Log.d("app", "requirements fulfilled");
-////                                Toast.makeText(MainActivity.this, "Start", Toast.LENGTH_SHORT).show();
-//                                return null;
-//                            }
-//                        },
-//                        // onRequirementsMissing
-//                        new Function1<List<? extends Requirement>, Unit>() {
-//                            @Override public Unit invoke(List<? extends Requirement> requirements) {
-//                                Log.e("app", "requirements missing: " + requirements);
-//                                return null;
-//                            }
-//                        },
-//                        // onError
-//                        new Function1<Throwable, Unit>() {
-//                            @Override public Unit invoke(Throwable throwable) {
-//                                Log.e("app", "requirements error: " + throwable);
-//                                return null;
-//                            }
-//                        });
-//    }
-
     private void showUser(int pos){
+        user01.setVisibility(View.GONE);
+        user02.setVisibility(View.GONE);
+        user03.setVisibility(View.GONE);
+        user04.setVisibility(View.GONE);
         switch (pos){
             case 1:
                 user01.setVisibility(View.VISIBLE);
@@ -547,6 +299,28 @@ public class NavigateActivity extends AppCompatActivity  {
             default:
                 Toast.makeText(this, "Outside Beacon", Toast.LENGTH_SHORT).show();
                 break;
+        }
+    }
+
+    private void outBeacon(){
+        // TODO :  keluar daribeacon hilangin
+        user01.setVisibility(View.GONE);
+        user02.setVisibility(View.GONE);
+        user03.setVisibility(View.GONE);
+        user04.setVisibility(View.GONE);
+        userPos = 0;
+    }
+
+    private void initCost() {
+        DecimalFormat digit = new DecimalFormat("0.00");
+        double jarak = 0;
+        if (cost.isEmpty()){
+            jarakTxt.setText(String.valueOf(digit.format(jarak))+" m");
+        }else {
+            for (int i = 0; i < cost.size(); i++) {
+                jarak += cost.get(i);
+            }
+            jarakTxt.setText(String.valueOf(digit.format(jarak))+" m");
         }
     }
 
@@ -919,5 +693,165 @@ public class NavigateActivity extends AppCompatActivity  {
         edge28.setVisibility(View.INVISIBLE);
         edge29.setVisibility(View.INVISIBLE);
         edge30.setVisibility(View.INVISIBLE);
+    }
+
+    private void initRute(String end){
+        if (end.equalsIgnoreCase("g9")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("g9");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g10")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("g10");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("laboran")){
+            rute.add("beacon02");
+            rute.add("laboran");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("mp mart")){
+            rute.add("beacon02");
+            rute.add("mpmart");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("gate")){
+            rute.add("beacon02");
+            rute.add("gate");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g11")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("g11");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("lobby")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("lobby");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("kitchen")){
+            rute.add("beacon02");
+            rute.add("beacon01");
+            rute.add("dapur");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g5")){
+            rute.add("beacon02");
+            rute.add("beacon01");
+            rute.add("g5");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g1")){
+            rute.add("beacon02");
+            rute.add("beacon01");
+            rute.add("g1");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g6")){
+            rute.add("beacon02");
+            rute.add("beacon01");
+            rute.add("g6");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g7")){
+            rute.add("beacon02");
+            rute.add("beacon01");
+            rute.add("g7");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("kantin")){
+            rute.add("beacon02");
+            rute.add("beacon01");
+            rute.add("kantin");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g3")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon06");
+            rute.add("g3");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g4")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon06");
+            rute.add("g4");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g8")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon06");
+            rute.add("g8");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("g2")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon06");
+            rute.add("g2");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("lift")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon07");
+            rute.add("lift");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("admin lab")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon07");
+            rute.add("admin");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("toilet")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon07");
+            rute.add("beacon08");
+            rute.add("toilet");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("exit")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon07");
+            rute.add("beacon08");
+            rute.add("exit");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("lak")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("lak");
+            initBeacon();
+        }else if (end.equalsIgnoreCase("dosen lb")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon07");
+            rute.add("dosen lb");
+            initBeacon();
+        }
+        else if (end.equalsIgnoreCase("g12")){
+            rute.add("beacon02");
+            rute.add("beacon03");
+            rute.add("beacon04");
+            rute.add("beacon05");
+            rute.add("beacon07");
+            rute.add("g12");
+            initBeacon();
+        }
     }
 }

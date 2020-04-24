@@ -41,21 +41,21 @@ public class ZoomActivity extends TutorialActivity {
                 .setContent("We provide indoor navigation system")
                 .setBackgroundColor(getResources().getColor(R.color.deep_blue)) // int background color
                 .setDrawable(R.mipmap.logo) // int top drawable
-                .setSummary("This is summary")
+//                .setSummary("This is summary")
                 .build());
 
         addFragment(new Step.Builder().setTitle("Navigation for Indoor")
                 .setContent("You can find any room in building without paper map")
                 .setBackgroundColor(getResources().getColor(R.color.deep_blue)) // int background color
                 .setDrawable(R.drawable.splash_2) // int top drawable
-                .setSummary("This is summary")
+//                .setSummary("This is summary")
                 .build());
 
         addFragment(new Step.Builder().setTitle("Get Event Notification")
                 .setContent("You can get event notification near you while walking around room")
                 .setBackgroundColor(getResources().getColor(R.color.deep_blue)) // int background color
                 .setDrawable(R.drawable.splash_3) // int top drawable
-                .setSummary("This is summary")
+//                .setSummary("This is summary")
                 .build());
 
 //        imageView = findViewById(R.id.imageView);

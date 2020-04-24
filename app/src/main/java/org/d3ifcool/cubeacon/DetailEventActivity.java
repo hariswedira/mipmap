@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import org.d3ifcool.cubeacon.models.Event;
 
 public class DetailEventActivity extends AppCompatActivity {
@@ -19,8 +21,6 @@ public class DetailEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_event);
 
-//        Intent intent = getIntent();
-
         photo = findViewById(R.id.iv_detail_room);
         judul = findViewById(R.id.tv_detail_judul);
         tgl = findViewById(R.id.tv_detail_tanggal);
@@ -28,6 +28,8 @@ public class DetailEventActivity extends AppCompatActivity {
         deskripsi = findViewById(R.id.tv_detail_desc);
         organizer = findViewById(R.id.tv_organizer_detail);
         backArrow = findViewById(R.id.iv_arrow_event);
+
+        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mdi_arrow_back.png?alt=media&token=232eaafa-e295-4df3-a575-33cac8f010e7").into(backArrow);
 
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +47,8 @@ public class DetailEventActivity extends AppCompatActivity {
 //        String desc = intent.getStringExtra("desc");
 
         assert event != null;
-        photo.setImageResource(event.getPoster());
+//        photo.setImageResource(event.getPoster());
+        Glide.with(this).load(event.getPoster()).into(photo);
         judul.setText(event.getTitle());
         tgl.setText(event.getDate());
         ruangan.setText(event.getRoom());

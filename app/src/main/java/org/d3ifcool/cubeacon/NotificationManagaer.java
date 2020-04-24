@@ -41,7 +41,7 @@ public class NotificationManagaer {
 
         return new NotificationCompat.Builder(context, "content_channel")
 //                .setSmallIcon(android.R.drawable.ic_dialog_info)
-                .setSmallIcon(R.drawable.icon_mipmap)
+                .setSmallIcon(R.drawable.logo_with_text)
                 .setContentTitle(title)
                 .setContentText(text)
                 .setAutoCancel(true)

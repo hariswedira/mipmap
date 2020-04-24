@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -16,6 +17,8 @@ import org.d3ifcool.cubeacon.activities.ListEventActivity;
 import org.d3ifcool.cubeacon.adapter.EventAdapter;
 import org.d3ifcool.cubeacon.adapter.RoomAdapter;
 import org.d3ifcool.cubeacon.models.Room;
+import org.d3ifcool.cubeacon.utils.Constants;
+import org.d3ifcool.cubeacon.utils.Preferences;
 
 import java.util.ArrayList;
 
@@ -28,6 +31,7 @@ public class ChooseRoomActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
 
     private Button classRoom, lab, all;
+    private int userPos;
 //    private ArrayAdapter<String> arrayAdapter;
 
     @Override
@@ -35,7 +39,7 @@ public class ChooseRoomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_room);
 
-        int userPos = getIntent().getIntExtra("user pos",100);
+        userPos = getIntent().getIntExtra("user pos",100);
 
         classRoom = findViewById(R.id.btn_classroom);
         lab = findViewById(R.id.btn_laboratory);

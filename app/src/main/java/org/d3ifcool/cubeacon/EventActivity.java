@@ -7,7 +7,9 @@ import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.estimote.mustard.rx_goodness.rx_requirements_wizard.Requirement;
 import com.estimote.mustard.rx_goodness.rx_requirements_wizard.RequirementsWizardFactory;
 import com.estimote.proximity_sdk.api.EstimoteCloudCredentials;
@@ -24,10 +27,14 @@ import com.estimote.proximity_sdk.api.ProximityObserverBuilder;
 import com.estimote.proximity_sdk.api.ProximityZone;
 import com.estimote.proximity_sdk.api.ProximityZoneBuilder;
 import com.estimote.proximity_sdk.api.ProximityZoneContext;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 
 import org.d3ifcool.cubeacon.activities.ListEventActivity;
 import org.d3ifcool.cubeacon.models.Beacon;
+import org.d3ifcool.cubeacon.utils.Constants;
+import org.d3ifcool.cubeacon.utils.Preferences;
 
 import java.util.List;
 import java.util.Locale;
@@ -46,15 +53,14 @@ public class EventActivity extends AppCompatActivity {
 
     private int userPos;
     private TextView noEvent;
-    private ImageView searchMenu, pinUserOne, pinUserFour, pinUserTwo, pinUserThree, pinBcnTwo, pinBcnThree, pinBcnFour, pinBcnFive, pinBcnSix, pinBcnSeven, pinBcnEight, pinBcnOne;
-    TextView bName, bNode, bTag, n1, n2, n3, n4, n5, n6, n7, c1, c2, c3, c4, c5, c6, c7;
-    Button closeCard;
-    CardView cardView, cdEvent;
+    private ImageView signal ,searchMenu, pinUserOne, pinUserFour, pinUserTwo, pinUserThree, pinBcnTwo, pinBcnThree, pinBcnFour, pinBcnFive, pinBcnSix, pinBcnSeven, pinBcnEight, pinBcnOne, go;
+    private TextView bName, bNode, bTag, n1, n2, n3, n4, n5, n6, n7, c1, c2, c3, c4, c5, c6, c7;
+    private Button closeCard;
+    private CardView cardView, cdEvent;
     private TextToSpeech textToSpeech;
 
     public final String EVENT_ID = "event_id";
     private String event_tap;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +68,7 @@ public class EventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_event);
 
         userPos = 0;
+
         noEvent = findViewById(R.id.tv_no_event);
         searchMenu = findViewById(R.id.iv_search_room);
         pinUserTwo = findViewById(R.id.pin_user_pos_two);
@@ -76,6 +83,12 @@ public class EventActivity extends AppCompatActivity {
         pinBcnSix = findViewById(R.id.pin_bcn_seven);
         pinBcnSeven = findViewById(R.id.pin_bcn_six);
         pinBcnEight = findViewById(R.id.pin_bcn_eight);
+        signal = findViewById(R.id.iv_signal);
+
+        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/signal.png?alt=media&token=b9ddb563-9be0-4722-a592-031d140f3254").into(signal);
+        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/go_button.png?alt=media&token=c8f7901c-b910-41cc-a5f6-cf1923c59103").into(searchMenu);
+
+        signal.setVisibility(View.INVISIBLE);
 
         cardView = findViewById(R.id.cd_info);
         cdEvent = findViewById(R.id.cd_event);
@@ -117,6 +130,7 @@ public class EventActivity extends AppCompatActivity {
                 if (userPos == 0){
                     Toast.makeText(EventActivity.this, "please enter the beacon area", Toast.LENGTH_SHORT).show();
                 }else {
+                    Preferences.save(getApplicationContext(), Constants.NOTIF,"false");
                     Intent searchIntent = new Intent(EventActivity.this,ChooseRoomActivity.class);
                     searchIntent.putExtra("user pos",userPos);
                     startActivity(searchIntent);
@@ -138,6 +152,7 @@ public class EventActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (event_tap.equalsIgnoreCase("out")){
                     Toast.makeText(EventActivity.this, getResources().getString(R.string.outside_beacon_area), Toast.LENGTH_SHORT).show();
+                    animatePinBeacon();
                 }else if (event_tap.equalsIgnoreCase(BLUEBERRY)){
                     Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
                     intent.putExtra(EVENT_ID,2);
@@ -158,7 +173,7 @@ public class EventActivity extends AppCompatActivity {
             }
         });
 
-
+        // Beacon
         RequirementsWizardFactory
                 .createEstimoteRequirementsWizard()
                 .fulfillRequirements(this,
@@ -187,89 +202,82 @@ public class EventActivity extends AppCompatActivity {
 
     }
 
-    private void beaconInfo() {
-
-        pinBcnOne.setOnClickListener(new View.OnClickListener() {
+    private void animatePinBeacon() {
+        pinBcnOne.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
             @Override
-            public void onClick(View view) {
-                gson(1);
-                cardView.setVisibility(View.VISIBLE);
-                int speech = textToSpeech.speak("display beacon 1 information",TextToSpeech.QUEUE_FLUSH,null);
+            public void run() {
+                pinBcnOne.setScaleY(1f);
+                pinBcnOne.setScaleX(1f);
+                pinBcnOne.setAlpha(1f);
             }
         });
-
-        pinBcnTwo.setOnClickListener(new View.OnClickListener() {
+        pinBcnTwo.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
             @Override
-            public void onClick(View view) {
-                gson(2);
-                cardView.setVisibility(View.VISIBLE);
-                int speech = textToSpeech.speak("display beacon 2 information",TextToSpeech.QUEUE_FLUSH,null);
+            public void run() {
+                pinBcnTwo.setScaleY(1f);
+                pinBcnTwo.setScaleX(1f);
+                pinBcnTwo.setAlpha(1f);
             }
         });
-
-        pinBcnThree.setOnClickListener(new View.OnClickListener() {
+        pinBcnThree.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
             @Override
-            public void onClick(View view) {
-                gson(3);
-                cardView.setVisibility(View.VISIBLE);
-                int speech = textToSpeech.speak("display beacon 3 information",TextToSpeech.QUEUE_FLUSH,null);
+            public void run() {
+                pinBcnThree.setScaleY(1f);
+                pinBcnThree.setScaleX(1f);
+                pinBcnThree.setAlpha(1f);
             }
         });
-
-        pinBcnFour.setOnClickListener(new View.OnClickListener() {
+        pinBcnFour.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
             @Override
-            public void onClick(View view) {
-                gson(4);
-                cardView.setVisibility(View.VISIBLE);
-                int speech = textToSpeech.speak("display beacon 4 information",TextToSpeech.QUEUE_FLUSH,null);
+            public void run() {
+                pinBcnFour.setScaleY(1f);
+                pinBcnFour.setScaleX(1f);
+                pinBcnFour.setAlpha(1f);
             }
         });
-
-        pinBcnFive.setOnClickListener(new View.OnClickListener() {
+        pinBcnFive.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
             @Override
-            public void onClick(View view) {
-                gson(5);
-                cardView.setVisibility(View.VISIBLE);
-                int speech = textToSpeech.speak("display beacon 5 information",TextToSpeech.QUEUE_FLUSH,null);
+            public void run() {
+                pinBcnFive.setScaleY(1f);
+                pinBcnFive.setScaleX(1f);
+                pinBcnFive.setAlpha(1f);
             }
         });
-
-        pinBcnSix.setOnClickListener(new View.OnClickListener() {
+        pinBcnSix.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
             @Override
-            public void onClick(View view) {
-                gson(6);
-                cardView.setVisibility(View.VISIBLE);
-                int speech = textToSpeech.speak("display beacon 6 information",TextToSpeech.QUEUE_FLUSH,null);
+            public void run() {
+                pinBcnSix.setScaleY(1f);
+                pinBcnSix.setScaleX(1f);
+                pinBcnSix.setAlpha(1f);
             }
         });
-
-        pinBcnSeven.setOnClickListener(new View.OnClickListener() {
+        pinBcnSeven.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
             @Override
-            public void onClick(View view) {
-                gson(7);
-                cardView.setVisibility(View.VISIBLE);
-                int speech = textToSpeech.speak("display beacon 7 information",TextToSpeech.QUEUE_FLUSH,null);
+            public void run() {
+                pinBcnSeven.setScaleY(1f);
+                pinBcnSeven.setScaleX(1f);
+                pinBcnSeven.setAlpha(1f);
             }
         });
-
-        pinBcnEight.setOnClickListener(new View.OnClickListener() {
+        pinBcnEight.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
             @Override
-            public void onClick(View view) {
-                gson(8);
-                cardView.setVisibility(View.VISIBLE);
-                int speech = textToSpeech.speak("display beacon 8 information",TextToSpeech.QUEUE_FLUSH,null);
-            }
-        });
-
-        closeCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cardView.setVisibility(View.INVISIBLE);
+            public void run() {
+                pinBcnEight.setScaleY(1f);
+                pinBcnEight.setScaleX(1f);
+                pinBcnEight.setAlpha(1f);
             }
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Preferences.save(getApplicationContext(), Constants.NOTIF,"true");
+    }
+
     private void startEstimote(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("userPosition");
 
         notificationManagaer = new NotificationManagaer(this);
 
@@ -294,28 +302,41 @@ public class EventActivity extends AppCompatActivity {
                     @Override
                     public Unit invoke(ProximityZoneContext context) {
                         String title = context.getAttachments().get("area");
+                        boolean notifUhuy = Boolean.valueOf(Preferences.read(getApplicationContext(), Constants.NOTIF,"false"));
                         if (title == null) {
                             title = "unknown";
                         }else if(title.equalsIgnoreCase(COCONUT)){
-                            notificationManagaer.enterCoconut();
+                            if (notifUhuy){
+                                notificationManagaer.enterCoconut();
+                            }
                             userPos = 3;
+                            myRef.setValue(userPos);
                             Toast.makeText(EventActivity.this, "coconut in 1 meter | Position : "+userPos, Toast.LENGTH_SHORT).show();
                             inBeacon(COCONUT);
                         }else if (title.equalsIgnoreCase(BLUEBERRY)){
-                            notificationManagaer.enterBlueberry();
+                            if (notifUhuy){
+                                notificationManagaer.enterBlueberry();
+                            }
                             userPos = 2;
+                            myRef.setValue(userPos);
                             Toast.makeText(EventActivity.this, "blueberry in 1 meter | Position : "+userPos, Toast.LENGTH_SHORT).show();
                             inBeacon(BLUEBERRY);
 
                         }else if (title.equalsIgnoreCase(MINT)){
-                            notificationManagaer.enterMint();
+                            if (notifUhuy){
+                                notificationManagaer.enterMint();
+                            }
                             userPos = 1;
+                            myRef.setValue(userPos);
                             Toast.makeText(EventActivity.this, "mint in 1 meter | Position : "+userPos, Toast.LENGTH_SHORT).show();
                             inBeacon(MINT);
 
                         }else if (title.equalsIgnoreCase(ICE)){
-                            notificationManagaer.enterIce();
+                            if (notifUhuy){
+                                notificationManagaer.enterIce();
+                            }
                             userPos = 4;
+                            myRef.setValue(userPos);
                             Toast.makeText(EventActivity.this, "ice in 1 meter | Position : "+userPos, Toast.LENGTH_SHORT).show();
                             inBeacon(ICE);
 
@@ -344,6 +365,8 @@ public class EventActivity extends AppCompatActivity {
                             outBeacon();
                             Toast.makeText(EventActivity.this, "mint out", Toast.LENGTH_SHORT).show();
                         }
+                        userPos = 0;
+                        myRef.setValue(userPos);
                         return null;
                     }
                 })
@@ -357,7 +380,6 @@ public class EventActivity extends AppCompatActivity {
         pinUserTwo.setVisibility(View.GONE);
         pinUserOne.setVisibility(View.GONE);
         pinUserFour.setVisibility(View.GONE);
-        userPos = 0;
         noEvent.setText(getResources().getString(R.string.enter_beacon_area));
         event_tap = "out";
     }
@@ -386,6 +408,27 @@ public class EventActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void userPosition(int pos){
+        pinUserOne.setVisibility(View.GONE);
+        pinUserFour.setVisibility(View.GONE);
+        pinUserThree.setVisibility(View.GONE);
+        pinUserTwo.setVisibility(View.GONE);
+        switch (pos){
+            case 1:
+                pinUserOne.setVisibility(View.VISIBLE);
+                break;
+            case 2:
+                pinUserTwo.setVisibility(View.VISIBLE);
+                break;
+            case 3:
+                pinUserThree.setVisibility(View.VISIBLE);
+                break;
+            case 4:
+                pinUserFour.setVisibility(View.VISIBLE);
+                break;
+        }
     }
 
     public void gson(int numberBeacon){
@@ -595,24 +638,85 @@ public class EventActivity extends AppCompatActivity {
 
     }
 
-    private void userPosition(int pos){
-        pinUserOne.setVisibility(View.GONE);
-        pinUserFour.setVisibility(View.GONE);
-        pinUserThree.setVisibility(View.GONE);
-        pinUserTwo.setVisibility(View.GONE);
-        switch (pos){
-            case 1:
-                pinUserOne.setVisibility(View.VISIBLE);
-                break;
-            case 2:
-                pinUserTwo.setVisibility(View.VISIBLE);
-                break;
-            case 3:
-                pinUserThree.setVisibility(View.VISIBLE);
-                break;
-            case 4:
-                pinUserFour.setVisibility(View.VISIBLE);
-                break;
-        }
+    private void beaconInfo() {
+
+        pinBcnOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gson(1);
+                cardView.setVisibility(View.VISIBLE);
+                int speech = textToSpeech.speak("display beacon 1 information",TextToSpeech.QUEUE_FLUSH,null);
+            }
+        });
+
+        pinBcnTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gson(2);
+                cardView.setVisibility(View.VISIBLE);
+                int speech = textToSpeech.speak("display beacon 2 information",TextToSpeech.QUEUE_FLUSH,null);
+            }
+        });
+
+        pinBcnThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gson(3);
+                cardView.setVisibility(View.VISIBLE);
+                int speech = textToSpeech.speak("display beacon 3 information",TextToSpeech.QUEUE_FLUSH,null);
+            }
+        });
+
+        pinBcnFour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gson(4);
+                cardView.setVisibility(View.VISIBLE);
+                int speech = textToSpeech.speak("display beacon 4 information",TextToSpeech.QUEUE_FLUSH,null);
+            }
+        });
+
+        pinBcnFive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gson(5);
+                cardView.setVisibility(View.VISIBLE);
+                int speech = textToSpeech.speak("display beacon 5 information",TextToSpeech.QUEUE_FLUSH,null);
+            }
+        });
+
+        pinBcnSix.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gson(6);
+                cardView.setVisibility(View.VISIBLE);
+                int speech = textToSpeech.speak("display beacon 6 information",TextToSpeech.QUEUE_FLUSH,null);
+            }
+        });
+
+        pinBcnSeven.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gson(7);
+                cardView.setVisibility(View.VISIBLE);
+                int speech = textToSpeech.speak("display beacon 7 information",TextToSpeech.QUEUE_FLUSH,null);
+            }
+        });
+
+        pinBcnEight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gson(8);
+                cardView.setVisibility(View.VISIBLE);
+                int speech = textToSpeech.speak("display beacon 8 information",TextToSpeech.QUEUE_FLUSH,null);
+            }
+        });
+
+        closeCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cardView.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 }
