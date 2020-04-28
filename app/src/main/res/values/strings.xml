@@ -14,5 +14,6 @@
     <string name="outside_beacon_area">You\'re outside the beacon area</string>
     <string name="inside_beacon_area">Nearby Events</string>
     <string name="navigate_map_txt">Navigate Map</string>
-    <string name="enter_beacon_area">Enter beacon area</string>
+    <string name="enter_beacon_area">Please go to beacon area</string>
+    <string name="time_location"><![CDATA[Time & Location]]></string>
 </resources>

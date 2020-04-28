@@ -7,55 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".EventActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/deep_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_detail_news"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp">
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Event"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/iv_signal"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView2"
-                    app:srcCompat="@drawable/beacon" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.appcompat.widget.Toolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/iv_map_fit_flr_one"
         android:layout_width="360dp"
@@ -68,6 +19,120 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout3" />
+
+    <ImageView
+        android:id="@+id/pin_bcn_one"
+        android:layout_width="@dimen/beacon_size"
+        android:layout_height="@dimen/beacon_size"
+        android:layout_marginStart="185dp"
+        android:layout_marginTop="198dp"
+        android:src="@drawable/beacon_icon"
+        app:layout_constraintStart_toStartOf="@id/iv_map_fit_flr_one"
+        app:layout_constraintTop_toTopOf="@+id/iv_map_fit_flr_one" />
+
+    <ImageView
+        android:id="@+id/pin_bcn_two"
+        android:layout_width="@dimen/beacon_size"
+        android:layout_height="@dimen/beacon_size"
+        android:layout_marginStart="75dp"
+        android:src="@drawable/beacon_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_one"
+        app:layout_constraintStart_toEndOf="@+id/pin_bcn_one"
+        app:layout_constraintTop_toTopOf="@+id/pin_bcn_one" />
+
+    <ImageView
+        android:id="@+id/pin_bcn_three"
+        android:layout_width="@dimen/beacon_size"
+        android:layout_height="@dimen/beacon_size"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/beacon_icon"
+        app:layout_constraintEnd_toEndOf="@+id/pin_bcn_two"
+        app:layout_constraintStart_toStartOf="@+id/pin_bcn_two"
+        app:layout_constraintTop_toBottomOf="@+id/pin_bcn_two" />
+
+    <ImageView
+        android:id="@+id/pin_bcn_four"
+        android:layout_width="@dimen/beacon_size"
+        android:layout_height="@dimen/beacon_size"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/beacon_icon"
+        app:layout_constraintEnd_toEndOf="@+id/pin_bcn_three"
+        app:layout_constraintStart_toStartOf="@+id/pin_bcn_three"
+        app:layout_constraintTop_toBottomOf="@+id/pin_bcn_three" />
+
+    <ImageView
+        android:id="@+id/pin_bcn_five"
+        android:layout_width="@dimen/beacon_size"
+        android:layout_height="@dimen/beacon_size"
+        android:layout_marginTop="45dp"
+        android:src="@drawable/beacon_icon"
+        app:layout_constraintEnd_toEndOf="@+id/pin_bcn_four"
+        app:layout_constraintStart_toStartOf="@+id/pin_bcn_four"
+        app:layout_constraintTop_toBottomOf="@+id/pin_bcn_four" />
+
+    <ImageView
+        android:id="@+id/pin_bcn_six"
+        android:layout_width="@dimen/beacon_size"
+        android:layout_height="@dimen/beacon_size"
+        android:layout_marginTop="53dp"
+        android:src="@drawable/beacon_icon"
+        app:layout_constraintEnd_toEndOf="@+id/pin_bcn_five"
+        app:layout_constraintStart_toStartOf="@+id/pin_bcn_five"
+        app:layout_constraintTop_toBottomOf="@+id/pin_bcn_five" />
+
+    <ImageView
+        android:id="@+id/pin_bcn_seven"
+        android:layout_width="@dimen/beacon_size"
+        android:layout_height="@dimen/beacon_size"
+        android:layout_marginEnd="100dp"
+        android:src="@drawable/beacon_icon"
+        app:layout_constraintEnd_toStartOf="@+id/pin_bcn_five"
+        app:layout_constraintTop_toTopOf="@+id/pin_bcn_five" />
+
+    <ImageView
+        android:id="@+id/pin_bcn_eight"
+        android:layout_width="@dimen/beacon_size"
+        android:layout_height="@dimen/beacon_size"
+        android:layout_marginStart="40dp"
+        android:src="@drawable/beacon_icon"
+        app:layout_constraintStart_toEndOf="@+id/pin_bcn_six"
+        app:layout_constraintTop_toTopOf="@+id/pin_bcn_six" />
+
+    <ImageView
+        android:id="@+id/pin_user_pos_two"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:src="@drawable/user_pin"
+        app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_two"
+        app:layout_constraintEnd_toStartOf="@+id/pin_bcn_two"
+        app:layout_constraintTop_toTopOf="@+id/pin_bcn_two" />
+
+    <ImageView
+        android:id="@+id/pin_user_pos_three"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_three"
+        app:layout_constraintEnd_toStartOf="@+id/pin_bcn_three"
+        app:layout_constraintTop_toTopOf="@+id/pin_bcn_three"
+        app:srcCompat="@drawable/user_pin" />
+
+    <ImageView
+        android:id="@+id/pin_user_pos_one"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_one"
+        app:layout_constraintStart_toEndOf="@+id/pin_bcn_one"
+        app:layout_constraintTop_toTopOf="@+id/pin_bcn_one"
+        app:srcCompat="@drawable/user_pin" />
+
+    <ImageView
+        android:id="@+id/pin_user_pos_four"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_four"
+        app:layout_constraintEnd_toStartOf="@+id/pin_bcn_four"
+        app:layout_constraintTop_toTopOf="@+id/pin_bcn_four"
+        app:srcCompat="@drawable/user_pin" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cd_event"
@@ -89,106 +154,28 @@
                 android:id="@+id/tv_no_event"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
                 android:gravity="center"
-                android:text="@string/enter_beacon_area"
+                android:text="@string/inside_beacon_area"
                 android:textColor="@color/deep_blue"
-                android:textSize="28sp"
+                android:textSize="24sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/iv_no_beacon_area"
+                android:layout_width="300dp"
+                android:layout_height="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_no_event"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/out_beacon_area" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
-    <ImageView
-        android:id="@+id/pin_bcn_one"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginStart="185dp"
-        android:layout_marginTop="198dp"
-        android:src="@drawable/beacon"
-        app:layout_constraintStart_toStartOf="@id/iv_map_fit_flr_one"
-        app:layout_constraintTop_toTopOf="@+id/iv_map_fit_flr_one" />
-
-    <ImageView
-        android:id="@+id/pin_bcn_two"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginStart="75dp"
-        android:src="@drawable/beacon"
-        app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_one"
-        app:layout_constraintStart_toEndOf="@+id/pin_bcn_one"
-        app:layout_constraintTop_toTopOf="@+id/pin_bcn_one" />
-
-    <ImageView
-        android:id="@+id/pin_bcn_three"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="@+id/pin_bcn_two"
-        app:layout_constraintStart_toStartOf="@+id/pin_bcn_two"
-        app:layout_constraintTop_toBottomOf="@+id/pin_bcn_two"
-        android:src="@drawable/beacon" />
-
-    <ImageView
-        android:id="@+id/pin_bcn_four"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="@+id/pin_bcn_three"
-        app:layout_constraintStart_toStartOf="@+id/pin_bcn_three"
-        app:layout_constraintTop_toBottomOf="@+id/pin_bcn_three"
-        android:src="@drawable/beacon" />
-
-    <ImageView
-        android:id="@+id/pin_bcn_five"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginTop="45dp"
-        android:src="@drawable/beacon"
-        app:layout_constraintEnd_toEndOf="@+id/pin_bcn_four"
-        app:layout_constraintStart_toStartOf="@+id/pin_bcn_four"
-        app:layout_constraintTop_toBottomOf="@+id/pin_bcn_four" />
-
-    <ImageView
-        android:id="@+id/pin_bcn_six"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginTop="53dp"
-        android:src="@drawable/beacon"
-        app:layout_constraintEnd_toEndOf="@+id/pin_bcn_five"
-        app:layout_constraintStart_toStartOf="@+id/pin_bcn_five"
-        app:layout_constraintTop_toBottomOf="@+id/pin_bcn_five" />
-
-    <ImageView
-        android:id="@+id/pin_bcn_seven"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginEnd="100dp"
-        android:src="@drawable/beacon"
-        app:layout_constraintEnd_toStartOf="@+id/pin_bcn_five"
-        app:layout_constraintTop_toTopOf="@+id/pin_bcn_five" />
-
-    <ImageView
-        android:id="@+id/pin_bcn_eight"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginStart="40dp"
-        app:layout_constraintStart_toEndOf="@+id/pin_bcn_six"
-        app:layout_constraintTop_toTopOf="@+id/pin_bcn_six"
-        android:src="@drawable/beacon" />
-
-    <ImageView
-        android:id="@+id/pin_user_pos_two"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:src="@drawable/user_pin"
-        app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_two"
-        app:layout_constraintEnd_toStartOf="@+id/pin_bcn_two"
-        app:layout_constraintTop_toTopOf="@+id/pin_bcn_two" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cd_info"
@@ -203,17 +190,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/deep_blue"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
             <Button
                 android:id="@+id/btn_cls_card_event"
@@ -406,83 +382,91 @@
                 app:layout_constraintStart_toStartOf="@+id/c_6_event"
                 app:layout_constraintTop_toBottomOf="@+id/c_6_event" />
 
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/deep_blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="left" />
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/deep_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_detail_news"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <ImageView
+                    android:id="@+id/iv_signal"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView2"
+                    app:srcCompat="@drawable/beacon" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MipMap"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <ImageView
         android:id="@+id/iv_search_room"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/cd_event"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_map_fit_flr_one"
         app:layout_constraintEnd_toEndOf="@+id/iv_map_fit_flr_one"
         app:srcCompat="@drawable/beacon" />
 
     <ImageView
-        android:id="@+id/pin_user_pos_three"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_three"
-        app:layout_constraintEnd_toStartOf="@+id/pin_bcn_three"
-        app:layout_constraintTop_toTopOf="@+id/pin_bcn_three"
-        app:srcCompat="@drawable/user_pin" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@+id/iv_map_fit_flr_one"
-        app:layout_constraintTop_toTopOf="@+id/iv_map_fit_flr_one"
-        app:srcCompat="@drawable/beacon" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Beacon"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="@+id/imageView4" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:srcCompat="@drawable/user_pin" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="User"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="@+id/imageView5" />
-
-    <ImageView
-        android:id="@+id/pin_user_pos_one"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_one"
-        app:layout_constraintStart_toEndOf="@+id/pin_bcn_one"
-        app:layout_constraintTop_toTopOf="@+id/pin_bcn_one"
-        app:srcCompat="@drawable/user_pin" />
-
-    <ImageView
-        android:id="@+id/pin_user_pos_four"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_four"
-        app:layout_constraintEnd_toStartOf="@+id/pin_bcn_four"
-        app:layout_constraintTop_toTopOf="@+id/pin_bcn_four"
-        app:srcCompat="@drawable/user_pin" />
+        android:id="@+id/iv_user_pos"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toTopOf="@+id/iv_search_room"
+        app:layout_constraintEnd_toEndOf="@+id/iv_search_room"
+        app:layout_constraintStart_toStartOf="@+id/iv_search_room"
+        app:srcCompat="@drawable/detect_user" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -67,9 +67,10 @@ public class RangeActivity extends AppCompatActivity {
                                 return null;
                             }
                         });
+
     }
 
-    private void startProximityContentManager() {
+    public void startProximityContentManager() {
         EventActivity eventActivity = new EventActivity();
 
         ProximityObserver proximityObserver = new ProximityObserverBuilder(getApplicationContext(), eventActivity.cloudCredentials)
@@ -116,12 +117,12 @@ public class RangeActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        proximityObserverHandler.stop();
+        finish();
     }
 
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        proximityObserverHandler.stop();
-//    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        proximityObserverHandler.stop();
+    }
 }

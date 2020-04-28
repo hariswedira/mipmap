@@ -87,7 +87,7 @@ public class ChooseRoomActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ArrayList<Room> newList = new ArrayList<>();
                 for (int i = 0; i <= 11 ; i++) {
-                    newList.add(new Room("G"+(i+1),"Laboratorium","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+                    newList.add(new Room("G"+(i+1),"Laboratorium","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
                 }
                 adapter.updateList(newList);
             }
@@ -104,12 +104,12 @@ public class ChooseRoomActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ArrayList<Room> newList = new ArrayList<>();
-                newList.add(new Room("Admin Lab","Academic","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
-                newList.add(new Room("Kitchen","Laboratorium","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
-                newList.add(new Room("Laboran","Academic","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
-                newList.add(new Room("LAK","Academic","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
-                newList.add(new Room("MP Mart","Mini Market","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
-                newList.add(new Room("Toilet","Rest Room","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+                newList.add(new Room("Admin Lab","Academic","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
+                newList.add(new Room("Kitchen","Laboratorium","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
+                newList.add(new Room("Laboran","Academic","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
+                newList.add(new Room("LAK","Academic","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
+                newList.add(new Room("MP Mart","Mini Market","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
+                newList.add(new Room("Toilet","Rest Room","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
                 adapter.updateList(newList);
             }
         });
@@ -117,20 +117,20 @@ public class ChooseRoomActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        listRooms.add(new Room("Admin Lab","Academic","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
-        listRooms.add(new Room("Kitchen","Laboratorium","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
-        listRooms.add(new Room("Laboran","Academic","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
-        listRooms.add(new Room("LAK","Academic","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
-        listRooms.add(new Room("MP Mart","Mini Market","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
-        listRooms.add(new Room("Toilet","Rest Room","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
-        listRooms.add(new Room("Kantin","Cafetaria","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
-        listRooms.add(new Room("Lobby","lobby fit","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
-        listRooms.add(new Room("Lift","lift fit","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
-        listRooms.add(new Room("Gate","Gate fit","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
-        listRooms.add(new Room("Exit","Exit fit","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
-        listRooms.add(new Room("Dosen LB","Dosen Luar Biasa","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+        listRooms.add(new Room("Admin Lab","Academic","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
+        listRooms.add(new Room("Kitchen","Laboratorium","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
+        listRooms.add(new Room("Laboran","Academic","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
+        listRooms.add(new Room("LAK","Academic","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
+        listRooms.add(new Room("MP Mart","Mini Market","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
+        listRooms.add(new Room("Toilet","Rest Room","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
+        listRooms.add(new Room("Kantin","Cafetaria","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
+        listRooms.add(new Room("Lobby","lobby fit","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
+        listRooms.add(new Room("Lift","lift fit","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
+        listRooms.add(new Room("Gate","Gate fit","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
+        listRooms.add(new Room("Exit","Exit fit","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
+        listRooms.add(new Room("Dosen LB","Dosen Luar Biasa","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
         for (int i = 0; i <= 11 ; i++) {
-            listRooms.add(new Room("G"+(i+1),"Laboratorium","Floor 1",R.drawable.ic_launcher_background, "Pak Dodi", "08123456789", "Classroom"));
+            listRooms.add(new Room("G"+(i+1),"Laboratorium","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
         }
     }
 }

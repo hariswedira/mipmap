@@ -52,7 +52,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Room roomData = rooms.get(position);
         holder.title.setText(getRooms().get(position).getName());
-        holder.floor.setText(getRooms().get(position).getFloor());
+        holder.floor.setText("Applied Science Faculty Building, "+getRooms().get(position).getFloor());
         Glide.with(context)
                 .load(getRooms().get(position).getPhoto())
                 .into(holder.photo);

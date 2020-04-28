@@ -11,12 +11,14 @@ public class Room implements Parcelable {
     private String supervisor;
     private String number;
     private String type;
-    private int photo;
+    private String photo;
+    private String svPhoto;
+    private String nip;
 
     public Room() {
     }
 
-    public Room(String name, String desc, String floor, int photo, String supervisor, String number, String type) {
+    public Room(String name, String desc, String floor, String supervisor, String number, String type, String photo, String svPhoto, String nip) {
         this.name = name;
         this.desc = desc;
         this.floor = floor;
@@ -24,6 +26,8 @@ public class Room implements Parcelable {
         this.number = number;
         this.type = type;
         this.photo = photo;
+        this.svPhoto = svPhoto;
+        this.nip = nip;
     }
 
     public String getName() {
@@ -74,12 +78,28 @@ public class Room implements Parcelable {
         this.type = type;
     }
 
-    public int getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(int photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public String getSvPhoto() {
+        return svPhoto;
+    }
+
+    public void setSvPhoto(String svPhoto) {
+        this.svPhoto = svPhoto;
+    }
+
+    public String getNip() {
+        return nip;
+    }
+
+    public void setNip(String nip) {
+        this.nip = nip;
     }
 
 
@@ -96,7 +116,9 @@ public class Room implements Parcelable {
         dest.writeString(this.supervisor);
         dest.writeString(this.number);
         dest.writeString(this.type);
-        dest.writeInt(this.photo);
+        dest.writeString(this.photo);
+        dest.writeString(this.svPhoto);
+        dest.writeString(this.nip);
     }
 
     protected Room(Parcel in) {
@@ -106,7 +128,9 @@ public class Room implements Parcelable {
         this.supervisor = in.readString();
         this.number = in.readString();
         this.type = in.readString();
-        this.photo = in.readInt();
+        this.photo = in.readString();
+        this.svPhoto = in.readString();
+        this.nip = in.readString();
     }
 
     public static final Creator<Room> CREATOR = new Creator<Room>() {

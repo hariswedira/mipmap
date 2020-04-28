@@ -2,6 +2,8 @@ package org.d3ifcool.cubeacon;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.Guideline;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -55,11 +57,12 @@ public class EventActivity extends AppCompatActivity {
 
     private int userPos;
     private TextView noEvent;
-    private ImageView signal ,searchMenu, pinUserOne, pinUserFour, pinUserTwo, pinUserThree, pinBcnTwo, pinBcnThree, pinBcnFour, pinBcnFive, pinBcnSix, pinBcnSeven, pinBcnEight, pinBcnOne, go;
+    private ImageView signal, beaconLg, userPosIcon ,searchMenu, pinUserOne, pinUserFour, pinUserTwo, pinUserThree, pinBcnTwo, pinBcnThree, pinBcnFour, pinBcnFive, pinBcnSix, pinBcnSeven, pinBcnEight, pinBcnOne, go;
     private TextView bName, bNode, bTag, n1, n2, n3, n4, n5, n6, n7, c1, c2, c3, c4, c5, c6, c7;
     private Button closeCard;
     private CardView cardView, cdEvent;
     private TextToSpeech textToSpeech;
+    private Guideline guideline;
 
     public final String EVENT_ID = "event_id";
     private String event_tap;
@@ -86,11 +89,18 @@ public class EventActivity extends AppCompatActivity {
         pinBcnSeven = findViewById(R.id.pin_bcn_six);
         pinBcnEight = findViewById(R.id.pin_bcn_eight);
         signal = findViewById(R.id.iv_signal);
+        userPosIcon = findViewById(R.id.iv_user_pos);
+        beaconLg = findViewById(R.id.iv_no_beacon_area);
 
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/signal.png?alt=media&token=b9ddb563-9be0-4722-a592-031d140f3254").into(signal);
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/go_button.png?alt=media&token=c8f7901c-b910-41cc-a5f6-cf1923c59103").into(searchMenu);
 
 //        signal.setVisibility(View.INVISIBLE);
+        searchMenu.setVisibility(View.GONE);
+        userPosIcon.setVisibility(View.GONE);
+        noEvent.setVisibility(View.INVISIBLE);
+
+        Preferences.save(getApplicationContext(), Constants.NOTIF_TWO,"false");
 
         cardView = findViewById(R.id.cd_info);
         cdEvent = findViewById(R.id.cd_event);
@@ -140,6 +150,13 @@ public class EventActivity extends AppCompatActivity {
             }
         });
 
+        userPosIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateUserPin(userPos);
+            }
+        });
+
         event_tap = "out";
 
         String a = getIntent().getStringExtra("beacon");
@@ -181,12 +198,26 @@ public class EventActivity extends AppCompatActivity {
         signal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                proximityObserverHandler.stop();
                 Intent intent = new Intent(EventActivity.this, RangeActivity.class);
                 startActivity(intent);
-                proximityObserverHandler.stop();
             }
         });
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Toast.makeText(this, "Pause", Toast.LENGTH_SHORT).show();
+        Preferences.save(getApplicationContext(), Constants.NOTIF_TWO,"true");
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        Toast.makeText(this, "Resume", Toast.LENGTH_SHORT).show();
+        Preferences.save(getApplicationContext(), Constants.NOTIF_TWO,"false");
     }
 
     public void createEstimote(){
@@ -221,7 +252,7 @@ public class EventActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        createEstimote();
+        Toast.makeText(this, "start", Toast.LENGTH_SHORT).show();
         Preferences.save(getApplicationContext(), Constants.NOTIF,"true");
     }
 
@@ -253,10 +284,11 @@ public class EventActivity extends AppCompatActivity {
                     public Unit invoke(ProximityZoneContext context) {
                         String title = context.getAttachments().get("area");
                         boolean notifUhuy = Boolean.valueOf(Preferences.read(getApplicationContext(), Constants.NOTIF,"false"));
+                        boolean notifUhuys = Boolean.valueOf(Preferences.read(getApplicationContext(), Constants.NOTIF_TWO,"false"));
                         if (title == null) {
                             title = "unknown";
                         }else if(title.equalsIgnoreCase(COCONUT)){
-                            if (notifUhuy){
+                            if (notifUhuy && notifUhuys){
                                 notificationManagaer.enterCoconut();
                             }
                             userPos = 3;
@@ -264,7 +296,7 @@ public class EventActivity extends AppCompatActivity {
                             Toast.makeText(EventActivity.this, "coconut in 1 meter | Position : "+userPos, Toast.LENGTH_SHORT).show();
                             inBeacon(COCONUT);
                         }else if (title.equalsIgnoreCase(BLUEBERRY)){
-                            if (notifUhuy){
+                            if (notifUhuy && notifUhuys){
                                 notificationManagaer.enterBlueberry();
                             }
                             userPos = 2;
@@ -273,7 +305,7 @@ public class EventActivity extends AppCompatActivity {
                             inBeacon(BLUEBERRY);
 
                         }else if (title.equalsIgnoreCase(MINT)){
-                            if (notifUhuy){
+                            if (notifUhuy && notifUhuys){
                                 notificationManagaer.enterMint();
                             }
                             userPos = 1;
@@ -282,7 +314,7 @@ public class EventActivity extends AppCompatActivity {
                             inBeacon(MINT);
 
                         }else if (title.equalsIgnoreCase(ICE)){
-                            if (notifUhuy){
+                            if (notifUhuy && notifUhuys){
                                 notificationManagaer.enterIce();
                             }
                             userPos = 4;
@@ -327,6 +359,11 @@ public class EventActivity extends AppCompatActivity {
 
     private void outBeacon(){
         // TODO :  keluar daribeacon hilangin
+        beaconLg.setVisibility(View.VISIBLE);
+        noEvent.setVisibility(View.INVISIBLE);
+
+        searchMenu.setVisibility(View.GONE);
+        userPosIcon.setVisibility(View.GONE);
         pinUserThree.setVisibility(View.GONE);
         pinUserTwo.setVisibility(View.GONE);
         pinUserOne.setVisibility(View.GONE);
@@ -336,6 +373,11 @@ public class EventActivity extends AppCompatActivity {
     }
 
     private void inBeacon(String name){
+        beaconLg.setVisibility(View.GONE);
+        noEvent.setVisibility(View.VISIBLE);
+
+        searchMenu.setVisibility(View.VISIBLE);
+        userPosIcon.setVisibility(View.VISIBLE);
         noEvent.setText(getResources().getString(R.string.inside_beacon_area));
         noEvent.setTextColor(getResources().getColor(R.color.deep_blue));
         if (name.equalsIgnoreCase(COCONUT)){
@@ -669,6 +711,51 @@ public class EventActivity extends AppCompatActivity {
                 cardView.setVisibility(View.INVISIBLE);
             }
         });
+    }
+
+    private void animateUserPin(int pos){
+        switch (pos){
+            case 1:
+                pinUserOne.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        pinUserOne.setScaleY(1f);
+                        pinUserOne.setScaleX(1f);
+                        pinUserOne.setAlpha(1f);
+                    }
+                });
+            break;
+            case 2:
+                pinUserTwo.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        pinUserTwo.setScaleY(1f);
+                        pinUserTwo.setScaleX(1f);
+                        pinUserTwo.setAlpha(1f);
+                    }
+                });
+                break;
+            case 3:
+                pinUserThree.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        pinUserThree.setScaleY(1f);
+                        pinUserThree.setScaleX(1f);
+                        pinUserThree.setAlpha(1f);
+                    }
+                });
+                break;
+            case 4:
+                pinUserFour.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        pinUserFour.setScaleY(1f);
+                        pinUserFour.setScaleX(1f);
+                        pinUserFour.setAlpha(1f);
+                    }
+                });
+                break;
+        }
     }
 
     private void animatePinBeacon() {

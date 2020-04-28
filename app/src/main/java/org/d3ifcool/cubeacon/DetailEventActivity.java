@@ -51,7 +51,7 @@ public class DetailEventActivity extends AppCompatActivity {
         Glide.with(this).load(event.getPoster()).into(photo);
         judul.setText(event.getTitle());
         tgl.setText(event.getDate());
-        ruangan.setText(event.getRoom());
+        ruangan.setText("by "+event.getRoom());
         deskripsi.setText(event.getContent());
         organizer.setText(event.getOragnizer());
     }

@@ -97,7 +97,7 @@ public class ListEventActivity extends AppCompatActivity {
             events.setRoom("Lobby");
             events.setTitle("Pameran Lab");
             events.setContent("Lab IT di Telkom");
-            events.setDate("23 Aoril 2020");
+            events.setDate("23 April 2020");
             events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/just_logo.png?alt=media&token=5db11fe4-0691-4cf4-883b-e8f71bbb948a");
             events.setOragnizer("D3 Informatika");
             listEvent.add(events);

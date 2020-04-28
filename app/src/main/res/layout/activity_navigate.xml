@@ -70,89 +70,89 @@
 
         <ImageView
             android:id="@+id/beacon_01"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="@dimen/beacon_size"
+            android:layout_height="@dimen/beacon_size"
             android:layout_marginStart="185dp"
             android:layout_marginTop="198dp"
             app:layout_constraintStart_toStartOf="@+id/photo_view"
             app:layout_constraintTop_toTopOf="@+id/photo_view"
-            app:srcCompat="@drawable/beacon" />
+            app:srcCompat="@drawable/beacon_icon" />
 
         <ImageView
             android:id="@+id/beacon_02"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="@dimen/beacon_size"
+            android:layout_height="@dimen/beacon_size"
             android:layout_marginStart="75dp"
             app:layout_constraintBottom_toBottomOf="@+id/beacon_01"
             app:layout_constraintStart_toEndOf="@+id/beacon_01"
             app:layout_constraintTop_toTopOf="@+id/beacon_01"
-            app:srcCompat="@drawable/beacon" />
+            app:srcCompat="@drawable/beacon_icon" />
 
         <ImageView
             android:id="@+id/beacon_03"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="@dimen/beacon_size"
+            android:layout_height="@dimen/beacon_size"
             android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="@+id/beacon_02"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/beacon_02"
             app:layout_constraintTop_toBottomOf="@+id/beacon_02"
-            app:srcCompat="@drawable/beacon" />
+            app:srcCompat="@drawable/beacon_icon" />
 
         <ImageView
             android:id="@+id/beacon_04"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="@dimen/beacon_size"
+            android:layout_height="@dimen/beacon_size"
             android:layout_marginTop="40dp"
             app:layout_constraintEnd_toEndOf="@+id/beacon_03"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/beacon_03"
             app:layout_constraintTop_toBottomOf="@+id/beacon_03"
-            app:srcCompat="@drawable/beacon" />
+            app:srcCompat="@drawable/beacon_icon" />
 
         <ImageView
             android:id="@+id/beacon_05"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="@dimen/beacon_size"
+            android:layout_height="@dimen/beacon_size"
             android:layout_marginTop="45dp"
             app:layout_constraintEnd_toEndOf="@+id/beacon_04"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/beacon_04"
             app:layout_constraintTop_toBottomOf="@+id/beacon_04"
-            app:srcCompat="@drawable/beacon" />
+            app:srcCompat="@drawable/beacon_icon" />
 
         <ImageView
             android:id="@+id/beacon_06"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="@dimen/beacon_size"
+            android:layout_height="@dimen/beacon_size"
             android:layout_marginEnd="100dp"
             app:layout_constraintBottom_toBottomOf="@+id/beacon_05"
             app:layout_constraintEnd_toStartOf="@+id/beacon_05"
             app:layout_constraintTop_toTopOf="@+id/beacon_05"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/beacon" />
+            app:srcCompat="@drawable/beacon_icon" />
 
         <ImageView
             android:id="@+id/beacon_07"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="@dimen/beacon_size"
+            android:layout_height="@dimen/beacon_size"
             android:layout_marginTop="53dp"
             app:layout_constraintEnd_toEndOf="@+id/beacon_05"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/beacon_05"
             app:layout_constraintTop_toBottomOf="@+id/beacon_05"
-            app:srcCompat="@drawable/beacon" />
+            app:srcCompat="@drawable/beacon_icon" />
 
         <ImageView
             android:id="@+id/beacon_08"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="@dimen/beacon_size"
+            android:layout_height="@dimen/beacon_size"
             android:layout_marginStart="40dp"
             app:layout_constraintBottom_toBottomOf="@+id/beacon_07"
             app:layout_constraintStart_toEndOf="@+id/beacon_07"
             app:layout_constraintTop_toTopOf="@+id/beacon_07"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/beacon" />
+            app:srcCompat="@drawable/beacon_icon" />
 
         <ImageView
             android:id="@+id/node_dapur"
@@ -515,8 +515,10 @@
             android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/beacon_03"
             app:layout_constraintEnd_toStartOf="@+id/node_g9"
+            app:layout_constraintHorizontal_bias="0.294"
             app:layout_constraintStart_toEndOf="@+id/beacon_03"
             app:layout_constraintTop_toTopOf="@+id/node_g9"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/right_incline_up" />
 
         <ImageView

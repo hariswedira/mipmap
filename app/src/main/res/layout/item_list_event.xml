@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/iv_poster_list"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
@@ -40,14 +40,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tv_room_llist"
         app:layout_constraintTop_toBottomOf="@+id/tv_room_llist" />
-
-    <TextView
-        android:id="@+id/tv_date_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/tv_title_list"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
