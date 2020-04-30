@@ -16,4 +16,7 @@
     <string name="navigate_map_txt">Navigate Map</string>
     <string name="enter_beacon_area">Please go to beacon area</string>
     <string name="time_location"><![CDATA[Time & Location]]></string>
+
+    <string name="about">G11 is Research Lab named as Chevalier Lab Studio. Chevalier Lab is performed on Study Group, Research, Development. In our development team we have game development, mobile development, and web development. This lab is open for eveyone in Applied Science Faculty not even D3 Software Engineering Appliacation Students.</string>
+    <string name="event">This event is colaborate with D3 Software Engineering Application and Dicoding on this event participans will create android app mentored by professional andoroid developer from Dicoding Indonesia. </string>
 </resources>

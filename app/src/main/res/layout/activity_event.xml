@@ -155,6 +155,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:fontFamily="@font/montserrat"
                 android:gravity="center"
                 android:text="@string/inside_beacon_area"
                 android:textColor="@color/deep_blue"
@@ -179,6 +180,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="@+id/tv_no_event"
                 app:layout_constraintStart_toStartOf="@+id/tv_no_event"
@@ -206,6 +208,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@color/deep_blue"
+                android:fontFamily="@font/montserrat"
                 android:text="@string/close"
                 android:textColor="@color/light_blue"
                 android:textStyle="bold"
@@ -218,6 +221,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:fontFamily="@font/montserrat"
                 android:text="TextView"
                 android:textColor="@color/deep_blue"
                 android:textStyle="bold"
@@ -229,6 +233,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat"
                 android:text="TextView"
                 android:textColor="@color/deep_blue"
                 android:textStyle="bold"
@@ -241,6 +246,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
+                android:fontFamily="@font/montserrat"
                 android:text="TextView"
                 android:textColor="@color/deep_blue"
                 android:textStyle="bold"
@@ -252,6 +258,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:fontFamily="@font/montserrat"
                 android:text="neightbor"
                 android:textColor="@color/deep_blue"
                 app:layout_constraintStart_toStartOf="@+id/b_name_event"
@@ -262,6 +269,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat"
                 android:text="TextView"
                 app:layout_constraintStart_toStartOf="@+id/textView6"
                 app:layout_constraintTop_toBottomOf="@+id/view" />
@@ -271,6 +279,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat"
                 android:text="TextView"
                 app:layout_constraintStart_toStartOf="@+id/n_1_event"
                 app:layout_constraintTop_toBottomOf="@+id/n_1_event" />
@@ -280,6 +289,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat"
                 android:text="TextView"
                 app:layout_constraintStart_toStartOf="@+id/n_2_event"
                 app:layout_constraintTop_toBottomOf="@+id/n_2_event" />
@@ -289,6 +299,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat"
                 android:text="TextView"
                 app:layout_constraintStart_toStartOf="@+id/n_3_event"
                 app:layout_constraintTop_toBottomOf="@+id/n_3_event" />
@@ -298,6 +309,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat"
                 android:text="TextView"
                 app:layout_constraintStart_toStartOf="@+id/n_4_event"
                 app:layout_constraintTop_toBottomOf="@+id/n_4_event" />
@@ -306,6 +318,7 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
                 android:text="cost"
                 android:textColor="@color/deep_blue"
                 app:layout_constraintEnd_toEndOf="@+id/b_node_event"
@@ -316,6 +329,7 @@
                 android:id="@+id/c_1_event"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
                 android:text="TextView"
                 app:layout_constraintStart_toStartOf="@+id/textView12"
                 app:layout_constraintTop_toTopOf="@+id/n_1_event" />
@@ -325,6 +339,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat"
                 android:text="TextView"
                 app:layout_constraintStart_toStartOf="@+id/c_1_event"
                 app:layout_constraintTop_toBottomOf="@+id/c_1_event" />
@@ -334,6 +349,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat"
                 android:text="TextView"
                 app:layout_constraintStart_toStartOf="@+id/c_2_event"
                 app:layout_constraintTop_toBottomOf="@+id/c_2_event" />
@@ -343,6 +359,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat"
                 android:text="TextView"
                 app:layout_constraintStart_toStartOf="@+id/c_3_event"
                 app:layout_constraintTop_toBottomOf="@+id/c_3_event" />
@@ -352,6 +369,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat"
                 android:text="TextView"
                 app:layout_constraintStart_toStartOf="@+id/c_4_event"
                 app:layout_constraintTop_toBottomOf="@+id/c_4_event" />
@@ -361,6 +379,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat"
                 android:text="TextView"
                 app:layout_constraintStart_toStartOf="@+id/n_5_event"
                 app:layout_constraintTop_toBottomOf="@+id/n_5_event" />
@@ -370,6 +389,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat"
                 android:text="TextView"
                 app:layout_constraintStart_toStartOf="@+id/c_5_event"
                 app:layout_constraintTop_toBottomOf="@+id/c_5_event" />
@@ -379,6 +399,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat"
                 android:text="TextView"
                 app:layout_constraintStart_toStartOf="@+id/n6_event"
                 app:layout_constraintTop_toBottomOf="@+id/n6_event" />
@@ -388,6 +409,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat"
                 android:text="TextView"
                 app:layout_constraintStart_toStartOf="@+id/c_6_event"
                 app:layout_constraintTop_toBottomOf="@+id/c_6_event" />
@@ -448,6 +470,7 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
                     android:text="MipMap"
                     android:textColor="@color/white"
                     android:textSize="18sp"

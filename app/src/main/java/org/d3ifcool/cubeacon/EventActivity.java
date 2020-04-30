@@ -179,6 +179,7 @@ public class EventActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (event_tap.equalsIgnoreCase("out")){
                     Toast.makeText(EventActivity.this, getResources().getString(R.string.outside_beacon_area), Toast.LENGTH_SHORT).show();
+                    int speech = textToSpeech.speak("Please go to beacon area",TextToSpeech.QUEUE_FLUSH,null);
                     animatePinBeacon();
                 }else if (event_tap.equalsIgnoreCase(BLUEBERRY)){
                     Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
@@ -221,14 +222,14 @@ public class EventActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Toast.makeText(this, "Pause", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Pause", Toast.LENGTH_SHORT).show();
         Preferences.save(getApplicationContext(), Constants.NOTIF_TWO,"true");
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        Toast.makeText(this, "Resume", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Resume", Toast.LENGTH_SHORT).show();
         Preferences.save(getApplicationContext(), Constants.NOTIF_TWO,"false");
     }
 
@@ -264,7 +265,7 @@ public class EventActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Toast.makeText(this, "start", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "start", Toast.LENGTH_SHORT).show();
         Preferences.save(getApplicationContext(), Constants.NOTIF,"true");
     }
 
@@ -870,7 +871,7 @@ public class EventActivity extends AppCompatActivity {
             Event event = new Event();
             event.setRoom("G9");
             event.setTitle("Workshop");
-            event.setContent("Android JetPack");
+            event.setContent(getResources().getString(R.string.event));
             event.setDate("20 Juni 2020");
             event.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/just_logo.png?alt=media&token=5db11fe4-0691-4cf4-883b-e8f71bbb948a");
             event.setOragnizer("Laboran FIT");

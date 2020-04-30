@@ -87,7 +87,7 @@ public class ChooseRoomActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ArrayList<Room> newList = new ArrayList<>();
                 for (int i = 0; i <= 11 ; i++) {
-                    newList.add(new Room("G"+(i+1),"Laboratorium","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
+                    newList.add(new Room("G"+(i+1),getResources().getString(R.string.about),"Floor 1", "Amir Hasanudin Fauzi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
                 }
                 adapter.updateList(newList);
             }
@@ -130,7 +130,7 @@ public class ChooseRoomActivity extends AppCompatActivity {
         listRooms.add(new Room("Exit","Exit fit","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
         listRooms.add(new Room("Dosen LB","Dosen Luar Biasa","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
         for (int i = 0; i <= 11 ; i++) {
-            listRooms.add(new Room("G"+(i+1),"Laboratorium","Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
+            listRooms.add(new Room("G"+(i+1),getResources().getString(R.string.about),"Floor 1", "Amir Hasanudin Fauzi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
         }
     }
 }

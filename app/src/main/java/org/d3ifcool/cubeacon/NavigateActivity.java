@@ -51,7 +51,7 @@ public class NavigateActivity extends AppCompatActivity  {
     private ImageView edge01, edge02, edge03, edge04, edge05, edge06, edge07, edge08, edge09, edge10, edge11, edge12, edge13, edge14,
             edge15, edge16, edge17, edge18, edge19, edge20, edge21, edge22, edge23, edge24, edge25, edge26, edge27, edge28, edge29, edge30;
 
-    private ImageView walk, backArrow, direction;
+    private ImageView walk, backArrow, direction, btnStart, btnStep, btnStop;
     Button infoRoom;
     PhotoView photoView;
 
@@ -66,7 +66,7 @@ public class NavigateActivity extends AppCompatActivity  {
     private final String MINT = "mint";
 
     // beacon data
-    CardView roomInfo;
+    CardView roomInfo, signCd;
 
     // Rute
     ArrayList<String> rute;
@@ -104,6 +104,10 @@ public class NavigateActivity extends AppCompatActivity  {
         walk = findViewById(R.id.imageView3);
         start = findViewById(R.id.et_user_pos);
         end = findViewById(R.id.et_end_pos);
+        signCd = findViewById(R.id.cd_sign);
+        btnStart = findViewById(R.id.btn_start_nav);
+        btnStep = findViewById(R.id.btn_step);
+        btnStop = findViewById(R.id.btn_stop_nav);
 
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mdi_directions_walk.png?alt=media&token=dee5da4b-a623-47ab-a7cd-dbf2c5a50c85").into(walk);
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/blue_back.png?alt=media&token=c6f28a6f-660a-45d4-a05c-6b6b78fbf7de").into(backArrow);
@@ -281,6 +285,12 @@ public class NavigateActivity extends AppCompatActivity  {
 
                 showEdge();
                 initCost();
+
+                walk.setVisibility(View.VISIBLE);
+                jarakTxt.setVisibility(View.VISIBLE);
+                btnStart.setVisibility(View.VISIBLE);
+                direction.setVisibility(View.INVISIBLE);
+                infoRoom.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -288,6 +298,16 @@ public class NavigateActivity extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                 onBackPressed();
+            }
+        });
+
+        btnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btnStart.setVisibility(View.GONE);
+                btnStep.setVisibility(View.VISIBLE);
+                btnStop.setVisibility(View.VISIBLE);
+                signCd.setVisibility(View.VISIBLE);
             }
         });
 
@@ -677,6 +697,14 @@ public class NavigateActivity extends AppCompatActivity  {
         g10.setVisibility(View.INVISIBLE);
         g11.setVisibility(View.INVISIBLE);
         g12.setVisibility(View.INVISIBLE);
+
+        signCd.setVisibility(View.GONE);
+        btnStop.setVisibility(View.GONE);
+        btnStep.setVisibility(View.GONE);
+
+        btnStart.setVisibility(View.GONE);
+        walk.setVisibility(View.GONE);
+        jarakTxt.setVisibility(View.GONE);
     }
 
     private void goneEdge(){

@@ -32,6 +32,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:fontFamily="@font/montserrat"
                     android:text="List"
                     android:textColor="@color/white"
                     android:textSize="18sp"
