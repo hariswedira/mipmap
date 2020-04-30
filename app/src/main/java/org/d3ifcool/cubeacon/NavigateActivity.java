@@ -6,6 +6,7 @@ import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,6 +58,7 @@ public class NavigateActivity extends AppCompatActivity  {
     private int currentPos;
     private TextToSpeech textToSpeech;
     TextView name, floor, jarakTxt;
+    EditText start, end;
 
     private final String BLUEBERRY = "blueberry";
     private final String COCONUT = "coconut";
@@ -100,9 +102,11 @@ public class NavigateActivity extends AppCompatActivity  {
         backArrow = findViewById(R.id.iv_arrow_direction);
         jarakTxt = findViewById(R.id.tv_cost_room);
         walk = findViewById(R.id.imageView3);
+        start = findViewById(R.id.et_user_pos);
+        end = findViewById(R.id.et_end_pos);
 
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mdi_directions_walk.png?alt=media&token=dee5da4b-a623-47ab-a7cd-dbf2c5a50c85").into(walk);
-        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mdi_arrow_back.png?alt=media&token=232eaafa-e295-4df3-a575-33cac8f010e7").into(backArrow);
+        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/blue_back.png?alt=media&token=c6f28a6f-660a-45d4-a05c-6b6b78fbf7de").into(backArrow);
 
         rute = new ArrayList<>();
         edge = new ArrayList<>();
@@ -115,6 +119,19 @@ public class NavigateActivity extends AppCompatActivity  {
 
         Room room = getIntent().getParcelableExtra("room");
         userPos = getIntent().getIntExtra("posisi user",100);
+
+        String startPoin = "";
+        if (userPos==1){
+            startPoin = "Beacon 1";
+        }else if (userPos==2){
+            startPoin = "Beacon 2";
+        }else if (userPos==3){
+            startPoin = "Beacon 3";
+        }else if (userPos==4){
+            startPoin = "Beacon 4";
+        }
+        start.setText(startPoin);
+        end.setText(room.getName());
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {

@@ -36,9 +36,11 @@ import com.google.gson.Gson;
 import org.d3ifcool.cubeacon.activities.ListEventActivity;
 import org.d3ifcool.cubeacon.activities.RangeActivity;
 import org.d3ifcool.cubeacon.models.Beacon;
+import org.d3ifcool.cubeacon.models.Event;
 import org.d3ifcool.cubeacon.utils.Constants;
 import org.d3ifcool.cubeacon.utils.Preferences;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -58,7 +60,7 @@ public class EventActivity extends AppCompatActivity {
     private int userPos;
     private TextView noEvent;
     private ImageView signal, beaconLg, userPosIcon ,searchMenu, pinUserOne, pinUserFour, pinUserTwo, pinUserThree, pinBcnTwo, pinBcnThree, pinBcnFour, pinBcnFive, pinBcnSix, pinBcnSeven, pinBcnEight, pinBcnOne, go;
-    private TextView bName, bNode, bTag, n1, n2, n3, n4, n5, n6, n7, c1, c2, c3, c4, c5, c6, c7;
+    private TextView bName, bNode, bTag, n1, n2, n3, n4, n5, n6, n7, c1, c2, c3, c4, c5, c6, c7, amountEvent;
     private Button closeCard;
     private CardView cardView, cdEvent;
     private TextToSpeech textToSpeech;
@@ -66,6 +68,8 @@ public class EventActivity extends AppCompatActivity {
 
     public final String EVENT_ID = "event_id";
     private String event_tap;
+
+    private ArrayList<Event> listEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,14 +95,18 @@ public class EventActivity extends AppCompatActivity {
         signal = findViewById(R.id.iv_signal);
         userPosIcon = findViewById(R.id.iv_user_pos);
         beaconLg = findViewById(R.id.iv_no_beacon_area);
+        amountEvent = findViewById(R.id.amount_event);
 
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/signal.png?alt=media&token=b9ddb563-9be0-4722-a592-031d140f3254").into(signal);
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/go_button.png?alt=media&token=c8f7901c-b910-41cc-a5f6-cf1923c59103").into(searchMenu);
+
+        listEvent = new ArrayList<>();
 
 //        signal.setVisibility(View.INVISIBLE);
         searchMenu.setVisibility(View.GONE);
         userPosIcon.setVisibility(View.GONE);
         noEvent.setVisibility(View.INVISIBLE);
+        amountEvent.setVisibility(View.INVISIBLE);
 
         Preferences.save(getApplicationContext(), Constants.NOTIF_TWO,"false");
 
@@ -175,18 +183,22 @@ public class EventActivity extends AppCompatActivity {
                 }else if (event_tap.equalsIgnoreCase(BLUEBERRY)){
                     Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
                     intent.putExtra(EVENT_ID,2);
+                    intent.putExtra("events",listEvent);
                     startActivity(intent);
                 }else if (event_tap.equalsIgnoreCase(COCONUT)){
                     Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
                     intent.putExtra(EVENT_ID,3);
+                    intent.putExtra("events",listEvent);
                     startActivity(intent);
                 }else if (event_tap.equalsIgnoreCase(ICE)){
                     Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
                     intent.putExtra(EVENT_ID,4);
+                    intent.putExtra("events",listEvent);
                     startActivity(intent);
                 }else if (event_tap.equalsIgnoreCase(MINT)){
                     Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
                     intent.putExtra(EVENT_ID,1);
+                    intent.putExtra("events",listEvent);
                     startActivity(intent);
                 }
             }
@@ -323,6 +335,15 @@ public class EventActivity extends AppCompatActivity {
                             inBeacon(ICE);
 
                         }
+                        initDataEvent(userPos);
+                        amountEvent.setVisibility(View.VISIBLE);
+                        if (listEvent.isEmpty()){
+                            amountEvent.setTextColor(getResources().getColor(R.color.red));
+                            amountEvent.setText("No event at this time");
+                        }else {
+                            amountEvent.setTextColor(getResources().getColor(R.color.green));
+                            amountEvent.setText(listEvent.size()+" Event Found!");
+                        }
                         // TODO : posisi user
                         userPosition(userPos);
                         return null;
@@ -361,7 +382,7 @@ public class EventActivity extends AppCompatActivity {
         // TODO :  keluar daribeacon hilangin
         beaconLg.setVisibility(View.VISIBLE);
         noEvent.setVisibility(View.INVISIBLE);
-
+        amountEvent.setVisibility(View.INVISIBLE);
         searchMenu.setVisibility(View.GONE);
         userPosIcon.setVisibility(View.GONE);
         pinUserThree.setVisibility(View.GONE);
@@ -375,7 +396,6 @@ public class EventActivity extends AppCompatActivity {
     private void inBeacon(String name){
         beaconLg.setVisibility(View.GONE);
         noEvent.setVisibility(View.VISIBLE);
-
         searchMenu.setVisibility(View.VISIBLE);
         userPosIcon.setVisibility(View.VISIBLE);
         noEvent.setText(getResources().getString(R.string.inside_beacon_area));
@@ -823,5 +843,47 @@ public class EventActivity extends AppCompatActivity {
                 pinBcnEight.setAlpha(1f);
             }
         });
+    }
+
+    private void initDataEvent(int num) {
+        listEvent.clear();
+        if (num == 2) {
+
+        }if (num == 3) {
+            Event events = new Event();
+            events.setRoom("MP Mart");
+            events.setTitle("Discoun 50%");
+            events.setContent("All Item Discount");
+            events.setDate("20 mei 2020");
+            events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/just_logo.png?alt=media&token=5db11fe4-0691-4cf4-883b-e8f71bbb948a");
+            events.setOragnizer("Manajemen Pemasaran");
+            listEvent.add(events);
+        }else if (num == 1) {
+            Event events = new Event();
+            events.setRoom("Kitchen");
+            events.setTitle("Free cake");
+            events.setContent("Apple pie free");
+            events.setDate("20 April 2020");
+            events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/just_logo.png?alt=media&token=5db11fe4-0691-4cf4-883b-e8f71bbb948a");
+            events.setOragnizer("Perhotelan");
+            listEvent.add(events);
+            Event event = new Event();
+            event.setRoom("G9");
+            event.setTitle("Workshop");
+            event.setContent("Android JetPack");
+            event.setDate("20 Juni 2020");
+            event.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/just_logo.png?alt=media&token=5db11fe4-0691-4cf4-883b-e8f71bbb948a");
+            event.setOragnizer("Laboran FIT");
+            listEvent.add(event);
+        }else if (num == 4) {
+            Event events = new Event();
+            events.setRoom("Lobby");
+            events.setTitle("Pameran Lab");
+            events.setContent("Lab IT di Telkom");
+            events.setDate("23 April 2020");
+            events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/just_logo.png?alt=media&token=5db11fe4-0691-4cf4-883b-e8f71bbb948a");
+            events.setOragnizer("D3 Informatika");
+            listEvent.add(events);
+        }
     }
 }

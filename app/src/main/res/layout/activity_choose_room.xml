@@ -30,9 +30,9 @@
         android:id="@+id/btn_classroom"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/btn_blue"
         android:paddingHorizontal="18dp"
         android:text="Classroom"
@@ -46,30 +46,28 @@
         android:id="@+id/btn_laboratory"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:background="@drawable/btn_blue"
         android:paddingHorizontal="18dp"
         android:text="Academic"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/list_room"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_classroom"
         app:layout_constraintStart_toEndOf="@+id/btn_classroom"
-        app:layout_constraintTop_toBottomOf="@+id/search_rooms" />
+        app:layout_constraintTop_toTopOf="@+id/btn_classroom" />
 
     <Button
         android:id="@+id/btn_all_room"
         android:layout_width="60dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/btn_blue"
         android:text="All"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/list_room"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/btn_classroom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_classroom" />
 
     <!--    <ListView-->
 <!--        android:id="@+id/list_room"-->

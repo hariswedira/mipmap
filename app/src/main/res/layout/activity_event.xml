@@ -10,11 +10,11 @@
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/iv_map_fit_flr_one"
         android:layout_width="360dp"
-        android:layout_height="470dp"
+        android:layout_height="450dp"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="8dp"
         android:scaleType="fitXY"
-        android:src="@drawable/fit_map_satu"
+        android:src="@drawable/map_fit_new"
         app:layout_constraintBottom_toTopOf="@+id/cd_event"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
         android:layout_width="@dimen/beacon_size"
         android:layout_height="@dimen/beacon_size"
         android:layout_marginStart="185dp"
-        android:layout_marginTop="198dp"
+        android:layout_marginTop="190dp"
         android:src="@drawable/beacon_icon"
         app:layout_constraintStart_toStartOf="@id/iv_map_fit_flr_one"
         app:layout_constraintTop_toTopOf="@+id/iv_map_fit_flr_one" />
@@ -54,7 +54,7 @@
         android:id="@+id/pin_bcn_four"
         android:layout_width="@dimen/beacon_size"
         android:layout_height="@dimen/beacon_size"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="35dp"
         android:src="@drawable/beacon_icon"
         app:layout_constraintEnd_toEndOf="@+id/pin_bcn_three"
         app:layout_constraintStart_toStartOf="@+id/pin_bcn_three"
@@ -64,7 +64,7 @@
         android:id="@+id/pin_bcn_five"
         android:layout_width="@dimen/beacon_size"
         android:layout_height="@dimen/beacon_size"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/beacon_icon"
         app:layout_constraintEnd_toEndOf="@+id/pin_bcn_four"
         app:layout_constraintStart_toStartOf="@+id/pin_bcn_four"
@@ -74,7 +74,7 @@
         android:id="@+id/pin_bcn_six"
         android:layout_width="@dimen/beacon_size"
         android:layout_height="@dimen/beacon_size"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="50dp"
         android:src="@drawable/beacon_icon"
         app:layout_constraintEnd_toEndOf="@+id/pin_bcn_five"
         app:layout_constraintStart_toStartOf="@+id/pin_bcn_five"
@@ -154,12 +154,12 @@
                 android:id="@+id/tv_no_event"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:gravity="center"
                 android:text="@string/inside_beacon_area"
                 android:textColor="@color/deep_blue"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -173,6 +173,16 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_no_event"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/out_beacon_area" />
+
+            <TextView
+                android:id="@+id/amount_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="@+id/tv_no_event"
+                app:layout_constraintStart_toStartOf="@+id/tv_no_event"
+                app:layout_constraintTop_toBottomOf="@+id/tv_no_event" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

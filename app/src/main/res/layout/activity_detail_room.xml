@@ -97,7 +97,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_detail_type" />
 
-    <TextView
+    <com.codesgood.views.JustifiedTextView
         android:id="@+id/tv_room_detail_desc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -153,7 +153,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/photo_sv"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
@@ -163,7 +163,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/beacon" />
+                android:src="@drawable/beacon" />
 
             <TextView
                 android:id="@+id/tv_detail_supervisor_number"

@@ -27,7 +27,7 @@ public class ListEventActivity extends AppCompatActivity {
     private EventAdapter adapter;
     private LinearLayoutManager linearLayoutManager;
     private TextView appbar;
-    private ImageView backArrow;
+    private ImageView backArrow, noEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,8 @@ public class ListEventActivity extends AppCompatActivity {
         EventActivity eventActivity = new EventActivity();
         int num = getIntent().getIntExtra(eventActivity.EVENT_ID, 0);
 
+        noEvent = findViewById(R.id.iv_no_event_list);
+        noEvent.setVisibility(View.GONE);
         backArrow = findViewById(R.id.iv_arrow_list_event);
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mdi_arrow_back.png?alt=media&token=232eaafa-e295-4df3-a575-33cac8f010e7").into(backArrow);
         backArrow.setOnClickListener(new View.OnClickListener() {
@@ -55,52 +57,71 @@ public class ListEventActivity extends AppCompatActivity {
         adapter = new EventAdapter(ListEventActivity.this);
         listEvent = new ArrayList<>();
         initData(num);
+
+        if (listEvent.isEmpty()){
+            noEvent.setVisibility(View.VISIBLE);
+        }
+
         adapter.setEvents(listEvent);
         rvEvent.setLayoutManager(linearLayoutManager);
         rvEvent.setAdapter(adapter);
     }
 
     private void initData(int num) {
-        if (num == 2) {
-            appbar.setText("Bluberry Events");
-            Event events = new Event();
-            events.setRoom("G9");
-            events.setTitle("Workshop");
-            events.setContent("Android JetPack");
-            events.setDate("20 Juni 2020");
-            events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/just_logo.png?alt=media&token=5db11fe4-0691-4cf4-883b-e8f71bbb948a");
-            events.setOragnizer("Laboran FIT");
-            listEvent.add(events);
-        }else if (num == 3) {
-            appbar.setText("Coconut Events");
-            Event events = new Event();
-            events.setRoom("MP Mart");
-            events.setTitle("Discoun 50%");
-            events.setContent("All Item Discount");
-            events.setDate("20 mei 2020");
-            events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/just_logo.png?alt=media&token=5db11fe4-0691-4cf4-883b-e8f71bbb948a");
-            events.setOragnizer("Manajemen Pemasaran");
-            listEvent.add(events);
-        }else if (num == 1) {
+        ArrayList<Event> e = getIntent().getParcelableArrayListExtra("events");
+        if (num == 1) {
             appbar.setText("Mint Events");
-            Event events = new Event();
-            events.setRoom("Kitchen");
-            events.setTitle("Free cake");
-            events.setContent("Apple pie free");
-            events.setDate("20 April 2020");
-            events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/just_logo.png?alt=media&token=5db11fe4-0691-4cf4-883b-e8f71bbb948a");
-            events.setOragnizer("Perhotelan");
-            listEvent.add(events);
-        }else if (num == 4) {
+            listEvent.addAll(e);
+        } else if (num == 2) {
+            appbar.setText("Bluberry Events");
+            listEvent.addAll(e);
+        } else if (num == 3) {
+            appbar.setText("Coconut Events");
+            listEvent.addAll(e);
+        } else if (num == 4) {
             appbar.setText("Ice Events");
-            Event events = new Event();
-            events.setRoom("Lobby");
-            events.setTitle("Pameran Lab");
-            events.setContent("Lab IT di Telkom");
-            events.setDate("23 April 2020");
-            events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/just_logo.png?alt=media&token=5db11fe4-0691-4cf4-883b-e8f71bbb948a");
-            events.setOragnizer("D3 Informatika");
-            listEvent.add(events);
+            listEvent.addAll(e);
         }
+//        if (num == 2) {
+//            appbar.setText("Bluberry Events");
+//            Event events = new Event();
+//            events.setRoom("G9");
+//            events.setTitle("Workshop");
+//            events.setContent("Android JetPack");
+//            events.setDate("20 Juni 2020");
+//            events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/just_logo.png?alt=media&token=5db11fe4-0691-4cf4-883b-e8f71bbb948a");
+//            events.setOragnizer("Laboran FIT");
+//            listEvent.add(events);
+//        }else if (num == 3) {
+//            appbar.setText("Coconut Events");
+//            Event events = new Event();
+//            events.setRoom("MP Mart");
+//            events.setTitle("Discoun 50%");
+//            events.setContent("All Item Discount");
+//            events.setDate("20 mei 2020");
+//            events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/just_logo.png?alt=media&token=5db11fe4-0691-4cf4-883b-e8f71bbb948a");
+//            events.setOragnizer("Manajemen Pemasaran");
+//            listEvent.add(events);
+//        }else if (num == 1) {
+//            appbar.setText("Mint Events");
+//            Event events = new Event();
+//            events.setRoom("Kitchen");
+//            events.setTitle("Free cake");
+//            events.setContent("Apple pie free");
+//            events.setDate("20 April 2020");
+//            events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/just_logo.png?alt=media&token=5db11fe4-0691-4cf4-883b-e8f71bbb948a");
+//            events.setOragnizer("Perhotelan");
+//            listEvent.add(events);
+//        }else if (num == 4) {
+//            appbar.setText("Ice Events");
+//            Event events = new Event();
+//            events.setRoom("Lobby");
+//            events.setTitle("Pameran Lab");
+//            events.setContent("Lab IT di Telkom");
+//            events.setDate("23 April 2020");
+//            events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/just_logo.png?alt=media&token=5db11fe4-0691-4cf4-883b-e8f71bbb948a");
+//            events.setOragnizer("D3 Informatika");
+//            listEvent.add(events);
+//        }
     }
 }
