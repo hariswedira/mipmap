@@ -1,5 +1,6 @@
 package org.d3ifcool.cubeacon;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -29,8 +30,11 @@ import com.estimote.proximity_sdk.api.ProximityObserverBuilder;
 import com.estimote.proximity_sdk.api.ProximityZone;
 import com.estimote.proximity_sdk.api.ProximityZoneBuilder;
 import com.estimote.proximity_sdk.api.ProximityZoneContext;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import org.d3ifcool.cubeacon.activities.ListEventActivity;
@@ -71,12 +75,16 @@ public class EventActivity extends AppCompatActivity {
 
     private ArrayList<Event> listEvent;
 
+    NavigateActivity navigateActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
 
         userPos = 0;
+
+        navigateActivity = new NavigateActivity();
 
         noEvent = findViewById(R.id.tv_no_event);
         searchMenu = findViewById(R.id.iv_search_room);
@@ -270,8 +278,11 @@ public class EventActivity extends AppCompatActivity {
     }
 
     private void startEstimote(){
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("userPosition");
+        DatabaseReference navRef = database.getReference("nav");
+        DatabaseReference checkRef = database.getReference("navigation");
 
         notificationManagaer = new NotificationManagaer(this);
 
@@ -295,6 +306,7 @@ public class EventActivity extends AppCompatActivity {
                 .onEnter(new Function1<ProximityZoneContext, Unit>() {
                     @Override
                     public Unit invoke(ProximityZoneContext context) {
+
                         String title = context.getAttachments().get("area");
                         boolean notifUhuy = Boolean.valueOf(Preferences.read(getApplicationContext(), Constants.NOTIF,"false"));
                         boolean notifUhuys = Boolean.valueOf(Preferences.read(getApplicationContext(), Constants.NOTIF_TWO,"false"));
@@ -369,6 +381,7 @@ public class EventActivity extends AppCompatActivity {
                             outBeacon();
                             Toast.makeText(EventActivity.this, "mint out", Toast.LENGTH_SHORT).show();
                         }
+
                         userPos = 0;
                         myRef.setValue(userPos);
                         return null;

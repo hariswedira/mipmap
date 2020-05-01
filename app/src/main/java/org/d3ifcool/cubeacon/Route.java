@@ -25,7 +25,7 @@ public class Route {
                 sign.add("belok kanan");
                 sign.add("finish");
 
-            }else if (end.equalsIgnoreCase("dapur")){
+            }else if (end.equalsIgnoreCase("kitchen")){
                 rute.add("beacon02");
                 rute.add("beacon01");
                 rute.add("dapur");
@@ -70,7 +70,7 @@ public class Route {
                 sign.add("belok kiri");
                 sign.add("finish");
 
-            }else if (end.equalsIgnoreCase("mpmart")){
+            }else if (end.equalsIgnoreCase("mp mart")){
                 rute.add("beacon02");
                 rute.add("mpmart");
 

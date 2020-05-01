@@ -57,7 +57,7 @@ public class NavigateActivity extends AppCompatActivity  {
 
     private int currentPos;
     private TextToSpeech textToSpeech;
-    TextView name, floor, jarakTxt;
+    TextView name, floor, jarakTxt, signNav;
     EditText start, end;
 
     private final String BLUEBERRY = "blueberry";
@@ -70,6 +70,7 @@ public class NavigateActivity extends AppCompatActivity  {
 
     // Rute
     ArrayList<String> rute;
+    ArrayList<String> arah;
     ArrayList<String> edge;
     ArrayList<String> sign;
     ArrayList<Double> cost;
@@ -79,19 +80,27 @@ public class NavigateActivity extends AppCompatActivity  {
 
     int userPos;
 
+    String beacons;
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+//        checkRef.setValue(false);
+//        navRef.setValue(0);
         finish();
     }
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("userPosition");
+    DatabaseReference checkRef = database.getReference("navigation");
+    DatabaseReference navRef = database.getReference("nav");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigate);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("userPosition");
+        beacons = "";
 
         roomInfo = findViewById(R.id.room_info);
         photoView = findViewById(R.id.photo_view);
@@ -108,11 +117,13 @@ public class NavigateActivity extends AppCompatActivity  {
         btnStart = findViewById(R.id.btn_start_nav);
         btnStep = findViewById(R.id.btn_step);
         btnStop = findViewById(R.id.btn_stop_nav);
+        signNav = findViewById(R.id.tv_sign_nav);
 
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mdi_directions_walk.png?alt=media&token=dee5da4b-a623-47ab-a7cd-dbf2c5a50c85").into(walk);
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/blue_back.png?alt=media&token=c6f28a6f-660a-45d4-a05c-6b6b78fbf7de").into(backArrow);
 
         rute = new ArrayList<>();
+        arah = new ArrayList<>();
         edge = new ArrayList<>();
         sign = new ArrayList<>();
         cost = new ArrayList<>();
@@ -145,6 +156,16 @@ public class NavigateActivity extends AppCompatActivity  {
                 // whenever data at this location is updated.
                 int value = dataSnapshot.getValue(Integer.class);
                 showUser(value);
+                if (value==1){
+                    beacons = "beacon01";
+                }else if (value==2){
+                    beacons = "beacon02";
+                }else if (value==3){
+                    beacons = "beacon03";
+                }else if (value==4){
+                    beacons = "beacon04";
+                }
+                checkRoute();
 //                Toast.makeText(NavigateActivity.this, String.valueOf(value), Toast.LENGTH_SHORT).show();
             }
 
@@ -308,11 +329,23 @@ public class NavigateActivity extends AppCompatActivity  {
                 btnStep.setVisibility(View.VISIBLE);
                 btnStop.setVisibility(View.VISIBLE);
                 signCd.setVisibility(View.VISIBLE);
+//                checkRef.setValue(true);
+//                signNav.setText(arah.get(0));
+                checkRoute();
+
             }
         });
 
         speechUhuy();
 
+    }
+
+    private void checkRoute(){
+        for (int i = 0; i < rute.size(); i++) {
+            if (beacons.equalsIgnoreCase(rute.get(i))){
+                signNav.setText(arah.get(i));
+            }
+        }
     }
 
     private void showUser(int pos){
@@ -743,7 +776,6 @@ public class NavigateActivity extends AppCompatActivity  {
     private void initRute(String start, String end){
         Route routes = new Route();
         ArrayList<ArrayList<String>> navigasi = new ArrayList<>();
-        ArrayList<String> arah = new ArrayList<>();
 
         navigasi = routes.findRoute(start,end);
 

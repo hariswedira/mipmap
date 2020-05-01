@@ -939,7 +939,7 @@
                                                     app:srcCompat="@drawable/up_right_arrow" />
 
                                                 <TextView
-                                                    android:id="@+id/textView5"
+                                                    android:id="@+id/tv_sign_nav"
                                                     android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginEnd="16dp"
