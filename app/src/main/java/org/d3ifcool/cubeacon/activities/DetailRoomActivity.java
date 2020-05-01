@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ public class DetailRoomActivity extends AppCompatActivity {
 
     ImageView photo, backArrow, photoSv, call;
     TextView title, desc, floor, type, supervisor, number, phone;
+    Button jadwal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class DetailRoomActivity extends AppCompatActivity {
         photoSv = findViewById(R.id.photo_sv);
         phone = findViewById(R.id.phone_number);
         call = findViewById(R.id.btn_call);
+        jadwal = findViewById(R.id.btn_jadwal);
 
         backArrow = findViewById(R.id.iv_arrow_detail_room);
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mdi_arrow_back.png?alt=media&token=232eaafa-e295-4df3-a575-33cac8f010e7").into(backArrow);
@@ -42,6 +45,14 @@ public class DetailRoomActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onBackPressed();
+            }
+        });
+
+        jadwal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailRoomActivity.this, ScheduleActivity.class);
+                startActivity(intent);
             }
         });
 

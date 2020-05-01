@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ListEventActivity">
+    tools:context=".activities.ScheduleActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout3"
+        android:id="@+id/appBarLayout_schedule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/deep_blue"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_list_event"
+            android:id="@+id/toolbar_detail_schedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,21 +28,23 @@
                 android:layout_height="60dp">
 
                 <TextView
-                    android:id="@+id/tv_list_event_appbar"
+                    android:id="@+id/title_app_schedule"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="@font/montserrat"
-                    android:text="List"
+                    android:text="Schedule"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/iv_arrow_list_event"
+                    app:layout_constraintStart_toEndOf="@+id/iv_arrow_schedule"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/iv_arrow_list_event"
+                    android:id="@+id/iv_arrow_schedule"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -56,23 +58,28 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_events"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout_schedule"
+        app:tabGravity="fill"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/deep_blue"
+        app:tabIndicatorColor="@color/deep_blue"
+        app:tabTextColor="@color/grey" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager_list_schedule"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout3" />
-
-    <ImageView
-        android:id="@+id/iv_no_event_list"
-        android:layout_width="177dp"
-        android:layout_height="170dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/list_events"
-        app:layout_constraintStart_toStartOf="@+id/list_events"
-        app:layout_constraintTop_toTopOf="@+id/list_events"
-        app:srcCompat="@drawable/beacon" />
+        app:layout_constraintTop_toBottomOf="@+id/tab_schedule" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,8 +9,15 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.RangeActivity"></activity>
-        <activity android:name=".activities.DetailRoomActivity" />
+        <activity android:name=".activities.ScheduleActivity"
+            android:parentActivityName=".activities.DetailRoomActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activities.RangeActivity" />
+        <activity android:name=".activities.DetailRoomActivity"
+            android:parentActivityName=".NavigateActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.ListEventActivity"
             android:configChanges="orientation"
@@ -52,13 +59,15 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".NotificationReceiver" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <receiver android:name=".NotificationReceiver" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

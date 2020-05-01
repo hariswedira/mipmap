@@ -59,6 +59,7 @@ public class ListEventActivity extends AppCompatActivity {
         initData(num);
 
         if (listEvent.isEmpty()){
+            Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/no_event.png?alt=media&token=5e0e8da1-9110-4bfb-92d0-9feec8743ea4").into(noEvent);
             noEvent.setVisibility(View.VISIBLE);
         }
 
