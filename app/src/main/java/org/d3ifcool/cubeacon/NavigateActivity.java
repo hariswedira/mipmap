@@ -126,13 +126,13 @@ public class NavigateActivity extends AppCompatActivity  {
 
         String startPoin = "";
         if (userPos==1){
-            startPoin = "Beacon 1";
+            startPoin = "beacon01";
         }else if (userPos==2){
-            startPoin = "Beacon 2";
+            startPoin = "beacon02";
         }else if (userPos==3){
-            startPoin = "Beacon 3";
+            startPoin = "beacon03";
         }else if (userPos==4){
-            startPoin = "Beacon 4";
+            startPoin = "beacon04";
         }
         start.setText(startPoin);
         end.setText(room.getName());
@@ -154,7 +154,7 @@ public class NavigateActivity extends AppCompatActivity  {
             }
         });
 
-        initRute(room.getName());
+        initRute(startPoin,room.getName());
 
         if (room != null){
             name.setText(room.getName());
@@ -740,163 +740,172 @@ public class NavigateActivity extends AppCompatActivity  {
         edge30.setVisibility(View.INVISIBLE);
     }
 
-    private void initRute(String end){
-        if (end.equalsIgnoreCase("g9")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("g9");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g10")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("g10");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("laboran")){
-            rute.add("beacon02");
-            rute.add("laboran");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("mp mart")){
-            rute.add("beacon02");
-            rute.add("mpmart");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("gate")){
-            rute.add("beacon02");
-            rute.add("gate");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g11")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("g11");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("lobby")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("lobby");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("kitchen")){
-            rute.add("beacon02");
-            rute.add("beacon01");
-            rute.add("dapur");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g5")){
-            rute.add("beacon02");
-            rute.add("beacon01");
-            rute.add("g5");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g1")){
-            rute.add("beacon02");
-            rute.add("beacon01");
-            rute.add("g1");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g6")){
-            rute.add("beacon02");
-            rute.add("beacon01");
-            rute.add("g6");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g7")){
-            rute.add("beacon02");
-            rute.add("beacon01");
-            rute.add("g7");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("kantin")){
-            rute.add("beacon02");
-            rute.add("beacon01");
-            rute.add("kantin");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g3")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon06");
-            rute.add("g3");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g4")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon06");
-            rute.add("g4");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g8")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon06");
-            rute.add("g8");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("g2")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon06");
-            rute.add("g2");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("lift")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon07");
-            rute.add("lift");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("admin lab")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon07");
-            rute.add("admin");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("toilet")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon07");
-            rute.add("beacon08");
-            rute.add("toilet");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("exit")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon07");
-            rute.add("beacon08");
-            rute.add("exit");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("lak")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("lak");
-            initBeacon();
-        }else if (end.equalsIgnoreCase("dosen lb")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon07");
-            rute.add("dosen lb");
-            initBeacon();
-        }
-        else if (end.equalsIgnoreCase("g12")){
-            rute.add("beacon02");
-            rute.add("beacon03");
-            rute.add("beacon04");
-            rute.add("beacon05");
-            rute.add("beacon07");
-            rute.add("g12");
-            initBeacon();
-        }
+    private void initRute(String start, String end){
+        Route routes = new Route();
+        ArrayList<ArrayList<String>> navigasi = new ArrayList<>();
+        ArrayList<String> arah = new ArrayList<>();
+
+        navigasi = routes.findRoute(start,end);
+
+        rute.addAll(navigasi.get(0));
+        arah.addAll(navigasi.get(1));
+        initBeacon();
+//        if (end.equalsIgnoreCase("g9")){
+//            rute.add("beacon02");
+//            rute.add("beacon03");
+//            rute.add("g9");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("g10")){
+//            rute.add("beacon02");
+//            rute.add("beacon03");
+//            rute.add("beacon04");
+//            rute.add("g10");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("laboran")){
+//            rute.add("beacon02");
+//            rute.add("laboran");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("mp mart")){
+//            rute.add("beacon02");
+//            rute.add("mpmart");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("gate")){
+//            rute.add("beacon02");
+//            rute.add("gate");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("g11")){
+//            rute.add("beacon02");
+//            rute.add("beacon03");
+//            rute.add("beacon04");
+//            rute.add("beacon05");
+//            rute.add("g11");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("lobby")){
+//            rute.add("beacon02");
+//            rute.add("beacon03");
+//            rute.add("beacon04");
+//            rute.add("lobby");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("kitchen")){
+//            rute.add("beacon02");
+//            rute.add("beacon01");
+//            rute.add("dapur");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("g5")){
+//            rute.add("beacon02");
+//            rute.add("beacon01");
+//            rute.add("g5");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("g1")){
+//            rute.add("beacon02");
+//            rute.add("beacon01");
+//            rute.add("g1");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("g6")){
+//            rute.add("beacon02");
+//            rute.add("beacon01");
+//            rute.add("g6");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("g7")){
+//            rute.add("beacon02");
+//            rute.add("beacon01");
+//            rute.add("g7");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("kantin")){
+//            rute.add("beacon02");
+//            rute.add("beacon01");
+//            rute.add("kantin");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("g3")){
+//            rute.add("beacon02");
+//            rute.add("beacon03");
+//            rute.add("beacon04");
+//            rute.add("beacon05");
+//            rute.add("beacon06");
+//            rute.add("g3");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("g4")){
+//            rute.add("beacon02");
+//            rute.add("beacon03");
+//            rute.add("beacon04");
+//            rute.add("beacon05");
+//            rute.add("beacon06");
+//            rute.add("g4");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("g8")){
+//            rute.add("beacon02");
+//            rute.add("beacon03");
+//            rute.add("beacon04");
+//            rute.add("beacon05");
+//            rute.add("beacon06");
+//            rute.add("g8");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("g2")){
+//            rute.add("beacon02");
+//            rute.add("beacon03");
+//            rute.add("beacon04");
+//            rute.add("beacon05");
+//            rute.add("beacon06");
+//            rute.add("g2");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("lift")){
+//            rute.add("beacon02");
+//            rute.add("beacon03");
+//            rute.add("beacon04");
+//            rute.add("beacon05");
+//            rute.add("beacon07");
+//            rute.add("lift");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("admin lab")){
+//            rute.add("beacon02");
+//            rute.add("beacon03");
+//            rute.add("beacon04");
+//            rute.add("beacon05");
+//            rute.add("beacon07");
+//            rute.add("admin");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("toilet")){
+//            rute.add("beacon02");
+//            rute.add("beacon03");
+//            rute.add("beacon04");
+//            rute.add("beacon05");
+//            rute.add("beacon07");
+//            rute.add("beacon08");
+//            rute.add("toilet");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("exit")){
+//            rute.add("beacon02");
+//            rute.add("beacon03");
+//            rute.add("beacon04");
+//            rute.add("beacon05");
+//            rute.add("beacon07");
+//            rute.add("beacon08");
+//            rute.add("exit");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("lak")){
+//            rute.add("beacon02");
+//            rute.add("beacon03");
+//            rute.add("beacon04");
+//            rute.add("beacon05");
+//            rute.add("lak");
+//            initBeacon();
+//        }else if (end.equalsIgnoreCase("dosen lb")){
+//            rute.add("beacon02");
+//            rute.add("beacon03");
+//            rute.add("beacon04");
+//            rute.add("beacon05");
+//            rute.add("beacon07");
+//            rute.add("dosen lb");
+//            initBeacon();
+//        }
+//        else if (end.equalsIgnoreCase("g12")){
+//            rute.add("beacon02");
+//            rute.add("beacon03");
+//            rute.add("beacon04");
+//            rute.add("beacon05");
+//            rute.add("beacon07");
+//            rute.add("g12");
+//            initBeacon();
+//        }
     }
 }
