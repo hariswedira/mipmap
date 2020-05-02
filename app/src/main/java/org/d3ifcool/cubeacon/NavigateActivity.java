@@ -372,6 +372,7 @@ public class NavigateActivity extends AppCompatActivity  {
                 if (beacons.equalsIgnoreCase(rute.get(i))){
                     signNav.setText(arah.get(i));
                     updateSignIcon(signNav.getText().toString());
+                    signBox.setBackgroundColor(getResources().getColor(R.color.deep_blue));
                 }
                 else if (beacons.equalsIgnoreCase("beacon04")){
                     signNav.setText(arah.get(arah.size()-1));
@@ -382,6 +383,7 @@ public class NavigateActivity extends AppCompatActivity  {
                     updateSignIcon(signNav.getText().toString());
                 }else if (beacons.equalsIgnoreCase("lurus")){
                     signNav.setText("Move Forward");
+                    signBox.setBackgroundColor(getResources().getColor(R.color.deep_blue));
                     updateSignIcon(signNav.getText().toString());
                 }
             }
@@ -397,9 +399,9 @@ public class NavigateActivity extends AppCompatActivity  {
         }else if (sign.equalsIgnoreCase("Turn Left")){
             signNavigate.setImageResource(R.drawable.up_left_arrow);
         }else if (sign.equalsIgnoreCase("Slight right")){
-
+            signNavigate.setImageResource(R.drawable.slight_right);
         }else if (sign.equalsIgnoreCase("Slight left")){
-
+            signNavigate.setImageResource(R.drawable.slight_left);
         }else if (sign.equalsIgnoreCase("on the right")){
             signNavigate.setImageResource(R.drawable.right_arrow);
         }
@@ -423,9 +425,9 @@ public class NavigateActivity extends AppCompatActivity  {
             case 3:
                 user03.setVisibility(View.VISIBLE);
                 break;
-//            case 4:
-//                user04.setVisibility(View.VISIBLE);
-//                break;
+            case 4:
+                user04.setVisibility(View.VISIBLE);
+                break;
 
 //            default:
 //                Toast.makeText(this, "Outside Beacon", Toast.LENGTH_SHORT).show();

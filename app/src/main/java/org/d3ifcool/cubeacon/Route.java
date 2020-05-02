@@ -31,7 +31,7 @@ public class Route {
                 rute.add("dapur");
 
                 sign.add("Move Forward");
-                sign.add("belok serong kanan");
+                sign.add("Slight right");
                 sign.add("Arrive at destination");
 
             }else if (end.equalsIgnoreCase("g1")){
@@ -49,7 +49,7 @@ public class Route {
                 rute.add("g5");
 
                 sign.add("Move Forward");
-                sign.add("belok serong kiri");
+                sign.add("Slight left");
                 sign.add("Arrive at destination");
 
             }else if (end.equalsIgnoreCase("g6")){
@@ -58,7 +58,7 @@ public class Route {
                 rute.add("g6");
 
                 sign.add("Move Forward");
-                sign.add("belok serong kiri");
+                sign.add("Slight left");
                 sign.add("Arrive at destination");
 
             }else if (end.equalsIgnoreCase("g7")){
@@ -99,22 +99,75 @@ public class Route {
         else if (start.equalsIgnoreCase("beacon01")){
 
             if(end.equalsIgnoreCase("kantin")){
+                rute.add("beacon01");
+                rute.add("kantin");
 
-            }else if (end.equalsIgnoreCase("dapur")){
+                sign.add("on the right");
+                sign.add("Arrive at destination");
+
+            }else if (end.equalsIgnoreCase("kitchen")){
+                rute.add("beacon01");
+                rute.add("dapur");
+
+                sign.add("Slight right");
+                sign.add("Arrive at destination");
 
             }else if (end.equalsIgnoreCase("g1")){
+                rute.add("beacon01");
+                rute.add("g1");
+
+                sign.add("Move Forward");
+                sign.add("Arrive at destination");
 
             }else if (end.equalsIgnoreCase("g5")){
+                rute.add("beacon01");
+                rute.add("g5");
+
+                sign.add("Turn Left");
+                sign.add("Arrive at destination");
 
             }else if (end.equalsIgnoreCase("g6")){
+                rute.add("beacon01");
+                rute.add("g6");
+
+                sign.add("Turn Left");
+                sign.add("Arrive at destination");
 
             }else if (end.equalsIgnoreCase("g7")){
+                rute.add("beacon01");
+                rute.add("g7");
+
+                sign.add("Turn Left");
+                sign.add("Arrive at destination");
 
             }else if (end.equalsIgnoreCase("mpmart")){
+                rute.add("beacon01");
+                rute.add("beacon02");
+                rute.add("mpmart");
+
+                sign.add("Move Forward");
+                sign.add("Slight left");
+                sign.add("Arrive at destination");
 
             }else if (end.equalsIgnoreCase("laboran")){
+                rute.add("beacon01");
+                rute.add("beacon02");
+                rute.add("laboran");
+
+                sign.add("Move Forward");
+                sign.add("Move Forward");
+                sign.add("Arrive at destination");
 
             }else if (end.equalsIgnoreCase("g9")){
+                rute.add("beacon01");
+                rute.add("beacon02");
+                rute.add("beacon03");
+                rute.add("g9");
+
+                sign.add("Move Forward");
+                sign.add("Turn Right");
+                sign.add("Turn Left");
+                sign.add("Arrive at destination");
 
             }
         }
@@ -122,23 +175,95 @@ public class Route {
         else if (start.equalsIgnoreCase("beacon03")){
 
             if(end.equalsIgnoreCase("kantin")){
+                rute.add("beacon03");
+                rute.add("beacon02");
+                rute.add("beacon01");
+                rute.add("kantin");
 
-            }else if (end.equalsIgnoreCase("dapur")){
+                sign.add("Move Forward");
+                sign.add("Turn Left");
+                sign.add("Turn Right");
+                sign.add("Arrive at destination");
+
+            }else if (end.equalsIgnoreCase("kitchen")){
+                rute.add("beacon03");
+                rute.add("beacon02");
+                rute.add("beacon01");
+                rute.add("dapur");
+
+                sign.add("Move Forward");
+                sign.add("Turn Left");
+                sign.add("Slight right");
+                sign.add("Arrive at destination");
 
             }else if (end.equalsIgnoreCase("g1")){
+                rute.add("beacon03");
+                rute.add("beacon02");
+                rute.add("beacon01");
+                rute.add("g1");
+
+                sign.add("Move Forward");
+                sign.add("Turn Left");
+                sign.add("Move Forward");
+                sign.add("Arrive at destination");
 
             }else if (end.equalsIgnoreCase("g5")){
+                rute.add("beacon03");
+                rute.add("beacon02");
+                rute.add("beacon01");
+                rute.add("g5");
+
+                sign.add("Move Forward");
+                sign.add("Turn Left");
+                sign.add("Turn Left");
+                sign.add("Arrive at destination");
 
             }else if (end.equalsIgnoreCase("g6")){
+                rute.add("beacon03");
+                rute.add("beacon02");
+                rute.add("beacon01");
+                rute.add("g6");
+
+                sign.add("Move Forward");
+                sign.add("Turn Left");
+                sign.add("Turn Left");
+                sign.add("Arrive at destination");
 
             }else if (end.equalsIgnoreCase("g7")){
+                rute.add("beacon03");
+                rute.add("beacon02");
+                rute.add("beacon01");
+                rute.add("g7");
+
+                sign.add("Move Forward");
+                sign.add("Turn Left");
+                sign.add("Turn Left");
+                sign.add("Arrive at destination");
 
             }else if (end.equalsIgnoreCase("mpmart")){
+                rute.add("beacon03");
+                rute.add("beacon02");
+                rute.add("mpmart");
+
+                sign.add("Move Forward");
+                sign.add("Slight right");
+                sign.add("Arrive at destination");
 
             }else if (end.equalsIgnoreCase("laboran")){
+                rute.add("beacon03");
+                rute.add("beacon02");
+                rute.add("mpmart");
+
+                sign.add("Move Forward");
+                sign.add("Turn right");
+                sign.add("Arrive at destination");
 
             }else if (end.equalsIgnoreCase("g9")){
+                rute.add("beacon03");
+                rute.add("g9");
 
+                sign.add("on the right");
+                sign.add("Arrive at destination");
             }
         }
 

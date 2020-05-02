@@ -68,6 +68,10 @@ public class DetailRoomActivity extends AppCompatActivity {
         Glide.with(this).load(room.getSvPhoto()).into(photoSv);
         phone.setText("Phone Number : "+room.getNumber());
 
+        if (!type.getText().toString().equalsIgnoreCase("Classroom")){
+            jadwal.setVisibility(View.GONE);
+        }
+
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

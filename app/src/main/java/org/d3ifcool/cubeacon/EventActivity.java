@@ -161,6 +161,8 @@ public class EventActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (userPos == 0){
                     Toast.makeText(EventActivity.this, "please enter the beacon area", Toast.LENGTH_SHORT).show();
+                }if (userPos == 4){
+                    Toast.makeText(EventActivity.this, "unable to navigate", Toast.LENGTH_SHORT).show();
                 }else {
                     Preferences.save(getApplicationContext(), Constants.NOTIF,"false");
                     Intent searchIntent = new Intent(EventActivity.this,ChooseRoomActivity.class);
