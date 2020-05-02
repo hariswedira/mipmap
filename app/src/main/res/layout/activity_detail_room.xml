@@ -278,7 +278,7 @@
                 android:fontFamily="@font/montserrat"
                 android:text="View Schedule"
                 android:textStyle="bold"
-                android:background="@color/deep_blue"
+                android:background="@drawable/bg_btn_deep_blue"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="@+id/tv_room_detail_desc"
                 app:layout_constraintStart_toStartOf="@+id/tv_room_detail_desc"

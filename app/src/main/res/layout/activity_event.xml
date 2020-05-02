@@ -154,7 +154,7 @@
                 android:id="@+id/tv_no_event"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/montserrat"
                 android:gravity="center"
                 android:text="@string/inside_beacon_area"
@@ -179,12 +179,27 @@
                 android:id="@+id/amount_event"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="@+id/tv_no_event"
                 app:layout_constraintStart_toStartOf="@+id/tv_no_event"
                 app:layout_constraintTop_toBottomOf="@+id/tv_no_event" />
+
+            <Button
+                android:id="@+id/btn_see_detail"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_btn_deep_blue"
+                android:fontFamily="@font/montserrat"
+                android:text="See Detail"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@+id/iv_no_beacon_area"
+                app:layout_constraintStart_toStartOf="@+id/iv_no_beacon_area"
+                app:layout_constraintTop_toBottomOf="@+id/amount_event" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

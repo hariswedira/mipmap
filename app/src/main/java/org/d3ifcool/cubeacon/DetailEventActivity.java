@@ -53,6 +53,6 @@ public class DetailEventActivity extends AppCompatActivity {
         tgl.setText(event.getDate());
         ruangan.setText("by "+event.getRoom());
         deskripsi.setText(event.getContent());
-        organizer.setText(event.getOragnizer());
+        organizer.setText("at "+event.getOragnizer());
     }
 }

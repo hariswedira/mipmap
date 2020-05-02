@@ -65,7 +65,7 @@ public class EventActivity extends AppCompatActivity {
     private TextView noEvent;
     private ImageView signal, beaconLg, userPosIcon ,searchMenu, pinUserOne, pinUserFour, pinUserTwo, pinUserThree, pinBcnTwo, pinBcnThree, pinBcnFour, pinBcnFive, pinBcnSix, pinBcnSeven, pinBcnEight, pinBcnOne, go;
     private TextView bName, bNode, bTag, n1, n2, n3, n4, n5, n6, n7, c1, c2, c3, c4, c5, c6, c7, amountEvent;
-    private Button closeCard;
+    private Button closeCard, seeDetail;
     private CardView cardView, cdEvent;
     private TextToSpeech textToSpeech;
     private Guideline guideline;
@@ -108,6 +108,7 @@ public class EventActivity extends AppCompatActivity {
         userPosIcon = findViewById(R.id.iv_user_pos);
         beaconLg = findViewById(R.id.iv_no_beacon_area);
         amountEvent = findViewById(R.id.amount_event);
+        seeDetail = findViewById(R.id.btn_see_detail);
 
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/signal.png?alt=media&token=b9ddb563-9be0-4722-a592-031d140f3254").into(signal);
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/go_button.png?alt=media&token=c8f7901c-b910-41cc-a5f6-cf1923c59103").into(searchMenu);
@@ -150,6 +151,7 @@ public class EventActivity extends AppCompatActivity {
         pinUserFour.setVisibility(View.GONE);
         pinUserThree.setVisibility(View.GONE);
         pinUserTwo.setVisibility(View.GONE);
+        seeDetail.setVisibility(View.GONE);
 
         audioOn();
 
@@ -196,6 +198,33 @@ public class EventActivity extends AppCompatActivity {
                     int speech = textToSpeech.speak("Please go to beacon area",TextToSpeech.QUEUE_FLUSH,null);
                     animatePinBeacon();
                 }else if (event_tap.equalsIgnoreCase(BLUEBERRY)){
+                    Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
+                    intent.putExtra(EVENT_ID,2);
+                    intent.putExtra("events",listEvent);
+                    startActivity(intent);
+                }else if (event_tap.equalsIgnoreCase(COCONUT)){
+                    Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
+                    intent.putExtra(EVENT_ID,3);
+                    intent.putExtra("events",listEvent);
+                    startActivity(intent);
+                }else if (event_tap.equalsIgnoreCase(ICE)){
+                    Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
+                    intent.putExtra(EVENT_ID,4);
+                    intent.putExtra("events",listEvent);
+                    startActivity(intent);
+                }else if (event_tap.equalsIgnoreCase(MINT)){
+                    Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
+                    intent.putExtra(EVENT_ID,1);
+                    intent.putExtra("events",listEvent);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        seeDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (event_tap.equalsIgnoreCase(BLUEBERRY)){
                     Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
                     intent.putExtra(EVENT_ID,2);
                     intent.putExtra("events",listEvent);
@@ -395,6 +424,7 @@ public class EventActivity extends AppCompatActivity {
 
     private void outBeacon(){
         // TODO :  keluar daribeacon hilangin
+        seeDetail.setVisibility(View.GONE);
         beaconLg.setVisibility(View.VISIBLE);
         noEvent.setVisibility(View.INVISIBLE);
         amountEvent.setVisibility(View.INVISIBLE);
@@ -423,7 +453,8 @@ public class EventActivity extends AppCompatActivity {
     }
 
     private void inBeacon(String name){
-        beaconLg.setVisibility(View.GONE);
+        seeDetail.setVisibility(View.VISIBLE);
+        beaconLg.setVisibility(View.INVISIBLE);
         noEvent.setVisibility(View.VISIBLE);
         searchMenu.setVisibility(View.VISIBLE);
         userPosIcon.setVisibility(View.VISIBLE);
@@ -883,8 +914,8 @@ public class EventActivity extends AppCompatActivity {
             events.setRoom("MP Mart");
             events.setTitle("Discoun 50%");
             events.setContent("All Item Discount");
-            events.setDate("20 mei 2020");
-            events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/just_logo.png?alt=media&token=5db11fe4-0691-4cf4-883b-e8f71bbb948a");
+            events.setDate("20 mei 2020 - 21 Mei 2020");
+            events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mpmart.png?alt=media&token=3a2c5bef-efd8-446e-839a-dc11c931dac1");
             events.setOragnizer("Manajemen Pemasaran");
             listEvent.add(events);
         }else if (num == 1) {
@@ -894,24 +925,24 @@ public class EventActivity extends AppCompatActivity {
             events.setContent("Apple pie free");
             events.setDate("20 April 2020");
             events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/just_logo.png?alt=media&token=5db11fe4-0691-4cf4-883b-e8f71bbb948a");
-            events.setOragnizer("Perhotelan");
+            events.setOragnizer("Kitchen");
             listEvent.add(events);
             Event event = new Event();
             event.setRoom("G9");
             event.setTitle("Workshop");
             event.setContent(getResources().getString(R.string.event));
             event.setDate("20 Juni 2020");
-            event.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/just_logo.png?alt=media&token=5db11fe4-0691-4cf4-883b-e8f71bbb948a");
-            event.setOragnizer("Laboran FIT");
+            event.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/laboran.png?alt=media&token=6899776b-017c-431b-bdd1-b3cb1f6fe4b4");
+            event.setOragnizer("G11");
             listEvent.add(event);
         }else if (num == 4) {
             Event events = new Event();
             events.setRoom("Lobby");
             events.setTitle("Pameran Lab");
             events.setContent("Lab IT di Telkom");
-            events.setDate("23 April 2020");
-            events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/just_logo.png?alt=media&token=5db11fe4-0691-4cf4-883b-e8f71bbb948a");
-            events.setOragnizer("D3 Informatika");
+            events.setDate("23 April 2020 - 25 April 2020");
+            events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/chevalab.png?alt=media&token=7288632c-0558-4a8e-b5fe-ffb37bef3721");
+            events.setOragnizer("Lobby FIT");
             listEvent.add(events);
         }
     }
