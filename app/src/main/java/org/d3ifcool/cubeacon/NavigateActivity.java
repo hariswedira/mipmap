@@ -41,6 +41,7 @@ import java.util.Locale;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -51,7 +52,7 @@ public class NavigateActivity extends AppCompatActivity  {
     private ImageView edge01, edge02, edge03, edge04, edge05, edge06, edge07, edge08, edge09, edge10, edge11, edge12, edge13, edge14,
             edge15, edge16, edge17, edge18, edge19, edge20, edge21, edge22, edge23, edge24, edge25, edge26, edge27, edge28, edge29, edge30;
 
-    private ImageView walk, backArrow, direction, btnStart, btnStep, btnStop;
+    private ImageView walk, backArrow, direction, btnStart, btnStep, btnStop, signNavigate, btnFinish;
     Button infoRoom;
     PhotoView photoView;
 
@@ -67,6 +68,7 @@ public class NavigateActivity extends AppCompatActivity  {
 
     // beacon data
     CardView roomInfo, signCd;
+    ConstraintLayout signBox;
 
     // Rute
     ArrayList<String> rute;
@@ -81,11 +83,12 @@ public class NavigateActivity extends AppCompatActivity  {
     int userPos;
 
     String beacons;
+    boolean startPressed;
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-//        checkRef.setValue(false);
+        checkRef.setValue(false);
 //        navRef.setValue(0);
         finish();
     }
@@ -101,6 +104,7 @@ public class NavigateActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_navigate);
 
         beacons = "";
+        startPressed = false;
 
         roomInfo = findViewById(R.id.room_info);
         photoView = findViewById(R.id.photo_view);
@@ -118,6 +122,9 @@ public class NavigateActivity extends AppCompatActivity  {
         btnStep = findViewById(R.id.btn_step);
         btnStop = findViewById(R.id.btn_stop_nav);
         signNav = findViewById(R.id.tv_sign_nav);
+        signBox = findViewById(R.id.sign_box);
+        btnFinish = findViewById(R.id.btn_finish_nav);
+        signNavigate = findViewById(R.id.iv_sign_nav);
 
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mdi_directions_walk.png?alt=media&token=dee5da4b-a623-47ab-a7cd-dbf2c5a50c85").into(walk);
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/blue_back.png?alt=media&token=c6f28a6f-660a-45d4-a05c-6b6b78fbf7de").into(backArrow);
@@ -164,8 +171,13 @@ public class NavigateActivity extends AppCompatActivity  {
                     beacons = "beacon03";
                 }else if (value==4){
                     beacons = "beacon04";
+                }else if (value==0){
+                    beacons = "lurus";
                 }
                 checkRoute();
+                if (startPressed){
+                    updateCost();
+                }
 //                Toast.makeText(NavigateActivity.this, String.valueOf(value), Toast.LENGTH_SHORT).show();
             }
 
@@ -329,10 +341,25 @@ public class NavigateActivity extends AppCompatActivity  {
                 btnStep.setVisibility(View.VISIBLE);
                 btnStop.setVisibility(View.VISIBLE);
                 signCd.setVisibility(View.VISIBLE);
+                startPressed = true;
 //                checkRef.setValue(true);
 //                signNav.setText(arah.get(0));
                 checkRoute();
+                updateCost();
+            }
+        });
 
+        btnFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+        btnStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
             }
         });
 
@@ -342,9 +369,42 @@ public class NavigateActivity extends AppCompatActivity  {
 
     private void checkRoute(){
         for (int i = 0; i < rute.size(); i++) {
-            if (beacons.equalsIgnoreCase(rute.get(i))){
-                signNav.setText(arah.get(i));
+                if (beacons.equalsIgnoreCase(rute.get(i))){
+                    signNav.setText(arah.get(i));
+                    updateSignIcon(signNav.getText().toString());
+                }
+                else if (beacons.equalsIgnoreCase("beacon04")){
+                    signNav.setText(arah.get(arah.size()-1));
+                    signBox.setBackgroundColor(getResources().getColor(R.color.green));
+                    btnStop.setVisibility(View.GONE);
+                    btnStep.setVisibility(View.GONE);
+                    btnFinish.setVisibility(View.VISIBLE);
+                    updateSignIcon(signNav.getText().toString());
+                }else if (beacons.equalsIgnoreCase("lurus")){
+                    signNav.setText("Move Forward");
+                    updateSignIcon(signNav.getText().toString());
+                }
             }
+    }
+
+    private void updateSignIcon(String sign){
+        if (sign.equalsIgnoreCase("Arrive at destination")){
+            signNavigate.setImageResource(R.drawable.strip);
+        }else if (sign.equalsIgnoreCase("Move Forward")){
+            signNavigate.setImageResource(R.drawable.up_arrow);
+        }else if (sign.equalsIgnoreCase("Turn Right")){
+            signNavigate.setImageResource(R.drawable.up_right_arrow);
+        }else if (sign.equalsIgnoreCase("Turn Left")){
+            signNavigate.setImageResource(R.drawable.up_left_arrow);
+        }else if (sign.equalsIgnoreCase("Slight right")){
+
+        }else if (sign.equalsIgnoreCase("Slight left")){
+
+        }else if (sign.equalsIgnoreCase("on the right")){
+            signNavigate.setImageResource(R.drawable.right_arrow);
+        }
+        else if (sign.equalsIgnoreCase("on the left")){
+            signNavigate.setImageResource(R.drawable.left_arrow);
         }
     }
 
@@ -363,12 +423,24 @@ public class NavigateActivity extends AppCompatActivity  {
             case 3:
                 user03.setVisibility(View.VISIBLE);
                 break;
-            case 4:
-                user04.setVisibility(View.VISIBLE);
-                break;
+//            case 4:
+//                user04.setVisibility(View.VISIBLE);
+//                break;
+
 //            default:
 //                Toast.makeText(this, "Outside Beacon", Toast.LENGTH_SHORT).show();
 //                break;
+        }
+    }
+
+    private void updateCost(){
+        for (int i = 0; i < rute.size(); i++) {
+            if (beacons.equalsIgnoreCase(rute.get(i))){
+                DecimalFormat digit = new DecimalFormat("0.00");
+                name.setText(digit.format(cost.get(i))+" m");
+            }else if (beacons.equalsIgnoreCase("beacon04")){
+                name.setText("0.0 m");
+            }
         }
     }
 
@@ -734,6 +806,7 @@ public class NavigateActivity extends AppCompatActivity  {
         signCd.setVisibility(View.GONE);
         btnStop.setVisibility(View.GONE);
         btnStep.setVisibility(View.GONE);
+        btnFinish.setVisibility(View.GONE);
 
         btnStart.setVisibility(View.GONE);
         walk.setVisibility(View.GONE);

@@ -77,6 +77,10 @@ public class EventActivity extends AppCompatActivity {
 
     NavigateActivity navigateActivity;
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("userPosition");
+    DatabaseReference checkRef = database.getReference("navigation");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -279,11 +283,6 @@ public class EventActivity extends AppCompatActivity {
 
     private void startEstimote(){
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("userPosition");
-        DatabaseReference navRef = database.getReference("nav");
-        DatabaseReference checkRef = database.getReference("navigation");
-
         notificationManagaer = new NotificationManagaer(this);
 
         // Create the Proximity Observer
@@ -369,17 +368,17 @@ public class EventActivity extends AppCompatActivity {
                         if (title == null) {
                             title = "unknown";
                         }else if(title.equalsIgnoreCase(COCONUT)){
-                            outBeacon();
                             Toast.makeText(EventActivity.this, "coconut out", Toast.LENGTH_SHORT).show();
+                            outBeacon();
                         }else if (title.equalsIgnoreCase(BLUEBERRY)){
-                            outBeacon();
                             Toast.makeText(EventActivity.this, "blueberry out", Toast.LENGTH_SHORT).show();
+                            outBeacon();
                         }else if(title.equalsIgnoreCase(ICE)){
-                            outBeacon();
                             Toast.makeText(EventActivity.this, "ice out", Toast.LENGTH_SHORT).show();
-                        }else if (title.equalsIgnoreCase(MINT)){
                             outBeacon();
+                        }else if (title.equalsIgnoreCase(MINT)){
                             Toast.makeText(EventActivity.this, "mint out", Toast.LENGTH_SHORT).show();
+                            outBeacon();
                         }
 
                         userPos = 0;
@@ -405,6 +404,20 @@ public class EventActivity extends AppCompatActivity {
         pinUserFour.setVisibility(View.GONE);
         noEvent.setText(getResources().getString(R.string.enter_beacon_area));
         event_tap = "out";
+//        checkRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                boolean finish = dataSnapshot.getValue(Boolean.class);
+//                if (finish){
+//                    myRef.setValue(100);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
     }
 
     private void inBeacon(String name){
