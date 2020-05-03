@@ -240,7 +240,7 @@ public class Route {
                 sign.add("Turn Left");
                 sign.add("Arrive at destination");
 
-            }else if (end.equalsIgnoreCase("mpmart")){
+            }else if (end.equalsIgnoreCase("mp mart")){
                 rute.add("beacon03");
                 rute.add("beacon02");
                 rute.add("mpmart");

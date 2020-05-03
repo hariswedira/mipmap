@@ -45,8 +45,10 @@ import org.d3ifcool.cubeacon.utils.Constants;
 import org.d3ifcool.cubeacon.utils.Preferences;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class EventActivity extends AppCompatActivity {
 
@@ -80,6 +82,7 @@ public class EventActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("userPosition");
     DatabaseReference checkRef = database.getReference("navigation");
+    DatabaseReference dayCur = database.getReference("currentDay");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +92,11 @@ public class EventActivity extends AppCompatActivity {
         userPos = 0;
 
         navigateActivity = new NavigateActivity();
+
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+        // start form sunday as 1
+        dayCur.setValue(day);
 
         noEvent = findViewById(R.id.tv_no_event);
         searchMenu = findViewById(R.id.iv_search_room);
@@ -383,9 +391,11 @@ public class EventActivity extends AppCompatActivity {
                         if (listEvent.isEmpty()){
                             amountEvent.setTextColor(getResources().getColor(R.color.red));
                             amountEvent.setText("No event at this time");
+                            seeDetail.setVisibility(View.GONE);
                         }else {
                             amountEvent.setTextColor(getResources().getColor(R.color.green));
                             amountEvent.setText(listEvent.size()+" Event Found!");
+                            seeDetail.setVisibility(View.VISIBLE);
                         }
                         // TODO : posisi user
                         userPosition(userPos);
