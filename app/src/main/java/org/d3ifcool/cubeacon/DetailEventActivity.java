@@ -2,8 +2,11 @@ package org.d3ifcool.cubeacon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +18,7 @@ public class DetailEventActivity extends AppCompatActivity {
 
     ImageView photo, backArrow;
     TextView judul, tgl, ruangan, deskripsi, organizer;
+    Button see;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,7 @@ public class DetailEventActivity extends AppCompatActivity {
         deskripsi = findViewById(R.id.tv_detail_desc);
         organizer = findViewById(R.id.tv_organizer_detail);
         backArrow = findViewById(R.id.iv_arrow_event);
+        see = findViewById(R.id.btn_see_event);
 
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mdi_arrow_back.png?alt=media&token=232eaafa-e295-4df3-a575-33cac8f010e7").into(backArrow);
 
@@ -35,6 +40,17 @@ public class DetailEventActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onBackPressed();
+            }
+        });
+
+        see.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri webpage = Uri.parse("https://www.instagram.com/p/B-HZft1B0ml/?igshid=jjdsxmirqso2");
+                Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
             }
         });
 
@@ -48,7 +64,7 @@ public class DetailEventActivity extends AppCompatActivity {
 
         assert event != null;
 //        photo.setImageResource(event.getPoster());
-        Glide.with(this).load(event.getPoster()).into(photo);
+        Glide.with(this).load(event.getPhoto()).into(photo);
         judul.setText(event.getTitle());
         tgl.setText(event.getDate());
         ruangan.setText("by "+event.getRoom());

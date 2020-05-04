@@ -58,7 +58,7 @@ public class DetailRoomActivity extends AppCompatActivity {
 
         Room room = getIntent().getParcelableExtra("detail room");
         assert room != null;
-        Glide.with(this).load(room.getPhoto()).into(photo);
+        Glide.with(this).load(room.getRoomPhoto()).into(photo);
         title.setText(room.getName());
         desc.setText(room.getDesc());
         floor.setText(room.getFloor());

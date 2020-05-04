@@ -14,11 +14,12 @@ public class Room implements Parcelable {
     private String photo;
     private String svPhoto;
     private String nip;
+    private String roomPhoto;
 
     public Room() {
     }
 
-    public Room(String name, String desc, String floor, String supervisor, String number, String type, String photo, String svPhoto, String nip) {
+    public Room(String name, String desc, String floor, String supervisor, String number, String type, String photo, String svPhoto, String nip, String roomPhoto) {
         this.name = name;
         this.desc = desc;
         this.floor = floor;
@@ -28,6 +29,7 @@ public class Room implements Parcelable {
         this.photo = photo;
         this.svPhoto = svPhoto;
         this.nip = nip;
+        this.roomPhoto = roomPhoto;
     }
 
     public String getName() {
@@ -102,6 +104,13 @@ public class Room implements Parcelable {
         this.nip = nip;
     }
 
+    public String getRoomPhoto() {
+        return roomPhoto;
+    }
+
+    public void setRoomPhoto(String roomPhoto) {
+        this.roomPhoto = roomPhoto;
+    }
 
     @Override
     public int describeContents() {
@@ -119,6 +128,7 @@ public class Room implements Parcelable {
         dest.writeString(this.photo);
         dest.writeString(this.svPhoto);
         dest.writeString(this.nip);
+        dest.writeString(this.roomPhoto);
     }
 
     protected Room(Parcel in) {
@@ -131,6 +141,7 @@ public class Room implements Parcelable {
         this.photo = in.readString();
         this.svPhoto = in.readString();
         this.nip = in.readString();
+        this.roomPhoto = in.readString();
     }
 
     public static final Creator<Room> CREATOR = new Creator<Room>() {

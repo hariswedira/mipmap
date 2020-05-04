@@ -191,13 +191,6 @@ public class EventActivity extends AppCompatActivity {
 
         event_tap = "out";
 
-        String a = getIntent().getStringExtra("beacon");
-        if (a==null){
-//            Toast.makeText(EventActivity.this, "Gaada", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(EventActivity.this, ""+a, Toast.LENGTH_SHORT).show();
-        }
-
         cdEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -273,15 +266,70 @@ public class EventActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-//        Toast.makeText(this, "Pause", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Pause", Toast.LENGTH_SHORT).show();
         Preferences.save(getApplicationContext(), Constants.NOTIF_TWO,"true");
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
-//        Toast.makeText(this, "Resume", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Resume", Toast.LENGTH_SHORT).show();
         Preferences.save(getApplicationContext(), Constants.NOTIF_TWO,"false");
+
+        boolean a = getIntent().getBooleanExtra("beacon",false);
+
+        if (a){
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    int value = dataSnapshot.getValue(Integer.class);
+                    String beacons;
+                    userPos = value;
+                    if (userPos==1){
+                        beacons = MINT;
+                        inBeacon(beacons);
+                    }else if (userPos==2){
+                        beacons = BLUEBERRY;
+                        inBeacon(beacons);
+                    }else if (userPos==3){
+                        beacons = COCONUT;
+                        inBeacon(beacons);
+                    }else if (userPos==4){
+                        beacons = ICE;
+                        inBeacon(beacons);
+                    }else if (userPos==0){
+                        outBeacon();
+                    }
+
+                    userPosition(userPos);
+                    initDataEvent(userPos);
+                    amountEvent.setVisibility(View.VISIBLE);
+                    if (listEvent.isEmpty()){
+                        amountEvent.setTextColor(getResources().getColor(R.color.red));
+                        amountEvent.setText("No event at this time");
+                        seeDetail.setVisibility(View.GONE);
+                    }else {
+                        amountEvent.setTextColor(getResources().getColor(R.color.green));
+                        amountEvent.setText(listEvent.size()+" Event Found!");
+                        seeDetail.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                }
+            });
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Toast.makeText(this, "start", Toast.LENGTH_SHORT).show();
+        Preferences.save(getApplicationContext(), Constants.NOTIF,"true");
     }
 
     public void createEstimote(){
@@ -311,13 +359,6 @@ public class EventActivity extends AppCompatActivity {
                                 return null;
                             }
                         });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-//        Toast.makeText(this, "start", Toast.LENGTH_SHORT).show();
-        Preferences.save(getApplicationContext(), Constants.NOTIF,"true");
     }
 
     private void startEstimote(){
@@ -918,24 +959,28 @@ public class EventActivity extends AppCompatActivity {
     private void initDataEvent(int num) {
         listEvent.clear();
         if (num == 2) {
-
-        }if (num == 3) {
             Event events = new Event();
             events.setRoom("MP Mart");
             events.setTitle("Discoun 50%");
-            events.setContent("All Item Discount");
+//            events.setContent("All Item Discount");
+            events.setContent(getResources().getString(R.string.mpmart));
             events.setDate("20 mei 2020 - 21 Mei 2020");
             events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mpmart.png?alt=media&token=3a2c5bef-efd8-446e-839a-dc11c931dac1");
-            events.setOragnizer("Manajemen Pemasaran");
+            events.setOragnizer("MP Mart");
+            events.setPhoto("https://images.unsplash.com/photo-1584680226833-0d680d0a0794?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
             listEvent.add(events);
+        }if (num == 3) {
+
         }else if (num == 1) {
             Event events = new Event();
             events.setRoom("Kitchen");
             events.setTitle("Free cake");
-            events.setContent("Apple pie free");
+//            events.setContent("Apple pie free");
+            events.setContent(getResources().getString(R.string.kitchen));
             events.setDate("20 April 2020");
             events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/just_logo.png?alt=media&token=5db11fe4-0691-4cf4-883b-e8f71bbb948a");
             events.setOragnizer("Kitchen");
+            events.setPhoto("https://images.unsplash.com/photo-1567022405855-fc2ce6befe33?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80");
             listEvent.add(events);
             Event event = new Event();
             event.setRoom("G9");
@@ -944,15 +989,18 @@ public class EventActivity extends AppCompatActivity {
             event.setDate("20 Juni 2020");
             event.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/laboran.png?alt=media&token=6899776b-017c-431b-bdd1-b3cb1f6fe4b4");
             event.setOragnizer("G11");
+            event.setPhoto("https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2090&q=80");
             listEvent.add(event);
         }else if (num == 4) {
             Event events = new Event();
             events.setRoom("Lobby");
             events.setTitle("Pameran Lab");
-            events.setContent("Lab IT di Telkom");
+//            events.setContent("Lab IT di Telkom");
+            events.setContent(getResources().getString(R.string.lobby));
             events.setDate("23 April 2020 - 25 April 2020");
             events.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/chevalab.png?alt=media&token=7288632c-0558-4a8e-b5fe-ffb37bef3721");
             events.setOragnizer("Lobby FIT");
+            events.setPhoto("https://images.pexels.com/photos/301930/pexels-photo-301930.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
             listEvent.add(events);
         }
     }

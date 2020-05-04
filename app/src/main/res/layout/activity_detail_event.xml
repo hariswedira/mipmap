@@ -87,6 +87,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat"
                 android:text="TextView"
+                android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/tv_detail_judul"
                 app:layout_constraintStart_toStartOf="@+id/tv_detail_judul"
@@ -115,16 +116,18 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat"
                 android:text="TextView"
+                android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-            <TextView
+            <com.codesgood.views.JustifiedTextView
                 android:id="@+id/tv_detail_desc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat"
                 android:text="TextView"
+                android:textColor="@android:color/black"
                 app:layout_constraintEnd_toEndOf="@+id/tv_detail_ruangan"
                 app:layout_constraintStart_toStartOf="@+id/tv_detail_judul"
                 app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -134,12 +137,11 @@
                 android:id="@+id/tv_organizer_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="128dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat"
                 android:text="Support by"
+                android:textColor="@android:color/black"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_detail_tanggal"
                 app:layout_constraintTop_toBottomOf="@+id/tv_detail_tanggal" />
 
@@ -175,6 +177,21 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintGuide_begin="230dp" />
+
+            <Button
+                android:id="@+id/btn_see_event"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="72dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_btn_deep_blue"
+                android:text="See Detail"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tv_detail_desc"
+                app:layout_constraintStart_toStartOf="@+id/tv_detail_desc"
+                app:layout_constraintTop_toBottomOf="@+id/tv_organizer_detail" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

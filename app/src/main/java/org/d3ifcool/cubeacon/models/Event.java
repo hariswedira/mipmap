@@ -10,18 +10,20 @@ public class Event implements Parcelable {
     private String room;
     private String date;
     private String oragnizer;
+    private String photo;
 
     public Event() {
 
     }
 
-    public Event(String poster, String title, String content, String room, String date, String oragnizer) {
+    public Event(String poster, String title, String content, String room, String date, String oragnizer, String photo) {
         this.poster = poster;
         this.title = title;
         this.content = content;
         this.room = room;
         this.date = date;
         this.oragnizer = oragnizer;
+        this.photo = photo;
     }
 
     public String getPoster() {
@@ -72,6 +74,13 @@ public class Event implements Parcelable {
         this.oragnizer = oragnizer;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
     @Override
     public int describeContents() {
@@ -86,6 +95,7 @@ public class Event implements Parcelable {
         dest.writeString(this.room);
         dest.writeString(this.date);
         dest.writeString(this.oragnizer);
+        dest.writeString(this.photo);
     }
 
     protected Event(Parcel in) {
@@ -95,6 +105,7 @@ public class Event implements Parcelable {
         this.room = in.readString();
         this.date = in.readString();
         this.oragnizer = in.readString();
+        this.photo= in.readString();
     }
 
     public static final Creator<Event> CREATOR = new Creator<Event>() {
