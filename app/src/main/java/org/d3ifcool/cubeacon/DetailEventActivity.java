@@ -46,7 +46,7 @@ public class DetailEventActivity extends AppCompatActivity {
         see.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Uri webpage = Uri.parse("https://www.instagram.com/p/B-HZft1B0ml/?igshid=jjdsxmirqso2");
+                Uri webpage = Uri.parse("https://www.instagram.com/p/BuDwrKVAeON/?igshid=jgqt58uyjad8");
                 Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);

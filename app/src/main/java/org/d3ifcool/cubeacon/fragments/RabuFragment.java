@@ -68,7 +68,7 @@ public class RabuFragment extends Fragment {
 
         rvSchedule = view.findViewById(R.id.rv_list_rabu);
         rvOnGoing = view.findViewById(R.id.rv_list_on_rabu);
-        onGoing = view.findViewById(R.id.tv_ongoingRabu);
+        onGoing = view.findViewById(R.id.tv_ongoing_rabu);
         linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager2 = new LinearLayoutManager(getContext());
 
@@ -132,9 +132,9 @@ public class RabuFragment extends Fragment {
     private void initDataSchedule(){
         listSchedule.add(new Schedule("Pemograman berbasis sensor","18:00 - 19:30 WIB","Icih Caroline",1));
         listSchedule.add(new Schedule("Pemograman berbasis sensor","08:30 - 12:30 WIB","Icih Caroline",1));
-        listSchedule.add(new Schedule("Pemograman berbasis sensor","08:30 - 12:30 WIB","Icih Caroline",1));
-        listSchedule.add(new Schedule("Pemograman berbasis sensor","08:30 - 12:30 WIB","Icih Caroline",1));
-        listSchedule.add(new Schedule("Pemograman berbasis sensor","08:30 - 12:30 WIB","Icih Caroline",1));
+        listSchedule.add(new Schedule("Pemograman berbasis sensor","12:30 - 14:30 WIB","Icih Caroline",1));
+        listSchedule.add(new Schedule("Pemograman berbasis sensor","14:30 - 16:30 WIB","Icih Caroline",1));
+        listSchedule.add(new Schedule("Pemograman berbasis sensor","16:30 - 18:30 WIB","Icih Caroline",1));
     }
 
 }

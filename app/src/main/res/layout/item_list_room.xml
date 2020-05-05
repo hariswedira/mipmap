@@ -6,6 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:contentDescription="@string/icon_event_list"
         android:id="@+id/iv_room"
         android:layout_width="80dp"
         android:layout_height="80dp"

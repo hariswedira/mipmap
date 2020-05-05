@@ -27,6 +27,7 @@
         android:layout_marginStart="185dp"
         android:layout_marginTop="190dp"
         android:src="@drawable/beacon_icon"
+        android:contentDescription="@string/beacon_pins"
         app:layout_constraintStart_toStartOf="@id/iv_map_fit_flr_one"
         app:layout_constraintTop_toTopOf="@+id/iv_map_fit_flr_one" />
 
@@ -36,6 +37,7 @@
         android:layout_height="@dimen/beacon_size"
         android:layout_marginStart="75dp"
         android:src="@drawable/beacon_icon"
+        android:contentDescription="@string/beacon_pins"
         app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_one"
         app:layout_constraintStart_toEndOf="@+id/pin_bcn_one"
         app:layout_constraintTop_toTopOf="@+id/pin_bcn_one" />
@@ -46,6 +48,7 @@
         android:layout_height="@dimen/beacon_size"
         android:layout_marginTop="30dp"
         android:src="@drawable/beacon_icon"
+        android:contentDescription="@string/beacon_pins"
         app:layout_constraintEnd_toEndOf="@+id/pin_bcn_two"
         app:layout_constraintStart_toStartOf="@+id/pin_bcn_two"
         app:layout_constraintTop_toBottomOf="@+id/pin_bcn_two" />
@@ -56,6 +59,7 @@
         android:layout_height="@dimen/beacon_size"
         android:layout_marginTop="35dp"
         android:src="@drawable/beacon_icon"
+        android:contentDescription="@string/beacon_pins"
         app:layout_constraintEnd_toEndOf="@+id/pin_bcn_three"
         app:layout_constraintStart_toStartOf="@+id/pin_bcn_three"
         app:layout_constraintTop_toBottomOf="@+id/pin_bcn_three" />
@@ -66,6 +70,7 @@
         android:layout_height="@dimen/beacon_size"
         android:layout_marginTop="40dp"
         android:src="@drawable/beacon_icon"
+        android:contentDescription="@string/beacon_pins"
         app:layout_constraintEnd_toEndOf="@+id/pin_bcn_four"
         app:layout_constraintStart_toStartOf="@+id/pin_bcn_four"
         app:layout_constraintTop_toBottomOf="@+id/pin_bcn_four" />
@@ -76,6 +81,7 @@
         android:layout_height="@dimen/beacon_size"
         android:layout_marginTop="50dp"
         android:src="@drawable/beacon_icon"
+        android:contentDescription="@string/beacon_pins"
         app:layout_constraintEnd_toEndOf="@+id/pin_bcn_five"
         app:layout_constraintStart_toStartOf="@+id/pin_bcn_five"
         app:layout_constraintTop_toBottomOf="@+id/pin_bcn_five" />
@@ -86,6 +92,7 @@
         android:layout_height="@dimen/beacon_size"
         android:layout_marginEnd="100dp"
         android:src="@drawable/beacon_icon"
+        android:contentDescription="@string/beacon_pins"
         app:layout_constraintEnd_toStartOf="@+id/pin_bcn_five"
         app:layout_constraintTop_toTopOf="@+id/pin_bcn_five" />
 
@@ -95,6 +102,7 @@
         android:layout_height="@dimen/beacon_size"
         android:layout_marginStart="40dp"
         android:src="@drawable/beacon_icon"
+        android:contentDescription="@string/beacon_pins"
         app:layout_constraintStart_toEndOf="@+id/pin_bcn_six"
         app:layout_constraintTop_toTopOf="@+id/pin_bcn_six" />
 
@@ -103,6 +111,7 @@
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:src="@drawable/user_pin"
+        android:contentDescription="@string/beacon_pins"
         app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_two"
         app:layout_constraintEnd_toStartOf="@+id/pin_bcn_two"
         app:layout_constraintTop_toTopOf="@+id/pin_bcn_two" />
@@ -111,6 +120,7 @@
         android:id="@+id/pin_user_pos_three"
         android:layout_width="15dp"
         android:layout_height="15dp"
+        android:contentDescription="@string/beacon_pins"
         app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_three"
         app:layout_constraintEnd_toStartOf="@+id/pin_bcn_three"
         app:layout_constraintTop_toTopOf="@+id/pin_bcn_three"
@@ -120,6 +130,7 @@
         android:id="@+id/pin_user_pos_one"
         android:layout_width="15dp"
         android:layout_height="15dp"
+        android:contentDescription="@string/beacon_pins"
         app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_one"
         app:layout_constraintStart_toEndOf="@+id/pin_bcn_one"
         app:layout_constraintTop_toTopOf="@+id/pin_bcn_one"
@@ -129,6 +140,7 @@
         android:id="@+id/pin_user_pos_four"
         android:layout_width="15dp"
         android:layout_height="15dp"
+        android:contentDescription="@string/beacon_pins"
         app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_four"
         app:layout_constraintEnd_toStartOf="@+id/pin_bcn_four"
         app:layout_constraintTop_toTopOf="@+id/pin_bcn_four"
@@ -169,6 +181,7 @@
                 android:id="@+id/iv_no_beacon_area"
                 android:layout_width="300dp"
                 android:layout_height="100dp"
+                android:contentDescription="@string/beacon_pins"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_no_event"
@@ -476,6 +489,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginEnd="16dp"
+                    android:contentDescription="@string/beacon_pins"
                     app:layout_constraintBottom_toBottomOf="@+id/textView2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView2"
@@ -504,6 +518,7 @@
         android:id="@+id/iv_search_room"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:contentDescription="@string/beacon_pins"
         app:layout_constraintBottom_toBottomOf="@+id/iv_map_fit_flr_one"
         app:layout_constraintEnd_toEndOf="@+id/iv_map_fit_flr_one"
         app:srcCompat="@drawable/beacon" />
@@ -512,6 +527,7 @@
         android:id="@+id/iv_user_pos"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:contentDescription="@string/beacon_pins"
         app:layout_constraintBottom_toTopOf="@+id/iv_search_room"
         app:layout_constraintEnd_toEndOf="@+id/iv_search_room"
         app:layout_constraintStart_toStartOf="@+id/iv_search_room"

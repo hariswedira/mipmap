@@ -33,4 +33,16 @@
     <string name="mpmart">This event is an opening ceremony for the new MP Mart with a better store design. To celebrate this event, MP Mart gave a large discount in purchasing various products. The purpose of course is not only as a ceremonial event, but also to introduce MP Mart to Telkom University.</string>
     <string name="lobby">This event is an exhibition of the final project of the work of final year students majoring in D3 in application software engineering. Here they introduce their work, as well as to find user feedback and ratings from lecturers. Level one and two students are highly encouraged to come to this exhibition, because they can learn a lot about the results that can be made by their seniors.</string>
     <string name="kitchen">This event was made by students majoring in hospitality. They are challenged by lecturers to make and distribute cakes for free, which for those who have tasted artificial cakes they have to give an honest assessment.</string>
+    <string name="back_to_parent">Back to parent</string>
+    <string name="photo_detail">Photo detail</string>
+    <string name="call_to_phone">Call to phone</string>
+    <string name="beacon_pins">Beacon Pin</string>
+    <string name="logo_mipmap">Logo mipmap</string>
+    <string name="walk">Walk</string>
+    <string name="button_nav">Button Nav</string>
+    <string name="beacon_photo">beacon photo</string>
+    <string name="icon_event_list">photo event icon</string>
+    <string name="nav_drawer">nav drawer</string>
+    <string name="user_pos">User pos</string>
+    <string name="room_pos">Room pos</string>
 </resources>

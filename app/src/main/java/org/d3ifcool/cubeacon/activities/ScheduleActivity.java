@@ -47,12 +47,12 @@ public class ScheduleActivity extends AppCompatActivity {
 //        seninFragment.setListSchedule(listSchedule);
 
         PageAdapter adapter = new PageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new SeninFragment(),"Senin");
-        adapter.addFragment(new SelasaFragment(),"Selasa");
-        adapter.addFragment(new RabuFragment(),"Rabu");
-        adapter.addFragment(new KamisFragment(),"Kamis");
-        adapter.addFragment(new JumatFragment(),"Jum'at");
-        adapter.addFragment(new SabtuFragment(),"Sabtu");
+        adapter.addFragment(new SeninFragment(),"Monday");
+        adapter.addFragment(new SelasaFragment(),"Tuesday");
+        adapter.addFragment(new RabuFragment(),"Wednesday");
+        adapter.addFragment(new KamisFragment(),"Thursday");
+        adapter.addFragment(new JumatFragment(),"Friday");
+        adapter.addFragment(new SabtuFragment(),"Saturday");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 

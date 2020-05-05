@@ -13,6 +13,12 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import org.d3ifcool.cubeacon.activities.ListEventActivity;
 import org.d3ifcool.cubeacon.adapter.EventAdapter;
 import org.d3ifcool.cubeacon.adapter.RoomAdapter;
@@ -34,12 +40,39 @@ public class ChooseRoomActivity extends AppCompatActivity {
     private int userPos;
 //    private ArrayAdapter<String> arrayAdapter;
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("userPosition");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_room);
 
         userPos = getIntent().getIntExtra("user pos",100);
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                int value = dataSnapshot.getValue(Integer.class);
+                if (value==1){
+                    userPos= value;
+                }else if (value==2){
+                    userPos= value;
+                }else if (value==3){
+                    userPos= value;
+                }else if (value==4){
+                    userPos= value;
+                }else if (value==0){
+                    userPos=value;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+            }
+        });
 
         classRoom = findViewById(R.id.btn_classroom);
         lab = findViewById(R.id.btn_laboratory);
@@ -90,11 +123,11 @@ public class ChooseRoomActivity extends AppCompatActivity {
 //                for (int i = 0; i <= 11 ; i++) {
 //                    newList.add(new Room("G"+(i+1),getResources().getString(R.string.about),"Floor 1", "Amir Hasanudin Fauzi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
 //                }
-                newList.add(new Room("G9",getResources().getString(R.string.about),"Floor 1", "Amir Hasanudin Fauzi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/class.png?alt=media&token=d3009015-f21b-4398-bcce-a71558392d0b", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088","https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80"));
+                newList.add(new Room("G9",getResources().getString(R.string.about_g9),"Floor 1", "Amir Hasanudin Fauzi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/class.png?alt=media&token=d3009015-f21b-4398-bcce-a71558392d0b", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088","https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80"));
 //                newList.add(new Room("G10",getResources().getString(R.string.about),"Floor 1", "Amir Hasanudin Fauzi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/cheva.png?alt=media&token=b4b51774-2a2e-4254-bd97-98e0814f8328", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088"));
-                newList.add(new Room("G6",getResources().getString(R.string.about),"Floor 1", "Amir Hasanudin Fauzi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/class.png?alt=media&token=d3009015-f21b-4398-bcce-a71558392d0b", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088","https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80"));
-                newList.add(new Room("G5",getResources().getString(R.string.about),"Floor 1", "Amir Hasanudin Fauzi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/class.png?alt=media&token=d3009015-f21b-4398-bcce-a71558392d0b", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088","https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80"));
-                newList.add(new Room("G7",getResources().getString(R.string.about),"Floor 1", "Amir Hasanudin Fauzi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/class.png?alt=media&token=d3009015-f21b-4398-bcce-a71558392d0b", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088","https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80"));
+                newList.add(new Room("G6",getResources().getString(R.string.about_g6),"Floor 1", "Amir Hasanudin Fauzi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/class.png?alt=media&token=d3009015-f21b-4398-bcce-a71558392d0b", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088","https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80"));
+                newList.add(new Room("G5",getResources().getString(R.string.about_g5),"Floor 1", "Amir Hasanudin Fauzi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/class.png?alt=media&token=d3009015-f21b-4398-bcce-a71558392d0b", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088","https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80"));
+                newList.add(new Room("G7",getResources().getString(R.string.about_g7),"Floor 1", "Amir Hasanudin Fauzi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/class.png?alt=media&token=d3009015-f21b-4398-bcce-a71558392d0b", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088","https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80"));
                 newList.add(new Room("Kitchen",getResources().getString(R.string.about_kitchen),"Floor 1", "Pak Dodi", "08123456789", "Classroom", "https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/kitchen.png?alt=media&token=74abd735-cf56-4f0f-ac15-20dcb20d0450", "https://dif.telkomuniversity.ac.id/wp-content/uploads/2014/12/Amir-Hasanudin-Fauzi-ST.-MT-150x150.jpg","14880088","https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"));
                 adapter.updateList(newList);
             }

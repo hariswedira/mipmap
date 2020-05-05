@@ -42,10 +42,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ongoingSelasa" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_ongoing_selasa" />
 
     <TextView
-        android:id="@+id/tv_ongoingSelasa"
+        android:id="@+id/tv_ongoing_selasa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

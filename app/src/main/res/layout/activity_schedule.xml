@@ -50,7 +50,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/beacon" />
+                    app:srcCompat="@drawable/beacon"
+                    android:contentDescription="@string/back_to_parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

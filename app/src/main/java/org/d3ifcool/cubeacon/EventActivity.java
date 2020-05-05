@@ -123,7 +123,7 @@ public class EventActivity extends AppCompatActivity {
 
         listEvent = new ArrayList<>();
 
-//        signal.setVisibility(View.INVISIBLE);
+        signal.setVisibility(View.INVISIBLE);
         searchMenu.setVisibility(View.GONE);
         userPosIcon.setVisibility(View.GONE);
         noEvent.setVisibility(View.INVISIBLE);
@@ -194,6 +194,7 @@ public class EventActivity extends AppCompatActivity {
         cdEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Preferences.save(getApplicationContext(), Constants.NOTIF,"false");
                 if (event_tap.equalsIgnoreCase("out")){
                     Toast.makeText(EventActivity.this, getResources().getString(R.string.outside_beacon_area), Toast.LENGTH_SHORT).show();
                     int speech = textToSpeech.speak("Please go to beacon area",TextToSpeech.QUEUE_FLUSH,null);
@@ -225,6 +226,7 @@ public class EventActivity extends AppCompatActivity {
         seeDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Preferences.save(getApplicationContext(), Constants.NOTIF,"false");
                 if (event_tap.equalsIgnoreCase(BLUEBERRY)){
                     Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
                     intent.putExtra(EVENT_ID,2);
@@ -266,69 +268,69 @@ public class EventActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Toast.makeText(this, "Pause", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Pause", Toast.LENGTH_SHORT).show();
         Preferences.save(getApplicationContext(), Constants.NOTIF_TWO,"true");
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        Toast.makeText(this, "Resume", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Resume", Toast.LENGTH_SHORT).show();
         Preferences.save(getApplicationContext(), Constants.NOTIF_TWO,"false");
 
         boolean a = getIntent().getBooleanExtra("beacon",false);
 
-        if (a){
-            myRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    // This method is called once with the initial value and again
-                    // whenever data at this location is updated.
-                    int value = dataSnapshot.getValue(Integer.class);
-                    String beacons;
-                    userPos = value;
-                    if (userPos==1){
-                        beacons = MINT;
-                        inBeacon(beacons);
-                    }else if (userPos==2){
-                        beacons = BLUEBERRY;
-                        inBeacon(beacons);
-                    }else if (userPos==3){
-                        beacons = COCONUT;
-                        inBeacon(beacons);
-                    }else if (userPos==4){
-                        beacons = ICE;
-                        inBeacon(beacons);
-                    }else if (userPos==0){
-                        outBeacon();
-                    }
-
-                    userPosition(userPos);
-                    initDataEvent(userPos);
-                    amountEvent.setVisibility(View.VISIBLE);
-                    if (listEvent.isEmpty()){
-                        amountEvent.setTextColor(getResources().getColor(R.color.red));
-                        amountEvent.setText("No event at this time");
-                        seeDetail.setVisibility(View.GONE);
-                    }else {
-                        amountEvent.setTextColor(getResources().getColor(R.color.green));
-                        amountEvent.setText(listEvent.size()+" Event Found!");
-                        seeDetail.setVisibility(View.VISIBLE);
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError error) {
-                    // Failed to read value
-                }
-            });
+//        if (a){
+//            myRef.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(DataSnapshot dataSnapshot) {
+//                    // This method is called once with the initial value and again
+//                    // whenever data at this location is updated.
+//                    int value = dataSnapshot.getValue(Integer.class);
+//                    String beacons;
+//                    userPos = value;
+//                    if (userPos==1){
+//                        beacons = MINT;
+//                        inBeacon(beacons);
+//                    }else if (userPos==2){
+//                        beacons = BLUEBERRY;
+//                        inBeacon(beacons);
+//                    }else if (userPos==3){
+//                        beacons = COCONUT;
+//                        inBeacon(beacons);
+//                    }else if (userPos==4){
+//                        beacons = ICE;
+//                        inBeacon(beacons);
+//                    }else if (userPos==0){
+//                        outBeacon();
+//                    }
+//
+//                    userPosition(userPos);
+//                    initDataEvent(userPos);
+//                    amountEvent.setVisibility(View.VISIBLE);
+//                    if (listEvent.isEmpty()){
+//                        amountEvent.setTextColor(getResources().getColor(R.color.red));
+//                        amountEvent.setText("No event at this time");
+//                        seeDetail.setVisibility(View.GONE);
+//                    }else {
+//                        amountEvent.setTextColor(getResources().getColor(R.color.green));
+//                        amountEvent.setText(listEvent.size()+" Event Found!");
+//                        seeDetail.setVisibility(View.VISIBLE);
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(DatabaseError error) {
+//                    // Failed to read value
+//                }
+//            });
         }
-    }
+//    }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Toast.makeText(this, "start", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "start", Toast.LENGTH_SHORT).show();
         Preferences.save(getApplicationContext(), Constants.NOTIF,"true");
     }
 
@@ -983,12 +985,12 @@ public class EventActivity extends AppCompatActivity {
             events.setPhoto("https://images.unsplash.com/photo-1567022405855-fc2ce6befe33?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80");
             listEvent.add(events);
             Event event = new Event();
-            event.setRoom("G9");
+            event.setRoom("G01");
             event.setTitle("Workshop");
             event.setContent(getResources().getString(R.string.event));
             event.setDate("20 Juni 2020");
             event.setPoster("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/laboran.png?alt=media&token=6899776b-017c-431b-bdd1-b3cb1f6fe4b4");
-            event.setOragnizer("G11");
+            event.setOragnizer("G01");
             event.setPhoto("https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2090&q=80");
             listEvent.add(event);
         }else if (num == 4) {

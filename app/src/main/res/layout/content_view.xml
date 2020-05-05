@@ -9,6 +9,7 @@
     android:padding="20dp">
 
     <ImageView
+        android:contentDescription="@string/beacon_photo"
         android:id="@+id/beaconImage"
         android:layout_width="128dp"
         android:layout_height="192dp"

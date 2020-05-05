@@ -65,10 +65,14 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, NavigateActivity.class);
-                intent.putExtra("room",roomData);
-                intent.putExtra("posisi user",userPos);
-                context.startActivity(intent);
+                if (userPos==0){
+                    Toast.makeText(context, "please enter the beacon area", Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent intent = new Intent(context, NavigateActivity.class);
+                    intent.putExtra("room",roomData);
+                    intent.putExtra("posisi user",userPos);
+                    context.startActivity(intent);
+                }
 //                ((Activity)context).finish();
             }
         });
