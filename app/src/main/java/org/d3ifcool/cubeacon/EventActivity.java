@@ -273,6 +273,12 @@ public class EventActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        proximityObserverHandler.stop();
+        super.onDestroy();
+    }
+
+    @Override
     protected void onPostResume() {
         super.onPostResume();
 //        Toast.makeText(this, "Resume", Toast.LENGTH_SHORT).show();

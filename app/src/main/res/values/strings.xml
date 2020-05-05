@@ -1,19 +1,19 @@
 <resources>
     <string name="app_name">MipMap</string>
 
-    <string name="access_token">pk.eyJ1IjoiaGFyaXN3ZWRpcmEiLCJhIjoiY2szaWpwbmlnMDh3dTNobDl0Y3g5MXlxMiJ9.JmDYEXYStrtoOagmIEui8w</string>
-    <string name="app_id">febbydahlan034-gmail-com-s-6wz</string>
+<!--    <string name="access_token">pk.eyJ1IjoiaGFyaXN3ZWRpcmEiLCJhIjoiY2szaWpwbmlnMDh3dTNobDl0Y3g5MXlxMiJ9.JmDYEXYStrtoOagmIEui8w</string>-->
+<!--    <string name="app_id">febbydahlan034-gmail-com-s-6wz</string>-->
 
-    <string name="app_token">93eb2e64e84caf1d30079ad3c7b8b7e8</string>
-    <string name="user_location_permission_explanation">Granted</string>
-    <string name="user_location_permission_not_granted">Not granted</string>
+<!--    <string name="app_token">93eb2e64e84caf1d30079ad3c7b8b7e8</string>-->
+<!--    <string name="user_location_permission_explanation">Granted</string>-->
+<!--    <string name="user_location_permission_not_granted">Not granted</string>-->
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+<!--    <string name="hello_blank_fragment">Hello blank fragment</string>-->
     <string name="close">Close</string>
     <string name="outside_beacon_area">You\'re outside the beacon area</string>
     <string name="inside_beacon_area">Nearby Events</string>
-    <string name="navigate_map_txt">Navigate Map</string>
+<!--    <string name="navigate_map_txt">Navigate Map</string>-->
     <string name="enter_beacon_area">Please go to beacon area</string>
     <string name="time_location"><![CDATA[Time & Location]]></string>
 
@@ -25,7 +25,7 @@
     <string name="about_g9">G9 is a classroom located on the first floor of the faculty of applied sciences. This classroom is not a room for practicum, but only for material class, because there is no computer available here. Existing facilities to support learning there are blackboards, air conditioners and projectors.</string>
     <string name="about_kitchen">Kitchen is a special class room majoring in hospitality. This room is very large and consists of two parts, one for practice dining with manner and another practice for making and serving food.</string>
 
-    <string name="about_mpmart">MP Mart is is a minimarket owned by the faculty of applied sciences and managed by the marketing management department for business practice activities. MP Mart is very helpful to the FIT community because if they want to buy light snacks, they just need to buy it there, no need to leave the building.</string>
+    <string name="about_mpmart">MP Mart is a minimarket owned by the faculty of applied sciences and managed by the marketing management department for business practice activities. MP Mart is very helpful to the FIT community because if they want to buy light snacks, they just need to buy it there, no need to leave the building.</string>
     <string name="about_kantin">Canteen is an area for eating and drinking in the community of applied sciences. There is a long table and lots of long chairs. Food and beverage sellers are also numerous and their dishes are also varied. Not only a place for lunch breaks, but the canteen is also commonly used to gather and work on group assignments by students.</string>
     <string name="about_laboran">Laboran is a room that manages all practicum activities in the faculty of applied sciences. Registration for practicum assistants or laboratory assistants, receiving their salaries, borrowing practicum rooms, lending tools and various matters relating to practicum are managed here. The research lab is also managed by staff in this room.</string>
 
@@ -42,7 +42,7 @@
     <string name="button_nav">Button Nav</string>
     <string name="beacon_photo">beacon photo</string>
     <string name="icon_event_list">photo event icon</string>
-    <string name="nav_drawer">nav drawer</string>
+<!--    <string name="nav_drawer">nav drawer</string>-->
     <string name="user_pos">User pos</string>
     <string name="room_pos">Room pos</string>
 </resources>
