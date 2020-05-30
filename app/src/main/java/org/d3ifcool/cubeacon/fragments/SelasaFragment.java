@@ -43,6 +43,16 @@ public class SelasaFragment extends Fragment {
     private ScheduleAdapter adapter;
     private TextView onGoing;
 
+    private String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference dayCur = database.getReference("currentDay");
 
@@ -65,7 +75,7 @@ public class SelasaFragment extends Fragment {
 
         listSchedule = new ArrayList<>();
         listOnGoing = new ArrayList<>();
-        initDataSchedule();
+        initDataSchedule(getTitle());
 
         rvSchedule = view.findViewById(R.id.rv_list_selasa);
         rvOnGoing = view.findViewById(R.id.rv_list_on_selasa);
@@ -130,12 +140,36 @@ public class SelasaFragment extends Fragment {
         rvSchedule.setAdapter(adapter);
     }
 
-    private void initDataSchedule(){
+    private void initDataSchedule(String title){
         listSchedule.add(new Schedule("Pemograman berbasis sensor","18:00 - 19:30 WIB","Icih Caroline",1));
-        listSchedule.add(new Schedule("Pemograman berbasis sensor","08:30 - 12:30 WIB","Icih Caroline",1));
-        listSchedule.add(new Schedule("Pemograman berbasis sensor","12:30 - 14:30 WIB","Icih Caroline",1));
-        listSchedule.add(new Schedule("Pemograman berbasis sensor","14:30 - 16:30 WIB","Icih Caroline",1));
-        listSchedule.add(new Schedule("Pemograman berbasis sensor","16:30 - 18:30 WIB","Icih Caroline",1));
+        switch (title){
+            case "G9" :
+                listSchedule.add(new Schedule("Pengembangan Profesi","06:30 - 08:30 WIB","DERI INDRAWAN",1));
+                listSchedule.add(new Schedule("Matematika Terapan","08:30 - 10:30 WIB","INDAH DARMA",1));
+                listSchedule.add(new Schedule("Keamanan Jaringan","10:30 - 11:30 WIB","REZA WIBISONO",1));
+                listSchedule.add(new Schedule("Multimedia Dasar","11:30 - 13:30 WIB","FAHREZI TRIADI",1));
+                break;
+            case "G6" :
+                listSchedule.add(new Schedule("Pengembangan Profesi","06:30 - 08:30 WIB","DERI INDRAWAN",1));
+                listSchedule.add(new Schedule("Implementasi Struktur Data","08:30 - 11:30 WIB","MUHAMMAD REZA",1));
+                listSchedule.add(new Schedule("Pengembangan Profesi","13:30 - 15:30 WIB","DERI INDRAWAN",1));
+                listSchedule.add(new Schedule("Matematika Terapan","15:30 - 16:30 WIB","INDAH DARMA",1));
+                break;
+            case "G5" :
+                listSchedule.add(new Schedule("Pemograman Perangkat Bergerak Dasar","06:30 - 08:30 WIB","BOB SETIAWAN",1));
+                listSchedule.add(new Schedule("Pemograman Dasar","08:30 - 12:30 WIB","ZAMRUDIN",1));
+                listSchedule.add(new Schedule("Pengantar Web","13:30 - 15:00 WIB","CAMARUDIN",1));
+                break;
+            case "G7" :
+                listSchedule.add(new Schedule("Kewirausaha","06:30 - 08:30 WIB","SARAH ARAFAH",1));
+                listSchedule.add(new Schedule("Proyek Tingkat 2","08:30 - 11:30 WIB","JIMMY MULIA",1));
+                listSchedule.add(new Schedule("Bahasa Inggris","13:30 - 15:30 WIB","HADI ARDIAN",1));
+                listSchedule.add(new Schedule("Bahasa Indonesia","15:30 - 17:30 WIB","HOTAPEA",1));
+                break;
+            case "Kitchen" :
+                listSchedule.add(new Schedule("Italian Food","09:30 - 12:30 WIB","TRI KURNIA",1));
+                break;
+        }
     }
 
 }

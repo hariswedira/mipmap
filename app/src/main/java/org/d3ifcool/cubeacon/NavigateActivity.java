@@ -12,14 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.estimote.mustard.rx_goodness.rx_requirements_wizard.Requirement;
-import com.estimote.mustard.rx_goodness.rx_requirements_wizard.RequirementsWizardFactory;
-import com.estimote.proximity_sdk.api.EstimoteCloudCredentials;
-import com.estimote.proximity_sdk.api.ProximityObserver;
-import com.estimote.proximity_sdk.api.ProximityObserverBuilder;
-import com.estimote.proximity_sdk.api.ProximityZone;
-import com.estimote.proximity_sdk.api.ProximityZoneBuilder;
-import com.estimote.proximity_sdk.api.ProximityZoneContext;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,15 +28,11 @@ import org.d3ifcool.cubeacon.utils.Preferences;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import kotlin.Unit;
-import kotlin.jvm.functions.Function0;
-import kotlin.jvm.functions.Function1;
 
 public class NavigateActivity extends AppCompatActivity  {
 
@@ -94,7 +82,8 @@ public class NavigateActivity extends AppCompatActivity  {
     }
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("userPosition");
+//    DatabaseReference myRef = database.getReference("userPosition");
+    DatabaseReference myRef;
     DatabaseReference checkRef = database.getReference("navigation");
     DatabaseReference navRef = database.getReference("nav");
 
@@ -104,6 +93,10 @@ public class NavigateActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_navigate);
 
         beacons = "";
+
+        String users = Preferences.read(getApplicationContext(),Constants.USERNAME,"u");
+        myRef  = database.getReference().child("users").child(users).child("userPosition");
+
         startPressed = false;
 
         roomInfo = findViewById(R.id.room_info);
@@ -448,10 +441,10 @@ public class NavigateActivity extends AppCompatActivity  {
 
     private void outBeacon(){
         // TODO :  keluar daribeacon hilangin
-        user01.setVisibility(View.GONE);
-        user02.setVisibility(View.GONE);
-        user03.setVisibility(View.GONE);
-        user04.setVisibility(View.GONE);
+//        user01.setVisibility(View.GONE);
+//        user02.setVisibility(View.GONE);
+//        user03.setVisibility(View.GONE);
+//        user04.setVisibility(View.GONE);
         userPos = 0;
     }
 

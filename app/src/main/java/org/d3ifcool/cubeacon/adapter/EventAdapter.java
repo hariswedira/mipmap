@@ -51,7 +51,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
 //        Glide.with(context)
 //                .load(getEvents().get(position).getPoster())
 //                .into(holder.poster);
-        Glide.with(context).load(getEvents().get(position).getPoster()).into(holder.poster);
+        Glide.with(context).load(getEvents().get(position).getPoster()).placeholder(R.drawable.image_placeholder).into(holder.poster);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

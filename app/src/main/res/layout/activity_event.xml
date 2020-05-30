@@ -493,7 +493,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/textView2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView2"
-                    app:srcCompat="@drawable/beacon" />
+                    android:src="@drawable/ic_more_vert" />
 
                 <TextView
                     android:id="@+id/textView2"

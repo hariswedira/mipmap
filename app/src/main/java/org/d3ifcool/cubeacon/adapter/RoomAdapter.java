@@ -55,6 +55,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
         holder.floor.setText("Applied Science Faculty Building, "+getRooms().get(position).getFloor());
         Glide.with(context)
                 .load(getRooms().get(position).getPhoto())
+                .placeholder(R.drawable.image_placeholder)
                 .into(holder.photo);
 //        holder.itemView.setOnClickListener(new View.OnClickListener() {
 //            @Override

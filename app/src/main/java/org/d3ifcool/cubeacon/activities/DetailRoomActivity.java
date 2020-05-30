@@ -3,6 +3,7 @@ package org.d3ifcool.cubeacon.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 
 import org.d3ifcool.cubeacon.R;
 import org.d3ifcool.cubeacon.models.Room;
+import org.d3ifcool.cubeacon.utils.Constants;
 
 public class DetailRoomActivity extends AppCompatActivity {
 
@@ -40,7 +42,9 @@ public class DetailRoomActivity extends AppCompatActivity {
         jadwal = findViewById(R.id.btn_jadwal);
 
         backArrow = findViewById(R.id.iv_arrow_detail_room);
-        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mdi_arrow_back.png?alt=media&token=232eaafa-e295-4df3-a575-33cac8f010e7").into(backArrow);
+        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mdi_arrow_back.png?alt=media&token=232eaafa-e295-4df3-a575-33cac8f010e7")
+                .placeholder(R.drawable.image_placeholder)
+                .into(backArrow);
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,6 +56,7 @@ public class DetailRoomActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DetailRoomActivity.this, ScheduleActivity.class);
+                intent.putExtra(Constants.ROOM,title.getText().toString());
                 startActivity(intent);
             }
         });
@@ -72,13 +77,42 @@ public class DetailRoomActivity extends AppCompatActivity {
             jadwal.setVisibility(View.GONE);
         }
 
+//        call.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(Intent.ACTION_DIAL);
+//                intent.setData(Uri.parse("tel:"+room.getNumber()));
+//                startActivity(intent);
+//            }
+//        });
+
+        final String greet = "hello";
+        final String num = "+62"+room.getNumber().substring(1);
+
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:"+room.getNumber()));
-                startActivity(intent);
+                boolean installed = appInstalled("com.whatsapp");
+                if (installed){
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://api.whatsapp.com/send?phone="+num+"&text="+greet));
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(DetailRoomActivity.this, "Not", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+    }
+
+    private boolean appInstalled(String uri){
+        PackageManager packageManager = getPackageManager();
+        boolean appInstalled;
+
+        try{
+            packageManager.getPackageInfo(uri,PackageManager.GET_ACTIVITIES);
+            appInstalled = true;
+        } catch (PackageManager.NameNotFoundException e) {
+            appInstalled = false;
+        }
+        return appInstalled;
     }
 }

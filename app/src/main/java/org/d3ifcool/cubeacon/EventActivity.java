@@ -1,23 +1,21 @@
 package org.d3ifcool.cubeacon;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,15 +28,12 @@ import com.estimote.proximity_sdk.api.ProximityObserverBuilder;
 import com.estimote.proximity_sdk.api.ProximityZone;
 import com.estimote.proximity_sdk.api.ProximityZoneBuilder;
 import com.estimote.proximity_sdk.api.ProximityZoneContext;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import org.d3ifcool.cubeacon.activities.ListEventActivity;
-import org.d3ifcool.cubeacon.activities.RangeActivity;
+import org.d3ifcool.cubeacon.activities.LoginActivity;
 import org.d3ifcool.cubeacon.models.Beacon;
 import org.d3ifcool.cubeacon.models.Event;
 import org.d3ifcool.cubeacon.utils.Constants;
@@ -50,7 +45,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class EventActivity extends AppCompatActivity {
+public class EventActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
 
     public EstimoteCloudCredentials cloudCredentials =
         new EstimoteCloudCredentials("mipmap-hqh", "6756bb70e7d65c3bd6a367882450915a");
@@ -80,7 +75,8 @@ public class EventActivity extends AppCompatActivity {
     NavigateActivity navigateActivity;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("userPosition");
+//    DatabaseReference myRef = database.getReference("userPosition");
+    DatabaseReference myRef;
     DatabaseReference checkRef = database.getReference("navigation");
     DatabaseReference dayCur = database.getReference("currentDay");
 
@@ -90,6 +86,9 @@ public class EventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_event);
 
         userPos = 0;
+        String users = Preferences.read(getApplicationContext(),Constants.USERNAME,"u");
+        Toast.makeText(EventActivity.this, users, Toast.LENGTH_SHORT).show();
+        myRef  = database.getReference().child("users").child(users).child("userPosition");
 
         navigateActivity = new NavigateActivity();
 
@@ -118,12 +117,12 @@ public class EventActivity extends AppCompatActivity {
         amountEvent = findViewById(R.id.amount_event);
         seeDetail = findViewById(R.id.btn_see_detail);
 
-        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/signal.png?alt=media&token=b9ddb563-9be0-4722-a592-031d140f3254").into(signal);
+        // signal
+//        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/signal.png?alt=media&token=b9ddb563-9be0-4722-a592-031d140f3254").into(signal);
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/go_button.png?alt=media&token=c8f7901c-b910-41cc-a5f6-cf1923c59103").into(searchMenu);
 
         listEvent = new ArrayList<>();
 
-        signal.setVisibility(View.INVISIBLE);
         searchMenu.setVisibility(View.GONE);
         userPosIcon.setVisibility(View.GONE);
         noEvent.setVisibility(View.INVISIBLE);
@@ -257,12 +256,43 @@ public class EventActivity extends AppCompatActivity {
         signal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                showPopUp(view);
 //                proximityObserverHandler.stop();
-                Intent intent = new Intent(EventActivity.this, RangeActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(EventActivity.this, RangeActivity.class);
+//                startActivity(intent);
             }
         });
 
+    }
+
+    public void showPopUp(View v){
+        PopupMenu popupMenu = new PopupMenu(EventActivity.this, v);
+        popupMenu.setOnMenuItemClickListener(this);
+        popupMenu.inflate(R.menu.menu);
+        popupMenu.show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        switch (menuItem.getItemId()){
+            case R.id.signout:
+                Toast.makeText(EventActivity.this, "Log Out", Toast.LENGTH_SHORT).show();
+                //logout
+                Preferences.save(this, Constants.SESSION,"false");
+                myRef.setValue(0);
+                Intent intentSession = new Intent(EventActivity.this, LoginActivity.class);
+                startActivity(intentSession);
+                finish();
+                return true;
+            case R.id.feedback:
+                Toast.makeText(EventActivity.this, "Setting", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.about:
+                Toast.makeText(EventActivity.this, "About", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return false;
+        }
     }
 
     @Override
@@ -274,7 +304,9 @@ public class EventActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        proximityObserverHandler.stop();
+        if (proximityObserverHandler != null){
+            proximityObserverHandler.stop();
+        }
         super.onDestroy();
     }
 
@@ -489,10 +521,10 @@ public class EventActivity extends AppCompatActivity {
         amountEvent.setVisibility(View.INVISIBLE);
         searchMenu.setVisibility(View.GONE);
         userPosIcon.setVisibility(View.GONE);
-        pinUserThree.setVisibility(View.GONE);
-        pinUserTwo.setVisibility(View.GONE);
-        pinUserOne.setVisibility(View.GONE);
-        pinUserFour.setVisibility(View.GONE);
+//        pinUserThree.setVisibility(View.GONE);
+//        pinUserTwo.setVisibility(View.GONE);
+//        pinUserOne.setVisibility(View.GONE);
+//        pinUserFour.setVisibility(View.GONE);
         noEvent.setText(getResources().getString(R.string.enter_beacon_area));
         event_tap = "out";
 //        checkRef.addValueEventListener(new ValueEventListener() {

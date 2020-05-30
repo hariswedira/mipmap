@@ -20,6 +20,7 @@ import org.d3ifcool.cubeacon.fragments.SabtuFragment;
 import org.d3ifcool.cubeacon.fragments.SelasaFragment;
 import org.d3ifcool.cubeacon.fragments.SeninFragment;
 import org.d3ifcool.cubeacon.models.Schedule;
+import org.d3ifcool.cubeacon.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -37,22 +38,39 @@ public class ScheduleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
 
+        SeninFragment seninFragment = new SeninFragment();
+        SelasaFragment selasaFragment = new SelasaFragment();
+        RabuFragment rabuFragment = new RabuFragment();
+        KamisFragment kamisFragment = new KamisFragment();
+        JumatFragment jumatFragment = new JumatFragment();
+        SabtuFragment sabtuFragment = new SabtuFragment();
+
+        String titleRoom = getIntent().getStringExtra(Constants.ROOM) ;
+        seninFragment.setTitle(titleRoom);
+        selasaFragment.setTitle(titleRoom);
+        rabuFragment.setTitle(titleRoom);
+        kamisFragment.setTitle(titleRoom);
+        jumatFragment.setTitle(titleRoom);
+        sabtuFragment.setTitle(titleRoom);
+
         tabLayout = findViewById(R.id.tab_schedule);
         viewPager = findViewById(R.id.pager_list_schedule);
         backArrow = findViewById(R.id.iv_arrow_schedule);
 
-        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mdi_arrow_back.png?alt=media&token=232eaafa-e295-4df3-a575-33cac8f010e7").into(backArrow);
+        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mdi_arrow_back.png?alt=media&token=232eaafa-e295-4df3-a575-33cac8f010e7")
+                .placeholder(R.drawable.image_placeholder)
+                .into(backArrow);
 
 //        SeninFragment seninFragment = new SeninFragment();
 //        seninFragment.setListSchedule(listSchedule);
 
         PageAdapter adapter = new PageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new SeninFragment(),"Monday");
-        adapter.addFragment(new SelasaFragment(),"Tuesday");
-        adapter.addFragment(new RabuFragment(),"Wednesday");
-        adapter.addFragment(new KamisFragment(),"Thursday");
-        adapter.addFragment(new JumatFragment(),"Friday");
-        adapter.addFragment(new SabtuFragment(),"Saturday");
+        adapter.addFragment(seninFragment,"Monday");
+        adapter.addFragment(selasaFragment,"Tuesday");
+        adapter.addFragment(rabuFragment,"Wednesday");
+        adapter.addFragment(kamisFragment,"Thursday");
+        adapter.addFragment(jumatFragment,"Friday");
+        adapter.addFragment(sabtuFragment,"Saturday");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 

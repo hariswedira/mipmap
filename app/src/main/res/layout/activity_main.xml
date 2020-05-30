@@ -131,7 +131,6 @@
 <!--    </androidx.cardview.widget.CardView>-->
 
     <ImageView
-        android:contentDescription="@string/logo_mipmap"
         android:id="@+id/imageView"
         android:layout_width="200dp"
         android:layout_height="200dp"

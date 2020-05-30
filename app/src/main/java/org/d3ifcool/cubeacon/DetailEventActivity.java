@@ -34,7 +34,9 @@ public class DetailEventActivity extends AppCompatActivity {
         backArrow = findViewById(R.id.iv_arrow_event);
         see = findViewById(R.id.btn_see_event);
 
-        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mdi_arrow_back.png?alt=media&token=232eaafa-e295-4df3-a575-33cac8f010e7").into(backArrow);
+        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mdi_arrow_back.png?alt=media&token=232eaafa-e295-4df3-a575-33cac8f010e7")
+                .placeholder(R.drawable.image_placeholder)
+                .into(backArrow);
 
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
