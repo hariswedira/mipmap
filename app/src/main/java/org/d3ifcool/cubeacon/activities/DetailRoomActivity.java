@@ -43,7 +43,6 @@ public class DetailRoomActivity extends AppCompatActivity {
 
         backArrow = findViewById(R.id.iv_arrow_detail_room);
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mdi_arrow_back.png?alt=media&token=232eaafa-e295-4df3-a575-33cac8f010e7")
-                .placeholder(R.drawable.image_placeholder)
                 .into(backArrow);
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +69,7 @@ public class DetailRoomActivity extends AppCompatActivity {
         supervisor.setText(room.getSupervisor());
         type.setText(room.getType());
         number.setText("NIP : "+room.getNip());
-        Glide.with(this).load(room.getSvPhoto()).into(photoSv);
+        Glide.with(this).load(room.getSvPhoto()).placeholder(R.drawable.image_placeholder).into(photoSv);
         phone.setText("Phone Number : "+room.getNumber());
 
         if (!type.getText().toString().equalsIgnoreCase("Classroom")){

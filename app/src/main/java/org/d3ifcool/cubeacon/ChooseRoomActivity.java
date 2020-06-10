@@ -35,6 +35,7 @@ public class ChooseRoomActivity extends AppCompatActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("userPosition");
+    DatabaseReference ruangan = database.getReference("room");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

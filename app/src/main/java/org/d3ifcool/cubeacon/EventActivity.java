@@ -32,8 +32,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 
+import org.d3ifcool.cubeacon.activities.AboutActivity;
 import org.d3ifcool.cubeacon.activities.ListEventActivity;
 import org.d3ifcool.cubeacon.activities.LoginActivity;
+import org.d3ifcool.cubeacon.activities.ProfileActivity;
 import org.d3ifcool.cubeacon.models.Beacon;
 import org.d3ifcool.cubeacon.models.Event;
 import org.d3ifcool.cubeacon.utils.Constants;
@@ -165,6 +167,179 @@ public class EventActivity extends AppCompatActivity implements PopupMenu.OnMenu
         // Beacon Information
         beaconInfo();
 
+//        searchMenu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (userPos == 0){
+//                    Toast.makeText(EventActivity.this, "please enter the beacon area", Toast.LENGTH_SHORT).show();
+//                }if (userPos == 4){
+//                    Toast.makeText(EventActivity.this, "unable to navigate", Toast.LENGTH_SHORT).show();
+//                }else {
+//                    Preferences.save(getApplicationContext(), Constants.NOTIF,"false");
+//                    Intent searchIntent = new Intent(EventActivity.this,ChooseRoomActivity.class);
+//                    searchIntent.putExtra("user pos",userPos);
+//                    startActivity(searchIntent);
+//                }
+//            }
+//        });
+
+        userPosIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateUserPin(userPos);
+            }
+        });
+
+        event_tap = "out";
+
+//        cdEvent.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Preferences.save(getApplicationContext(), Constants.NOTIF,"false");
+//                if (event_tap.equalsIgnoreCase("out")){
+//                    Toast.makeText(EventActivity.this, getResources().getString(R.string.outside_beacon_area), Toast.LENGTH_SHORT).show();
+//                    int speech = textToSpeech.speak("Please go to beacon area",TextToSpeech.QUEUE_FLUSH,null);
+//                    animatePinBeacon();
+//                }else if (event_tap.equalsIgnoreCase(BLUEBERRY)){
+//                    Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
+//                    intent.putExtra(EVENT_ID,2);
+//                    intent.putExtra("events",listEvent);
+//                    startActivity(intent);
+//                }else if (event_tap.equalsIgnoreCase(COCONUT)){
+//                    Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
+//                    intent.putExtra(EVENT_ID,3);
+//                    intent.putExtra("events",listEvent);
+//                    startActivity(intent);
+//                }else if (event_tap.equalsIgnoreCase(ICE)){
+//                    Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
+//                    intent.putExtra(EVENT_ID,4);
+//                    intent.putExtra("events",listEvent);
+//                    startActivity(intent);
+//                }else if (event_tap.equalsIgnoreCase(MINT)){
+//                    Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
+//                    intent.putExtra(EVENT_ID,1);
+//                    intent.putExtra("events",listEvent);
+//                    startActivity(intent);
+//                }
+//            }
+//        });
+//
+//        seeDetail.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Preferences.save(getApplicationContext(), Constants.NOTIF,"false");
+//                if (event_tap.equalsIgnoreCase(BLUEBERRY)){
+//                    Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
+//                    intent.putExtra(EVENT_ID,2);
+//                    intent.putExtra("events",listEvent);
+//                    startActivity(intent);
+//                }else if (event_tap.equalsIgnoreCase(COCONUT)){
+//                    Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
+//                    intent.putExtra(EVENT_ID,3);
+//                    intent.putExtra("events",listEvent);
+//                    startActivity(intent);
+//                }else if (event_tap.equalsIgnoreCase(ICE)){
+//                    Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
+//                    intent.putExtra(EVENT_ID,4);
+//                    intent.putExtra("events",listEvent);
+//                    startActivity(intent);
+//                }else if (event_tap.equalsIgnoreCase(MINT)){
+//                    Intent intent = new Intent(EventActivity.this, ListEventActivity.class);
+//                    intent.putExtra(EVENT_ID,1);
+//                    intent.putExtra("events",listEvent);
+//                    startActivity(intent);
+//                }
+//            }
+//        });
+
+        // Beacon
+//        createEstimote();
+
+        signal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopUp(view);
+//                Intent intent = new Intent(EventActivity.this, RangeActivity.class);
+//                startActivity(intent);
+            }
+        });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (proximityObserverHandler != null){
+            proximityObserverHandler.stop();
+        }
+        finish();
+    }
+
+    public void showPopUp(View v){
+        PopupMenu popupMenu = new PopupMenu(EventActivity.this, v);
+        popupMenu.setOnMenuItemClickListener(this);
+        popupMenu.inflate(R.menu.menu);
+        popupMenu.show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        switch (menuItem.getItemId()){
+            case R.id.signout:
+                Toast.makeText(EventActivity.this, "Log Out", Toast.LENGTH_SHORT).show();
+                // logout
+                Preferences.save(this, Constants.SESSION,"false");
+                // Stop observer proximity
+                if (proximityObserverHandler != null){
+                    proximityObserverHandler.stop();
+                }
+                myRef.setValue(0);
+                Intent intentSession = new Intent(EventActivity.this, LoginActivity.class);
+                startActivity(intentSession);
+                finish();
+                return true;
+            case R.id.feedback:
+                Intent intentProfile = new Intent(EventActivity.this, ProfileActivity.class);
+                startActivity(intentProfile);
+                return true;
+            case R.id.about:
+                Intent intent = new Intent(EventActivity.this, AboutActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+//        Toast.makeText(this, "Pause", Toast.LENGTH_SHORT).show();
+        Preferences.save(getApplicationContext(), Constants.NOTIF_TWO,"true");
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (proximityObserverHandler != null){
+            proximityObserverHandler.stop();
+        }
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+//        Toast.makeText(this, "Resume", Toast.LENGTH_SHORT).show();
+        Preferences.save(getApplicationContext(), Constants.NOTIF_TWO,"false");
+
+        boolean a = getIntent().getBooleanExtra("beacon",false);
+//        if (proximityObserverHandler != null){
+//            proximityObserverHandler.stop();
+//        }
+
+        // Create Proximity Observer
+        createEstimote();
+
         searchMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -180,15 +355,6 @@ public class EventActivity extends AppCompatActivity implements PopupMenu.OnMenu
                 }
             }
         });
-
-        userPosIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animateUserPin(userPos);
-            }
-        });
-
-        event_tap = "out";
 
         cdEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -249,74 +415,6 @@ public class EventActivity extends AppCompatActivity implements PopupMenu.OnMenu
                 }
             }
         });
-
-        // Beacon
-        createEstimote();
-
-        signal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showPopUp(view);
-//                proximityObserverHandler.stop();
-//                Intent intent = new Intent(EventActivity.this, RangeActivity.class);
-//                startActivity(intent);
-            }
-        });
-
-    }
-
-    public void showPopUp(View v){
-        PopupMenu popupMenu = new PopupMenu(EventActivity.this, v);
-        popupMenu.setOnMenuItemClickListener(this);
-        popupMenu.inflate(R.menu.menu);
-        popupMenu.show();
-    }
-
-    @Override
-    public boolean onMenuItemClick(MenuItem menuItem) {
-        switch (menuItem.getItemId()){
-            case R.id.signout:
-                Toast.makeText(EventActivity.this, "Log Out", Toast.LENGTH_SHORT).show();
-                //logout
-                Preferences.save(this, Constants.SESSION,"false");
-                myRef.setValue(0);
-                Intent intentSession = new Intent(EventActivity.this, LoginActivity.class);
-                startActivity(intentSession);
-                finish();
-                return true;
-            case R.id.feedback:
-                Toast.makeText(EventActivity.this, "Setting", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.about:
-                Toast.makeText(EventActivity.this, "About", Toast.LENGTH_SHORT).show();
-                return true;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-//        Toast.makeText(this, "Pause", Toast.LENGTH_SHORT).show();
-        Preferences.save(getApplicationContext(), Constants.NOTIF_TWO,"true");
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (proximityObserverHandler != null){
-            proximityObserverHandler.stop();
-        }
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-//        Toast.makeText(this, "Resume", Toast.LENGTH_SHORT).show();
-        Preferences.save(getApplicationContext(), Constants.NOTIF_TWO,"false");
-
-        boolean a = getIntent().getBooleanExtra("beacon",false);
 
 //        if (a){
 //            myRef.addValueEventListener(new ValueEventListener() {

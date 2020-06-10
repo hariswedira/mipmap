@@ -21,6 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import org.d3ifcool.cubeacon.activities.DetailRoomActivity;
+import org.d3ifcool.cubeacon.activities.StepsActivity;
+import org.d3ifcool.cubeacon.fragments.BottomSheetStep;
 import org.d3ifcool.cubeacon.models.Beacon;
 import org.d3ifcool.cubeacon.models.Room;
 import org.d3ifcool.cubeacon.utils.Constants;
@@ -327,6 +329,18 @@ public class NavigateActivity extends AppCompatActivity  {
             }
         });
 
+        btnStep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                BottomSheetStep bottomSheetStep = new BottomSheetStep();
+//                bottomSheetStep.setList(arah);
+//                bottomSheetStep.show(getSupportFragmentManager(),"bottom sheet step");
+                Intent intent = new Intent(NavigateActivity.this, StepsActivity.class);
+                intent.putExtra("steps",arah);
+                startActivity(intent);
+            }
+        });
+
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -404,21 +418,33 @@ public class NavigateActivity extends AppCompatActivity  {
     }
 
     private void showUser(int pos){
-        user01.setVisibility(View.GONE);
-        user02.setVisibility(View.GONE);
-        user03.setVisibility(View.GONE);
-        user04.setVisibility(View.GONE);
         switch (pos){
             case 1:
+                user01.setVisibility(View.GONE);
+                user02.setVisibility(View.GONE);
+                user03.setVisibility(View.GONE);
+                user04.setVisibility(View.GONE);
                 user01.setVisibility(View.VISIBLE);
                 break;
             case 2:
+                user01.setVisibility(View.GONE);
+                user02.setVisibility(View.GONE);
+                user03.setVisibility(View.GONE);
+                user04.setVisibility(View.GONE);
                 user02.setVisibility(View.VISIBLE);
                 break;
             case 3:
+                user01.setVisibility(View.GONE);
+                user02.setVisibility(View.GONE);
+                user03.setVisibility(View.GONE);
+                user04.setVisibility(View.GONE);
                 user03.setVisibility(View.VISIBLE);
                 break;
             case 4:
+                user01.setVisibility(View.GONE);
+                user02.setVisibility(View.GONE);
+                user03.setVisibility(View.GONE);
+                user04.setVisibility(View.GONE);
                 user04.setVisibility(View.VISIBLE);
                 break;
 

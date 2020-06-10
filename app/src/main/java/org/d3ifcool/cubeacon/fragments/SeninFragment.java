@@ -58,6 +58,7 @@ public class SeninFragment extends Fragment {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference dayCur = database.getReference("currentDay");
+    DatabaseReference jadwal = database.getReference("schedule").child(getTitle()).child("senin");
 
     public SeninFragment() {
         // Required empty public constructor

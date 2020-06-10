@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -26,6 +27,7 @@ public class SignUpActivity extends AppCompatActivity {
     private TextInputLayout username, password;
     private Button signup;
     private int iUsername, iPassword;
+    private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
         username = findViewById(R.id.signup_username_field);
         password = findViewById(R.id.signup_password_field);
         signup = findViewById(R.id.btn_signup_user);
+        back = findViewById(R.id.signup_back);
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +53,7 @@ public class SignUpActivity extends AppCompatActivity {
                             }else {
                                 reference.child(user.getUsername()).setValue(user);
                                 Toast.makeText(SignUpActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                finish();
                             }
                         }
 
@@ -59,6 +63,13 @@ public class SignUpActivity extends AppCompatActivity {
                         }
                     });
                 }
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
             }
         });
 

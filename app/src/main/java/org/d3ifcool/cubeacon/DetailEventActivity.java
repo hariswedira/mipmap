@@ -35,7 +35,6 @@ public class DetailEventActivity extends AppCompatActivity {
         see = findViewById(R.id.btn_see_event);
 
         Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/mipmap-apps.appspot.com/o/mdi_arrow_back.png?alt=media&token=232eaafa-e295-4df3-a575-33cac8f010e7")
-                .placeholder(R.drawable.image_placeholder)
                 .into(backArrow);
 
         backArrow.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +65,7 @@ public class DetailEventActivity extends AppCompatActivity {
 
         assert event != null;
 //        photo.setImageResource(event.getPoster());
-        Glide.with(this).load(event.getPhoto()).into(photo);
+        Glide.with(this).load(event.getPhoto()).placeholder(R.drawable.image_placeholder).into(photo);
         judul.setText(event.getTitle());
         tgl.setText(event.getDate());
         ruangan.setText("by "+event.getRoom());
