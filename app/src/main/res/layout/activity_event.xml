@@ -110,7 +110,7 @@
         android:id="@+id/pin_user_pos_two"
         android:layout_width="15dp"
         android:layout_height="15dp"
-        android:src="@drawable/user_pin"
+        android:src="@drawable/user_sign"
         android:contentDescription="@string/beacon_pins"
         app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_two"
         app:layout_constraintEnd_toStartOf="@+id/pin_bcn_two"
@@ -124,7 +124,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_three"
         app:layout_constraintEnd_toStartOf="@+id/pin_bcn_three"
         app:layout_constraintTop_toTopOf="@+id/pin_bcn_three"
-        app:srcCompat="@drawable/user_pin" />
+        app:srcCompat="@drawable/user_sign" />
 
     <ImageView
         android:id="@+id/pin_user_pos_one"
@@ -134,7 +134,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_one"
         app:layout_constraintStart_toEndOf="@+id/pin_bcn_one"
         app:layout_constraintTop_toTopOf="@+id/pin_bcn_one"
-        app:srcCompat="@drawable/user_pin" />
+        app:srcCompat="@drawable/user_sign" />
 
     <ImageView
         android:id="@+id/pin_user_pos_four"
@@ -144,7 +144,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/pin_bcn_four"
         app:layout_constraintEnd_toStartOf="@+id/pin_bcn_four"
         app:layout_constraintTop_toTopOf="@+id/pin_bcn_four"
-        app:srcCompat="@drawable/user_pin" />
+        app:srcCompat="@drawable/user_sign" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cd_event"

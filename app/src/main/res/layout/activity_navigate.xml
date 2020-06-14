@@ -521,7 +521,7 @@
             android:id="@+id/user02"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:src="@drawable/user_pin"
+            android:src="@drawable/user_sign"
             app:layout_constraintEnd_toStartOf="@+id/edge05"
             app:layout_constraintTop_toTopOf="@+id/edge05" />
 
@@ -530,7 +530,7 @@
             android:id="@+id/user03"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:src="@drawable/user_pin"
+            android:src="@drawable/user_sign"
             app:layout_constraintEnd_toStartOf="@+id/beacon_03"
             app:layout_constraintTop_toBottomOf="@+id/beacon_03" />
 
@@ -875,16 +875,16 @@
             android:layout_height="15dp"
             app:layout_constraintStart_toStartOf="@+id/edge03"
             app:layout_constraintTop_toBottomOf="@+id/beacon_01"
-            app:srcCompat="@drawable/user_pin" />
+            app:srcCompat="@drawable/user_sign" />
 
         <ImageView
-            android:contentDescription="@string/beacon_pins"
             android:id="@+id/user04"
             android:layout_width="15dp"
             android:layout_height="15dp"
+            android:contentDescription="@string/beacon_pins"
             app:layout_constraintEnd_toEndOf="@+id/edge15"
             app:layout_constraintTop_toTopOf="@+id/edge16"
-            app:srcCompat="@drawable/user_pin" />
+            app:srcCompat="@drawable/user_sign" />
 
         <TextView
             android:id="@+id/tv_jalur"

@@ -9,11 +9,17 @@ import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -51,7 +57,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class EventActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+public class EventActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener, SensorEventListener {
 
     public EstimoteCloudCredentials cloudCredentials =
             new EstimoteCloudCredentials("mipmap-hqh", "6756bb70e7d65c3bd6a367882450915a");
@@ -84,12 +90,21 @@ public class EventActivity extends AppCompatActivity implements PopupMenu.OnMenu
     DatabaseReference myRef;
     DatabaseReference dayCur = database.getReference("currentDay");
 
+    // Compass
+    private float[] mGravity = new float[3];
+    private float[] mGeomagnetic = new float[3];
+    private float azimuth = 0f;
+    private float currentAzimuth = 0f;
+    private SensorManager sensorManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
 
         userPos = 0;
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+
         String users = Preferences.read(getApplicationContext(), Constants.USERNAME, "u");
         Toast.makeText(EventActivity.this, users, Toast.LENGTH_SHORT).show();
         myRef = database.getReference().child("users").child(users).child("userPosition");
@@ -380,6 +395,7 @@ public class EventActivity extends AppCompatActivity implements PopupMenu.OnMenu
     protected void onPause() {
         super.onPause();
         Preferences.save(getApplicationContext(), Constants.NOTIF_TWO, "true");
+        sensorManager.unregisterListener(this);
     }
 
     @Override
@@ -397,9 +413,14 @@ public class EventActivity extends AppCompatActivity implements PopupMenu.OnMenu
     @Override
     protected void onResume() {
         super.onResume();
+
+        sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD),
+                SensorManager.SENSOR_DELAY_GAME);
+        sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+                SensorManager.SENSOR_DELAY_GAME);
+
 //        Toast.makeText(this, "Resume", Toast.LENGTH_SHORT).show();
         Preferences.save(getApplicationContext(), Constants.NOTIF_TWO, "false");
-
         boolean a = getIntent().getBooleanExtra("beacon", false);
 
         cdEvent.setOnClickListener(new View.OnClickListener() {
@@ -1014,5 +1035,48 @@ public class EventActivity extends AppCompatActivity implements PopupMenu.OnMenu
                 }
             });
         }
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        final float alpha = 0.97f;
+        synchronized (this){
+            if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
+                mGravity[0] = alpha*mGravity[0]+(1-alpha)*sensorEvent.values[0];
+                mGravity[1] = alpha*mGravity[1]+(1-alpha)*sensorEvent.values[1];
+                mGravity[2] = alpha*mGravity[2]+(1-alpha)*sensorEvent.values[2];
+            }
+            if (sensorEvent.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD){
+                mGeomagnetic[0] = alpha*mGeomagnetic[0]+(1-alpha)*sensorEvent.values[0];
+                mGeomagnetic[1] = alpha*mGeomagnetic[1]+(1-alpha)*sensorEvent.values[1];
+                mGeomagnetic[2] = alpha*mGeomagnetic[2]+(1-alpha)*sensorEvent.values[2];
+            }
+            float R[] = new float[9];
+            float I[] = new float[9];
+            boolean success = SensorManager.getRotationMatrix(R,I,mGravity,mGeomagnetic);
+            if (success){
+                float orientation[] = new float[3];
+                SensorManager.getOrientation(R,orientation);
+                azimuth = (float) Math.toDegrees(orientation[0]);
+                azimuth = (azimuth+360)%360;
+
+                Animation anim = new RotateAnimation(-currentAzimuth,-azimuth,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+                currentAzimuth = azimuth;
+
+                anim.setDuration(500);
+                anim.setRepeatCount(0);
+                anim.setFillAfter(true);
+
+                pinUserFour.startAnimation(anim);
+                pinUserOne.startAnimation(anim);
+                pinUserTwo.startAnimation(anim);
+                pinUserThree.startAnimation(anim);
+            }
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
     }
 }

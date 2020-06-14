@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity{
         }else {
             Intent intent = new Intent(MainActivity.this, EventActivity.class);
             startActivity(intent);
-            Toast.makeText(this, "You Is Logged In", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "You Is Logged In", Toast.LENGTH_SHORT).show();
             finish();
         }
     }
