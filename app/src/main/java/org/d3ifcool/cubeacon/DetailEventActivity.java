@@ -28,9 +28,9 @@ public class DetailEventActivity extends AppCompatActivity {
         photo = findViewById(R.id.iv_detail_room);
         judul = findViewById(R.id.tv_detail_judul);
         tgl = findViewById(R.id.tv_detail_tanggal);
-        ruangan = findViewById(R.id.tv_detail_ruangan);
+        ruangan = findViewById(R.id.tv_organizer_detail);
         deskripsi = findViewById(R.id.tv_detail_desc);
-        organizer = findViewById(R.id.tv_organizer_detail);
+        organizer = findViewById(R.id.tv_detail_ruangan);
         backArrow = findViewById(R.id.iv_arrow_event);
         see = findViewById(R.id.btn_see_event);
 
@@ -68,8 +68,8 @@ public class DetailEventActivity extends AppCompatActivity {
         Glide.with(this).load(event.getPhoto()).placeholder(R.drawable.image_placeholder).into(photo);
         judul.setText(event.getTitle());
         tgl.setText(event.getDate());
-        ruangan.setText("by "+event.getRoom());
+        ruangan.setText("At "+event.getRoom());
         deskripsi.setText(event.getContent());
-        organizer.setText("at "+event.getOragnizer());
+        organizer.setText("By "+event.getOragnizer());
     }
 }

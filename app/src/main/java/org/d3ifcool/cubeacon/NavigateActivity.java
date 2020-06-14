@@ -207,7 +207,7 @@ public class NavigateActivity extends AppCompatActivity  {
                 for (int i = 0; i < rute.size(); i++) {
                     // Jika anggota rute sama dengan beacon01
                     if (rute.get(i).matches(beacon01.getInformation().getName())){
-                        // Periksa object beacon02
+                        // Periksa object beacon01
                         for (int j = 0; j < beacon01.getAlgorithm().get(0).getNeightbor().size(); j++) {
                             // Jika tetangga beacon01 sama dengan rute+1
                             if (beacon01.getAlgorithm().get(0).getNeightbor().get(j).matches(rute.get(i+1))){
@@ -246,7 +246,7 @@ public class NavigateActivity extends AppCompatActivity  {
                     }
                     // Jika anggota rute sama dengan beacon04
                     if (rute.get(i).matches(beacon04.getInformation().getName())){
-                        // Periksa object beacon02
+                        // Periksa object beacon04
                         for (int j = 0; j < beacon04.getAlgorithm().get(0).getNeightbor().size(); j++) {
                             // Jika tetangga beacon04 sama dengan rute+1
                             if (beacon04.getAlgorithm().get(0).getNeightbor().get(j).matches(rute.get(i+1))){
@@ -259,7 +259,7 @@ public class NavigateActivity extends AppCompatActivity  {
                     }
                     // Jika anggota rute sama dengan beacon05
                     else if (rute.get(i).matches(beacon05.getInformation().getName())){
-                        // Periksa object beacon03
+                        // Periksa object beacon05
                         for (int j = 0; j < beacon05.getAlgorithm().get(0).getNeightbor().size(); j++) {
                             // Jika tetangga beacon05 sama dengan rute+1
                             if (beacon05.getAlgorithm().get(0).getNeightbor().get(j).matches(rute.get(i+1))){
@@ -332,9 +332,6 @@ public class NavigateActivity extends AppCompatActivity  {
         btnStep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                BottomSheetStep bottomSheetStep = new BottomSheetStep();
-//                bottomSheetStep.setList(arah);
-//                bottomSheetStep.show(getSupportFragmentManager(),"bottom sheet step");
                 Intent intent = new Intent(NavigateActivity.this, StepsActivity.class);
                 intent.putExtra("steps",arah);
                 startActivity(intent);
@@ -359,6 +356,7 @@ public class NavigateActivity extends AppCompatActivity  {
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startPressed = false;
                 onBackPressed();
             }
         });
@@ -379,17 +377,28 @@ public class NavigateActivity extends AppCompatActivity  {
                 if (beacons.equalsIgnoreCase(rute.get(i))){
                     signNav.setText(arah.get(i));
                     updateSignIcon(signNav.getText().toString());
+                    if (startPressed){
+                        int speech = textToSpeech.speak(arah.get(i),TextToSpeech.QUEUE_FLUSH,null);
+                    }
                     signBox.setBackgroundColor(getResources().getColor(R.color.deep_blue));
                 }
                 else if (beacons.equalsIgnoreCase("beacon04")){
                     signNav.setText(arah.get(arah.size()-1));
+                    if (startPressed){
+                        int speech = textToSpeech.speak(arah.get(arah.size()-1),TextToSpeech.QUEUE_FLUSH,null);
+                    }
                     signBox.setBackgroundColor(getResources().getColor(R.color.green));
                     btnStop.setVisibility(View.GONE);
                     btnStep.setVisibility(View.GONE);
                     btnFinish.setVisibility(View.VISIBLE);
+//                    BottomSheetStep bottomSheetStep = new BottomSheetStep();
+//                    bottomSheetStep.show(getSupportFragmentManager(),"bottom sheet step");
                     updateSignIcon(signNav.getText().toString());
                 }else if (beacons.equalsIgnoreCase("lurus")){
                     signNav.setText("Move Forward");
+                    if (startPressed){
+                        int speech = textToSpeech.speak("Move Forward",TextToSpeech.QUEUE_FLUSH,null);
+                    }
                     signBox.setBackgroundColor(getResources().getColor(R.color.deep_blue));
                     updateSignIcon(signNav.getText().toString());
                 }

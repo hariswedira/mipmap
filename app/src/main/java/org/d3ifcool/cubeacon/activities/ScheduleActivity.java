@@ -1,5 +1,6 @@
 package org.d3ifcool.cubeacon.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -8,8 +9,11 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.d3ifcool.cubeacon.R;
 import org.d3ifcool.cubeacon.adapter.PageAdapter;
@@ -32,6 +36,16 @@ public class ScheduleActivity extends AppCompatActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference dayCur = database.getReference("currentDay");
+
+    private int value;
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +75,18 @@ public class ScheduleActivity extends AppCompatActivity {
                 .placeholder(R.drawable.image_placeholder)
                 .into(backArrow);
 
+        dayCur.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                 setValue(dataSnapshot.getValue(Integer.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 //        SeninFragment seninFragment = new SeninFragment();
 //        seninFragment.setListSchedule(listSchedule);
 
@@ -72,6 +98,7 @@ public class ScheduleActivity extends AppCompatActivity {
         adapter.addFragment(jumatFragment,"Friday");
         adapter.addFragment(sabtuFragment,"Saturday");
         viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(getValue());
         tabLayout.setupWithViewPager(viewPager);
 
     }
