@@ -498,6 +498,7 @@ public class EventActivity extends AppCompatActivity implements PopupMenu.OnMenu
 
     private void inBeacon(String name) {
 //        seeDetail.setVisibility(View.VISIBLE);
+
         beaconLg.setVisibility(View.INVISIBLE);
         noEvent.setVisibility(View.VISIBLE);
         searchMenu.setVisibility(View.VISIBLE);
@@ -532,6 +533,12 @@ public class EventActivity extends AppCompatActivity implements PopupMenu.OnMenu
         pinUserFour.setVisibility(View.GONE);
         pinUserThree.setVisibility(View.GONE);
         pinUserTwo.setVisibility(View.GONE);
+
+        pinUserOne.clearAnimation();
+        pinUserTwo.clearAnimation();
+        pinUserThree.clearAnimation();
+        pinUserFour.clearAnimation();
+
         switch (pos) {
             case 1:
                 pinUserOne.setVisibility(View.VISIBLE);
@@ -1067,10 +1074,15 @@ public class EventActivity extends AppCompatActivity implements PopupMenu.OnMenu
                 anim.setRepeatCount(0);
                 anim.setFillAfter(true);
 
-                pinUserFour.startAnimation(anim);
-                pinUserOne.startAnimation(anim);
-                pinUserTwo.startAnimation(anim);
-                pinUserThree.startAnimation(anim);
+                if (userPos==1){
+                    pinUserOne.startAnimation(anim);
+                }else if (userPos==2){
+                    pinUserTwo.startAnimation(anim);
+                }else if (userPos==3){
+                    pinUserThree.startAnimation(anim);
+                }else if (userPos==4){
+                    pinUserFour.startAnimation(anim);
+                }
             }
         }
     }

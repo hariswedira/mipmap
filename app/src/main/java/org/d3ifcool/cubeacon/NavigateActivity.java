@@ -182,6 +182,10 @@ public class NavigateActivity extends AppCompatActivity  implements SensorEventL
                     beacons = "beacon04";
                 }else if (value==0){
                     beacons = "lurus";
+                    user01.clearAnimation();
+                    user02.clearAnimation();
+                    user03.clearAnimation();
+                    user04.clearAnimation();
                 }
                 checkRoute();
                 if (startPressed){
@@ -1103,10 +1107,15 @@ public class NavigateActivity extends AppCompatActivity  implements SensorEventL
                 anim.setRepeatCount(0);
                 anim.setFillAfter(true);
 
-                user01.startAnimation(anim);
-                user02.startAnimation(anim);
-                user03.startAnimation(anim);
-                user04.startAnimation(anim);
+                if (beacons.equalsIgnoreCase("beacon01")){
+                    user01.startAnimation(anim);
+                }else if (beacons.equalsIgnoreCase("beacon02")){
+                    user02.startAnimation(anim);
+                }else if (beacons.equalsIgnoreCase("beacon03")){
+                    user03.startAnimation(anim);
+                }else if (beacons.equalsIgnoreCase("beacon04")){
+                    user04.startAnimation(anim);
+                }
             }
         }
     }
