@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -44,6 +45,7 @@ public class SabtuFragment extends Fragment {
     private TextView onGoing;
 
     private String title;
+    private ProgressBar progressBar;
 
     public String getTitle() {
         return title;
@@ -75,6 +77,9 @@ public class SabtuFragment extends Fragment {
 
         listSchedule = new ArrayList<>();
         listOnGoing = new ArrayList<>();
+
+        progressBar = view.findViewById(R.id.progressBar4);
+        progressBar.setVisibility(View.GONE);
         initDataSchedule(getTitle());
 
         rvSchedule = view.findViewById(R.id.rv_list_sabtu);
@@ -142,6 +147,7 @@ public class SabtuFragment extends Fragment {
 
     private void initDataSchedule(String title){
 
+        progressBar.setVisibility(View.VISIBLE);
         DatabaseReference jadwal = database.getReference("schedule").child(title).child("sabtu");
         jadwal.addValueEventListener(new ValueEventListener() {
             @Override
@@ -150,6 +156,7 @@ public class SabtuFragment extends Fragment {
                     Schedule schedule = dataSnapshot1.getValue(Schedule.class);
                     listSchedule.add(schedule);
                 }
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override

@@ -923,11 +923,11 @@ public class NavigateActivity extends AppCompatActivity  implements SensorEventL
         String lowerGoal = rute.get(rute.size()-1).toLowerCase();
         rute.set(rute.size()-1,lowerGoal);
 
-        String g = "";
-        for (int i = 0; i < rute.size() ; i++) {
-            g += ","+rute.get(i);
-        }
-        Toast.makeText(NavigateActivity.this, g, Toast.LENGTH_SHORT).show();
+//        String g = "";
+//        for (int i = 0; i < rute.size() ; i++) {
+//            g += ","+rute.get(i);
+//        }
+//        Toast.makeText(NavigateActivity.this, g, Toast.LENGTH_SHORT).show();
 
 
         initBeacon();
@@ -1113,7 +1113,7 @@ public class NavigateActivity extends AppCompatActivity  implements SensorEventL
                 azimuth = (float) Math.toDegrees(orientation[0]);
                 azimuth = (azimuth+360)%360;
 
-                Animation anim = new RotateAnimation(-currentAzimuth,-azimuth,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+                Animation anim = new RotateAnimation(currentAzimuth,azimuth,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
                 currentAzimuth = azimuth;
 
                 anim.setDuration(500);

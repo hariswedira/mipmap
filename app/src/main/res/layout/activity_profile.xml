@@ -77,6 +77,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
         android:ems="10"
+        android:padding="12dp"
+        android:background="@drawable/bg_inputunsel"
         android:editable="false"
         android:clickable="false"
         android:cursorVisible="false"

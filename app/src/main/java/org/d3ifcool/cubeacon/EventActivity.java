@@ -1088,7 +1088,7 @@ public class EventActivity extends AppCompatActivity implements PopupMenu.OnMenu
                 azimuth = (float) Math.toDegrees(orientation[0]);
                 azimuth = (azimuth+360)%360;
 
-                Animation anim = new RotateAnimation(-currentAzimuth,-azimuth,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+                Animation anim = new RotateAnimation(currentAzimuth,azimuth,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
                 currentAzimuth = azimuth;
 
                 anim.setDuration(500);
