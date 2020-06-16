@@ -18,6 +18,8 @@ import com.hololo.tutorial.library.PermissionStep;
 import com.hololo.tutorial.library.Step;
 import com.hololo.tutorial.library.TutorialActivity;
 
+import org.d3ifcool.cubeacon.activities.LoginActivity;
+
 import java.util.Locale;
 
 public class ZoomActivity extends TutorialActivity {
@@ -189,7 +191,7 @@ public class ZoomActivity extends TutorialActivity {
 
     @Override
     public void finishTutorial() {
-        Intent intent = new Intent(ZoomActivity.this, EventActivity.class);
+        Intent intent = new Intent(ZoomActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
     }

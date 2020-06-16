@@ -62,7 +62,7 @@ public class DetailRoomActivity extends AppCompatActivity {
 
         Room room = getIntent().getParcelableExtra("detail room");
         assert room != null;
-        Glide.with(this).load(room.getRoomPhoto()).into(photo);
+        Glide.with(this).load(room.getRoomPhoto()).placeholder(R.drawable.image_placeholder).into(photo);
         title.setText(room.getName());
         desc.setText(room.getDesc());
         floor.setText(room.getFloor());
@@ -86,14 +86,14 @@ public class DetailRoomActivity extends AppCompatActivity {
 //        });
 
         final String greet = "hello";
-        final String num = "+62"+room.getNumber().substring(1);
+//        final String num = "+62"+room.getNumber().substring(1);
 
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 boolean installed = appInstalled("com.whatsapp");
                 if (installed){
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://api.whatsapp.com/send?phone="+num+"&text="+greet));
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://api.whatsapp.com/send?phone="+room.getNumber()+"&text="+greet));
                     startActivity(intent);
                 }else {
                     Toast.makeText(DetailRoomActivity.this, "Not", Toast.LENGTH_SHORT).show();

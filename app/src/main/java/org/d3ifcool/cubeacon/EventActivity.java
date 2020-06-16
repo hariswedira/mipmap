@@ -8,6 +8,9 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -106,7 +109,7 @@ public class EventActivity extends AppCompatActivity implements PopupMenu.OnMenu
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
         String users = Preferences.read(getApplicationContext(), Constants.USERNAME, "u");
-        Toast.makeText(EventActivity.this, users, Toast.LENGTH_SHORT).show();
+        Toast.makeText(EventActivity.this, "Welcome "+users, Toast.LENGTH_SHORT).show();
         myRef = database.getReference().child("users").child(users).child("userPosition");
 
         navigateActivity = new NavigateActivity();
@@ -385,11 +388,29 @@ public class EventActivity extends AppCompatActivity implements PopupMenu.OnMenu
         }
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//        finish();
-//    }
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setTitle("Exit");
+        builder.setMessage("Do you want to Exit?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //if user pressed "yes", then he is allowed to exit from application
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //if user select "No", just cancel this dialog and continue with app
+                dialog.cancel();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 
     @Override
     protected void onPause() {

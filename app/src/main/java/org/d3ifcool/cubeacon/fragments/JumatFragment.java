@@ -141,34 +141,51 @@ public class JumatFragment extends Fragment {
     }
 
     private void initDataSchedule(String title){
-        listSchedule.add(new Schedule("Pemograman berbasis sensor","18:00 - 19:30 WIB","Icih Caroline",1));
-        switch (title){
-            case "G9" :
-                listSchedule.add(new Schedule("Pemograman berbasis sensor","18:00 - 19:30 WIB","Icih Caroline",1));
-                listSchedule.add(new Schedule("Matematika Terapan","07:30 - 09:30 WIB","IVAN MAULANA",1));
-                listSchedule.add(new Schedule("Kewirausahaan","09:30 - 12:30 WIB","INDAH DARMA",1));
-                listSchedule.add(new Schedule("Sistem Operasi Komputer","12:30 - 14:30 WIB","TRI BROTO HARSONO",1));
-                listSchedule.add(new Schedule("Matematika Terapan","14:30 - 16:30 WIB","IVAN MAULANA",1));
-                break;
-            case "G6" :
-                listSchedule.add(new Schedule("Desain Antar Muka Aplikasi","07:30 - 09:30 WIB","JESSICA CRISTY",1));
-                listSchedule.add(new Schedule("Rekayasa Perangkat Lunak","09:30 - 12:30 WIB","MARIA LAURENSIA",1));
-                listSchedule.add(new Schedule("Agile Fundamental","14:30 - 16:30 WIB","QORY INDAH",1));
-                break;
-            case "G5" :
-                listSchedule.add(new Schedule("Desain Antar Muka Aplikasi","07:30 - 09:30 WIB","KARTIKA MARWAH",1));
-                listSchedule.add(new Schedule("Rekayasa Perangkat Lunak","09:30 - 12:30 WIB","NASRUDIN",1));
-                listSchedule.add(new Schedule("Pemograman Dasar","14:30 - 16:30 WIB","CAHYANA RACHMAN",1));
-                break;
-            case "G7" :
-                listSchedule.add(new Schedule("Matematika Informatika","07:30 - 09:30 WIB","AHMAD MAULANA",1));
-                listSchedule.add(new Schedule("Multimedia Terapan","09:30 - 12:30 WIB","BASRUDIN AMIN",1));
-                listSchedule.add(new Schedule("Manajemen Tim","14:30 - 16:30 WIB","TITIAN SETIAWAN",1));
-                break;
-            case "Kitchen" :
-                listSchedule.add(new Schedule("Pastry Cake","09:30 - 12:30 WIB","TRI KURNIA",1));
-                break;
-        }
+
+        DatabaseReference jadwal = database.getReference("schedule").child(title).child("jumat");
+        jadwal.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    Schedule schedule = dataSnapshot1.getValue(Schedule.class);
+                    listSchedule.add(schedule);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+//        listSchedule.add(new Schedule("Pemograman berbasis sensor","18:00 - 19:30 WIB","Icih Caroline",1));
+//        switch (title){
+//            case "G9" :
+//                listSchedule.add(new Schedule("Pemograman berbasis sensor","18:00 - 19:30 WIB","Icih Caroline",1));
+//                listSchedule.add(new Schedule("Matematika Terapan","07:30 - 09:30 WIB","IVAN MAULANA",1));
+//                listSchedule.add(new Schedule("Kewirausahaan","09:30 - 12:30 WIB","INDAH DARMA",1));
+//                listSchedule.add(new Schedule("Sistem Operasi Komputer","12:30 - 14:30 WIB","TRI BROTO HARSONO",1));
+//                listSchedule.add(new Schedule("Matematika Terapan","14:30 - 16:30 WIB","IVAN MAULANA",1));
+//                break;
+//            case "G6" :
+//                listSchedule.add(new Schedule("Desain Antar Muka Aplikasi","07:30 - 09:30 WIB","JESSICA CRISTY",1));
+//                listSchedule.add(new Schedule("Rekayasa Perangkat Lunak","09:30 - 12:30 WIB","MARIA LAURENSIA",1));
+//                listSchedule.add(new Schedule("Agile Fundamental","14:30 - 16:30 WIB","QORY INDAH",1));
+//                break;
+//            case "G5" :
+//                listSchedule.add(new Schedule("Desain Antar Muka Aplikasi","07:30 - 09:30 WIB","KARTIKA MARWAH",1));
+//                listSchedule.add(new Schedule("Rekayasa Perangkat Lunak","09:30 - 12:30 WIB","NASRUDIN",1));
+//                listSchedule.add(new Schedule("Pemograman Dasar","14:30 - 16:30 WIB","CAHYANA RACHMAN",1));
+//                break;
+//            case "G7" :
+//                listSchedule.add(new Schedule("Matematika Informatika","07:30 - 09:30 WIB","AHMAD MAULANA",1));
+//                listSchedule.add(new Schedule("Multimedia Terapan","09:30 - 12:30 WIB","BASRUDIN AMIN",1));
+//                listSchedule.add(new Schedule("Manajemen Tim","14:30 - 16:30 WIB","TITIAN SETIAWAN",1));
+//                break;
+//            case "Kitchen" :
+//                listSchedule.add(new Schedule("Pastry Cake","09:30 - 12:30 WIB","TRI KURNIA",1));
+//                break;
+//        }
     }
 
 }

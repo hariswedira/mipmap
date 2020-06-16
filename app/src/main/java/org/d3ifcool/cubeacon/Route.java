@@ -1,118 +1,131 @@
 package org.d3ifcool.cubeacon;
 
+import android.content.Context;
 import java.util.ArrayList;
 
 public class Route {
 
-    private String[] beacon01 = {"beacon01", "beacon02", "kantin", "dapur", "g1", "g5", "g6", "g7","lol"};
-    private String[] beacon02 = {"beacon02", "beacon01", "beacon03", "mpmart", "laboran", "lol"};
-    private String[] beacon03 = {"beacon03", "beacon02", "g9", "beacon04"};
-    private String[][] beacon = {beacon01, beacon02, beacon03};
-
-    private ArrayList<String> rute;
-    private ArrayList<String> visited;
-    private ArrayList<String[]> neightboar;
+    private ArrayList<String> unvisited = new ArrayList<>();
+    private ArrayList<ArrayList<String>> neightboars = new ArrayList<>();
+    private ArrayList<String> beacon01 = new ArrayList<>();
+    private ArrayList<String> beacon02 = new ArrayList<>();
+    private ArrayList<String> beacon03 = new ArrayList<>();
+    private ArrayList<ArrayList<String>> beacon = new ArrayList<>();
+    ArrayList<ArrayList<String>> routes = new ArrayList<>();
     private ArrayList<String> rutes = new ArrayList<>();
 
-    public Route() {
+    private Context context;
+    public Route(Context context) {
+        this.context = context;
     }
 
-    public ArrayList<String> findWay(String start, String end){
+    private void initDataAllBeacon() {
+        beacon01.add("beacon01");
+        beacon01.add("beacon02");
+        beacon01.add("kantin");
+        beacon01.add("kitchen");
+        beacon01.add("g1");
+        beacon01.add("g5");
+        beacon01.add("g6");
+        beacon01.add("g7");
 
-        String pinstart[] = new String[0];
-        for (int i = 0; i < beacon.length; i++) {
-            if (start.equalsIgnoreCase(beacon[i][0])){
-                pinstart = beacon[i];
+        beacon02.add("beacon02");
+        beacon02.add("mpmart");
+        beacon02.add("gate");
+        beacon02.add("beacon01");
+        beacon02.add("laboran");
+        beacon02.add("beacon03");
+
+        beacon03.add("beacon03");
+        beacon03.add("beacon02");
+        beacon03.add("g9");
+        beacon03.add("beacon04");
+
+        beacon.add(beacon01);beacon.add(beacon02);beacon.add(beacon03);
+        unvisited.add("beacon01");
+        unvisited.add("beacon02");
+        unvisited.add("beacon03");
+    }
+
+    public ArrayList<ArrayList<String>> findWay(String starts, String end){
+        initDataAllBeacon();
+
+        ArrayList<String> startPoint = new ArrayList<>();
+
+        for (int i = 0; i < beacon.size() ; i++) {
+            if (starts.equalsIgnoreCase(beacon.get(i).get(0))){
+                startPoint = beacon.get(i);
+
+                wayTracking(startPoint,end);
+                ArrayList<ArrayList<String>> nav = new ArrayList<>();
+                nav = findRoute(starts,end);
+
+                if (end.equalsIgnoreCase("g9") && startPoint.get(0).equalsIgnoreCase("beacon01")){
+                    rutes.remove(2);
+                }
+                if (end.equalsIgnoreCase("g9") && startPoint.get(0).equalsIgnoreCase("beacon02")){
+                    rutes.remove(1);
+                }
+
+                routes.add(rutes);
+                routes.add(nav.get(1));
+
+                return routes;
             }
         }
 
-        wayTracking(pinstart, end);
-
-        return rutes;
+        return routes;
     }
 
-    public void wayTracking(String[] starts, String end){
-
-        String pos[] = starts;
+    public void wayTracking(ArrayList<String> starts, String end){
         boolean meet = false;
-        boolean way = false;
         boolean beaconExist = false;
 
-        if (visited.isEmpty()){
-            visited.add(pos[0]);
-        }else {
-            for (int i = 0; i < visited.size(); i++) {
-                if (!pos[0].matches(visited.get(i))){
-                    visited.add(pos[0]);
-                }
-            }
-        }
-
         while (!meet) {
-            if (neightboar.isEmpty()) {
-                // Perulangan pencarian
-                for (int i = 0; i < pos.length; i++) {
-                    // Jika tetangga sama dengan tujuan akhir
-                    if (pos[i].equalsIgnoreCase(end)) {
-                        rute.add(pos[0]);
-                        rute.add(end);
-                        way = true;
-                        meet = true;
-                    }
-                    // Periksa adakah tetangga beacon
-                    else if (pos[i].equalsIgnoreCase(pos[pos.length - 1])) {
-                        // Perulangan mencari tetangga beacon
-                        for (int j = 0; j < pos.length; j++) {
-                            for (int k = 0; k < beacon.length; k++) {
-                                // Jika ada tetangga beacon
-                                if (pos[j].equalsIgnoreCase(beacon[k][0])) {
-                                    for (int l = 0; l < visited.size(); l++) {
-                                        if (!pos[j].matches(visited.get(l))){
-                                            neightboar.add(beacon[k]);
-                                            beaconExist = true;
-                                        }
+            // Periksa dulu start udah divisit belum
+            for (int u = 0; u < unvisited.size(); u++) {
+                // Kalo belum
+                if (starts.get(0).equalsIgnoreCase(unvisited.get(u))) {
+                    unvisited.remove(u);
+                    // Periksa tetangga start
+                    for (int i = 0; i < starts.size(); i++) {
+                        // Kalo ketemu end
+                        if (starts.get(i).equalsIgnoreCase(end)) {
+                            // Ketemu! keluar dari while
+                            rutes.add(starts.get(0));
+                            rutes.add(end);
+                            meet = true;
+                        }
+                        // Kalo ketemu tetangga yang id:beacon
+                        else if (starts.get(i).equalsIgnoreCase(starts.get(starts.size()-1))){
+                            for (String start1 : starts) {
+                                for (ArrayList<String> aBeacon : beacon) {
+                                    if (start1.equalsIgnoreCase(aBeacon.get(0)) &&
+                                            !starts.get(0).equalsIgnoreCase(aBeacon.get(0))) {
+                                        // Masukin tetangga ke neighboar, buat diperiksa nanti
+                                        neightboars.add(aBeacon);
+                                        // Ada tetangga dengan id:beacon
+                                        beaconExist = true;
                                     }
                                 }
                             }
                         }
                     }
                 }
-
-                if (beaconExist) {
-                    rute.add(pos[0]);
-                    pos = neightboar.get(0);
-                    neightboar.remove(0);
-                }
-
-//                meet = true;
             }
-            else {
-                // Jika tetangga sama dengan tujuan akhir
-                for (String po : pos) {
-                    if (po.equalsIgnoreCase(end)) {
-                        rute.add(pos[0]);
-                        rute.add(end);
-                        way = true;
-                        meet = true;
-                    }
+            if (beaconExist) {
+                // Masukin start ke rute
+                if (!meet){
+                    rutes.add(starts.get(0));
                 }
-                // Jika tetangga tidak sama dengan tujuan akhir
-                pos = neightboar.get(0);
-                neightboar.remove(0);
-//                meet = true;
+                // Pindahin posisi start ke tetangga pertama
+                starts = neightboars.get(0);
+                // Hapus tetangga yg jadi target pindah
+                neightboars.remove(0);
             }
-        }
-
-        if (way) {
-//            showPath(start, end);
-            rutes = rute;
-        } else {
-            wayTracking(pos, end);
         }
 
     }
-
-
 
     public ArrayList<ArrayList<String>> findRoute(String start, String end){
 
@@ -135,7 +148,7 @@ public class Route {
             }else if (end.equalsIgnoreCase("kitchen")){
                 rute.add("beacon02");
                 rute.add("beacon01");
-                rute.add("dapur");
+                rute.add("kitchen");
 
                 sign.add("Move Forward");
                 sign.add("Slight right");

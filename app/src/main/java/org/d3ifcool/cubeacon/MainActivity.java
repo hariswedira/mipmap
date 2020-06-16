@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
         SharedPreferences pref = getSharedPreferences("prefs", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = pref.edit();
+//        editor.putBoolean("firststart", true);
+//        editor.apply();
         boolean firstStart = pref.getBoolean("firststart", true);
 
         new Handler().postDelayed(new Runnable() {

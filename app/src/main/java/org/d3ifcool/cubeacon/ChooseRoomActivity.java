@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +30,7 @@ public class ChooseRoomActivity extends AppCompatActivity {
     private ArrayList<Room> listRooms;
     private RoomAdapter adapter;
     private LinearLayoutManager linearLayoutManager;
+    private ProgressBar progressBar;
 
     private Button classRoom, lab, all, riset;
     private int userPos;
@@ -67,6 +69,9 @@ public class ChooseRoomActivity extends AppCompatActivity {
                 // Failed to read value
             }
         });
+
+        progressBar = findViewById(R.id.progressBar2);
+        progressBar.setVisibility(View.GONE);
 
         classRoom = findViewById(R.id.btn_classroom);
         lab = findViewById(R.id.btn_laboratory);
@@ -115,6 +120,7 @@ public class ChooseRoomActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ArrayList<Room> classList = new ArrayList<>();
                 DatabaseReference ruangan = database.getReference("room");
+                progressBar.setVisibility(View.VISIBLE);
                 ruangan.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -124,6 +130,7 @@ public class ChooseRoomActivity extends AppCompatActivity {
                                 classList.add(a);
                             }
                         }
+                        progressBar.setVisibility(View.GONE);
                         adapter.updateList(classList);
                     }
 
@@ -144,7 +151,9 @@ public class ChooseRoomActivity extends AppCompatActivity {
         all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
                 adapter.updateList(listRooms);
+                progressBar.setVisibility(View.GONE);
             }
         });
 
@@ -153,6 +162,7 @@ public class ChooseRoomActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ArrayList<Room> labList = new ArrayList<>();
                 DatabaseReference ruangan = database.getReference("room");
+                progressBar.setVisibility(View.VISIBLE);
                 ruangan.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -162,6 +172,7 @@ public class ChooseRoomActivity extends AppCompatActivity {
                                 labList.add(a);
                             }
                         }
+                        progressBar.setVisibility(View.GONE);
                         adapter.updateList(labList);
                     }
 
@@ -181,6 +192,7 @@ public class ChooseRoomActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ArrayList<Room> risetList = new ArrayList<>();
                 DatabaseReference ruangan = database.getReference("room");
+                progressBar.setVisibility(View.VISIBLE);
                 ruangan.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -190,6 +202,7 @@ public class ChooseRoomActivity extends AppCompatActivity {
                                 risetList.add(a);
                             }
                         }
+                        progressBar.setVisibility(View.GONE);
                         adapter.updateList(risetList);
                     }
 
@@ -208,6 +221,7 @@ public class ChooseRoomActivity extends AppCompatActivity {
 
     private void initData() {
         DatabaseReference ruangan = database.getReference("room");
+        progressBar.setVisibility(View.VISIBLE);
         ruangan.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -215,6 +229,7 @@ public class ChooseRoomActivity extends AppCompatActivity {
                     Room a = dataSnapshot1.getValue(Room.class);
                     listRooms.add(a);
                 }
+                progressBar.setVisibility(View.GONE);
                 adapter.updateList(listRooms);
             }
 

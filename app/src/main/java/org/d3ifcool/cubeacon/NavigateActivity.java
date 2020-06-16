@@ -91,6 +91,7 @@ public class NavigateActivity extends AppCompatActivity  implements SensorEventL
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        startPressed = false;
         checkRef.setValue(false);
 //        navRef.setValue(0);
         finish();
@@ -382,6 +383,7 @@ public class NavigateActivity extends AppCompatActivity  implements SensorEventL
         btnStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startPressed = false;
                 onBackPressed();
             }
         });
@@ -910,13 +912,24 @@ public class NavigateActivity extends AppCompatActivity  implements SensorEventL
     }
 
     private void initRute(String start, String end){
-        Route routes = new Route();
+        Route routes = new Route(NavigateActivity.this);
         ArrayList<ArrayList<String>> navigasi = new ArrayList<>();
 
-        navigasi = routes.findRoute(start,end);
+//        navigasi = routes.findRoute(start,end);
+        navigasi = routes.findWay(start,end);
 
         rute.addAll(navigasi.get(0));
         arah.addAll(navigasi.get(1));
+        String lowerGoal = rute.get(rute.size()-1).toLowerCase();
+        rute.set(rute.size()-1,lowerGoal);
+
+        String g = "";
+        for (int i = 0; i < rute.size() ; i++) {
+            g += ","+rute.get(i);
+        }
+        Toast.makeText(NavigateActivity.this, g, Toast.LENGTH_SHORT).show();
+
+
         initBeacon();
 //        if (end.equalsIgnoreCase("g9")){
 //            rute.add("beacon02");

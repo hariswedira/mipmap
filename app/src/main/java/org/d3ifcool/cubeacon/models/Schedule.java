@@ -9,6 +9,9 @@ public class Schedule implements Parcelable {
     String lecture;
     int isGoing;
 
+    public Schedule() {
+    }
+
     public Schedule(String title, String time, String lecture, int isGoing) {
         this.title = title;
         this.time = time;

@@ -101,5 +101,36 @@ public class ScheduleActivity extends AppCompatActivity {
         viewPager.setCurrentItem(getValue());
         tabLayout.setupWithViewPager(viewPager);
 
+        dayCur.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int day = dataSnapshot.getValue(Integer.class);
+                if (day == 2){
+                    TabLayout.Tab tab = tabLayout.getTabAt(0);
+                    tab.select();
+                }else if (day == 3){
+                    TabLayout.Tab tab = tabLayout.getTabAt(1);
+                    tab.select();
+                }else if (day == 4){
+                    TabLayout.Tab tab = tabLayout.getTabAt(2);
+                    tab.select();
+                }else if (day == 5){
+                    TabLayout.Tab tab = tabLayout.getTabAt(3);
+                    tab.select();
+                }else if (day == 6){
+                    TabLayout.Tab tab = tabLayout.getTabAt(4);
+                    tab.select();
+                }else if (day == 7){
+                    TabLayout.Tab tab = tabLayout.getTabAt(5);
+                    tab.select();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }
