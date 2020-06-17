@@ -62,8 +62,6 @@ import java.util.TimeZone;
 
 public class EventActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener, SensorEventListener {
 
-    public EstimoteCloudCredentials cloudCredentials =
-            new EstimoteCloudCredentials("mipmap-hqh", "6756bb70e7d65c3bd6a367882450915a");
     //        new EstimoteCloudCredentials("febbydahlan034-gmail-com-s-6wz", "93eb2e64e84caf1d30079ad3c7b8b7e8");
     private NotificationManagaer notificationManagaer;
     private ProximityObserver.Handler proximityObserverHandler;
